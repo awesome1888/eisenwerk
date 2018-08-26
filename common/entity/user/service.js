@@ -13,15 +13,8 @@ export default class UserService extends BaseService {
         return Entity;
     }
 
-    /**
-     * Enable automatic generation of createdAt and updatedAt fields for the entity
-     * @returns {{timeStamps}}
-     */
-    getSettings() {
-        const settings = super.getSettings();
-        settings.timeStamps = true;
-
-        return settings;
+    allowTimestamps() {
+        return true;
     }
 
     declarePreProcessHooks(hooks) {

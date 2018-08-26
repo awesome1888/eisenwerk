@@ -1,5 +1,6 @@
 import Query from './query.js';
 import Result from './result.js';
+import set from 'set-value';
 
 let networkRef = null;
 
@@ -177,16 +178,19 @@ export default class Entity {
     }
 
     getData() {
-        if (!this._normalized) {
-            this.normalizeData(this._data);
+        if (!this._normalizedData) {
+            this._normalizedData = this.normalizeData(_.deepClone(this._data));
         }
 
+        return this._normalizedData;
+    }
+
+    getSrcData() {
         return this._data;
     }
 
     setData(data) {
         this.invalidateCaches();
-        this._normalized = false;
         this._data = data || {};
     }
 
@@ -194,15 +198,135 @@ export default class Entity {
         return _.deepClone(this.getData());
     }
 
-    invalidateCaches() {
+    setSrcDataAt(path, value) {
+        set(this.getSrcData(), path, value);
+        this.invalidateCaches();
     }
 
+    getSrcDataAt(path) {
+        return _.getValue(this.getSrcData(), path);
+    }
+
+    unSetSrcDataAt(path) {
+        this.setSrcDataAt(path, undefined);
+    }
+
+    invalidateCaches() {
+        this._normalizedData = null;
+    }
+
+    // ////////////////////
+    // attribute Created at
+
+    /**
+     * Get createdAt by reference
+     * @return Date|undefined
+     */
     getCreatedAt() {
         return this.getData().createdAt;
     }
 
+    /**
+     * Get createdAt by value
+     * @return Date
+     */
+    extractCreatedAt() {
+        if (_.isUndefined(this.getCreatedAt())) {
+            this.getData().createdAt = null;
+        }
+
+        return _.deepClone(this.getCreatedAt());
+    }
+
+    /**
+     * Set createdAt by reference
+     * @param value
+     * @return void
+     */
+    setCreatedAt(value) {
+        this.setSrcDataAt('createdAt', value);
+    }
+
+    /**
+     * Set createdAt by value
+     * @param value
+     * @return void
+     */
+    putCreatedAt(value) {
+        this.setCreatedAt(_.deepClone(value));
+    }
+
+    /**
+     * Check if we have an attribute createdAt
+     * @returns boolean
+     */
+    hasCreatedAt() {
+        return _.isDate(this.getCreatedAt());
+    }
+
+    /**
+     * Unset the attribute createdAt
+     * @returns void
+     */
+    unSetCreatedAt() {
+        this.unSetSrcDataAt('createdAt');
+    }
+
+    // ////////////////////
+    // attribute Updated At
+
+    /**
+     * Get updatedAt by reference
+     * @return Date|undefined
+     */
     getUpdatedAt() {
         return this.getData().updatedAt;
+    }
+
+    /**
+     * Get updatedAt by value
+     * @return Date
+     */
+    extractUpdatedAt() {
+        if (_.isUndefined(this.getUpdatedAt())) {
+            this.getData().updatedAt = null;
+        }
+
+        return _.deepClone(this.getUpdatedAt());
+    }
+
+    /**
+     * Set updatedAt by reference
+     * @param value
+     * @return void
+     */
+    setUpdatedAt(value) {
+        this.setSrcDataAt('updatedAt', value);
+    }
+
+    /**
+     * Set updatedAt by value
+     * @param value
+     * @return void
+     */
+    putUpdatedAt(value) {
+        this.setUpdatedAt(_.deepClone(value));
+    }
+
+    /**
+     * Check if we have an attribute updatedAt
+     * @returns boolean
+     */
+    hasUpdatedAt() {
+        return _.isDate(this.getUpdatedAt());
+    }
+
+    /**
+     * Unset the attribute updatedAt
+     * @returns void
+     */
+    unSetUpdatedAt() {
+        this.unSetSrcDataAt('updatedAt');
     }
 
     /**
@@ -213,9 +337,10 @@ export default class Entity {
      * Besides, it reduces the use of _.getValue(), which is great, but kills performance.
      *
      * @param data
-     * @return void
+     * @return data
      */
     normalizeData(data) {
+        return data;
     }
 
     clone() {

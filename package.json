@@ -75,7 +75,8 @@
       "ObjectId": true,
       "TObjectId": true,
       "Schema": true,
-      "navigator": true
+      "navigator": true,
+      "mix": true
     },
     "parser": "babel-eslint",
     "parserOptions": {

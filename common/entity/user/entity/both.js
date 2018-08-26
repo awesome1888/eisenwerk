@@ -3,7 +3,7 @@ import roleEnum from '../enum/role.js';
 
 const M = superclass => class User extends superclass {
     static getUId() {
-        return 'users';
+        return 'user';
     }
 
     getRole() {
@@ -25,6 +25,8 @@ const M = superclass => class User extends superclass {
     normalizeData(data) {
         data.profile = data.profile || {};
         data.role = data.role || [];
+
+        return data;
     }
 
     // getCreatedAtFormatted(format = 'DD.MM.YYYY') {

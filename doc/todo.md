@@ -6,4 +6,6 @@
 * port useful things from pr-legacy project
 * probably replace filter, sort, limit, etc with $filter, $sort, $limit, ...
 * implement smart population
+* ENV dot notation
+* real data and normalized data
 

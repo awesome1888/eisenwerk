@@ -54,10 +54,8 @@ export default class Service extends BaseService {
         return `/${this.getName()}`;
     }
 
-    getSettings() {
-        return {
-            timeStamps: false,
-        };
+    allowTimestamps() {
+        return false;
     }
 
     /**
@@ -123,7 +121,7 @@ export default class Service extends BaseService {
     }
 
     declareTimeStampHooks(hooks) {
-        if (this.getSettings().timeStamps) {
+        if (this.allowTimestamps()) {
             hooks.declare({
                 before: {
                     // on create we define createdAt
