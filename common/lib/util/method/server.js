@@ -5,12 +5,11 @@ export default class Method {
         return [
             // // example:
             // {
-            //     name: 'candidate.activate',
-            //     body: 'activateCandidate',
+            //     name: 'user.activate',
+            //     body: 'activateUser',
             //     access: {
             //         deny: false,
             //         authorized: true,
-            //         roleAll: [roleEnum.PRE_CANDIDATE],
             //     },
             // }
         ];

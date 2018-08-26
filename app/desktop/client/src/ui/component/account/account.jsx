@@ -52,11 +52,8 @@ class Account extends BaseComponent {
                 model: {
                     firstName: _.getValue(user, 'profile.firstName'), // user.getFirstName(),
                     lastName: _.getValue(user, 'profile.lastName'), // user.getLastName(),
-                    // fullName: _.getValue(user, 'profile.fullName'), // user.getFullName(),
                     email: _.getValue(user, 'profile.email'), // user.getEmail(),
-                    gender: _.getValue(user, 'profile.gender'), // user.getGender(),
                 },
-                isEmployer: _.contains(user.role, roleEnum.EMPLOYER)
             });
         }
     }

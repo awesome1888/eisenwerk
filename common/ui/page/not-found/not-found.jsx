@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 class NotFoundPage extends BasePage {
     render() {
         return (
-            <Authentication optionBar={!this.props.user && {register: true, login: true, employers: true}}>
+            <Authentication optionBar={!this.props.user && {register: true, login: true}}>
                 Go home, you are druk.
             </Authentication>
         );

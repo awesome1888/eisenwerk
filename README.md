@@ -85,25 +85,25 @@ import Company from './common/entity/company/entity/server.js;
 
 * direct search:
 ~~~~
-const result = await Company.find({filter: {...}, sort: {...}, select: {...}, limit: 1, offset: 5, populate: {...}})
+const result = await User.find({filter: {...}, sort: {...}, select: {...}, limit: 1, offset: 5, populate: {...}})
 ~~~~
 
 * simple query
 ~~~~
-const query = Company.query({filter: {...}, sort: {...}, select: {...}, limit: 1, offset: 5, populate: {...}});
+const query = User.query({filter: {...}, sort: {...}, select: {...}, limit: 1, offset: 5, populate: {...}});
 const result = await query.exec();
 ~~~~
 
 * fabric-based query
 ~~~~
-const query = Company.query((parameters, query) => {
+const query = User.query((parameters, query) => {
     if (_.isNumber(parameters.itemLimit)) {
         query.limit(parameters.itemLimit);
     }
 
-    query.select({employers: 1, details: 1, createdAt: 1});
+    query.select({friends: 1, details: 1, createdAt: 1});
     query.sort({createdAt: -1});
-    query.populate(['employers']);
+    query.populate(['friends']);
 });
 
 query.setParameters({
@@ -124,12 +124,12 @@ query.setParameters({...parameters});
 
 ### To find one item by a random filter:
 ~~~~
-const item = await Company.findOne({filter: {_id: '5b604a878e31fe0015219115'}});
+const item = await User.findOne({filter: {_id: '5b604a878e31fe0015219115'}});
 ~~~~
 
 ### To get one item by it`s _id:
 ~~~~
-const item = await Company.get('5b604a878e31fe0015219115');
+const item = await User.get('5b604a878e31fe0015219115');
 ~~~~
 
 ### To create/update an item:
@@ -147,7 +147,7 @@ if (result.isOk()) {
 
 There is also a static version available:
 ~~~~
-const result = await Company.save('5b6312293fd70b000f10f687', {details: {name: 'New name'}});
+const result = await User.save('5b6312293fd70b000f10f687', {details: {name: 'New name'}});
 if (result.isOk()) {
     console.dir(result.getData());
 } else {
@@ -168,7 +168,7 @@ if (result.isOk()) {
 
 There is also a static version available:
 ~~~~
-const result = await Company.delete('5b6312293fd70b000f10f687');
+const result = await User.delete('5b6312293fd70b000f10f687');
 if (result.isOk()) {
     console.dir(result.getData());
 } else {
@@ -178,7 +178,7 @@ if (result.isOk()) {
 
 ### To remove many items by a condition
 ~~~~
-await Company.deleteMany({...conditions});
+await User.deleteMany({...conditions});
 ~~~~
 
 ## Access rules explained
@@ -194,8 +194,8 @@ Typical access declaration is:
 {
     deny: false,
     authorized: true,
-    roleAll: [roleEnum.ADMINISTRATOR, roleEnum.CANDIDATE],
-    roleAny: [roleEnum.ADMINISTRATOR, roleEnum.EMPLOYER],
+    roleAll: [roleEnum.ADMINISTRATOR, roleEnum.EDITOR],
+    roleAny: [roleEnum.ADMINISTRATOR, roleEnum.MODERATOR],
     custom: (user, context) => {
         ... some checks ...
         return true/false;
@@ -210,4 +210,3 @@ Rules are checked in order they are shown in the example above, from `deny` to `
 3) `roleAll` means that all roles specified in the array should be present in the passed user`s profile,
 4) `roleAny` means that any of the roles specified in the array should be present in the passed user`s profile,
 5) `custom` rule should be a function and should provide some custom user checks. It should return boolean or throw an exception.
-
