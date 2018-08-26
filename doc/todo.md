@@ -8,4 +8,7 @@
 * implement smart population
 * ENV dot notation
 * real data and normalized data
+* cron
+* migrations
+* admin app
 
