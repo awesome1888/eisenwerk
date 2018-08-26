@@ -8,6 +8,8 @@
     * global events
     * page scroll
     * data-store-scroll attribute and logic
+    * backurl
+    * set title
 * probably replace filter, sort, limit, etc with $filter, $sort, $limit, ...
 * implement smart population
 * ENV dot notation
@@ -21,6 +23,7 @@
 * favicon
 * webicon
 * sitemap
+* try to use component-template approach
 
 To NPM:
 * selectbox
@@ -36,3 +39,6 @@ To NPM:
 * scrollbars
 * notifications
 * top menu with mobile support
+* file uploader
+* image viewer
+* enum fabric

@@ -12,102 +12,22 @@ export default class BaseComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: {},
-            dataReady: false,
-            error: null,
         };
         this.events = [];
     }
 
-    componentDidMount() {
-        if (this.needLoadData()) {
-            this.startDataReload(this.props);
-        }
-    }
-
-    componentWillUnmount() {
-        // set default title back
-        if (this._titleUpdated) {
-            this.setTitle();
-            this._titleUpdated = false;
-        }
-    }
+    // componentWillUnmount() {
+    //     // set default title back
+    //     if (this._titleUpdated) {
+    //         this.setTitle();
+    //         this._titleUpdated = false;
+    //     }
+    // }
 
     extendState(state) {
         if (_.isObject(state)) {
             Object.assign(this.state, state);
         }
-    }
-
-    getRouterParam(paramName) {
-        return _.getValue(this.props, `match.params.${paramName}`);
-    }
-
-    getDataQuery() {
-        return null;
-    }
-
-    getIdPropertyCode() {
-        return false;
-    }
-
-    needLoadData() {
-        return true;
-    }
-
-    async getDataQueryParameters(id) {
-        return {id};
-    }
-
-    getDataOne() {
-        return true;
-    }
-
-    setDataLoaded(res) {
-        this.setData(res);
-        if (_.isFunction(this.props.onDataReloaded)) {
-            this.props.onDataReloaded(res);
-        }
-    }
-
-    getDataReloadParam(props, attribute) {
-        return props[attribute];
-    }
-
-    async startDataReload(props) {
-        if (!props) {
-            props = this.props;
-        }
-        const q = this.getDataQuery();
-
-        if (q) {
-            const id = this.getDataReloadParam(props, this.getIdPropertyCode());
-
-            if (id && Util.isId(id)) {
-                const params = await this.getDataQueryParameters(id);
-                const fName = this.getDataOne() ? 'fetchOne' : 'fetch';
-                q.clone(params)[fName]()
-                    .then((res) => {
-                        this.setDataLoaded(res);
-                    })
-                    .catch((err) => {
-                        console.error(err);
-                    });
-            }
-        }
-
-        return {};
-    }
-
-    setData(data) {
-        this.setState({
-            data,
-            dataReady: true,
-        });
-    }
-
-    getData() {
-        return this.state.data;
     }
 
     getChildren() {
@@ -116,10 +36,6 @@ export default class BaseComponent extends React.Component {
 
     hasChildren() {
         return !!this.getChildren();
-    }
-
-    fire(event, args = []) {
-        $(document).trigger(event, args);
     }
 
     /**
@@ -182,21 +98,8 @@ export default class BaseComponent extends React.Component {
         return this._router;
     }
 
-    /**
-     * Tells router to redirect to the specified url
-     * @param url
-     * @deprecated
-     */
-    redirectTo(url) {
-        this.getRouter().go(url);
-    }
-
     // ////////////
     // React Context support
-
-    static getContextMapper() {
-        return context => context;
-    }
 
     /**
      * Returns a HOC connected to the context with a given code (in parameters). The content of the context
@@ -217,7 +120,7 @@ export default class BaseComponent extends React.Component {
             }
 
             const Consumer = context.Consumer;
-            const mapper = _.isObjectNotEmpty(parameters) && _.isFunction(parameters.mapper) ? parameters.mapper : Component.getContextMapper();
+            const mapper = _.isObjectNotEmpty(parameters) && _.isFunction(parameters.mapper) ? parameters.mapper : x => x;
 
             return (
                 <Consumer>
@@ -273,28 +176,6 @@ export default class BaseComponent extends React.Component {
     // Redux Store support
 
     /**
-     * This function declare which parts of the redux store state you would like to track
-     * in this particular component.
-     *
-     * Note: when you declare this function like the following:
-     *      return (state) => { return {state: {user: state.global.user}}; };
-     * the code will cause re-render every time the store gets changed, because when you write
-     *      return {...}
-     * it means, that on each invocation a new instance of an object is returned, therefore the strict equality
-     * check fails.
-     *
-     * The question is not that simple, when it comes to the performance. Read the official doc:
-     * https://github.com/reduxjs/react-redux/blob/master/docs/api.md
-     *
-     * The default function maps everything to everything, but beware:
-     * in case you are going so, you will loose all performance optimizations.
-     * @returns {function(*): *}
-     */
-    static getStoreMapper() {
-        return state => state;
-    }
-
-    /**
      * Returns a HOC connected to the redux store of the application. The component will receive parts of the
      * store defined with .getStoreMapper() and dispatch() method through the properties.
      * The component will get re-rendered only when the forwarded parts of the redux store get changed.
@@ -304,7 +185,7 @@ export default class BaseComponent extends React.Component {
      */
     static connectStore(Component = null, parameters = {}) {
         Component = Component || this;
-        const mapper = _.isObjectNotEmpty(parameters) && _.isFunction(parameters.mapper) ? parameters.mapper : Component.getStoreMapper();
+        const mapper = _.isObjectNotEmpty(parameters) && _.isFunction(parameters.mapper) ? parameters.mapper : x => x;
         return connect(mapper)(Component);
     }
 
@@ -347,56 +228,6 @@ export default class BaseComponent extends React.Component {
 
     makeError(feature) {
         throw new Error(`No ${feature} connected. Use ${this.constructor.name}.connect({${feature}: true}) to provide some.`);
-    }
-
-    isReady() {
-        return this.state.dataReady;
-    }
-
-    setTitle(title = '') {
-        title = title.replace(/#DASH#/g, '–');
-        this.fire('set-title', title);
-
-        let newTitle = 'Seven Lanes';
-        if (_.isStringNotEmpty(title)) {
-            newTitle = `${title} – ${newTitle}`;
-        }
-        document.title = newTitle;
-        this._titleUpdated = true;
-    }
-
-    getCurrentPath() {
-
-    }
-
-    /**
-     * Returns back url, if it was passed in the url query string
-     * @returns {*}
-     */
-    getBackUrlUrlParam() {
-        const url = Util.parseUrl();
-
-        if (!_.isEmpty(url)) {
-            return url.backUrl || url.backurl || '';
-        }
-
-        return '';
-    }
-
-    /**
-     * Returns back url, if it was passed in the url query string, and makes it safe to go to
-     * @param fallBack
-     * @returns {*}
-     */
-    getUrlBackUrl(fallBack = '') {
-        const backUrl = this.getBackUrlUrlParam();
-
-        if (backUrl) {
-            // open redirect attack protection
-            return backUrl.replace(new RegExp(':+/+', 'g'), '/');
-        }
-
-        return fallBack;
     }
 
     async execute(name, args) {
