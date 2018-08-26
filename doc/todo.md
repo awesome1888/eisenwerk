@@ -4,6 +4,10 @@
 * plug in browsersync
 * pack everything that is possible to npm
 * port useful things from pr-legacy project
+    * template
+    * global events
+    * page scroll
+    * data-store-scroll attribute and logic
 * probably replace filter, sort, limit, etc with $filter, $sort, $limit, ...
 * implement smart population
 * ENV dot notation
@@ -17,3 +21,18 @@
 * favicon
 * webicon
 * sitemap
+
+To NPM:
+* selectbox
+* drag n drop
+* scrollpane
+* modal
+* button loader
+* page scroll
+* csv client side generator
+* csv server side generator
+* build tool
+* page up button
+* scrollbars
+* notifications
+* top menu with mobile support
