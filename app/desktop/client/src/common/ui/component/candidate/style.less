@@ -1,0 +1,115 @@
+@import (reference) './../../../style/index.less';
+
+.candidate-profile-view__location {
+	._margin-bottom();
+	color: #7a8087;
+	font-size: 0.9rem;
+}
+
+.candidate-profile-view__right {
+	._display_flex();
+	._flex-direction_row();
+	._flex-justify-content_end();
+	._margin-bottom();
+	._group_half();
+}
+
+.candidate-profile-view__grid-date {
+	margin-bottom: @offset_quarter;
+	color: #7a8087;
+	._text_size_minor();
+}
+
+.candidate-profile-view__grid-sub-title {
+	margin-bottom: 0.25rem;
+	._text_size_minor();
+	font-weight: 600;
+}
+
+.candidate-profile-view__grid-description {
+	white-space: pre-line;
+	margin-bottom: @offset_quarter;
+	._text_size_small();
+}
+
+.candidate-profile-view__grid-gray {
+	margin-bottom: 0.25rem;
+	color: #7a8087;
+	._text_size_small();
+}
+
+.candidate-profile-view__section-not-completed{
+	color: @color_link_dark;
+	margin-bottom: @offset;
+	._text_size_minor();
+}
+
+.candidate-profile__left-img {
+	float: left;
+}
+
+.candidate-profile-view_small-img {
+	width: 1.25rem;
+	height: 1.25rem;
+	margin-right: 0.5rem;
+}
+
+.candidate-profile-view__small-text {
+	color: #2e343b;
+	font-size: 0.9rem;
+}
+
+.candidate-profile__fix-padding {
+	padding-top: 0.4rem;
+}
+
+.candidate-profile-view__main-text {
+	margin-bottom: 0rem;
+	color: #7a8087;
+	font-size: 0.9rem;
+	line-height: 150%;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
+.candidate-profile-view__new-week {
+	display: inline-block;
+	padding: 0.25rem 0.5rem;
+	border: 1px solid #2e343b;
+	border-radius: 1rem;
+	background-color: #fff;
+	color: #2e343b;
+	font-size: 0.7rem;
+	line-height: 150%;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: -0.25rem;
+}
+
+.candidate-profile-view__pos-relative {
+	position: relative;
+}
+
+.candidate-profile-view__avatar-image_as-link {
+	._no-text-decoration();
+	._text_color_normal();
+	.cursor_pointer;
+}
+
+.candidate-view__link-header {
+	._rb-f-weight(600);
+	._text_size_normal();
+}
+
+.candidate-profile-view__item-header {
+	.rb-f-size_x1p25();
+	.margin-bottom_x2();
+	color: @color_text_base;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+	._text_weight_bolder();
+}

@@ -1,0 +1,133 @@
+.layout {
+	._content_min-fit(100vh, @screen-minimum); // screen minimum allowed
+	position: relative; // dont remove this, or mobile menu will stop working
+}
+
+// top banner, filter, etc
+.layout__wide-area {
+  width: 100%;
+  position: relative;
+  display: block;
+}
+
+.layout__wide-area_gray {
+  background-color: @color_steel-blue-old;
+}
+
+.layout__central {
+  @media(max-width: @size_mobile-max) {
+    background-color: @color_white;
+  }
+}
+
+// centered body block
+.layout__central-body {
+  @media(min-width: @size_tablet-min) {
+    // margin-top: @offset_double;
+    padding-bottom: @offset;
+  }
+}
+
+.layout__central-body-left {
+  max-width: @size_desktop-min;
+}
+
+.layout__central-body-right {
+}
+
+.layout__central-body-padded {
+  padding: 0 2rem 0 0;
+}
+
+.layout__header {
+	._border-bottom(@color_steel-blue-old);
+	position: relative;
+  ._rb-margin-b_x();
+  
+  @media(max-width: @size_mobile-max) {
+    margin: 2*@offset @offset @offset @offset;
+  }
+}
+
+.layout__header-text {
+	._no-margin-top();
+	margin-bottom: -1px;
+	._rb-padding-b_x(0.5);
+	float: left;
+	._border-bottom(@color_black);
+	._rb-f-size_x(1.2);
+	._text_weight_bold();
+}
+
+.layout_sidebar__header-text {
+  padding-bottom: 0.5rem;
+  float: left;
+  border-bottom: 1px solid #2e343b;
+  font-size: 1.2rem;
+  line-height: 150%;
+  font-weight: 600;
+}
+
+.layout__header-back {
+	._text_size_minor();
+	._no-text-decoration();
+	._text_color_normal();
+	._absolute(0, 0, 0);
+	._padding-bottom-x();
+	._content_v-center();
+}
+
+.layout__header-back-icon {
+	.icon_keyboard-arrow-left;
+	margin-top: 6px;
+}
+
+.notifications-wrapper {
+  .notifications-tr {
+    z-index: 99998 !important;
+  }
+}
+
+.layout__box-shadow {
+  box-shadow: 1px 1px 3px 0 fade(@color_black_default, 25%);
+}
+
+@media (max-width: @screen-md-min) {
+  .layout__left-menu{
+    width:100%
+  }
+  .layout__flex-container {
+    min-height: 0;
+    display: block;
+  }
+  .layout__right-container {
+    float: none;
+    width: 100%;
+  }
+}
+
+// enable padding-top only when right column is under the central one
+@media (max-width: @screen-sm-max) {
+  .layout__central-body-right {
+    ._padding-top();
+  }
+}
+
+.head-block {
+	._background_cover;
+	._rb-padding-t_x(15);
+
+	@media (max-width: @size_tablet-max) {
+		._rb-padding-t_x(9);
+	}
+
+	@media (max-width: @size_mobile-max) {
+		._rb-padding-t_x(4);
+	}
+}
+
+.head-block__data {
+	._rb-padding_x();
+	._rb-padding-b_x(3);
+	background-color: rgba(0,0,0,.5);
+}

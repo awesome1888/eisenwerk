@@ -1,0 +1,37 @@
+.media-card {
+
+}
+.media-card__header {
+  ._background_cover();
+  .image_background_pixel-art-gray;
+  height: 20 * @offset;
+  ._display_flex();
+  ._flex-direction_row();
+  ._flex-align-items_end();
+  ._flex-justify-content_end();
+}
+.media-card__side {
+  width: 25%;
+  ._padding();
+}
+.media-card__side-buttons {
+  ._display_flex();
+  ._flex-wrap_wrap();
+  ._flex-justify-content_end();
+  ._group_inline();
+  ._group_vertical_inline();
+}
+
+.media-card__shrink {
+  padding: 0 @offset;
+}
+
+@media (max-width: @screen-sm-min) {
+  .media-card__shrink {
+    ._padding-left-right(0) !important;
+  }
+}
+
+.media-card__pull-up {
+  ._margin-top(-5 * @offset);
+}

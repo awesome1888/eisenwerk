@@ -1,0 +1,62 @@
+version: '3'
+
+services:
+
+  ew.dev.desktop:
+    build:
+      context: ../app/desktop/
+      dockerfile: docker/development.dockerfile
+    expose:
+      - 3000
+    ports:
+      - 3000:3000
+    depends_on:
+      - ew.dev.db
+    restart: on-failure
+    environment:
+      - ROOT_URL=http://localhost:3000/
+      - PORT=3000
+      - DB_URL=mongodb://ew.dev.db:27017/ew
+      - PUBLIC_FOLDER=/usr/src/app/public/
+      - API_URL=http://localhost:3100
+      - ROOT_FOLDER=/usr/src/app
+
+  ew.dev.api:
+    build:
+      context: ../app/api/
+      dockerfile: docker/development.dockerfile
+    expose:
+      - 3100
+    ports:
+      - 3100:3100
+    depends_on:
+      - ew.dev.db
+    restart: on-failure
+    environment:
+      - ROOT_URL=http://localhost:3100/
+      - PORT=3100
+      - DB_URL=mongodb://ew.dev.db:27017/ew
+      - ALLOWED_ORIGINS=http://localhost:3000,http://localhost:3010
+      - SECRET=P4cRdF5mzSMPvy4hCdpKCjHMp3vZ4UvynaxhEAJK
+      - OAUTH_GOOGLE_CLIENT_ID=
+      - OAUTH_GOOGLE_SECRET=
+      - CLIENT_ORIGIN_URL=http://localhost:3010
+      # - DEBUG=@feathersjs/authentication-local:verify
+
+  ew.dev.db:
+      image: "mongo:latest"
+      restart: always
+      ports:
+        - 3900:27017
+
+  ew.dev.portainer:
+      image: portainer/portainer
+      ports:
+        - "3800:9000"
+      command: -H unix:///var/run/docker.sock
+      volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+        - portainer_data:/data
+
+volumes:
+  portainer_data:

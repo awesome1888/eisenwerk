@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for verifySignup.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="prettify.css" />
+    <link rel="stylesheet" href="base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="index.html">All files</a> verifySignup.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">14.29% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>4/28</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">14.81% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>4/27</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&nbsp;
+/* eslint-env node */
+&nbsp;
+const errors = require('@feathersjs/errors');
+const debug = require('debug')('authManagement:verifySignup');
+&nbsp;
+const {
+  getUserData,
+  ensureObjPropsValid,
+  ensureValuesAreStrings,
+  notifier
+} = require('./helpers');
+&nbsp;
+module.exports.verifySignupWithLongToken = <span class="fstat-no" title="function not covered" >function (</span>options, verifyToken) {
+<span class="cstat-no" title="statement not covered" >  return Promise.resolve()</span>
+    .then(<span class="fstat-no" title="function not covered" >() =&gt; </span>{
+<span class="cstat-no" title="statement not covered" >      ensureValuesAreStrings(verifyToken);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      return verifySignup(options, { verifyToken }, { verifyToken });</span>
+    });
+};
+&nbsp;
+module.exports.verifySignupWithShortToken = <span class="fstat-no" title="function not covered" >function (</span>options, verifyShortToken, identifyUser) {
+<span class="cstat-no" title="statement not covered" >  return Promise.resolve()</span>
+    .then(<span class="fstat-no" title="function not covered" >() =&gt; </span>{
+<span class="cstat-no" title="statement not covered" >      ensureValuesAreStrings(verifyShortToken);</span>
+<span class="cstat-no" title="statement not covered" >      ensureObjPropsValid(identifyUser, options.identifyUserProps);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      return verifySignup(options, identifyUser, { verifyShortToken });</span>
+    });
+};
+&nbsp;
+f</span>unction <span class="fstat-no" title="function not covered" >verifySignup (options, query, tokens) {
+<span class="cstat-no" title="statement not covered" >  debug('verifySignup', query, tokens);</span>
+  c</span>onst users = <span class="cstat-no" title="statement not covered" >options.app.service(options.service);
+  c</span>onst usersIdName = <span class="cstat-no" title="statement not covered" >users.id;
+  const {
+    sanitizeUserForClient
+  } = <span class="cstat-no" title="statement not covered" >options;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return users.find({ query })</span>
+    .then(<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >data =&gt; getUserData(data, ['isNotVerifiedOrHasVerifyChanges', 'verifyNotExpired']))</span></span>
+    .then(<span class="fstat-no" title="function not covered" >user =&gt; </span>{
+<span class="cstat-no" title="statement not covered" >      if (!Object.keys(tokens).every(<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >key =&gt; tokens[key] === user[key])) {</span></span></span>
+<span class="cstat-no" title="statement not covered" >        return eraseVerifyProps(user, user.isVerified)</span>
+          .then(<span class="fstat-no" title="function not covered" >() =&gt; </span>{
+<span class="cstat-no" title="statement not covered" >            throw new errors.BadRequest('Invalid token. Get for a new one. (authManagement)',</span>
+              { errors: { $className: 'badParam' } });
+          });
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      return eraseVerifyProps(user, user.verifyExpires &gt; Date.now(), user.verifyChanges || {})</span>
+        .then(<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >user1 =&gt; notifier(options.notifier, 'verifySignup', user1))</span></span>
+        .then(<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >user1 =&gt; sanitizeUserForClient(user1));</span></span>
+    });
+&nbsp;
+  f</span>unction <span class="fstat-no" title="function not covered" >eraseVerifyProps (user, isVerified, verifyChanges) {
+    c</span>onst patchToUser = <span class="cstat-no" title="statement not covered" >Object.assign({}, verifyChanges || {}, {
+      isVerified,
+      verifyToken: null,
+      verifyShortToken: null,
+      verifyExpires: null,
+      verifyChanges: {}
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return patchUser(user, patchToUser);</span>
+  }
+&nbsp;
+  f</span>unction <span class="fstat-no" title="function not covered" >patchUser (user, patchToUser) {
+<span class="cstat-no" title="statement not covered" >    return users.patch(user[usersIdName], patchToUser, {}) // needs users from closure</span>
+      .then(<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >() =&gt; Object.assign(user, patchToUser));</span></span>
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Jul 09 2018 09:37:43 GMT-0400 (EDT)
+</div>
+</div>
+<script src="prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="sorter.js"></script>
+</body>
+</html>

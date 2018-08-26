@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<head>
+    <title>Seven Lanes</title>
+    <meta name="title" content="Seven Lanes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <link href="/public/images/favicon.png?v=4" rel="shortcut icon" type="image/x-icon">
+    <link href="/public/images/webclip.png?v=4" rel="apple-touch-icon">
+    <%- assets.overlay %>
+    <%- assets.css %>
+</head>
+<body class="body_background_default">
+<%- overlay %>
+<div id="root"></div>
+<script>
+    window.__SETTINGS__ = <%- settings %>;
+</script>
+<%- assets.js %>
+</body>
+</html>

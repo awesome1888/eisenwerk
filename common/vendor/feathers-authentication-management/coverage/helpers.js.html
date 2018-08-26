@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for helpers.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="prettify.css" />
+    <link rel="stylesheet" href="base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="index.html">All files</a> helpers.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">94.34% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>100/106</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">79.71% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>55/69</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>30/30</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">93.68% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>89/95</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">102x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">102x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">102x</span>
+<span class="cline-any cline-yes">102x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32x</span>
+<span class="cline-any cline-yes">32x</span>
+<span class="cline-any cline-yes">32x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">23x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">131x</span>
+<span class="cline-any cline-yes">131x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">107x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">107x</span>
+<span class="cline-any cline-yes">108x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">107x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">116x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">116x</span>
+<span class="cline-any cline-yes">104x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">143x</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">124x</span>
+<span class="cline-any cline-yes">124x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">124x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">124x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">112x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">112x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">101x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">101x</span>
+<span class="cline-any cline-yes">44x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">57x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">183x</span>
+<span class="cline-any cline-yes">199x</span>
+<span class="cline-any cline-yes">183x</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">160x</span>
+<span class="cline-any cline-yes">160x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">84x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">84x</span>
+<span class="cline-any cline-yes">84x</span>
+<span class="cline-any cline-yes">84x</span>
+<span class="cline-any cline-yes">84x</span>
+<span class="cline-any cline-yes">84x</span>
+<span class="cline-any cline-yes">84x</span>
+<span class="cline-any cline-yes">84x</span>
+<span class="cline-any cline-yes">84x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">84x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">84x</span>
+<span class="cline-any cline-yes">84x</span>
+<span class="cline-any cline-yes">84x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">168x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">168x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">168x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">80x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">80x</span>
+<span class="cline-any cline-yes">80x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">80x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&nbsp;
+/* eslint-env node */
+/* eslint no-param-reassign: 0 */
+&nbsp;
+const bcrypt = require('bcryptjs');
+const crypto = require('crypto');
+const auth = require('@feathersjs/authentication-local').hooks;
+const errors = require('@feathersjs/errors');
+const debug = require('debug')('authManagement:helpers');
+&nbsp;
+const hashPassword = (app1, password) =&gt; {
+  const hook = {
+    type: 'before',
+    data: { password },
+    params: { provider: null },
+    app: {
+      get (str) {
+        return app1.get(str);
+      }
+    }
+  };
+&nbsp;
+  return auth.hashPassword()(hook)
+    .then(hook1 =&gt; hook1.data.password);
+};
+&nbsp;
+var concatIDAndHash = (id, token) =&gt; `${id}___${token}`;
+&nbsp;
+var deconstructId = token =&gt; {
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (token.indexOf('___') === -1) {
+<span class="cstat-no" title="statement not covered" >    throw new errors.BadRequest('Token is not in the correct format.',</span>
+      { errors: { $className: 'badParams' } });
+  }
+  return token.slice(0, token.indexOf('___'));
+};
+&nbsp;
+const comparePasswords = (oldPassword, password, getError) =&gt; new Promise((resolve, reject) =&gt; {
+  bcrypt.compare(oldPassword, password, (err, data1) =&gt; {
+    if (err || !data1) {
+      return reject(getError());
+    }
+&nbsp;
+    return resolve();
+  });
+});
+&nbsp;
+const randomBytes = len =&gt; new Promise((resolve, reject) =&gt; {
+  crypto.randomBytes(len, (err, buf) =&gt; (e</span>rr ? <span class="branch-0 cbranch-no" title="branch not covered" >reject(err) : resolve(buf.toString('hex'))));
+});
+&nbsp;
+const randomDigits = len =&gt; {
+  let str = '';
+&nbsp;
+  while (str.length &lt; len) {
+    str += parseInt('0x' + crypto.randomBytes(4).toString('hex')).toString();
+  }
+&nbsp;
+  return str.substr(0, len);
+};
+&nbsp;
+const getLongToken = len =&gt; randomBytes(len);
+&nbsp;
+const getShortToken = (len, ifDigits) =&gt; {
+  if (ifDigits) {
+    return Promise.resolve(randomDigits(len));
+  }
+&nbsp;
+  return randomBytes(Math.floor(len / 2) + 1)
+    .then(str =&gt; {
+      str = str.substr(0, len);
+&nbsp;
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (str.match(/^[0-9]+$/)) { // tests will fail on all digits
+<span class="cstat-no" title="statement not covered" >        str = `q${str.substr(1)}`; // shhhh, secret.</span>
+      }
+&nbsp;
+      return str;
+    });
+};
+&nbsp;
+const getUserData = (data, checks) =&gt; {
+  if (Array.isArray(data) ? data.length === 0 : data.total === 0) {
+    throw new errors.BadRequest('User not found.',
+      { errors: { $className: 'badParams' } });
+  }
+&nbsp;
+  const users = Array.isArray(data) ? data : data.data || [ data ];
+  const user = users[0];
+&nbsp;
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (users.length !== 1) {
+<span class="cstat-no" title="statement not covered" >    throw new errors.BadRequest('More than 1 user selected.',</span>
+      { errors: { $className: 'badParams' } });
+  }
+&nbsp;
+  if (checks.includes('isNotVerified') &amp;&amp; user.isVerified) {
+    throw new errors.BadRequest('User is already verified.',
+      { errors: { $className: 'isNotVerified' } });
+  }
+&nbsp;
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (checks.includes('isNotVerifiedOrHasVerifyChanges') &amp;&amp;
+<span class="branch-1 cbranch-no" title="branch not covered" >    user.isVerified &amp;&amp; <span class="branch-2 cbranch-no" title="branch not covered" >!Object.keys(user.verifyChanges || {}).length</span></span>
+  ) {
+<span class="cstat-no" title="statement not covered" >    throw new errors.BadRequest('User is already verified &amp; not awaiting changes.',</span>
+      { errors: { $className: 'nothingToVerify' } });
+  }
+&nbsp;
+  if (checks.includes('isVerified') &amp;&amp; !user.isVerified) {
+    throw new errors.BadRequest('User is not verified.',
+      { errors: { $className: 'isVerified' } });
+  }
+&nbsp;
+  <span class="missing-if-branch" title="if path not taken" >I</span>i</span>f (checks.includes('verifyNotExpired') &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >user.verifyExpires &lt; Date.now()) {
+<span class="cstat-no" title="statement not covered" >    throw new errors.BadRequest('Verification token has expired.',</span>
+      { errors: { $className: 'verifyExpired' } });
+  }
+&nbsp;
+  if (checks.includes('resetNotExpired') &amp;&amp; user.resetExpires &lt; Date.now()) {
+    throw new errors.BadRequest('Password reset token has expired.',
+      { errors: { $className: 'resetExpired' } });
+  }
+&nbsp;
+  return user;
+};
+&nbsp;
+const ensureObjPropsValid = (obj, props, allowNone) =&gt; {
+  const keys = Object.keys(obj);
+  const valid = keys.every(key =&gt; props.includes(key) &amp;&amp; typeof obj[key] === 'string');
+  if (!valid || (keys.length === 0 &amp;&amp; !allowNone)) {
+    throw new errors.BadRequest('User info is not valid. (authManagement)',
+      { errors: { $className: 'badParams' } }
+    );
+  }
+};
+&nbsp;
+const ensureValuesAreStrings = (...rest) =&gt; {
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (!rest.every(str =&gt; typeof str === 'string')) {
+<span class="cstat-no" title="statement not covered" >    throw new errors.BadRequest('Expected string value. (authManagement)',</span>
+      { errors: { $className: 'badParams' } }
+    );
+  }
+};
+&nbsp;
+// Verify that obj1 and obj2 have different 'field' field
+// Returns false if either object is null/undefined
+const ensureFieldHasChanged = (obj1, obj2) =&gt; (field) =&gt; {
+  return obj1 &amp;&amp; obj2 &amp;&amp; obj1[field] !== obj2[field];
+};
+&nbsp;
+const sanitizeUserForClient = user =&gt; {
+  const user1 = cloneObject(user);
+&nbsp;
+  delete user1.password;
+  delete user1.verifyExpires;
+  delete user1.verifyToken;
+  delete user1.verifyShortToken;
+  delete user1.verifyChanges;
+  delete user1.resetExpires;
+  delete user1.resetToken;
+  delete user1.resetShortToken;
+&nbsp;
+  return user1;
+};
+&nbsp;
+const sanitizeUserForNotifier = user =&gt; {
+  const user1 = cloneObject(user);
+  delete user1.password;
+  return user1;
+};
+&nbsp;
+/**
+ * Returns new object with values cloned from the original object. Some objects
+ * (like Sequelize or MongoDB model instances) contain circular references
+ * and cause TypeError when trying to JSON.stringify() them. They may contain
+ * custom toJSON() or toObject() method which allows to serialize them safely.
+ * Object.assign() does not clone these methods, so the purpose of this method
+ * is to use result of custom toJSON() or toObject() (if accessible)
+ * for Object.assign(), but only in case of serialization failure.
+ *
+ * @param {Object?} obj - Object to clone
+ * @returns {Object} Cloned object
+ */
+const cloneObject = obj =&gt; {
+  let obj1 = obj;
+&nbsp;
+  if (typeof obj.toJSON === 'function' || typeof obj.toObject === 'function') {
+    try {
+      JSON.stringify(Object.assign({}, obj1));
+    } catch (e) {
+      debug('Object is not serializable');
+&nbsp;
+      obj1 = o</span>bj1.toJSON ? <span class="branch-0 cbranch-no" title="branch not covered" >obj1.toJSON() : obj1.toObject();
+    }
+  }
+&nbsp;
+  return Object.assign({}, obj1);
+};
+&nbsp;
+const notifier = (optionsNotifier, type, user, notifierOptions) =&gt; {
+  debug('notifier', type);
+&nbsp;
+  return Promise.resolve().then(() =&gt; {
+    const promise = optionsNotifier(type, sanitizeUserForNotifier(user), notifierOptions || {});
+&nbsp;
+    r</span>eturn promise &amp;&amp; typeof promise.then === 'function' ? promise.then(() =&gt; user) : <span class="branch-1 cbranch-no" title="branch not covered" >user;
+  });
+};
+&nbsp;
+module.exports = {
+  hashPassword,
+  concatIDAndHash,
+  deconstructId,
+  comparePasswords,
+  randomBytes: (...args) =&gt; randomBytes(...args), // for testing, make safe from hacking
+  randomDigits: (...args) =&gt; randomDigits(...args), // for testing, make safe from hacking
+  getLongToken,
+  getShortToken,
+  getUserData,
+  ensureObjPropsValid,
+  ensureValuesAreStrings,
+  ensureFieldHasChanged,
+  sanitizeUserForClient,
+  sanitizeUserForNotifier,
+  notifier
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Jul 09 2018 09:37:43 GMT-0400 (EDT)
+</div>
+</div>
+<script src="prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+@import (reference) '../../../style/index.less';
+
+.paginator-line {
+	.pagination__group:first-child {
+		.pagination__current-page {
+			padding-left: 0!important;
+		}
+	}	
+}
+
+.pagination__group{
+	display:inline-block;
+	vertical-align:top;
+	color: @color_black;
+	line-height: 1;
+}
+
+.pagination__current-page {
+	font-size: 1rem;
+	line-height: 1.5rem;
+	font-weight: 600;
+	margin: 0.25rem;
+	display:inline-block;
+}
+
+.pagination__link{
+	._rb-f-color(@color_black, @color_blue, 200ms);
+	text-decoration:none;
+	-webkit-transition: all 200ms ease;
+	transition: all 200ms ease;
+	max-width: 100%;
+	display: inline-block;
+	margin: 0.25rem;
+	&:hover{
+		cursor: pointer;
+		text-decoration: none;
+	}
+}
+
+.pagination__link-first {
+	._rb-icon('first_page', 1.5rem);
+}
+
+.pagination__link-prev {
+	._rb-icon('chevron_left', 1.5rem);
+}
+
+.pagination__link-next {
+	._rb-icon('chevron_right', 1.5rem);
+}
+
+.pagination__link-last {
+	._rb-icon('last_page', 1.5rem);
+}
+
+.pagination__icon{
+	width: 1.5rem;
+	height: 1.5rem;
+	max-width: 100%;
+	vertical-align: middle;
+	display: inline-block;
+	border: 0;
+}

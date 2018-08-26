@@ -1,0 +1,45 @@
+<script>
+    window.__overlay = {
+        hide: function() {
+            if (!window.__overlay.ready) {
+                return;
+            }
+            var overlay = document.getElementById('global-overlay');
+            if (overlay) {
+                overlay.classList.add('global-overlay_fading');
+                setTimeout(function() {
+                    overlay.classList.remove('global-overlay_fading');
+                    overlay.classList.add('global-overlay_invisible');
+                }, 300);
+            }
+        },
+        show: function() {
+            var overlay = document.getElementById('global-overlay');
+            if (overlay) {
+                overlay.classList.remove('global-overlay_invisible');
+            }
+        },
+        setReady: function() {
+            window.__overlay.ready = true;
+        }
+    };
+    window.__overlay.ready = false;
+</script>
+<style>
+    .global-overlay {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 99999;
+        background-color: #ffffff;
+        transition: background-color 300ms ease;
+    }
+    .global-overlay_fading {
+        background-color: transparent;
+    }
+    .global-overlay_invisible {
+        display: none;
+    }
+</style>

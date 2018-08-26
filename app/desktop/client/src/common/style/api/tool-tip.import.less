@@ -1,0 +1,34 @@
+.tool-tip {
+	visibility: hidden;
+	border-radius: 2px;
+	background-color: @color_steel-blue-old;
+	text-align: center;
+	padding: @offset_quarter @offset;
+	._text_size_small();
+	._text_weight_light();
+	._text_color_normal();
+	position: absolute;
+	z-index: 1000;
+	max-width: @offset * 15;
+	right: 0;
+	bottom: calc(~"100% + 5px");
+}
+
+.tool-tip_open-bottom {
+	bottom: auto;
+	top: calc(~"100% + 5px");
+}
+
+.tool-tip_open-left {
+	right: auto;
+	left: 0;
+}
+
+.tool-tip__trigger {
+	position: relative;
+	&:hover {
+		.tool-tip {
+			visibility: visible !important;
+		}
+	}
+}

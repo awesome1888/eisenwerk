@@ -1,0 +1,26 @@
+{
+  "name": "desktop.server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "feathers-authentication-popups": "^0.1.2",
+    "helmet": "^3.13.0",
+    "response-time": "^2.3.2",
+    "underscore-mixin": "^1.1.5"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0"
+  }
+}

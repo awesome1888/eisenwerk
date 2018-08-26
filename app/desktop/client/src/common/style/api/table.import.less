@@ -1,0 +1,101 @@
+/**
+  Attention: currently, this API provides NON-ADAPTIVE table
+ */
+
+.table {
+}
+
+.table__grid {
+}
+
+.table__header {
+  ._text_weight_bold();
+}
+.table__body {
+}
+
+.table__header-row,
+.table__body-row{
+  ._padding-top-bottom-x(2);
+}
+
+.table__body-row {
+  ._text_size_minor();
+}
+
+// borders
+.table__row_border-bottom {
+  ._border-bottom(@color_steel-blue-old);
+}
+
+.table__border-bottom-group {
+  // border for each row except the last one
+  & > * {
+    &:not(:last-child) {
+      ._border-bottom(@color_steel-blue-old);
+    }
+  }
+}
+
+.table__col {
+}
+
+// flex api for table rows
+.table__row_flex {
+  ._display_flex();
+  ._group();
+}
+.table__row_v-align_center {
+  ._flex-align-items_center();
+}
+
+@table-grid-step: 8.33333333333%;
+
+._table__col(@width-mp: 1) {
+  width: @width-mp * @table-grid-step;
+}
+
+.table__col_width_1 {
+  ._table__col(1);
+}
+.table__col_width_2 {
+  ._table__col(2);
+}
+.table__col_width_3 {
+  ._table__col(3);
+}
+.table__col_width_4 {
+  ._table__col(4);
+}
+
+
+.display__table {
+  display: table;
+  border-collapse: collapse;
+  min-width: 100%;
+}
+.display__table-header-group {
+  display: table-header-group;
+  min-width: 100%;
+}
+.display__table-row {
+  display: table-row;
+  min-width: 100%;
+}
+.display__table-cell{
+  display: table-cell;
+}
+.display__table-row-group {
+  display: table-row-group;
+  min-width: 100%;
+}
+.padding_cell {
+  padding: 2rem 10px;
+}
+.table_row__border-bottom {
+  border-bottom: 1px solid @color_steel-blue-old;
+}
+.table__responsive {
+  min-height: .01%;
+  overflow-x: auto;
+}

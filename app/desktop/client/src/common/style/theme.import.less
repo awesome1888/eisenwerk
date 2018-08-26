@@ -1,0 +1,163 @@
+// Murillo's colors
+@color_text_light: #757575;
+@color_text_base: #212121;
+@color_grey_hover: #eeeeee;
+@color_red_hover: #C62828;
+@color_yellow_hover: #F9A825;
+@color_green_hover: #2E7D32;
+@color_red_light: #FFEBEE;
+@color_yellow_light: #FFFDE7;
+@color_green_light: #E8F5E9;
+@color_border: #e0e0e0;
+
+// Murillo's colors we already had
+@color_main-gray: #f5f5f5;
+@color_sky-blue: #0288d1;
+@color_red_loader: #d32f2f;
+@color_yellow: #fbc02d;
+@color_dark-green: #388e3c;
+@color_steel-gray-lighter: #e1f5fe;
+
+@color_blue_dark: #0277bd;
+@color_blue: #0288d1;
+@color_blue_hover: #e1f5fe;
+
+// old colors
+@color_error: #ffcdd2;
+@color_confirm: #1e88e5;
+@color_warning: #ffa500;
+@color_link: #9e9e9e;
+@color_link_dark: #929495;
+@color_gray-slightly-darker: #7a8087;
+@color_button_gray: #bdbdbd;
+@color_disabled: #eaeaea;
+@color_font_standard: #424242;
+@color_font_gray:  #aaacae;
+@color_default_gray: #7E848A;
+@color_steel-gray: #f3f6f9;
+@color_steel-gray-darker: #e6e9ec;
+@color_steel-blue-old: #e0e6ed;
+@color_box-default-background: #505063;
+@color_white: #fff;
+@color_black: #2e343b;
+@color_black_default: #000;
+@color_almost-black: #323141;
+@color_almost-black_darker: #252434;
+@color_focused-black_darker: #434553;
+@color_black__focus: #7a8087;
+@color_dark-black: #000;
+@color_blue-old: #1b5494;
+@color_sky-blue_darker: #007BC4;
+@color_blue-old-hover: #0e4787;
+@color_dark-charcoal: #2b2b3b;
+@color_red: #e53935;
+@color_orange: #ff9800;
+@color_orange2: #df766d;
+@color_orange2_darken: #d26960;
+@color_asphalt: #df766d;
+@color_blood-dawn: #f44336;
+@color_green: #4caf50;
+@color_modal-black: rgba(0, 0, 0, .5);
+@color_form-input: #333;
+@color_extra-gray: #ccc;
+@color_placeholder: #8e8e8e;
+
+// standard offsets
+@offset: 1rem;
+@offset_quarter: 0.25 * @offset;
+@offset_half: 0.5 * @offset;
+@offset_3quarter: 0.75 * @offset;
+@offset_5quarter: 1.25 * @offset;
+@offset_3half: 1.5 * @offset;
+@offset_double: 2 * @offset;
+@offset_quad: 4 * @offset;
+@offset_quad-half: 4.5 * @offset;
+@offset_five: 5 * @offset;
+@offset_six: 6 * @offset;
+@offset_six-n-half: 6.5 * @offset;
+@offset_eight: 8 * @offset;
+@layout_offset: 2 * @offset;
+
+@size_desktop-min: 992px;
+@size_tablet-max: 991px;
+@size_tablet-min: 768px;
+@size_mobile-max: 767px;
+
+@size_mobile-ls-max: 767px;
+@size_mobile-ls-min: 480px;
+@size_mobile-pt-max: 479px;
+@size_mobile-pt-min: 240px;
+
+// ////////////////////////////
+// Bootstrap mixins and variables
+// todo: remove
+// ////////////////////////////
+
+@font-family-open-sans:  'Open Sans', sans-serif;
+@font-family-cantata-one:  'Cantata One', sans-serif;
+@font-family-base:        @font-family-open-sans;
+@screen-minimum: 300px;
+
+// Extra small screen / phone
+//** Deprecated `@screen-xs` as of v3.0.1
+@screen-xs:                  480px;
+//** Deprecated `@screen-xs-min` as of v3.2.0
+@screen-xs-min:              @screen-xs;
+//** Deprecated `@screen-phone` as of v3.0.1
+@screen-phone:               @screen-xs-min;
+
+// Small screen / tablet
+//** Deprecated `@screen-sm` as of v3.0.1
+@screen-sm:                  768px;
+@screen-sm-min:              @screen-sm;
+//** Deprecated `@screen-tablet` as of v3.0.1
+@screen-tablet:              @screen-sm-min;
+
+// Medium screen / desktop
+//** Deprecated `@screen-md` as of v3.0.1
+@screen-md:                  992px;
+@screen-md-min:              @screen-md;
+//** Deprecated `@screen-desktop` as of v3.0.1
+@screen-desktop:             @screen-md-min;
+
+// Large screen / wide desktop
+//** Deprecated `@screen-lg` as of v3.0.1
+@screen-lg:                  1200px;
+@screen-lg-min:              @screen-lg;
+//** Deprecated `@screen-lg-desktop` as of v3.0.1
+@screen-lg-desktop:          @screen-lg-min;
+
+// So media queries don't overlap when required, provide a maximum
+@screen-xs-max:              (@screen-sm-min - 1);
+@screen-sm-max:              (@screen-md-min - 1);
+@screen-md-max:              (@screen-lg-min - 1);
+
+@screen-super-small: 380px;
+
+.box-sizing(@boxmodel) {
+  -webkit-box-sizing: @boxmodel;
+  -moz-box-sizing: @boxmodel;
+  box-sizing: @boxmodel;
+}
+
+.glyphicon-remove                 { &:before { content: "\e014"; } }
+.glyphicon-star                   { &:before { content: "\e006"; } }
+.glyphicon-menu-down              { &:before { content: "\e259"; } }
+
+.clearfix() {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+.text-center         { text-align: center; }
+
+.box-shadow(@shadow) {
+  -webkit-box-shadow: @shadow; // iOS <4.3 & Android <4.1
+  box-shadow: @shadow;
+}

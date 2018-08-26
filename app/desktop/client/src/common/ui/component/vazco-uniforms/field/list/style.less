@@ -1,0 +1,82 @@
+@import (reference) './../../../../../style/index.less';
+
+.uniforms-list-field__badge() {
+	color: @color_blue-old;
+	text-decoration: none;
+	background-color: transparent;
+	._cursor_pointer();
+	padding: 0;
+	._text_size_minor();
+
+	&:hover{
+		color: @color_blue-old-hover;
+	}
+
+	@media (min-width: @screen-sm-max) {
+		float: left;
+	}
+
+}
+
+.uniforms-list-field {
+	.badge {
+		.uniforms-list-field__badge();
+	}
+}
+
+.uniforms-list-field__list {
+	& > * {
+		margin-bottom: 2rem !important;
+	}
+	margin-bottom: -2rem !important;
+
+	._transition();
+}
+
+.uniforms-list-field__buttons {
+
+	padding-top: calc(~"1rem + 1px");
+
+	._display_flex();
+	._flex-direction_column();
+	._flex-align-items_start();
+
+	// bootstrap bages deface
+	.badge {
+		&.pull-right {
+			float: none;
+			// ._flex-align-self_end();
+		}
+	}
+}
+
+.uniforms-list-field__item {
+}
+
+.uniforms-list-field__button-panel {
+	._absolute(-4px, -3px);
+}
+
+.uniforms-list-field__delete {
+	._rb-icon('delete', 21px, 3px);
+	._rb-f-color(@color_text_light, @color_red_loader, 200ms);
+	._rb-hand();
+}
+
+.uniforms-list-field__drag-handle {
+	width: 1.5 * @offset;
+	height: 1.5 * @offset;
+
+	._transition();
+	.icon_format-line-spacing;
+	margin-top: 3px;
+	._rb-grab();
+}
+
+.uniforms-list-field__item {
+}
+
+.fab_type_add {
+	font-size: 0;
+	cursor: pointer;
+}

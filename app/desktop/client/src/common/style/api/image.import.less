@@ -1,0 +1,543 @@
+.image {
+	border: 0;
+	._background_cover();
+	vertical-align: middle;
+}
+
+.image_centered {
+	margin: auto;
+}
+
+._image_square(@side: @offset) {
+	width: @side;
+	height: @side;
+	max-width: @side;
+	min-width: @side;
+}
+
+._image_medal() {
+	.image_rounded;
+	._border(@color_steel-blue-old);
+	background-color: @color_steel-gray;
+	background-size: 49.5%;
+}
+
+._image_logo() {
+	display: flex;
+	width: 10rem;
+	height: 10rem;
+	._flex-justify-content_center();
+	._flex-direction_column();
+	text-align: center;
+	.background__white();
+	box-shadow: 1px 1px 3px 0 rgba(0,0,0,.1);
+	._background_cover();
+	overflow: hidden;
+
+
+	@media (max-width: @size_mobile-max) {
+		width: 8rem;
+		height: 8rem;
+	}
+}
+
+.image_medal_logo {
+	._image_logo();
+	.image_rounded;
+	padding: 0.5rem;
+
+	div {
+		width: 100%;
+		height: 100%;
+		.image_rounded;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+}
+
+.image_square_logo {
+	._image_logo();
+	background-size: 50%;
+
+	&.icon_photo {
+		margin: 0;
+		&:before {
+			font-size: 5rem !important;
+			color: @color_blue;
+		}
+	}
+}
+
+.image_initials {
+	._image_logo();
+	width: 10rem;
+	height: 10rem;
+	.image_rounded;
+
+	display: flex;
+	._flex-justify-content_center();
+	._flex-direction_column();
+	text-align: center;
+	background-color: @color_white;
+	background-size: 60%;
+
+	div {
+		font-size: 2.5rem;
+		line-height: 100%;
+		font-weight: 300;
+		letter-spacing: 3px;
+	}
+}
+
+.image_square {
+	._image_square(@offset_six-n-half);
+}
+
+/** deprecated */
+.image_square_large {
+	._image_square(@offset_eight);
+}
+
+.image_square_four {
+	._image_square(@offset_quad);
+}
+
+.image_square_five {
+	._image_square(@offset_five);
+}
+
+.image_square_medium {
+	._image_square(@offset_quad-half);
+}
+.image_square_x4 {
+	._image_square(@offset * 4);
+}
+
+.image_square_x5 {
+	._image_square(@offset * 5);
+}
+
+.image_square_x6 {
+	._image_square(@offset_six);
+}
+
+.image_square_x7 {
+	._image_square(@offset * 7);
+}
+
+.image_square_x8 {
+	._image_square(@offset_eight);
+}
+
+.image_square_x4p5 {
+	._image_square(4.5 * @offset) !important;
+}
+
+.image_square_145p {
+	._image_square(145px);
+}
+
+.image_icon_square_small {
+  ._image_square(1.25rem);
+}
+
+.image_rounded {
+  border-radius: 1000rem;
+}
+
+.image_medal {
+	._image_medal() !important;
+}
+
+.image_add {
+	background-image: url(/images/add.png);
+}
+
+.image_bin {
+	background-image: url(/images/bin.png);
+}
+
+.image_logo {
+	background-image: url(/images/logo.png);
+}
+
+.image_chain {
+	background-image: url(/images/chain.png);
+}
+
+.image_broken-chain {
+	background-image: url(/images/broken-chain.png);
+}
+
+.image_ghost {
+	background-image: url(/images/pacman-ghost@2x.png);
+}
+
+.image_sevenlanes {
+	background-image: url(/images/logo-500x500.png);
+}
+
+.image_rocket {
+  background-image: url(/images/rocket.png);
+}
+
+.image_question-mark {
+	background-image: url(/images/question-mark.png);
+}
+
+.image_lupe-man {
+	background-image: url(/images/lupe-men.png);
+}
+
+.image_lupe {
+	background-image: url(/images/lupe.png);
+}
+
+.image_page-fold {
+	background-image: url(/images/pagefold-right@2x.png);
+}
+
+.image_slot-machine {
+	background-image: url(/images/slot-machine@2x.png);
+}
+
+.image_file-zip {
+	background-image: url(/images/file-zip@2x.png);
+}
+
+.image_globe {
+	background-image: url(/images/globe@2x.png);
+}
+
+.image_file-acrobat {
+	background-image: url(/images/file-acrobat@2x.png);
+}
+
+.image_industries {
+	background-image: url(/images/industries.png);
+}
+
+.image_cube {
+	background-image: url(/images/cube.png);
+}
+
+.image_people {
+	background-image: url(/images/people.png);
+}
+
+.image_calendar {
+	background-image: url(/images/calendar@2x.png);
+}
+
+.image_paper-exam {
+	background-image: url(/images/paper-exam@2x.png);
+}
+
+.image_signposts {
+	background-image: url(/images/signposts@2x.png);
+}
+
+.image_signpost {
+	background-image: url(/images/footer-images/signpost@2x.png);
+}
+
+.image_graduation-hat {
+	background-image: url(/images/graduation-hat@2x.png);
+}
+
+.image_books-apple {
+	background-image: url(/images/books-apple@2x.png);
+}
+
+.image_astronaut {
+	background-image: url(/images/astronaut@2x.png);
+}
+
+.image_university {
+	background-image: url(/images/university@2x.png);
+}
+
+.image_web-design {
+	background-image: url(/images/web-design@2x.png);
+}
+
+.image_diploma {
+	background-image: url(/images/diploma@2x.png);
+}
+
+.image_imac {
+	background-image: url(/images/imac@2x.png);
+}
+
+.image_post-inbox {
+	background-image: url(/images/post-inbox@2x.png);
+}
+
+.image_communication-canes {
+	background-image: url(/images/communication-canes@2x.png);
+}
+
+.image_id-card {
+	background-image: url(/images/id-card@4x.png);
+}
+
+.image_e-passport {
+	background-image: url(/images/e_passport@4x.png);
+}
+
+.image_envelope-opened {
+	background-image: url(/images/envelope-opened@4x.png);
+}
+
+.image_locked {
+	background-image: url(/images/locked@4x.png);
+}
+
+.image_account-info-in {
+	background-image: url(/images/account-info-in@4x.png);
+}
+
+.image_teddy-bear {
+	background-image: url(/images/teddy-bear@4x.png);
+}
+
+.image_owl {
+	background-image: url(/images/owl@4x.png);
+}
+
+.image_champagne-glasses {
+	background-image: url(/images/champagne-glasses@4x.png);
+}
+
+.image_web-development {
+  background-image: url(/images/web-development@4x.png);
+}
+
+.image_file-text {
+  background-image: url(/images/file-text@4x.png);
+}
+
+.image_file-html {
+  background-image: url(/images/file-html@4x.png);
+}
+
+.image_cowboy {
+  background-image: url(/images/cowboy@4x.png);
+}
+
+.image_brandenburg-gate {
+	background-image: url(/images/footer-images/brandenburg-gate@2x.png);
+}
+
+.image_big-ben {
+	background-image: url(/images/footer-images/big-gen@2x.png);
+}
+
+.image_eiffel-tower {
+	background-image: url(/images/footer-images/eiffel-tower@2x.png);
+}
+
+.image_colloseum {
+	background-image: url(/images/footer-images/colloseum@2x.png);
+}
+
+.image_holland-mill {
+	background-image: url(/images/footer-images/holland-mill@2x.png);
+}
+
+.image_statue-of-liberty {
+	background-image: url(/images/footer-images/statue-of-liberty@2x.png);
+}
+
+.image_opera-house {
+	background-image: url(/images/footer-images/opera-house@2x.png);
+}
+
+.image_itsukushima-shrine {
+	background-image: url(/images/footer-images/itsukushima-shrine@2x.png);
+}
+
+.image_saint-basil {
+	background-image: url(/images/footer-images/saint-basil@2x.png);
+}
+
+.image_pirate {
+	background-image: url(/images/pirate.png);
+}
+
+.image_london {
+	background-image: url(/images/LondonCover.jpg);
+}
+
+.image_background_pixel-art-gray {
+	background-image: url(/images/background/pixel-art-gray.png);
+	background-color: @color_box-default-background;
+}
+
+.image_background_net-gray {
+	background-image: url(/images/background/net-gray.png);
+	background-color: @color_blue-old;
+}
+
+.image_background_square-gray {
+	background-image: url(/images/background/square-gray.png);
+	background-color: @color_blue-old;
+}
+
+.image_skull {
+	background-image: url(/images/skull@4x.png);
+}
+
+.image_treasure-opened {
+	background-image: url(/images/treasure-opened.png);
+}
+
+.image_treasure-closed {
+	background-image: url(/images/treasure-closed.png);
+}
+
+.image_tetris {
+  background-image: url(/images/tetris@4x.png);
+}
+
+.image_sprint {
+  background-image: url(/images/sprint@4x.png);
+}
+
+.image_dog-astronaut {
+	background-image: url(/images/dog-astronaut@4x.png);
+}
+
+.image_building {
+	background-image: url(/images/building-2.png);
+}
+
+.image_female {
+	background-image: url(/images/call-female@2x.png);
+}
+
+.image_male {
+	background-image: url(/images/call-male@2x.png);
+}
+
+.image_girl {
+	background-image: url(/images/girl@4x.png);
+}
+
+.image_boy {
+	background-image: url(/images/boy@4x.png);
+}
+
+.image_pen-tool {
+	background-image: url(/images/pen-tool@4x.png);
+}
+
+.image_building {
+	background-image: url(/images/building-2.png);
+}
+
+.image_newton-balls {
+	background-image: url(/images/newton-balls@4x.png);
+}
+
+.image_bell {
+	background-image: url(/images/bell@4x.png);
+}
+
+.image_fireworks {
+	background-image: url(/images/fireworks@4x.png);
+}
+
+.image_mask {
+	background-image: url(/images/mask@4x.png);
+}
+
+.image_passcode {
+	background-image: url(/images/passcode@4x.png);
+}
+
+.image_website {
+	background-image: url(/images/website@4x.png);
+}
+
+// icons as images (deprecated)
+// for font-based icons see icon.import.less
+
+.image_icon-bubble {
+  background-image: url(/images/icons/bubble.png);
+}
+
+.image_icon-main-industry {
+  background-image: url(/images/icons/main-industry.png);
+}
+
+.image_icon-blocks {
+  background-image: url(/images/icons/blocks.png);
+}
+
+.image_icon-bulb {
+  background-image: url(/images/icons/bulb.png);
+}
+
+.image_icon-employees {
+  background-image: url(/images/icons/employees.png);
+}
+
+.image_icon-home {
+  background-image: url(/images/icons/home.png);
+}
+
+.image_icon-calendar {
+  background-image: url(/images/icons/calendar.png);
+}
+
+.image_icon-page-first {
+  background-image: url(/images/icons/page-first.png);
+}
+
+.image_icon-page-last {
+  background-image: url(/images/icons/page-last.png);
+}
+
+.image_icon-page-next {
+  background-image: url(/images/icons/page-next.png);
+}
+
+.image_icon-page-prev {
+  background-image: url(/images/icons/page-prev.png);
+}
+
+.image_icon-university {
+  background-image: url(/images/icons/university.png);
+}
+
+.image_icon-work {
+  background-image: url(/images/icons/work.png);
+}
+
+.image_icon-home {
+  background-image: url(/images/icons/home.png);
+}
+
+.image_icon-bulb {
+  background-image: url(/images/icons/bulb.png);
+}
+
+.image_puff {
+	background-image: url(/images/puff.svg);
+}
+
+.image_oval {
+	background-image: url(/public/images/oval.svg);
+}
+
+.image_file-article {
+	background-image: url(/images/file-article@4x.png);
+}
+
+// adaptive images
+@media (max-width: @size_desktop-min) {
+	.image_square_x3_tablet {
+		._image_square(@offset * 3);
+	}
+}

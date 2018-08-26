@@ -1,0 +1,24 @@
+.icon-label {
+    ._display_flex();
+    ._flex-direction_row();
+	color: @color_gray-slightly-darker;
+}
+.icon-label__content_09 {
+  .text_size-minor()
+}
+
+.icon-label__icon {
+    .image;
+	._image_square(1.0em);
+    ._margin-right-x(0.5);
+	._rb-margin-t_x(0.1);
+
+	&:before {
+		font-size: 20px;
+	}
+}
+
+.icon-label__content {
+  ._flex-grow(2);
+  ._text_size_normal();
+}

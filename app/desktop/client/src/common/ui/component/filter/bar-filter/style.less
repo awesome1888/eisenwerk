@@ -1,0 +1,24 @@
+@import (reference) '../../../../style/index.less';
+
+@media (max-width: @screen-md-min) {
+	.bar-filter__field_inline-no-padding_md {
+		._no-padding-top-bottom();
+	}
+}
+
+.navbar_max-width {
+	max-width: 1170px !important;
+}
+
+.results-number {
+	margin-bottom: 0;
+	margin-top: 2rem;
+}
+
+.bar-filter__padded-group {
+	& > * {
+		&:not(:last-child) {
+			padding-bottom: @rb-offset;
+		}
+	}
+}

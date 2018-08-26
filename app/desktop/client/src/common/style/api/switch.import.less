@@ -1,0 +1,44 @@
+.switch {
+	._display_flex();
+	._flex-align-items_center();
+
+	width: 5rem;
+	height: 1.65rem;
+
+	._border();
+	border-radius: @offset;
+	background-color: @color_steel-gray;
+	._transition();
+	._cursor_pointer();
+
+	&:hover {
+		background-color: @color_border;
+	}
+
+	&.tall {
+		height: 2rem;
+	}
+}
+
+.switch__handler {
+	width: 2.5rem;
+	height: 1.65rem;
+	border-radius: @offset;
+	background-color: @color_blue-old;
+
+	&.tall {
+		height: 2rem;
+	}
+}
+
+.switch__handler_on {
+	transform-style: preserve-3d;
+	transition: transform 250ms;
+	transform: translateX(0rem) translateY(0px) translateZ(0px);
+}
+
+.switch__handler_off {
+	transform-style: preserve-3d;
+	transition: transform 250ms;
+	transform: translateX(2.5rem) translateY(0px) translateZ(0px);
+}

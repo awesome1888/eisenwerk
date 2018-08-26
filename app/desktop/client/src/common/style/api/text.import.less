@@ -1,0 +1,256 @@
+/**
+ Text: color
+ */
+._text_color(@color: @color_text_base, @hColor: @color) {
+	color: @color;
+
+	& when not(@hColor = false) {
+		&:hover, &:focus {
+			color: @hColor;
+		}
+	}
+}
+._text_color_normal() {
+	._text_color();
+}
+._text_color_white() {
+	._text_color(@color_white);
+}
+._text_color_black() {
+	._text_color(@color_black);
+}
+._text_color_gray() {
+	._text_color(@color_link_dark);
+}
+._text_color_gray-light() {
+	._text_color(@color_text_light);
+}
+._text_color_gray-darker() {
+	._text_color(@color_gray-slightly-darker);
+}
+._text_color_blue() {
+	._text_color(@color_blue);
+}
+._text_color_red() {
+	._text_color(@color_red);
+}
+._text_color_green() {
+	._text_color(@color_green);
+}
+._text_color_black() {
+	._text_color(@color_black);
+}
+._text_color_orange() {
+	._text_color(@color_asphalt);
+}
+._text_color_red_loader {
+	._text_color(@color_red_loader);
+}
+
+/**
+ Text: weight
+ */
+._text_weight_light() {
+	font-weight: 300;
+}
+._text_weight_normal() {
+	font-weight: 400;
+}
+._text_weight_bold() {
+	font-weight: 600;
+}
+._text_weight_bolder() {
+	font-weight: 700;
+}
+
+/**
+ Text: size
+ */
+._text_size(@size: @offset) {
+	font-size: @size;
+	line-height: 150%; // 150% of @size, dont remove
+}
+._text_size_2p() {
+	._text_size(2 * @offset);
+}
+._text_size_2p5() {
+	._text_size(2.5 * @offset);
+}
+._text_size_bigger() {
+	._text_size(1.5 * @offset);
+}
+._text_size_big() {
+	._text_size(1.25 * @offset);
+}
+._text_size_1p25() {
+	._text_size(1.25 * @offset);
+}
+._text_size_above-normal() {
+	._text_size(1.1 * @offset);
+}
+._text_size_normal() {
+	._text_size();
+}
+._text_size_minor() {
+	._text_size(0.9rem);
+}
+._text_size_small() {
+	._text_size(0.8rem);
+}
+._text_size_micro() {
+	._text_size(0.7rem);
+}
+._text_size_huge() {
+	._text_size(2rem);
+}
+
+/**
+ Block: text-align
+ */
+._text-align_right() {
+	text-align: right;
+}
+._text-align_left() {
+	text-align: left;
+}
+._text-align_center() {
+	text-align: center;
+}
+
+._text_pre() {
+	white-space: pre-wrap;
+}
+// todo: rename to ._no-br()
+._text_no-br() {
+	white-space: nowrap;
+}
+
+._no-text-decoration() {
+	text-decoration: none;
+	&:hover, &:focus {
+		text-decoration: none;
+	}
+}
+
+._text_overflown() {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis !important;
+}
+
+// primitives
+/**
+ Text: color
+ */
+.text_color_normal {
+	._text_color_normal() !important;
+}
+.text_color_gray {
+	._text_color_gray-darker() !important;
+}
+.text_color_blue {
+	._text_color_blue() !important;
+}
+.text_color_red {
+	._text_color_red() !important;
+}
+.text_color_green {
+	._text_color_green() !important;
+}
+.text_color_white {
+	._text_color_white() !important;
+}
+.text_color_black {
+	._text_color_black() !important;
+}
+.text_color_orange {
+	._text_color_orange() !important;
+}
+.text_color_red_loader {
+	._text_color_red_loader() !important;
+}
+
+.text_color_gray_sky-blue {
+	._text_color(@color_gray-slightly-darker, @color_sky-blue) !important;
+}
+
+/**
+ Text: weight
+ */
+.text_weight_light {
+	._text_weight_light() !important;
+}
+.text_weight_normal {
+	._text_weight_normal() !important;
+}
+.text_weight_bold {
+	._text_weight_bold() !important;
+}
+.text_weight_bolder {
+	._text_weight_bolder() !important;
+}
+
+/**
+ Text: size
+ */
+.text_size_micro {
+	._text_size_micro() !important;
+}
+.text_size_small {
+	._text_size_small() !important;
+}
+.text_size_minor {
+	._text_size_minor() !important;
+}
+.text_size_normal {
+	._text_size_normal() !important;
+}
+.text_size_above-normal {
+	._text_size_above-normal() !important;
+}
+.text_size_big {
+	._text_size_big() !important;
+}
+.text_size_1p25 {
+	._text_size_1p25() !important;
+}
+.text_size_bigger {
+	._text_size_bigger() !important;
+}
+.text_size_x2 {
+	._text_size_2p() !important;
+}
+
+.text_line-height_100p {
+	line-height: 100% !important;
+}
+
+/**
+ Text: align
+ */
+.text-align_right {
+	._text-align_right() !important;
+}
+
+.text-align_left {
+	._text-align_left() !important;
+}
+
+.text-align_center {
+	._text-align_center() !important;
+}
+
+.text_pre {
+	._text_pre() !important;
+}
+.text_no-br {
+	._text_no-br() !important;
+}
+
+.no-text-decoration {
+	._no-text-decoration() !important;
+}
+
+.text_italic {
+	font-style: italic !important;
+}

@@ -1,0 +1,30 @@
+.candidate-message__textarea {
+  textarea {
+    ._text_size_small();
+    ::-webkit-input-placeholder,
+    :-ms-input-placeholder {
+      ._text_size_small();
+    }
+    min-height: 15rem;
+    height: 15rem;
+  }
+}
+
+.employer-view-candidate__contact-link{
+  color: @color_blue-old;
+  .text_size_minor();
+  ._text_weight_bold();
+
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-word;
+  &:hover{
+    text-decoration: none;
+  }
+}
+
+.contact-text{
+  .text_size_minor();
+  ._margin-bottom();
+}
