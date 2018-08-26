@@ -208,6 +208,6 @@ Rules are checked in order they are shown in the example above, from `deny` to `
 1) `deny` must be switched to `false` in order to enable the feature,
 2) `authorized` set to `true` means the valid auth token should be passed along the request,
 3) `roleAll` means that all roles specified in the array should be present in the passed user`s profile,
-4) `roleAll` means that any of the roles specified in the array should be present in the passed user`s profile,
+4) `roleAny` means that any of the roles specified in the array should be present in the passed user`s profile,
 5) `custom` rule should be a function and should provide some custom user checks. It should return boolean or throw an exception.
 
