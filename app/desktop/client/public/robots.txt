@@ -1,0 +1,9 @@
+User-Agent: *
+Disallow: /login
+Disallow: /logout
+Disallow: /forgot-password
+Disallow: /reset-password
+Disallow: /account
+Disallow: /403
+
+Sitemap: https://eisenwerk-mern.com/sitemap.xml

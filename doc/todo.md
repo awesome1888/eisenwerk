@@ -7,8 +7,13 @@
 * probably replace filter, sort, limit, etc with $filter, $sort, $limit, ...
 * implement smart population
 * ENV dot notation
-* real data and normalized data
+* [DONE] real data and normalized data
 * cron
 * migrations
 * admin app
-
+* SSR!
+* Web sockets!
+* manifest
+* favicon
+* webicon
+* sitemap
