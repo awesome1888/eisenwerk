@@ -1,4 +1,4 @@
-# Eisenwerk - MERN boilerplate
+# Eisenwerk - the MERN boilerplate
 
 ## Pre-requisites:
 * node v8 or higher
@@ -11,7 +11,7 @@ or a virtual machine with everything mentioned above on-board.
 
 ## Commands
 
-### To start the orchestration described in `docker/all.development.yml`, type
+### To start the orchestration described in `docker/all.dev.yml`, type
 ~~~~
 ./script/start/all.sh;
 ~~~~
@@ -122,7 +122,12 @@ or
 query.setParameters({...parameters});
 ~~~~
 
-### To get one item:
+### To find one item by a random filter:
+~~~~
+const item = await Company.findOne({filter: {_id: '5b604a878e31fe0015219115'}});
+~~~~
+
+### To get one item by it`s _id:
 ~~~~
 const item = await Company.get('5b604a878e31fe0015219115');
 ~~~~

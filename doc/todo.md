@@ -4,3 +4,6 @@
 * plug in browsersync
 * pack everything that is possible to npm
 * port useful things from pr-legacy project
+* probably replace filter, sort, limit, etc with $filter, $sort, $limit, ...
+* implement smart population
+
