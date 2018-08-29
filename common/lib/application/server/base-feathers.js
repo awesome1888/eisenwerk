@@ -11,6 +11,7 @@ import handler from '../../util/error/server/handler.js';
 import MethodFabric from '../../util/method/fabric.js';
 import EntityServiceFabric from '../../entity/service/fabric.js';
 import qs from 'qs';
+import parse from 'url-parse';
 
 // const util = require('util');
 
@@ -18,16 +19,29 @@ export default class BaseFeathersApplication extends BaseApplication {
 
     getNetwork() {
         if (!this._feathers) {
-            this._feathers = express(feathers());
-            this._feathers.set('query parser', (query) => {
-                // increase the default parse depth and disable allowPrototypes
+            const app = express(feathers());
+
+            // increase the default parse depth of a query string and disable allowPrototypes
+            app.set('query parser', (query) => {
                 return qs.parse(query, {allowPrototypes: false, depth: 10});
             });
 
-            // this._feathers.use('/users', (req, res, next) => {
+            this.getSettings().checkMandatory();
+            const rootUrl = this.getSettings().getRootURL();
+            if (_.isStringNotEmpty(rootUrl)) {
+                const parsed = parse(this.getSettings().getRootURL());
+
+                // the following settings are sometimes used inside different featherjs plugins
+                app.set('host', parsed.hostname);
+                app.set('port', this.getSettings().getPort());
+            }
+
+            // app.use('/users', (req, res, next) => {
             //     console.log(util.inspect(req.query, {showHidden: false, depth: null}));
             //     next();
             // });
+
+            this._feathers = app;
         }
 
         return this._feathers;

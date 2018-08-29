@@ -3,7 +3,7 @@
 /* eslint-env node */
 /* eslint no-param-reassign: 0 */
 
-var bcrypt = require('bcryptjs');
+var bcrypt = require('bcrypt'); // bcryptjs
 var crypto = require('crypto');
 var auth = require('@feathersjs/authentication-local').hooks;
 var errors = require('@feathersjs/errors');

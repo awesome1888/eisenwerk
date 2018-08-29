@@ -248,8 +248,7 @@ export default class Service extends BaseService {
         // mongoose only supports flat $select, so have to make it so
         this.flattenSelect(params);
 
-        // mongoose cant tolerate {$regex: 'blah', $options: 'blah'}, no idea why *rolling_eyes*
-        this.replaceRegex(params);
+        this.refineRequestCondition(params);
 
         return super.find(params);
     }
@@ -296,14 +295,26 @@ export default class Service extends BaseService {
     }
 
     /**
-     * Replaces all occurrences of {$regex: 'blah', $options: 'blah'} with new RegExp(), because
-     * of mongoose`s internal affairs
+     * Tune the request to bypass mongoose-feathersjs limitations
      * @param params
      */
-    replaceRegex(params) {
+    refineRequestCondition(params) {
         traverse(params).forEach(function update(x) {
+            // replaces all occurrences of {$regex: 'blah', $options: 'blah'} with new RegExp()
             if (_.isObject(x) && ('$regex' in x)) {
                 this.update(new RegExp(x.$regex, x.$options || ''));
+            }
+            // make sure that $size operator receives an integer
+            if (_.isObject(x) && ('$size' in x)) {
+                const y = _.clone(x);
+                y.$size = parseInt(x.$size, 10);
+                this.update(y);
+            }
+            // resolve an agreement for an empty array as a value for $ne operator
+            if (_.isObject(x) && ('$ne' in x) && x.$ne === '[]') {
+                const y = _.clone(x);
+                y.$ne = [];
+                this.update(y);
             }
         });
     }

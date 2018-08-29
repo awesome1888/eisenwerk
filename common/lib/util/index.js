@@ -85,7 +85,7 @@ export default class Util {
     //     }
     // }
 
-    // static parseUrl(url = '') {
+    // static parseQueryString(url = '') {
     //     if (!url) {
     //         url = window.location.search;
     //     }

@@ -42,3 +42,7 @@ To NPM:
 * file uploader
 * image viewer
 * enum fabric
+
+Cleanup some crap from "rem-bem", and also:
+* make useful rb-content-** alignment classes
+* generate all mixins over all google icons, for sake

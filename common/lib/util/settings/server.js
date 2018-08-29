@@ -6,6 +6,20 @@ export default class Settings {
         return new this();
     }
 
+    checkMandatory() {
+        const missing = [];
+        if (!_.isStringNotEmpty(this.getRootURL())) {
+            missing.push('ROOT_URL');
+        }
+        if (!_.isStringNotEmpty(this.getPort())) {
+            missing.push('PORT');
+        }
+
+        if (_.isArrayNotEmpty(missing)) {
+            console.error(`You have the following environment variables missing: ${missing.join(', ')}. You may get into trouble with that, because some of submodules rely on these values and may work inconsistently.`);
+        }
+    }
+
     getPort() {
         return this._getSource().PORT || 3000;
     }

@@ -9,6 +9,6 @@ export default class Entity extends BaseEntity {
      * @returns {Promise<void>}
      */
     static async execute(name, args = {}) {
-        return Method.execute(`${this.getUId()}.name`, args);
+        return Method.execute(`${this.getUId()}.${name}`, args);
     }
 }
