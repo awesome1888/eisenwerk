@@ -20,15 +20,21 @@ export default class AuthorizationHook {
             before: {
                 create: [
                     // on create we hash the given password
-                    local.hooks.hashPassword({
-                        passwordField: auth.getPasswordField(),
-                    }),
+                    commonHooks.iff(
+                        commonHooks.isProvider('external'),
+                        local.hooks.hashPassword({
+                            passwordField: auth.getPasswordField(),
+                        })
+                    )
                 ],
                 update: [
                     // on update we also hash the given password
-                    local.hooks.hashPassword({
-                        passwordField: auth.getPasswordField(),
-                    }),
+                    commonHooks.iff(
+                        commonHooks.isProvider('external'),
+                        local.hooks.hashPassword({
+                            passwordField: auth.getPasswordField(),
+                        })
+                    )
                 ],
                 patch: [
                     commonHooks.iff(
@@ -67,9 +73,12 @@ export default class AuthorizationHook {
                         }
                     },
                     // on patch we also hash the given password
-                    local.hooks.hashPassword({
-                        passwordField: auth.getPasswordField(),
-                    }),
+                    commonHooks.iff(
+                        commonHooks.isProvider('external'),
+                        local.hooks.hashPassword({
+                            passwordField: auth.getPasswordField(),
+                        })
+                    ),
                 ]
             },
             after: {
