@@ -8,6 +8,7 @@ var crypto = require('crypto');
 var auth = require('@feathersjs/authentication-local').hooks;
 var errors = require('@feathersjs/errors');
 var debug = require('debug')('authManagement:helpers');
+var hash = require('../../hasher.js');
 
 var hashPassword = function hashPassword(app1, password) {
   var hook = {
@@ -21,7 +22,7 @@ var hashPassword = function hashPassword(app1, password) {
     }
   };
 
-  return auth.hashPassword()(hook).then(function (hook1) {
+  return auth.hashPassword({hash})(hook).then(function (hook1) {
     return hook1.data.password;
   });
 };

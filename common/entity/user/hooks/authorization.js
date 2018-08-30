@@ -1,6 +1,7 @@
 import local from '@feathersjs/authentication-local';
 import commonHooks from 'feathers-hooks-common';
 import roleEnum from '../enum/role.js';
+import hash from '../../../vendor/feathersjs/hasher.js';
 
 export default class AuthorizationHook {
     static async isAdmin(auth) {
@@ -24,6 +25,7 @@ export default class AuthorizationHook {
                         commonHooks.isProvider('external'),
                         local.hooks.hashPassword({
                             passwordField: auth.getPasswordField(),
+                            hash,
                         })
                     )
                 ],
@@ -33,6 +35,7 @@ export default class AuthorizationHook {
                         commonHooks.isProvider('external'),
                         local.hooks.hashPassword({
                             passwordField: auth.getPasswordField(),
+                            hash,
                         })
                     )
                 ],
@@ -77,6 +80,7 @@ export default class AuthorizationHook {
                         commonHooks.isProvider('external'),
                         local.hooks.hashPassword({
                             passwordField: auth.getPasswordField(),
+                            hash,
                         })
                     ),
                 ]
