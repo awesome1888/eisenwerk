@@ -135,17 +135,27 @@ export default class Query {
         } else if (_.isObjectNotEmpty(parameters)) {
             parameters = _.deepClone(parameters);
 
-            this.filter(parameters.filter);
-            this.select(parameters.select);
-            this.sort(parameters.sort);
+            this.filter(parameters.$filter || parameters.filter);
+            this.select(parameters.$select || parameters.select);
+            this.sort(parameters.$sort || parameters.sort);
 
+            if (_.isNumber(parameters.$limit)) {
+                this.limit(parameters.$limit);
+            }
             if (_.isNumber(parameters.limit)) {
                 this.limit(parameters.limit);
+            }
+
+            if (_.isNumber(parameters.$offset)) {
+                this.offset(parameters.$offset);
             }
             if (_.isNumber(parameters.offset)) {
                 this.offset(parameters.offset);
             }
 
+            if ('$lean' in parameters) {
+                this.lean(parameters.$lean);
+            }
             if ('lean' in parameters) {
                 this.lean(parameters.lean);
             }

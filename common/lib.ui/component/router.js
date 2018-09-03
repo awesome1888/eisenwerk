@@ -42,6 +42,10 @@ export default class Router {
         return {};
     }
 
+    /**
+     * Returns all query parameters, parsed
+     * @returns {*}
+     */
     getQueryParameters() {
         const query = this.getLocation().search;
         if (!_.isStringNotEmpty(query)) {
@@ -64,10 +68,11 @@ export default class Router {
     //     return null;
     // }
 
-    // replaceQueryParameters(parameters = {}) {
-    //     this.getHistory().replace(`/?${qs.stringify(parameters)}`);
-    // }
-
+    /**
+     * Sets a bunch of parameters to the desirable values. All missing parameters stay the same.
+     * The call of this function forces router to re-render.
+     * @param parameters
+     */
     setQueryParameters(parameters = {}) {
         const params = this.getQueryParameters();
         Object.assign(params, parameters);
@@ -75,9 +80,24 @@ export default class Router {
         this.getHistory().replace(`${this.getPathName()}?${qs.stringify(params)}`);
     }
 
+    /**
+     * Sets one specific parameter to the desirable value. All missing parameters stay the same.
+     * The call of this function forces router to re-render.
+     * @param name
+     * @param value
+     */
     setQueryParameter(name, value) {
         const params = this.getQueryParameters();
         params[name] = value;
         this.getHistory().replace(`${this.getPathName()}?${qs.stringify(params)}`);
+    }
+
+    /**
+     * Sets a bunch of parameters to the desirable values. All missing parameters will be wiped-out.
+     * The call of this function forces router to re-render.
+     * @param parameters
+     */
+    replaceQueryParameters(parameters = {}) {
+        this.getHistory().replace(`/?${qs.stringify(parameters)}`);
     }
 }

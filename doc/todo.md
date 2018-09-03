@@ -26,6 +26,8 @@
 * try to use component-template approach
 
 To NPM:
+Put everything to @eisenwerk/*, like @eisenwerk/build-tool, @eisenwerk/ui.page-scroll
+
 * selectbox
 * drag n drop
 * scrollpane
@@ -35,6 +37,7 @@ To NPM:
 * csv client side generator
 * csv server side generator
 * build tool
+    local_build-tool
 * page up button
 * scrollbars
 * notifications
@@ -42,6 +45,8 @@ To NPM:
 * file uploader
 * image viewer
 * enum fabric
+* migrations
+    f_migration
 
 Cleanup some crap from "rem-bem", and also:
 * make useful rb-content-** alignment classes
