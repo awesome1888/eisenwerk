@@ -12,12 +12,11 @@ import LoginPage from './page/login/login.jsx';
 import Logout from './../common/ui/component/logout/logout.jsx';
 import PasswordForgot from './page/password-forgot/password-forgot.jsx';
 import PasswordReset from './page/password-reset/password-reset.jsx';
-import signupStepEnum from './component/signup/enum/signup-step.enum.js';
 
 import ApplicationLayout from './../common/ui/component/layout.application.main/index.jsx';
 import ApplicationLayoutNoHeader from './../common/ui/component/layout.application.no-header/index.jsx';
 
-import roleEnum from '../common/lib/enum/role.js';
+// import roleEnum from '../common/lib/enum/role.js';
 
 export default class Application extends BaseApplication {
     getRoutes() {
