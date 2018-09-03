@@ -11,6 +11,7 @@ export default class Application extends BaseApplication {
         super.launch();
 
         // make global modules visible in the browser
+        window.$ = $;
         window._ = _;
         window.mern = mern;
         window.t = t;

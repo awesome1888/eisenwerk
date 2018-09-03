@@ -7,8 +7,6 @@ import Method from '../../../lib/util/method/client.js';
 import feathers from '@feathersjs/client';
 import rest from '@feathersjs/rest-client';
 
-import jQuery from 'jquery';
-
 export default class Application {
 
     _ui = null;
@@ -34,7 +32,7 @@ export default class Application {
             // we are going to use jQuery transport library ONLY because we already have jQuery in the project
             // see other options in
             // https://docs.feathersjs.com/api/client/rest.html
-            app.configure(restClient.jquery(jQuery));
+            app.configure(restClient.jquery($));
 
             Authorization.prepare(app);
 
