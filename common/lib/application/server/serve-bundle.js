@@ -3,23 +3,6 @@ import fs from 'fs';
 import ejs from 'ejs';
 
 export default class ServeBundleApplication extends BaseApplication {
-    getTemplate() {
-        if (!this._template) {
-            const main = this.readTemplate('main.ejs');
-
-            this._template = ejs.render(main, {
-                settings: this.getSettings().prepareForClient(),
-                overlay: this.getOverlayHTML(),
-                assets: {
-                    js: this.getAssetHTMLJS(),
-                    css: this.getAssetHTMLCSS(),
-                    overlay: this.getOverlayAssets(),
-                },
-            });
-        }
-
-        return this._template;
-    }
 
     attachMiddleware() {
         super.attachMiddleware();
@@ -44,6 +27,24 @@ export default class ServeBundleApplication extends BaseApplication {
         res.status(200);
         res.set('Content-Type', 'text/html');
         res.send(this.getTemplate());
+    }
+
+    getTemplate() {
+        if (!this._template) {
+            const main = this.readTemplate('main.ejs');
+
+            this._template = ejs.render(main, {
+                settings: this.getSettings().prepareForClient(),
+                overlay: this.getOverlayHTML(),
+                assets: {
+                    js: this.getAssetHTMLJS(),
+                    css: this.getAssetHTMLCSS(),
+                    overlay: this.getOverlayAssets(),
+                },
+            });
+        }
+
+        return this._template;
     }
 
     getAssetHTMLJS() {
