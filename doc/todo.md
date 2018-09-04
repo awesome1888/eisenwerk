@@ -48,6 +48,10 @@ Put everything to @eisenwerk/*, like @eisenwerk/build-tool, @eisenwerk/ui.page-s
 * migrations
     f_migration
 
-Cleanup some crap from "rem-bem", and also:
+Create "rem-bem-scss" package, port all really useful things from rem-bem, and besides:
 * make useful rb-content-** alignment classes
+* make useful rb-icon-label already!
 * generate all mixins over all google icons, for sake
+* _rb-bg-cover(): allow to pass an image as an argument
+* generate all mixins and classes for margins and paddings
+
