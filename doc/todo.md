@@ -1,3 +1,5 @@
+new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+
 * do oauth2 in a proper way
 * connect to the database on-demand
 * optimize build tool pipelines and docker images
@@ -54,4 +56,5 @@ Create "rem-bem-scss" package, port all really useful things from rem-bem, and b
 * generate all mixins over all google icons, for sake
 * _rb-bg-cover(): allow to pass an image as an argument
 * generate all mixins and classes for margins and paddings
-
+* put the MIT license inside the file with color codes:
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

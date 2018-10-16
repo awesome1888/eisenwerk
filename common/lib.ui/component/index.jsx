@@ -2,7 +2,6 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import Util from '../../util/index.js';
 import Router from './router.js';
 import Method from '../../../lib/util/method/client.js';
 

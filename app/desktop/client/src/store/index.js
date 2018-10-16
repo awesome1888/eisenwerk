@@ -1,7 +1,7 @@
 import BaseStore from '../common/lib/util/store.js';
 
 import globalReducer from './reducers/global.js';
-import actionPageReducer from '../ui/page/actions/reducer.js';
+// import actionPageReducer from '../ui/page/actions/reducer.js';
 
 export default class Store extends BaseStore {
     static getGlobalReducer() {
@@ -10,7 +10,7 @@ export default class Store extends BaseStore {
 
     static getPageReducers() {
         return [
-            actionPageReducer,
+            // actionPageReducer,
         ];
     }
 }
