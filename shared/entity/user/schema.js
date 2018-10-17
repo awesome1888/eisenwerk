@@ -58,12 +58,4 @@ const schema = new Schema({
     },
 });
 
-// schema.pre('save', function onSave(next) {
-//
-//     if (this.isNew && !_.isEmpty(this.data)) {
-//         // something
-//     }
-//     next();
-// });
-
 export default schema;

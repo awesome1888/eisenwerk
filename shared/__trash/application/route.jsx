@@ -4,7 +4,7 @@ import { Route as RouteComponent, Redirect} from 'react-router-dom';
 import BaseComponent from '../component/index.jsx';
 import Access from '../../../lib/util/access/client.js';
 
-class Route extends BaseComponent {
+export default class Route extends BaseComponent {
 
     static propTypes = {
         redirectAuthorized: PropTypes.string,
@@ -74,7 +74,3 @@ class Route extends BaseComponent {
         );
     }
 }
-
-export default Route.connect({
-    store: store => store.global,
-});

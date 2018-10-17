@@ -4,7 +4,7 @@ services:
 
   ew.dev.desktop:
     build:
-      context: ../app/desktop/
+      context: ../build/app.browser/
       dockerfile: docker/development.dockerfile
     expose:
       - 3000
