@@ -13,14 +13,10 @@ export default class Entity extends BaseEntity {
         const id = this.getUId();
 
         if (!models[id]) {
-            models[id] = this.makeModel();
+            models[id] = mongoose.model(this.getUId(), this.prepareSchema());
         }
 
         return models[id];
-    }
-
-    static makeModel() {
-        return mongoose.model(this.getUId(), this.prepareSchema());
     }
 
     static prepareSchema() {

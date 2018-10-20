@@ -21,7 +21,7 @@ export default class Access extends AccessBoth {
                 result.error = Promise.reject(new errors.NotAuthenticated('Not Authenticated'));
                 return result;
             } else {
-                if (!await this.testUser(user, rule, ctx)) {
+                if (!this.testUser(user, rule, ctx)) {
                     // the user was NOT okay -> forbidden
                     result.error = Promise.reject(new errors.Forbidden('Forbidden'));
                     return result;
@@ -29,11 +29,6 @@ export default class Access extends AccessBoth {
             }
         }
 
-        if (_.isFunction(rule.custom)) {
-            return rule.custom(user, ctx);
-        }
-
-        // all rules were okay: allow
         return true;
     }
 }

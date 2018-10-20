@@ -6,18 +6,6 @@ export default class Access extends AccessBoth {
             return false;
         }
 
-        if (rule.authorized === true && !_.isObjectNotEmpty(user)) {
-            return false;
-        }
-
-        if (!this.testUserSync(user, rule)) {
-            return false;
-        }
-
-        if (_.isFunction(rule.custom)) {
-            return rule.custom(user, rule);
-        }
-
-        return true;
+        return this.testUser(user, rule);
     }
 }

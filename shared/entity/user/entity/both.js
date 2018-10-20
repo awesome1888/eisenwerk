@@ -1,5 +1,4 @@
 import roleEnum from '../enum/role.js';
-// import moment from 'moment';
 
 const M = superclass => class User extends superclass {
     static getUId() {
@@ -28,15 +27,6 @@ const M = superclass => class User extends superclass {
 
         return data;
     }
-
-    // getCreatedAtFormatted(format = 'DD.MM.YYYY') {
-    //     const date = this.getCreatedAt();
-    //     if (_.isStringNotEmpty(date) || _.isDate(date)) {
-    //         return moment(date).format(format);
-    //     }
-    //
-    //     return '';
-    // }
 };
 
 export default M;

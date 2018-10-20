@@ -2,17 +2,7 @@ import errors from '@feathersjs/errors';
 
 export default class Method {
     static getDeclaration() {
-        return [
-            // // example:
-            // {
-            //     name: 'user.activate',
-            //     body: 'activateUser',
-            //     access: {
-            //         deny: false,
-            //         authorized: true,
-            //     },
-            // }
-        ];
+        return [];
     }
 
     getContext() {

@@ -3,18 +3,14 @@ export default class Access {
      * Test the given rule against the given user
      * @param user
      * @param rule
-     * @param ctx The request context, only available server-side
      * @returns boolean True if the access can be granted
      */
-    static async testUser(user, rule, ctx = null) {
-        return this.testUserAny(user, rule, ctx);
-    }
+    static testUser(user, rule) {
 
-    static testUserSync(user, rule, ctx = null) {
-        return this.testUserAny(user, rule, ctx);
-    }
+        if (rule.authorized === true && !_.isObjectNotEmpty(user)) {
+            return false;
+        }
 
-    static testUserAny(user, rule, ctx = null) {
         const userRole = _.isObjectNotEmpty(user) ? user.getRole() : [];
 
         if (_.isArray(rule.roleAny)) {
@@ -29,6 +25,10 @@ export default class Access {
             if (_.isArrayNotEmpty(_.difference(rule.roleAll, userRole))) {
                 return false;
             }
+        }
+
+        if (_.isFunction(rule.custom)) {
+            return rule.custom(user, rule);
         }
 
         return true;
