@@ -5,7 +5,7 @@ import cors from 'cors';
 import errors from '@feathersjs/errors';
 
 import BaseApplication from './base.js';
-import Database from '../../database/index.js';
+import Database from '../../util/database';
 import Authorization from '../../util/authorization/server.js';
 import handler from '../../util/error/server/handler.js';
 import MethodFabric from '../../util/method/fabric.js';

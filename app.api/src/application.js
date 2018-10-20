@@ -1,7 +1,7 @@
-import BaseApplication from '../../shared/lib/application/server/feathers.js';
-import services from '../../shared/entity/services.js';
-import methods from '../../shared/entity/methods.js';
-import Entity from '../../shared/lib/entity/server.js';
+import BaseApplication from './shared/lib/application/server/feathers.js';
+import services from './shared/entity/services.js';
+import methods from './shared/entity/methods.js';
+import Entity from './shared/lib/entity/server.js';
 
 export default class Application extends BaseApplication {
     /**

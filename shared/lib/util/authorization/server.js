@@ -1,10 +1,9 @@
 import auth from '@feathersjs/authentication';
-import authManagement from '../../../vendor/feathers-authentication-management';
+import authManagement from '../../../vendor/feathersjs/authentication-management';
 import local from '@feathersjs/authentication-local';
 import jwt from '@feathersjs/authentication-jwt';
-// import oauth2 from '@feathersjs/authentication-oauth2';
 import commonHooks from 'feathers-hooks-common';
-import oauth2 from '../../../vendor/feathersjs/authentication-oauth2';
+import oauth2 from '../../../vendor/feathersjs/authentication-oauth2/lib';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 
 import AuthorizationBoth from './both.js';
