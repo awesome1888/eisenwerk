@@ -1,0 +1,853 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5b9cb27b-ee3b-470a-b16b-f358ecaf88e3" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="application.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app.api/src/application.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="25" selection-start-line="25" selection-end-line="25" />
+              <folding>
+                <element signature="e#0#78#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>CANDIDATE</find>
+      <find>Company.</find>
+      <find>EMPLOYER</find>
+      <find>getSettings</find>
+      <find>parseUrl</find>
+      <find>authentication-managem</find>
+      <find>CLIENT_ORIGIN_URL</find>
+      <find>Jquery</find>
+      <find>exce</find>
+      <find>history</find>
+      <find>createBrowser</find>
+      <find>Link</find>
+      <find>resolve</find>
+      <find>eslint</find>
+      <find>ew.dev.api</find>
+      <find>ew.dev.db</find>
+      <find>common/</find>
+      <find>webpack</find>
+      <find>Reject</find>
+      <find>PromiseRejection</find>
+      <find>_feathers</find>
+      <find>ma</find>
+      <find>m</find>
+      <find>testUserAny</find>
+      <find>testUser</find>
+      <find>testUserSync</find>
+      <find>testRoute</find>
+      <find>Util</find>
+      <find>enum-factory/index.js</find>
+      <find>enum-factory</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>_buildLoop</replace>
+      <replace>_feathers</replace>
+      <replace>getApp</replace>
+      <replace>declareTimeStampHooks</replace>
+      <replace>declareAccessHooks</replace>
+      <replace>PUBLIC_FOLDER</replace>
+      <replace>connectStorage</replace>
+      <replace>connectStore</replace>
+      <replace>getStoreMapper</replace>
+      <replace>'</replace>
+      <replace>this.t(</replace>
+      <replace>className=&quot;button button_blue&quot;</replace>
+      <replace>getCRUDAccessRules</replace>
+      <replace>flattenSelect</replace>
+      <replace>onPatchUserClick</replace>
+      <replace>redirectNotAuthorized</replace>
+      <replace>_settings</replace>
+      <replace>Settings</replace>
+      <replace>t(</replace>
+      <replace>t('</replace>
+      <replace>to._id</replace>
+      <replace>new mongoose.Schema</replace>
+      <replace />
+      <replace>ew.dev</replace>
+      <replace>User.</replace>
+      <replace>api</replace>
+      <replace>db</replace>
+      <replace>shared/</replace>
+      <replace>testUser</replace>
+      <replace>_network</replace>
+    </replaceStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$/common/style</dir>
+    </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/common/lib/entity/query.js" />
+        <option value="$PROJECT_DIR$/common/lib.ui/component/router.js" />
+        <option value="$PROJECT_DIR$/app/api/gulp.js" />
+        <option value="$PROJECT_DIR$/app/desktop/gulp.js" />
+        <option value="$PROJECT_DIR$/common/lib/application/client/base-feathers.js" />
+        <option value="$PROJECT_DIR$/app/desktop/client/src/lib/application/index.js" />
+        <option value="$PROJECT_DIR$/app/desktop/client/src/ui/application.jsx" />
+        <option value="$PROJECT_DIR$/common/lib/application/server/serve-bundle.js" />
+        <option value="$PROJECT_DIR$/common/style/index.less" />
+        <option value="$PROJECT_DIR$/app/desktop/client/src/store/index.js" />
+        <option value="$PROJECT_DIR$/common/lib.ui/component/index.jsx" />
+        <option value="$PROJECT_DIR$/doc/todo.md" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/shared/entity/user/schema.js" />
+        <option value="$PROJECT_DIR$/shared/__trash/application/route.jsx" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/.build/app.api/application.js" />
+        <option value="$PROJECT_DIR$/build/app.api/application.js" />
+        <option value="$PROJECT_DIR$/build/app.browser/webpack/server.js" />
+        <option value="$PROJECT_DIR$/build/app.browser/webpack/client.js" />
+        <option value="$PROJECT_DIR$/build/app.front/webpack/server.js" />
+        <option value="$PROJECT_DIR$/build/app.front/webpack/client.js" />
+        <option value="$PROJECT_DIR$/script/run.js" />
+        <option value="$PROJECT_DIR$/shared/lib/application/server/serve-bundle.js" />
+        <option value="$PROJECT_DIR$/app.api/src/index.js" />
+        <option value="$PROJECT_DIR$/shared/lib/util/settings/server.js" />
+        <option value="$PROJECT_DIR$/shared/lib/application/server/base.js" />
+        <option value="$PROJECT_DIR$/shared/lib/util/settings/client.js" />
+        <option value="$PROJECT_DIR$/docker/development.yml" />
+        <option value="$PROJECT_DIR$/shared/lib/application/server/express.js" />
+        <option value="$PROJECT_DIR$/shared/entity/user/entity/client.js" />
+        <option value="$PROJECT_DIR$/shared/lib/entity/server.js" />
+        <option value="$PROJECT_DIR$/shared/lib/lodash.js" />
+        <option value="$PROJECT_DIR$/build/app.api/webpack.js" />
+        <option value="$PROJECT_DIR$/shared/entity/user/entity/both.js" />
+        <option value="$PROJECT_DIR$/app.api/src/shared/lib/util/method/server.js" />
+        <option value="$PROJECT_DIR$/app.api/src/shared/lib/util/access/both.js" />
+        <option value="$PROJECT_DIR$/shared/lib/util/access/client.js" />
+        <option value="$PROJECT_DIR$/app.api/src/shared/lib/util/access/client.js" />
+        <option value="$PROJECT_DIR$/shared/lib/util/access/both.js" />
+        <option value="$PROJECT_DIR$/app.api/src/shared/lib/util/access/server.js" />
+        <option value="$PROJECT_DIR$/app.api/src/shared/lib/util/event-emitter/event.js" />
+        <option value="$PROJECT_DIR$/app.api/package.json" />
+        <option value="$PROJECT_DIR$/app.api/src/shared/entity/user/enum/role.js" />
+        <option value="$PROJECT_DIR$/app.api/src/shared/lib/util/enum.js" />
+        <option value="$PROJECT_DIR$/shared/lib/util/enum.js" />
+        <option value="$PROJECT_DIR$/app.api/src/application.js" />
+        <option value="$PROJECT_DIR$/shared/lib/util/authorization/server.js" />
+        <option value="$PROJECT_DIR$/shared/lib/util/hooks.js" />
+        <option value="$PROJECT_DIR$/shared/lib/application/server/feathers.js" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/app.api/node_modules" />
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/app.api/package.json" />
+      <path value="$PROJECT_DIR$/app.api/src/shared/vendor/feathersjs/authentication-management/package.json" />
+      <path value="$PROJECT_DIR$/app.api/src/shared/vendor/feathersjs/authentication-oauth2/package.json" />
+      <path value="$PROJECT_DIR$/app.front.client/package.json" />
+      <path value="$PROJECT_DIR$/app.front.client/src/shared/vendor/feathersjs/authentication-management/package.json" />
+      <path value="$PROJECT_DIR$/app.front.client/src/shared/vendor/feathersjs/authentication-oauth2/package.json" />
+      <path value="$PROJECT_DIR$/app.front.server/package.json" />
+      <path value="$PROJECT_DIR$/app.front.server/src/shared/vendor/feathersjs/authentication-management/package.json" />
+      <path value="$PROJECT_DIR$/app.front.server/src/shared/vendor/feathersjs/authentication-oauth2/package.json" />
+      <path value="$PROJECT_DIR$/package.json" />
+      <path value="$PROJECT_DIR$/shared/vendor/feathersjs/authentication-management/package.json" />
+      <path value="$PROJECT_DIR$/shared/vendor/feathersjs/authentication-oauth2/package.json" />
+    </packageJsonPaths>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="y" value="23" />
+    <option name="width" value="1440" />
+    <option name="height" value="797" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eisenwerk" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eisenwerk" type="462c0819:PsiDirectoryNode" />
+              <item name="app.api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eisenwerk" type="462c0819:PsiDirectoryNode" />
+              <item name="app.api" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eisenwerk" type="462c0819:PsiDirectoryNode" />
+              <item name="build" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eisenwerk" type="462c0819:PsiDirectoryNode" />
+              <item name="build" type="462c0819:PsiDirectoryNode" />
+              <item name="app.api" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
+    <property name="SearchEverywhereHistoryKey" value="hooks.js&#9;FILE&#9;file:///Users/sergei/proj/eisenwerk/shared/vendor/feathersjs/authentication-management/coverage/hooks.js.html&#10;BaseCom&#9;null&#9;null&#10;Router&#9;null&#9;null&#10;BaseC&#9;null&#9;null&#10;router.js&#9;FILE&#9;file:///Users/sergei/proj/eisenwerk/common/lib.ui/component/router.js&#10;entity/q&#9;FILE&#9;file:///Users/sergei/proj/eisenwerk/common/lib/entity/query.js&#10;l/server&#9;FILE&#9;file:///Users/sergei/proj/eisenwerk/common/lib/entity/server.js&#10;authorization/server&#9;FILE&#9;file:///Users/sergei/proj/eisenwerk/common/lib/util/authorization/server.js&#10;authoriza&#9;null&#9;null&#10;authoriz&#9;null&#9;null&#10;service/index&#9;FILE&#9;file:///Users/sergei/proj/eisenwerk/common/lib/entity/service/index.js&#10;proc&#9;null&#9;null&#10;proce&#9;null&#9;null&#10;process&#9;null&#9;null&#10;component/generic-list/helper&#9;FILE&#9;file:///Users/sergei/proj/mern/app/desktop.admin/client/src/ui/page/mapping/component/generic-list/helper&#10;mapper&#9;FILE&#9;file:///Users/sergei/proj/mern/app/desktop.admin/client/src/ui/page/mapping/helper/mapper/location.mapper.js&#10;mapping/util/processor/index.js&#9;FILE&#9;file:///Users/sergei/proj/mern/common/entity/mapping/util/processor/index.js&#10;helper/query/location.query.js&#9;FILE&#9;file:///Users/sergei/proj/mern/app/desktop.admin/client/src/ui/page/mapping/helper/query/location.query.js&#10;helper/query/skill.query.js&#9;FILE&#9;file:///Users/sergei/proj/mern/app/desktop.admin/client/src/ui/page/mapping/helper/query/skill.query.js&#10;query-mapping-generic.js&#9;FILE&#9;file:///Users/sergei/proj/mern/app/desktop.admin/client/src/ui/page/mapping/component/generic-mapping/query/query-mapping-generic.js&#10;bar-f&#9;FILE&#9;file:///Users/sergei/proj/mern/common/ui/component/filter/bar-filter/enum/bar-filter-type.enum.js&#10;style&#9;FILE&#9;file:///Users/sergei/proj/mern/common/ui/component/header/style.less&#10;nav&#9;null&#9;null&#10;servi&#9;FILE&#9;file:///Users/sergei/proj/mern/common/entity/user/service.js&#10;navb&#9;null&#9;null&#10;entity/service/index.js&#9;FILE&#9;file:///Users/sergei/proj/mern/common/lib/entity/service/index.js&#10;query.&#9;FILE&#9;file:///Users/sergei/proj/mern/common/lib/entity/query.js&#10;common/lib/entity/both.js&#9;FILE&#9;file:///Users/sergei/proj/mern/common/lib/entity/both.js&#10;component/list-item-placeholde&#9;FILE&#9;file:///Users/sergei/proj/mern/common/ui/component/list-generic/component/list-inner/component/list-item/component/list-item-placeholder/list-item-placeholder.jsx&#10;common/ui/component/paginator&#9;FILE&#9;file:///Users/sergei/proj/mern/common/ui/component/paginator/paginator.jsx&#10;component/list-inner/component/list-item/list-item.jsx&#9;FILE&#9;file:///Users/sergei/proj/mern/common/ui/component/list-generic/component/list-inner/component/list-item/list-item.jsx&#10;candidate.list/query/query.js&#9;FILE&#9;file:///Users/sergei/proj/mern/app/desktop.admin/client/src/ui/component/candidate.list/query/query.js&#10;select-compact&#9;FILE&#9;file:///Users/sergei/proj/mern/common/ui/component/util/select-compact/select-compact.jsx&#10;base-express.js&#9;FILE&#9;file:///Users/sergei/proj/mern/common/lib/application/server/base-express.js&#10;fabric&#9;FILE&#9;file:///Users/sergei/proj/mern/common/lib/util/method/fabric.js&#10;user/hooks/authorization.js&#9;FILE&#9;file:///Users/sergei/proj/mern/common/entity/user/hooks/authorization.js&#10;actions&#9;FILE&#9;file:///Users/sergei/proj/mern/app/desktop/client/src/ui/page/actions/actions.jsx&#10;lib/entity/service/index.js&#9;FILE&#9;file:///Users/sergei/proj/mern/common/lib/entity/service/index.js&#10;roleE&#9;null&#9;null&#10;testTok&#9;null&#9;null&#10;action&#9;FILE&#9;file:///Users/sergei/proj/mern/app/desktop/client/src/ui/page/actions/actions.jsx&#10;mern&#9;FILE&#9;file:///Users/sergei/proj/mern/common/lib/util/mern.js&#10;role&#9;FILE&#9;file:///Users/sergei/proj/mern/common/lib/enum/role.js&#10;header.js&#9;FILE&#9;file:///Users/sergei/proj/mern/app/desktop/client/src/ui/component/header/header.jsx&#10;assets.html&#9;FILE&#9;file:///Users/sergei/proj/mern/app/desktop/client/src/assets.html&#10;header&#9;FILE&#9;file:///Users/sergei/proj/mern/app/desktop/client/src/ui/component/header/header.jsx&#10;style/default.import.less&#9;FILE&#9;file:///Users/sergei/proj/mern/app/desktop/client/src/style/default.import.less&#10;server.oauth-success-callback.js&#9;FILE&#9;file:///Users/sergei/proj/mern/common/lib/util/authorization/server.oauth-success-callback.js&#10;util/authorization/server.js&#9;FILE&#9;file:///Users/sergei/proj/mern/common/lib/util/authorization/server.js&#10;common/entity/services.js&#9;FILE&#9;file:///Users/sergei/proj/mern/app/api/src/common/entity/services.js" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="$PROJECT_DIR$/node_modules/eslint" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/shared/lib" />
+      <recent name="$PROJECT_DIR$/app.ui.server" />
+      <recent name="$PROJECT_DIR$/app.desktop.client" />
+      <recent name="$PROJECT_DIR$/common/vendor/feathersjs" />
+      <recent name="$PROJECT_DIR$/common/entity" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app.api/src/shared/lib/util" />
+      <recent name="$PROJECT_DIR$/app.api/src/shared/lib" />
+      <recent name="$PROJECT_DIR$/app.api/src/shared/lib/util/global" />
+      <recent name="$PROJECT_DIR$/build/app.browser/build" />
+      <recent name="$PROJECT_DIR$/build/app.api/build" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5b9cb27b-ee3b-470a-b16b-f358ecaf88e3" name="Default" comment="" />
+      <created>1529398870987</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1529398870987</updated>
+      <workItem from="1529398873445" duration="452000" />
+      <workItem from="1529400017348" duration="29000" />
+      <workItem from="1529400082627" duration="3139000" />
+      <workItem from="1529407350245" duration="12635000" />
+      <workItem from="1529423751894" duration="3026000" />
+      <workItem from="1529484233806" duration="5954000" />
+      <workItem from="1529495662359" duration="2821000" />
+      <workItem from="1529499558487" duration="11183000" />
+      <workItem from="1529520543151" duration="3248000" />
+      <workItem from="1529568747050" duration="6699000" />
+      <workItem from="1529916849937" duration="4737000" />
+      <workItem from="1529999127726" duration="933000" />
+      <workItem from="1530005770034" duration="15527000" />
+      <workItem from="1530089550632" duration="19078000" />
+      <workItem from="1530174249892" duration="20790000" />
+      <workItem from="1530256183428" duration="23507000" />
+      <workItem from="1530523628664" duration="28225000" />
+      <workItem from="1530605809810" duration="18438000" />
+      <workItem from="1530694209524" duration="5465000" />
+      <workItem from="1530709942257" duration="8614000" />
+      <workItem from="1530724061987" duration="842000" />
+      <workItem from="1530726584661" duration="3512000" />
+      <workItem from="1530778979521" duration="17822000" />
+      <workItem from="1530865085241" duration="18804000" />
+      <workItem from="1531069275238" duration="4384000" />
+      <workItem from="1531125375628" duration="18207000" />
+      <workItem from="1531206341686" duration="20105000" />
+      <workItem from="1531299830853" duration="19953000" />
+      <workItem from="1531343845640" duration="79000" />
+      <workItem from="1531395399626" duration="17500000" />
+      <workItem from="1531473039778" duration="20097000" />
+      <workItem from="1531730076102" duration="20691000" />
+      <workItem from="1531762902839" duration="4129000" />
+      <workItem from="1531819568342" duration="18739000" />
+      <workItem from="1531850875186" duration="2389000" />
+      <workItem from="1531858518093" duration="1708000" />
+      <workItem from="1531901762788" duration="601000" />
+      <workItem from="1531902965964" duration="19867000" />
+      <workItem from="1531988755667" duration="20639000" />
+      <workItem from="1532077187129" duration="24800000" />
+      <workItem from="1532334443690" duration="22759000" />
+      <workItem from="1532366771739" duration="30021000" />
+      <workItem from="1532508509360" duration="22769000" />
+      <workItem from="1532587455896" duration="1213000" />
+      <workItem from="1532593465650" duration="20249000" />
+      <workItem from="1532680753602" duration="27066000" />
+      <workItem from="1532867940471" duration="674000" />
+      <workItem from="1532939399831" duration="10000" />
+      <workItem from="1532939422421" duration="22856000" />
+      <workItem from="1533026358949" duration="13696000" />
+      <workItem from="1533112940925" duration="30534000" />
+      <workItem from="1533199111396" duration="20936000" />
+      <workItem from="1533285042604" duration="14540000" />
+      <workItem from="1533331183167" duration="330000" />
+      <workItem from="1533543878702" duration="20714000" />
+      <workItem from="1533587873273" duration="1009000" />
+      <workItem from="1533629476077" duration="9907000" />
+      <workItem from="1533915902524" duration="3440000" />
+      <workItem from="1534757719619" duration="24097000" />
+      <workItem from="1534832397641" duration="43814000" />
+      <workItem from="1534956629499" duration="952000" />
+      <workItem from="1535012172721" duration="6002000" />
+      <workItem from="1535024638815" duration="18914000" />
+      <workItem from="1535099644755" duration="21752000" />
+      <workItem from="1535287962949" duration="996000" />
+      <workItem from="1535289448149" duration="12962000" />
+      <workItem from="1535313927864" duration="2065000" />
+      <workItem from="1535364877737" duration="21000" />
+      <workItem from="1535379232364" duration="231000" />
+      <workItem from="1535546964706" duration="3153000" />
+      <workItem from="1535634330397" duration="1108000" />
+      <workItem from="1535637262041" duration="129000" />
+      <workItem from="1535705332418" duration="805000" />
+      <workItem from="1535713508460" duration="979000" />
+      <workItem from="1535907337168" duration="166000" />
+      <workItem from="1535981440135" duration="91000" />
+      <workItem from="1535984129063" duration="4370000" />
+      <workItem from="1536049039859" duration="1047000" />
+      <workItem from="1536056390481" duration="26000" />
+      <workItem from="1536163220036" duration="151000" />
+      <workItem from="1536185916929" duration="96000" />
+      <workItem from="1536417675388" duration="934000" />
+      <workItem from="1536525039520" duration="510000" />
+      <workItem from="1536596740950" duration="10000" />
+      <workItem from="1536734684241" duration="17000" />
+      <workItem from="1537875782807" duration="1974000" />
+      <workItem from="1537952653383" duration="7895000" />
+      <workItem from="1538086475607" duration="586000" />
+      <workItem from="1538421455833" duration="2131000" />
+      <workItem from="1539714522789" duration="35005000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="905080000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="23" width="1440" height="797" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2410148" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32894737" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.16374269" />
+      <window_info anchor="bottom" id="File Transfer" order="8" weight="0.2733918" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3287037" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.17836258" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32894737" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Messages" order="7" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+    </layout>
+    <layout-to-restore>
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16482359" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3287037" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32894737" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="File Transfer" order="11" visible="true" weight="0.11111111" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32894737" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="15" />
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app.api/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/lib/entity/service/fabric.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/lib/util/settings/client.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/lib/util/settings/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="530">
+          <caret line="98" lean-forward="true" selection-start-line="98" selection-end-line="98" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/entity/file/service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
+          <folding>
+            <element signature="e#0#60#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.api/src/shared/lib/entity/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.api/src/shared/lib/entity/service/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4847">
+          <caret line="437" lean-forward="true" selection-start-line="437" selection-end-line="437" />
+          <folding>
+            <element signature="e#0#57#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.api/src/shared/lib/application/server/serve-bundle.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/lib/application/server/base.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+          <folding>
+            <element signature="e#0#53#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/lib/application/server/express.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/lib/application/server/serve-bundle.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/entity/services.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/entity/user/service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="33" column="26" selection-start-line="33" selection-start-column="26" selection-end-line="33" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#60#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/entity/user/entity/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="47" selection-start-line="1" selection-start-column="47" selection-end-line="1" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/lib/entity/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="35">
+          <caret line="5" column="38" selection-start-line="5" selection-start-column="38" selection-end-line="5" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/lib/entity/both.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="534">
+          <caret line="53" selection-start-line="53" selection-end-line="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/entity/user/entity/client.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="444">
+          <caret line="180" column="7" selection-start-line="180" selection-start-column="7" selection-end-line="180" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/lib/lodash.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.api/src/shared/lib/util/global/l/client.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.api/src/shared/lib/util/global/l/server.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.api/src/shared/lib/util/global/mern.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.api/src/shared/lib/util/global/lodash.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.api/src/shared/lib/util/global/object-id.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/entity/user/entity/both.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.api/src/shared/lib/util/method/fabric.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.api/src/shared/lib/util/method/client.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.api/src/shared/lib/util/method/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.api/src/shared/lib/util/error/server/handler.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.api/src/shared/lib/util/access/client.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/lib/util/access/client.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/lib/util/access/both.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.api/src/shared/lib/util/access/both.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="19" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.api/src/shared/lib/util/access/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.api/src/shared/lib/util/event-emitter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.api/src/shared/lib/util/database.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="48" selection-start-line="23" selection-start-column="48" selection-end-line="23" selection-end-column="48" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker/development.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="645">
+          <caret line="43" selection-start-line="43" selection-end-line="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.api/src/shared/lib/util/enum.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="98" lean-forward="true" selection-start-line="98" selection-end-line="98" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/lib/util/enum.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/app.api/webpack.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="80" column="9" lean-forward="true" selection-start-line="80" selection-start-column="9" selection-end-line="80" selection-end-column="9" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.api/src/shared/entity/user/enum/role.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="25" lean-forward="true" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.api/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="15" lean-forward="true" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/vendor/feathersjs/authentication-oauth2/lib/index.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/vendor/feathersjs/authentication-management/lib/index.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/lib/util/authorization/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="22" column="12" lean-forward="true" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/vendor/feathersjs/authentication-management/lib/hooks.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/vendor/feathersjs/authentication-management/coverage/hooks.js.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="12" lean-forward="true" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/lib/application/server/feathers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1284">
+          <caret line="93" lean-forward="true" selection-start-line="93" selection-end-line="93" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/lib/util/hooks.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.api/src/application.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+          <folding>
+            <element signature="e#0#78#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

@@ -1,6 +1,5 @@
 node_modules/
 *.log
 *.tar.gz
-.idea/
 .DS_Store
 .packagejsonprev
