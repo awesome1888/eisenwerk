@@ -1,7 +1,12 @@
-import Settings from '../../util/settings/server.js';
+import settings from '../../util/settings/server.js';
 import process from 'process';
 
 export default class Application {
+
+    getNetwork() {
+        throw new Error('Not implemented: .getNetwork()');
+    }
+
     async launch() {
         process.on('unhandledRejection', (reason, p) => {
             console.log('Unhandled Rejection at: ', p, ' reason: ', reason);
@@ -11,24 +16,12 @@ export default class Application {
             this.tearDown();
         });
 
-        this.attachBaseMiddleware();
-        this.attachSpecialMiddleware();
+        this.getSettings().checkMandatory();
+
         this.attachMiddleware();
-        this.attachNotFoundMiddleware();
+        this.attachErrorHandler();
 
         this.createServer();
-    }
-
-    /**
-     * Creates an app and attaches very basic middleware like bodyparser and helmet
-     */
-    attachBaseMiddleware() {
-    }
-
-    /**
-     * Attaches a higher-level yet special middleware like REST
-     */
-    attachSpecialMiddleware() {
     }
 
     /**
@@ -40,35 +33,23 @@ export default class Application {
     /**
      * Attaches the final middleware, basically the 404 middlware
      */
-    attachNotFoundMiddleware() {
+    attachErrorHandler() {
     }
 
-    // getRoutes() {
-    //     return [];
-    // }
-
     createServer() {
-        const port = Settings.getInstance().getPort();
+        const port = this.getSettings().getPort();
 
         this._server = this.getNetwork().listen(port);
         this._server.on('listening', () => {
-            console.log(`Listening ${port} port`);
+            console.log(`Listening on ${port} port`);
         });
-    }
-
-    getNetwork() {
-        return null;
-    }
-
-    getSettings() {
-        return Settings.getInstance();
-    }
-
-    isProduction() {
-        return this.getSettings().isProduction();
     }
 
     tearDown() {
         process.exit(1);
+    }
+
+    getSettings() {
+        return settings;
     }
 }

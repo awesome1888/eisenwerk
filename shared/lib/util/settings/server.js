@@ -1,10 +1,7 @@
 import process from 'process';
+import parse from 'url-parse';
 
-export default class Settings {
-
-    static getInstance() {
-        return new this();
-    }
+class Settings {
 
     checkMandatory() {
         const missing = [];
@@ -26,6 +23,10 @@ export default class Settings {
 
     getRootUrl() {
         return this._getSource().ROOT_URL || '';
+    }
+
+    getRootUrlParsed() {
+        return parse(this.getRootURL());
     }
 
     getPublicFolder() {
@@ -90,6 +91,8 @@ export default class Settings {
     }
 
     _getSource() {
-        return process.env || {};
+        return process.env;
     }
 }
+
+export default new Settings();

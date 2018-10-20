@@ -1,4 +1,4 @@
-import BaseApplication from './base-express.js';
+import BaseApplication from './express.js';
 import fs from 'fs';
 import ejs from 'ejs';
 
