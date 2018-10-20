@@ -1,4 +1,4 @@
-import EnumFactory from '../../../lib/util/enum-factory/index.js';
+import EnumFactory from '../../../lib/util/enum';
 
 class RoleEnumFactory extends EnumFactory {
     constructor(items) {
