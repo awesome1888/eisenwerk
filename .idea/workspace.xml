@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5b9cb27b-ee3b-470a-b16b-f358ecaf88e3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app.api/webpack.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/app.api/webpack.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app.front/webpack/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/app.front/webpack/server.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,8 +17,8 @@
       <file leaf-file-name="application.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.api/src/application.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="25" selection-start-line="25" selection-end-line="25" />
+            <state relative-caret-position="530">
+              <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
               <folding>
                 <element signature="e#0#78#0" expanded="true" />
               </folding>
@@ -25,11 +26,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+      <file leaf-file-name="webpack.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build/app.api/webpack.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+            <state relative-caret-position="486">
+              <caret line="80" column="31" selection-start-line="80" selection-start-column="25" selection-end-line="80" selection-end-column="31" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="server.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/build/app.front/webpack/server.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="522">
+              <caret line="83" column="9" lean-forward="true" selection-start-line="83" selection-start-column="9" selection-end-line="83" selection-end-column="9" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -45,7 +61,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>CANDIDATE</find>
       <find>Company.</find>
       <find>EMPLOYER</find>
       <find>getSettings</find>
@@ -75,6 +90,7 @@
       <find>Util</find>
       <find>enum-factory/index.js</find>
       <find>enum-factory</find>
+      <find>getTaskSrcFolder</find>
     </findStrings>
     <replaceStrings>
       <replace>_buildLoop</replace>
@@ -138,7 +154,6 @@
         <option value="$PROJECT_DIR$/build/app.api/application.js" />
         <option value="$PROJECT_DIR$/build/app.browser/webpack/server.js" />
         <option value="$PROJECT_DIR$/build/app.browser/webpack/client.js" />
-        <option value="$PROJECT_DIR$/build/app.front/webpack/server.js" />
         <option value="$PROJECT_DIR$/build/app.front/webpack/client.js" />
         <option value="$PROJECT_DIR$/script/run.js" />
         <option value="$PROJECT_DIR$/shared/lib/application/server/serve-bundle.js" />
@@ -151,7 +166,6 @@
         <option value="$PROJECT_DIR$/shared/entity/user/entity/client.js" />
         <option value="$PROJECT_DIR$/shared/lib/entity/server.js" />
         <option value="$PROJECT_DIR$/shared/lib/lodash.js" />
-        <option value="$PROJECT_DIR$/build/app.api/webpack.js" />
         <option value="$PROJECT_DIR$/shared/entity/user/entity/both.js" />
         <option value="$PROJECT_DIR$/app.api/src/shared/lib/util/method/server.js" />
         <option value="$PROJECT_DIR$/app.api/src/shared/lib/util/access/both.js" />
@@ -169,6 +183,8 @@
         <option value="$PROJECT_DIR$/shared/lib/util/hooks.js" />
         <option value="$PROJECT_DIR$/shared/lib/application/server/feathers.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/build/app.api/webpack.js" />
+        <option value="$PROJECT_DIR$/build/app.front/webpack/server.js" />
       </list>
     </option>
   </component>
@@ -227,24 +243,20 @@
             <path>
               <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
               <item name="eisenwerk" type="462c0819:PsiDirectoryNode" />
-              <item name="app.api" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="eisenwerk" type="462c0819:PsiDirectoryNode" />
-              <item name="app.api" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="eisenwerk" type="462c0819:PsiDirectoryNode" />
               <item name="build" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
               <item name="eisenwerk" type="462c0819:PsiDirectoryNode" />
               <item name="build" type="462c0819:PsiDirectoryNode" />
-              <item name="app.api" type="462c0819:PsiDirectoryNode" />
+              <item name="app.front" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eisenwerk" type="462c0819:PsiDirectoryNode" />
+              <item name="build" type="462c0819:PsiDirectoryNode" />
+              <item name="app.front" type="462c0819:PsiDirectoryNode" />
+              <item name="webpack" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -392,12 +404,12 @@
       <workItem from="1537952653383" duration="7895000" />
       <workItem from="1538086475607" duration="586000" />
       <workItem from="1538421455833" duration="2131000" />
-      <workItem from="1539714522789" duration="35005000" />
+      <workItem from="1539714522789" duration="35408000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="905080000" />
+    <option name="totallyTimeSpent" value="905483000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="797" extended-state="6" />
@@ -466,16 +478,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app.api/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/shared/lib/entity/service/fabric.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -765,16 +767,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build/app.api/webpack.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="80" column="9" lean-forward="true" selection-start-line="80" selection-start-column="9" selection-end-line="80" selection-end-column="9" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app.api/src/shared/entity/user/enum/role.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -832,20 +824,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app.api/src/application.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        <state relative-caret-position="530">
+          <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
           <folding>
             <element signature="e#0#78#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/build/app.api/webpack.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        <state relative-caret-position="486">
+          <caret line="80" column="31" selection-start-line="80" selection-start-column="25" selection-end-line="80" selection-end-column="31" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/app.front/webpack/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="522">
+          <caret line="83" column="9" lean-forward="true" selection-start-line="83" selection-start-column="9" selection-end-line="83" selection-end-column="9" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

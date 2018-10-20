@@ -34,9 +34,6 @@ const getWebpackConfiguration = async (context) => {
   const srcFolder = context.getTaskSrcFolder();
   const dstFolder = await context.makeTaskDstFolder();
 
-	console.dir('Src folder: '+srcFolder);
-	console.dir('Dst folder: '+dstFolder);
-
   return {
     // in the production mode webpack will minify everything
     mode: context.getMode(),
@@ -65,7 +62,7 @@ const getWebpackConfiguration = async (context) => {
       // breaks everything :(
       new ExternalsPlugin({
         type: 'commonjs',
-        include: path.join(`${this.getRootFolder()}/server/`, 'node_modules'),
+        include: path.join(context.getTaskFolder(), 'node_modules'),
       }),
       // a cache, for incremental builds
       new HardSourceWebpackPlugin({
@@ -82,8 +79,8 @@ const getWebpackConfiguration = async (context) => {
         },
       }),
       new webpack.ProvidePlugin({
-        _: 'underscore-mixin',
-        mix: `${srcFolder}/common/lib/util/global/mix.js`,
+        _: `${srcFolder}/shared/lib/util/global/lodash.js`,
+        mix: `${srcFolder}/shared/lib/util/global/mix.js`,
       }),
     ],
   };

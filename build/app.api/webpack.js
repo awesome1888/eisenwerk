@@ -34,9 +34,6 @@ const getWebpackConfiguration = async (context) => {
   const srcFolder = context.getTaskSrcFolder();
   const dstFolder = await context.makeTaskDstFolder();
 
-	console.dir('Src folder: '+srcFolder);
-	console.dir('Dst folder: '+dstFolder);
-
   return {
     // in the production mode webpack will minify everything
     mode: context.getMode(),
@@ -63,7 +60,7 @@ const getWebpackConfiguration = async (context) => {
     plugins: [
       new ExternalsPlugin({
         type: 'commonjs',
-        include: path.join(srcFolder, 'node_modules'),
+        include: path.join(context.getTaskFolder(), 'node_modules'),
       }),
       // a cache, for incremental builds
       new HardSourceWebpackPlugin({
