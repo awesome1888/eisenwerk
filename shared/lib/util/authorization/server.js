@@ -83,6 +83,11 @@ export default class Authorization extends AuthorizationBoth {
         };
     }
 
+    /**
+     * Get user by their token
+     * @param token
+     * @returns {Promise<*>}
+     */
     async getUser(token = null) {
         const id = await this.getUserId(token);
         if (!id) {
@@ -103,6 +108,11 @@ export default class Authorization extends AuthorizationBoth {
         return u;
     }
 
+    /**
+     * Exract token from the context
+     * @param ctx
+     * @returns {*|string}
+     */
     extractToken(ctx) {
         return _.getValue(ctx, 'params.headers.authorization');
     }

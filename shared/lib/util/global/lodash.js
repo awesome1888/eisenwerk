@@ -34,5 +34,7 @@ module.exports = {
     isNumber,
     isFunction,
     cloneDeep,
+    deepClone: cloneDeep, // compatibility
     get,
+    getValue: get, // compatibility
 };

@@ -47,7 +47,6 @@ export default class Application extends BaseApplication {
 
     launch() {
         Entity.setNetwork(this.getNetwork());
-
         super.launch();
     }
 }
