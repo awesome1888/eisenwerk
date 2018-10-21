@@ -1,3 +1,5 @@
+import _ from './global/lodash';
+
 export default class Enum {
     constructor(declaration) {
         this._items = [];

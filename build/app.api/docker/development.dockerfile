@@ -6,7 +6,7 @@ USER owner
 RUN printf "alias ll=\"ls -alh\"\n" >> /home/owner/.bashrc
 
 RUN chown -R owner:owner /usr/src/app
-COPY package*.json ./
+COPY ./build/package.json .
 RUN npm install
-COPY ./build/ .
+COPY ./build/app.api/ .
 CMD [ "npm", "run", "dev" ]

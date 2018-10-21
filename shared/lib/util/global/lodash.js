@@ -1,13 +1,14 @@
-import isArrayLike from 'lodash.isarraylike';
-import isString from 'lodash.isstring';
-import isObject from 'lodash.isobject';
-import isNumber from 'lodash.isnumber';
-import isFunction from 'lodash.isfunction';
-import get from 'lodash.get';
-import cloneDeep from 'lodash.clonedeep';
-import isEqual from 'lodash.isequal';
+const isArrayLike = require('lodash.isarraylike');
+const isString = require('lodash.isstring');
+const isObject = require('lodash.isobject');
+const isNumber = require('lodash.isnumber');
+const isFunction = require('lodash.isfunction');
+const get = require('lodash.get');
+const cloneDeep = require('lodash.clonedeep');
+const isEqual = require('lodash.isequal');
 
-const lodash = {
+module.exports = {
+    isArray: isArrayLike,
     isArrayNotEmpty: (arg) => {
         return isArrayLike(arg) && arg.length > 0;
     },
@@ -23,5 +24,3 @@ const lodash = {
     cloneDeep,
     get,
 };
-
-export default lodash;

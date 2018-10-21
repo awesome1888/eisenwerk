@@ -21,11 +21,11 @@ class Settings {
         return this._getSource().PORT || 3000;
     }
 
-    getRootUrl() {
+    getRootURL() {
         return this._getSource().ROOT_URL || '';
     }
 
-    getRootUrlParsed() {
+    getRootURLParsed() {
         return parse(this.getRootURL());
     }
 
@@ -84,7 +84,7 @@ class Settings {
 
     prepareForClient() {
         return JSON.stringify({
-            ROOT_URL: this.getRootUrl(),
+            ROOT_URL: this.getRootURL(),
             API_URL: this.getAPIURL(),
             IS_PRODUCTION: this.isProduction(),
         });

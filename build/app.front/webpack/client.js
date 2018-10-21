@@ -20,7 +20,7 @@ const getSrcFolder = (context) => {
  */
 const getParameters = () => {
 	return {
-		analyzeBundle: true,
+        analyzeBundle: true, // create hints for bundle analyzer
 	};
 };
 

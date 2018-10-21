@@ -12,8 +12,6 @@ import MethodFabric from '../../util/method/fabric.js';
 import EntityServiceFabric from '../../entity/service/fabric.js';
 import qs from 'qs';
 
-// const util = require('util');
-
 export default class BaseFeathersApplication extends BaseApplication {
 
     getNetwork() {
@@ -28,7 +26,7 @@ export default class BaseFeathersApplication extends BaseApplication {
             const settings = this.getSettings();
 
             // the following settings are sometimes used inside different featherjs plugins
-            app.set('host', settings.getRootUrlParsed().hostname);
+            app.set('host', settings.getRootURLParsed().hostname);
             app.set('port', settings.getPort());
 
             const origins = this.getSettings().getAllowedOrigins();

@@ -11,18 +11,18 @@ RUN mkdir /usr/src/app/template/
 RUN chown -R owner:owner /usr/src/app/template/
 
 # server is being changed way rearely, so it goes first
-COPY ./server/package*.json ./
+COPY ./build/package.json .
 RUN npm install
-COPY ./server/build/ .
+COPY ./build/app.front.server/ .
 
 # client assets, more frequent but still not so much
-COPY ./client/public/ ./public/
+COPY ./build/app.front.client/public/ ./public/
 
 # copy templates
-COPY ./client/src/template/ ./template/
+COPY ./build/app.front.client/src/template/ ./template/
 
 # now bundled client here comes
-COPY ./client/build/ ./public/
+COPY ./build/app.front.client/ ./public/
 RUN mv /usr/src/app/public/assets.html ./template/
 
 CMD [ "npm", "run", "dev" ]

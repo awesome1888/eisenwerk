@@ -20,7 +20,7 @@ const getSrcFolder = (context) => {
  */
 const getParameters = () => {
   return {
-	  analyzeBundle: true,
+      copyPackageJson: true, // copy package.json to a target build folder, in order to access it with Dockerfile
   };
 };
 
