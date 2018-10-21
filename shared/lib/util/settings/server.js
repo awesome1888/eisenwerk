@@ -47,7 +47,7 @@ class Settings {
         return this._getSource()['URL.DB'] || '';
     }
 
-    // todo: this is ugly, the API server should be client-agnostic, but since otherwise we cant make
+    // todo: this is just ugly, the API server should be client-agnostic, but since otherwise we cant make
     // todo: oauth work, the only way is to let the server know about its clients
     getClientURL() {
         return this._getSource()['URL.CLIENT-ORIGIN'] || '';
@@ -84,9 +84,9 @@ class Settings {
 
     prepareForClient() {
         return JSON.stringify({
-            ROOT_URL: this.getRootURL(),
-            API_URL: this.getAPIURL(),
-            IS_PRODUCTION: this.isProduction(),
+            'URL.ROOT': this.getRootURL(),
+            'URL.API': this.getAPIURL(),
+            PRODUCTION: this.isProduction(),
         });
     }
 

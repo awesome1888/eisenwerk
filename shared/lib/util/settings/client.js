@@ -5,15 +5,15 @@ class Settings {
     }
 
     getRootURL() {
-        return this._getSource().ROOT_URL || '';
+        return this._getSource()['URL.ROOT'] || '';
     }
 
     getAPIURL() {
-        return (this._getSource().API_URL || '').replace(/\/+$/, '');
+        return (this._getSource()['URL.API'] || '').replace(/\/+$/, '');
     }
 
     isProduction() {
-        return !!this._getSource().IS_PRODUCTION;
+        return !!this._getSource().PRODUCTION;
     }
 }
 
