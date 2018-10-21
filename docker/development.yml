@@ -33,14 +33,14 @@ services:
       - db
     restart: on-failure
     environment:
-      - ROOT_URL=http://localhost:3100/
+      - URL.ROOT=http://localhost:3100/
       - PORT=3100
-      - DB_URL=mongodb://db:27017/ew
-      - ALLOWED_ORIGINS=http://localhost:3000,http://localhost:3010
-      - SECRET=P4cRdF5mzSMPvy4hCdpKCjHMp3vZ4UvynaxhEAJK
-      - OAUTH_GOOGLE_CLIENT_ID=
-      - OAUTH_GOOGLE_SECRET=
-      - CLIENT_ORIGIN_URL=http://localhost:3010
+      - URL.DB=mongodb://db:27017/ew
+      - CORS.ORIGIN=http://localhost:3000,http://localhost:3010
+      - AUTH.SECRET=P4cRdF5mzSMPvy4hCdpKCjHMp3vZ4UvynaxhEAJK
+      - AUTH.GOOGLE.CLIENT-ID=
+      - AUTH.GOOGLE.SECRET=
+      - URL.CLIENT-ORIGIN=http://localhost:3010
 
   db:
       image: "mongo:latest"

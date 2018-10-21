@@ -22,7 +22,7 @@ class Settings {
     }
 
     getRootURL() {
-        return this._getSource().ROOT_URL || '';
+        return this._getSource()['URL.ROOT'] || '';
     }
 
     getRootURLParsed() {
@@ -30,7 +30,7 @@ class Settings {
     }
 
     getPublicFolder() {
-        const path = this._getSource().PUBLIC_FOLDER;
+        const path = this._getSource()['FOLDER.PUBLIC'];
 
         if (_.isStringNotEmpty(path)) {
             return path;
@@ -40,21 +40,21 @@ class Settings {
     }
 
     getRootFolder() {
-        return this._getSource().ROOT_FOLDER || '';
+        return this._getSource()['FOLDER.ROOT'] || '';
     }
 
     getDatabaseURL() {
-        return this._getSource().DB_URL || '';
+        return this._getSource()['URL.DB'] || '';
     }
 
     // todo: this is ugly, the API server should be client-agnostic, but since otherwise we cant make
     // todo: oauth work, the only way is to let the server know about its clients
     getClientURL() {
-        return this._getSource().CLIENT_ORIGIN_URL || '';
+        return this._getSource()['URL.CLIENT-ORIGIN'] || '';
     }
 
     getAPIURL() {
-        return this._getSource().API_URL || '';
+        return this._getSource()['URL.API'] || '';
     }
 
     isProduction() {
@@ -62,7 +62,7 @@ class Settings {
     }
 
     getAllowedOrigins() {
-        const origins = this._getSource().ALLOWED_ORIGINS;
+        const origins = this._getSource()['CORS.ORIGIN'];
         if (_.isStringNotEmpty(origins)) {
             return origins.split(',').map(x => x.trim());
         }
@@ -71,15 +71,15 @@ class Settings {
     }
 
     getSecret() {
-        return this._getSource().SECRET || '';
+        return this._getSource()['AUTH.SECRET'] || '';
     }
 
     getOAuthGoogleClientId() {
-        return this._getSource().OAUTH_GOOGLE_CLIENT_ID || '';
+        return this._getSource()['AUTH.GOOGLE.CLIENT-ID'] || '';
     }
 
     getOAuthGoogleSecret() {
-        return this._getSource().OAUTH_GOOGLE_SECRET || '';
+        return this._getSource()['AUTH.GOOGLE.SECRET'] || '';
     }
 
     prepareForClient() {
