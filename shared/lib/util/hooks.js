@@ -3,12 +3,17 @@ export default class Hooks {
         this._all = this._all || {};
 
         if (_.isObjectNotEmpty(hooks)) {
-            _.forEach(hooks, (v, k) => {
+            Object.keys(hooks).forEach((k) => {
+                const v = hooks[k];
+
                 if (_.contains(['before', 'after', 'error'], k)) {
                     this._all[k] = this._all[k] || {};
 
                     if (_.isObjectNotEmpty(v)) {
-                        _.forEach(v, (v1, k1) => {
+
+                        Object.keys(v).forEach((k1) => {
+                            const v1 = v[k1];
+
                             if (_.isArrayNotEmpty(v1) && _.contains(['all', 'find', 'get', 'create', 'update', 'patch', 'remove'], k1)) {
                                 // this._all.before.all = ...
                                 this._all[k][k1] = this._all[k][k1] || [];

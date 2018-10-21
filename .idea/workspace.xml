@@ -2,8 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5b9cb27b-ee3b-470a-b16b-f358ecaf88e3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/shared/lib/util/settings/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/util/settings/client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/util/settings/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/util/settings/server.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app.api/src/img/vader.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app.api/src/img/yoda.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.api/src/application.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.api/src/application.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/entity/file/service.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/entity/file/service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/entity/user/service.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/entity/user/service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/application/server/base.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/application/server/base.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/application/server/feathers.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/application/server/feathers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/entity/service/fabric.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/entity/service/fabric.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/entity/service/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/entity/service/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/util/authorization/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/util/authorization/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/util/global/lodash.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/util/global/lodash.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/util/hooks.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/util/hooks.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,112 +25,59 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="webpack.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build/app.api/webpack.js">
+      <file leaf-file-name="application.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app.api/src/application.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
+            <state relative-caret-position="296">
+              <caret line="31" column="46" selection-start-line="31" selection-start-column="46" selection-end-line="31" selection-end-column="46" />
               <folding>
-                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#0#74#0" expanded="true" />
+                <element signature="e#46#53#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="client.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build/app.front/webpack/client.js">
+      <file leaf-file-name="service.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app.api/src/shared/entity/user/service.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="39" column="10" lean-forward="true" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="10" />
+            <state relative-caret-position="240">
+              <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
               <folding>
-                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#0#60#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app.api/src/index.js">
+      <file leaf-file-name="service.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app.api/src/shared/entity/file/service.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+            <state relative-caret-position="240">
+              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
               <folding>
-                <element signature="e#0#24#0" expanded="true" />
+                <element signature="e#0#60#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="feathers.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shared/lib/application/server/feathers.js">
+      <file leaf-file-name="schema.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app.api/src/shared/entity/file/schema.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="123" column="58" selection-start-line="123" selection-start-column="44" selection-end-line="123" selection-end-column="58" />
+            <state relative-caret-position="330">
+              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="method.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app.api/src/shared/entity/file/method.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
               <folding>
-                <element signature="e#0#44#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="base.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shared/lib/application/server/base.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="18" column="44" lean-forward="true" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="client.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shared/lib/util/settings/client.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="server.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/shared/lib/util/settings/server.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
-              <folding>
-                <element signature="e#0#30#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="development.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docker/development.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="429">
-              <caret line="37" column="36" lean-forward="true" selection-start-line="37" selection-start-column="36" selection-end-line="37" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="database.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shared/lib/util/database.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="21" column="57" lean-forward="true" selection-start-line="21" selection-start-column="57" selection-end-line="21" selection-end-column="57" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shared/lib/util/authorization/server.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1620">
-              <caret line="108" lean-forward="true" selection-start-line="108" selection-end-line="108" />
-              <folding>
-                <element signature="e#0#46#0" expanded="true" />
+                <element signature="e#0#53#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -136,9 +94,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Jquery</find>
-      <find>exce</find>
-      <find>history</find>
       <find>createBrowser</find>
       <find>Link</find>
       <find>resolve</find>
@@ -166,6 +121,9 @@
       <find>';</find>
       <find>getRootURL</find>
       <find>getRootUrl</find>
+      <find>getOAuthGoogleClientId</find>
+      <find>_.contains</find>
+      <find>flattenMethods</find>
     </findStrings>
     <replaceStrings>
       <replace>declareTimeStampHooks</replace>
@@ -209,14 +167,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/desktop/client/src/lib/application/index.js" />
-        <option value="$PROJECT_DIR$/app/desktop/client/src/ui/application.jsx" />
-        <option value="$PROJECT_DIR$/common/lib/application/server/serve-bundle.js" />
-        <option value="$PROJECT_DIR$/common/style/index.less" />
-        <option value="$PROJECT_DIR$/app/desktop/client/src/store/index.js" />
-        <option value="$PROJECT_DIR$/common/lib.ui/component/index.jsx" />
-        <option value="$PROJECT_DIR$/doc/todo.md" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/shared/entity/user/schema.js" />
         <option value="$PROJECT_DIR$/shared/__trash/application/route.jsx" />
         <option value="$PROJECT_DIR$/package.json" />
@@ -226,7 +176,6 @@
         <option value="$PROJECT_DIR$/build/app.browser/webpack/client.js" />
         <option value="$PROJECT_DIR$/script/run.js" />
         <option value="$PROJECT_DIR$/shared/lib/application/server/serve-bundle.js" />
-        <option value="$PROJECT_DIR$/shared/lib/application/server/base.js" />
         <option value="$PROJECT_DIR$/shared/lib/application/server/express.js" />
         <option value="$PROJECT_DIR$/shared/entity/user/entity/client.js" />
         <option value="$PROJECT_DIR$/shared/lib/entity/server.js" />
@@ -242,9 +191,6 @@
         <option value="$PROJECT_DIR$/app.api/package.json" />
         <option value="$PROJECT_DIR$/app.api/src/shared/entity/user/enum/role.js" />
         <option value="$PROJECT_DIR$/shared/lib/util/enum.js" />
-        <option value="$PROJECT_DIR$/app.api/src/application.js" />
-        <option value="$PROJECT_DIR$/shared/lib/util/authorization/server.js" />
-        <option value="$PROJECT_DIR$/shared/lib/util/hooks.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/app.front.client/package.json" />
         <option value="$PROJECT_DIR$/app.front.server/package.json" />
@@ -254,12 +200,24 @@
         <option value="$PROJECT_DIR$/build/app.front/docker/development.dockerfile" />
         <option value="$PROJECT_DIR$/app.api/src/shared/lib/util/enum.js" />
         <option value="$PROJECT_DIR$/build/app.api/webpack.js" />
-        <option value="$PROJECT_DIR$/shared/lib/util/global/lodash.js" />
-        <option value="$PROJECT_DIR$/shared/lib/application/server/feathers.js" />
         <option value="$PROJECT_DIR$/app.api/src/index.js" />
         <option value="$PROJECT_DIR$/docker/development.yml" />
         <option value="$PROJECT_DIR$/shared/lib/util/settings/client.js" />
         <option value="$PROJECT_DIR$/shared/lib/util/settings/server.js" />
+        <option value="$PROJECT_DIR$/shared/lib/util/authorization/server.js" />
+        <option value="$PROJECT_DIR$/shared/lib/util/hooks.js" />
+        <option value="$PROJECT_DIR$/shared/lib/util/global/lodash.js" />
+        <option value="$PROJECT_DIR$/shared/lib/application/server/base.js" />
+        <option value="$PROJECT_DIR$/shared/lib/application/server/feathers.js" />
+        <option value="$PROJECT_DIR$/shared/lib/entity/service/fabric.js" />
+        <option value="$PROJECT_DIR$/shared/lib/entity/service/index.js" />
+        <option value="$PROJECT_DIR$/shared/entity/user/service.js" />
+        <option value="$PROJECT_DIR$/shared/entity/file/service.js" />
+        <option value="$PROJECT_DIR$/app.api/src/vader.js" />
+        <option value="$PROJECT_DIR$/app.api/src/img/yoda.js" />
+        <option value="$PROJECT_DIR$/app.api/src/application.js" />
+        <option value="$PROJECT_DIR$/app.api/src/shared/entity/user/service.js" />
+        <option value="$PROJECT_DIR$/app.api/src/shared/entity/file/service.js" />
       </list>
     </option>
   </component>
@@ -318,20 +276,53 @@
             <path>
               <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
               <item name="eisenwerk" type="462c0819:PsiDirectoryNode" />
-              <item name="build" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="eisenwerk" type="462c0819:PsiDirectoryNode" />
-              <item name="build" type="462c0819:PsiDirectoryNode" />
               <item name="app.api" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
               <item name="eisenwerk" type="462c0819:PsiDirectoryNode" />
-              <item name="build" type="462c0819:PsiDirectoryNode" />
               <item name="app.api" type="462c0819:PsiDirectoryNode" />
-              <item name="docker" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eisenwerk" type="462c0819:PsiDirectoryNode" />
+              <item name="app.api" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eisenwerk" type="462c0819:PsiDirectoryNode" />
+              <item name="app.api" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="shared" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eisenwerk" type="462c0819:PsiDirectoryNode" />
+              <item name="app.api" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="shared" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eisenwerk" type="462c0819:PsiDirectoryNode" />
+              <item name="app.api" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="shared" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+              <item name="file" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eisenwerk" type="462c0819:PsiDirectoryNode" />
+              <item name="app.api" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="shared" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
@@ -342,6 +333,26 @@
               <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
               <item name="eisenwerk" type="462c0819:PsiDirectoryNode" />
               <item name="shared" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eisenwerk" type="462c0819:PsiDirectoryNode" />
+              <item name="shared" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eisenwerk" type="462c0819:PsiDirectoryNode" />
+              <item name="shared" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+              <item name="file" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eisenwerk" type="462c0819:PsiDirectoryNode" />
+              <item name="shared" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
@@ -361,8 +372,15 @@
               <item name="eisenwerk" type="462c0819:PsiDirectoryNode" />
               <item name="shared" type="462c0819:PsiDirectoryNode" />
               <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eisenwerk" type="462c0819:PsiDirectoryNode" />
+              <item name="shared" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
@@ -370,14 +388,6 @@
               <item name="shared" type="462c0819:PsiDirectoryNode" />
               <item name="lib" type="462c0819:PsiDirectoryNode" />
               <item name="util" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="eisenwerk" type="462c0819:PsiDirectoryNode" />
-              <item name="shared" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
-              <item name="settings" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -407,11 +417,11 @@
       <recent name="$PROJECT_DIR$/common/entity" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app.api/src/img" />
       <recent name="$PROJECT_DIR$/app.api/src/shared/lib/util" />
       <recent name="$PROJECT_DIR$/app.api/src/shared/lib" />
       <recent name="$PROJECT_DIR$/app.api/src/shared/lib/util/global" />
       <recent name="$PROJECT_DIR$/build/app.browser/build" />
-      <recent name="$PROJECT_DIR$/build/app.api/build" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -525,12 +535,12 @@
       <workItem from="1537952653383" duration="7895000" />
       <workItem from="1538086475607" duration="586000" />
       <workItem from="1538421455833" duration="2131000" />
-      <workItem from="1539714522789" duration="43144000" />
+      <workItem from="1539714522789" duration="47585000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="913219000" />
+    <option name="totallyTimeSpent" value="917660000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="797" extended-state="6" />
@@ -599,78 +609,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/shared/lib/entity/both.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="534">
-          <caret line="53" selection-start-line="53" selection-end-line="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shared/entity/user/entity/client.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="180" column="7" selection-start-line="180" selection-start-column="7" selection-end-line="180" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shared/lib/lodash.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
-          <folding>
-            <element signature="e#0#45#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.api/src/shared/lib/util/global/l/client.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.api/src/shared/lib/util/global/l/server.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.api/src/shared/lib/util/global/mern.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.api/src/shared/lib/util/global/lodash.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
-          <folding>
-            <element signature="e#0#45#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.api/src/shared/lib/util/global/object-id.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shared/entity/user/entity/both.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.api/src/shared/lib/util/method/fabric.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app.api/src/shared/lib/util/method/client.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -776,13 +714,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shared/lib/util/hooks.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -821,16 +752,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.api/src/application.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-          <folding>
-            <element signature="e#0#78#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build/app.api/docker/development.dockerfile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -845,27 +766,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shared/lib/util/global/lodash.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build/app.front/docker/development.dockerfile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
           <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shared/lib/util/authorization/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1620">
-          <caret line="108" lean-forward="true" selection-start-line="108" selection-end-line="108" />
-          <folding>
-            <element signature="e#0#46#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -913,23 +817,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shared/lib/application/server/base.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="18" column="44" lean-forward="true" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shared/lib/application/server/feathers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="123" column="58" selection-start-line="123" selection-start-column="44" selection-end-line="123" selection-end-column="58" />
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/shared/lib/util/database.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
@@ -940,26 +827,173 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docker/development.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="37" column="36" lean-forward="true" selection-start-line="37" selection-start-column="36" selection-end-line="37" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/shared/lib/util/settings/client.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        <state relative-caret-position="300">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/shared/lib/util/settings/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
+        <state relative-caret-position="453">
+          <caret line="76" column="26" selection-start-line="76" selection-start-column="4" selection-end-line="76" selection-end-column="26" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/lib/util/authorization/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="29" column="71" selection-start-line="29" selection-start-column="71" selection-end-line="29" selection-end-column="71" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker/development.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="28" column="12" lean-forward="true" selection-start-line="28" selection-start-column="12" selection-end-line="28" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/lib/util/hooks.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/lib/util/method/fabric.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="40" column="56" selection-start-line="40" selection-start-column="52" selection-end-line="40" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/lib/util/global/lodash.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" column="11" lean-forward="true" selection-start-line="30" selection-start-column="11" selection-end-line="30" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/lib/application/server/base.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/entity/user/service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" selection-start-line="15" selection-end-line="17" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#60#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/entity/file/service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+          <folding>
+            <element signature="e#0#60#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/lib/entity/service/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+          <folding>
+            <element signature="e#0#57#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/lib/entity/service/fabric.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="39" lean-forward="true" selection-start-line="3" selection-start-column="39" selection-end-line="3" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/lib/application/server/feathers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1325">
+          <caret line="100" lean-forward="true" selection-start-line="100" selection-end-line="100" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.api/src/img/vader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.api/src/img/yoda.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.api/src/application.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="31" column="46" selection-start-line="31" selection-start-column="46" selection-end-line="31" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#74#0" expanded="true" />
+            <element signature="e#46#53#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.api/src/shared/entity/user/service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#60#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.api/src/shared/entity/file/service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+          <folding>
+            <element signature="e#0#60#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.api/src/shared/entity/file/schema.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.api/src/shared/entity/file/method.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+          <folding>
+            <element signature="e#0#53#0" expanded="true" />
           </folding>
         </state>
       </provider>

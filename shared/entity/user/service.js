@@ -13,6 +13,10 @@ export default class UserService extends BaseService {
         return Entity;
     }
 
+    static getDesciption() {
+        return 'users persisted in the system';
+    }
+
     allowTimestamps() {
         return true;
     }

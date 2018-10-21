@@ -20,6 +20,18 @@ export default class Service extends BaseService {
         throw new Error('Not implemented: .getEntity()');
     }
 
+    static getName() {
+        return this.getEntity().getUId();
+    }
+
+    static getPath() {
+        return `/${this.getName()}`;
+    }
+
+    static getDesciption() {
+        return '';
+    }
+
     static make(application) {
         return new this({
             Model: this.getEntity().getModel(),
@@ -28,7 +40,6 @@ export default class Service extends BaseService {
                 max: 50,
             },
             lean: true,
-
             application,
         });
     }
@@ -47,11 +58,11 @@ export default class Service extends BaseService {
     }
 
     getName() {
-        return this.getEntity().getUId();
+        return this.constructor.getName();
     }
 
     getPath() {
-        return `/${this.getName()}`;
+        return this.constructor.getPath();
     }
 
     allowTimestamps() {

@@ -38,7 +38,6 @@ export default class Application {
 
     createServer() {
         const port = this.getSettings().getPort();
-
         this._server = this.getNetwork().listen(port);
         this._server.on('listening', () => {
             console.log(`Listening on ${port} port`);

@@ -18,6 +18,18 @@ module.exports = {
     isObjectNotEmpty: (arg) => {
         return isObject(arg) && Object.keys(arg).length > 0;
     },
+    contains: (where, what) => {
+        if (!isArrayLike(where)) {
+            return false;
+        }
+
+        return where.indexOf(what) >= 0;
+    },
+    forEach: (obj, fn) => {
+        Object.keys(obj).forEach((k) => {
+            fn(obj[k], k);
+        });
+    },
     isEqual,
     isNumber,
     isFunction,

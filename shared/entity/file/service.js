@@ -11,6 +11,10 @@ export default class FileService extends BaseService {
         return Entity;
     }
 
+    static getDesciption() {
+        return 'uploaded files';
+    }
+
     allowTimestamps() {
         return true;
     }

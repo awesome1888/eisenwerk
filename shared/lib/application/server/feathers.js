@@ -106,9 +106,7 @@ export default class BaseFeathersApplication extends BaseApplication {
     }
 
     createEntityServices() {
-        this.getServices().forEach((service) => {
-            EntityServiceFabric.make(this, service);
-        });
+        EntityServiceFabric.register(this, this.getServices());
     }
 
     createMethods() {
