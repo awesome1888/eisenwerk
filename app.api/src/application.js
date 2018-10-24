@@ -26,7 +26,7 @@ export default class Application extends BaseApplication {
 
         const app = this.getNetwork();
 
-        app.all('/', (req, res) => {
+        app.get('/', (req, res) => {
             res.status(200);
             if (this.getSettings().isProduction()) {
                 res.send(`<pre>${LordVader}</pre>`);
@@ -34,7 +34,7 @@ export default class Application extends BaseApplication {
                 res.send(`
                     <style>body{font-family: sans-serif}</style>
                     <pre>${Yoda}</pre>
-                    <h3>The entities following use you may, young padawan:</h3>
+                    <h3>The entities following use you may, young Padawan:</h3>
                     <ul>
                         ${this.getServices().map((service) => {
                             return `<li><a href="${service.getPath()}">${service.getPath()}</a> &mdash; ${service.getDesciption()}</li>`;

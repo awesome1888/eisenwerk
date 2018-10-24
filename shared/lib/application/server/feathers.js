@@ -82,7 +82,6 @@ export default class BaseFeathersApplication extends BaseApplication {
     attachMiddleware() {
         const app = this.getNetwork();
 
-        // authorization
         // do not relocate this line elsewhere!
         Authorization.prepare(app, this.getSettings());
 

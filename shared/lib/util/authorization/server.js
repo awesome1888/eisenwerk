@@ -20,6 +20,8 @@ export default class Authorization extends AuthorizationBoth {
         app.configure(local({
             usernameField: this.getUserNameField(),
             passwordField: this.getPasswordField(),
+            // entity: 'user',
+            // service: 'user',
         }));
         app.configure(jwt());
         app.configure(oauth2({
@@ -34,6 +36,8 @@ export default class Authorization extends AuthorizationBoth {
             scope: [
                 'profile openid email',
             ],
+            // entity: 'user',
+            // service: 'user',
         }));
         app.configure(authManagement({
             identifyUserProps: ['profile.email'],
