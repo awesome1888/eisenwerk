@@ -1,6 +1,6 @@
-import Access from '../../util/access/server.js';
+import Access from '../../access/server.js';
 import Error from '../../util/error';
-import Context from '../../../lib/entity/service/context';
+import Context from '../../context';
 
 export default class Fabric {
     static register(app, declarations = []) {

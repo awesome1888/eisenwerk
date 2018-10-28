@@ -1,8 +1,8 @@
-import Access from '../../util/access/server.js';
-import Hooks from '../../util/hooks.js';
+import Access from '../access/server.js';
+import Hooks from '../util/hooks.js';
 import AdapterMongoose from './adapter-mongoose';
-import Error from '../../util/error';
-import Context from './context';
+import Error from '../util/error';
+import Context from '../context';
 
 /**
  * https://docs.feathersjs.com/api/databases/common.html#extending-adapters

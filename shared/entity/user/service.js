@@ -1,8 +1,8 @@
-import BaseService from '../../lib/entity/service/index.js';
+import BaseService from '../../lib/service/index.js';
 import Entity from './entity/server.js';
 import roleEnum from './enum/role.js';
 import AuthorizationHook from './hooks/authorization.js';
-import Context from '../../lib/entity/service/context';
+import Context from '../../lib/context';
 import Error from '../../lib/util/error';
 
 export default class UserService extends BaseService {

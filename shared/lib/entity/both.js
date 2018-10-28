@@ -1,5 +1,5 @@
-import Query from './query.js';
-import Result from './result.js';
+import Query from '../query.js';
+import Result from '../result.js';
 import set from 'set-value';
 
 let networkRef = null;

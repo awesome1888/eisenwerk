@@ -9,7 +9,7 @@ import Database from '../../util/database';
 import Authorization from '../../util/authorization/server.js';
 import handler from '../../util/error-handler.js';
 import MethodFabric from '../../util/method/fabric.js';
-import EntityServiceFabric from '../../entity/service/fabric.js';
+import EntityServiceFabric from '../../service/fabric.js';
 import qs from 'qs';
 
 export default class BaseFeathersApplication extends BaseApplication {

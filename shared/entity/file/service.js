@@ -1,4 +1,4 @@
-import BaseService from '../../lib/entity/service/index.js';
+import BaseService from '../../lib/service/index.js';
 import Entity from './entity/server.js';
 
 export default class FileService extends BaseService {

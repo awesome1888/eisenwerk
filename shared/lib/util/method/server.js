@@ -1,4 +1,4 @@
-import Context from '../../entity/service/context';
+import Context from '../../context';
 
 export default class Method {
     static getDeclaration() {

@@ -2,7 +2,7 @@ import local from '@feathersjs/authentication-local';
 import commonHooks from 'feathers-hooks-common';
 import roleEnum from '../enum/role.js';
 import hash from '../../../vendor/feathersjs/hasher.js';
-import Context from '../../../lib/entity/service/context';
+import Context from '../../../lib/context';
 
 export default class AuthorizationHook {
     static async isAdmin(auth) {
