@@ -1,4 +1,4 @@
-import _ from '../global/lodash';
+import _ from './global/lodash';
 
 export default class Enum {
     constructor(declaration) {

@@ -1,4 +1,4 @@
-import Method from '../../lib/util/method/server.js';
+import Method from '../../lib/method/server.js';
 import Entity from './entity/server.js';
 
 export default class FileMethod extends Method {

@@ -1,4 +1,4 @@
-import Context from '../../context';
+import Context from '../context';
 
 export default class Method {
     static getDeclaration() {

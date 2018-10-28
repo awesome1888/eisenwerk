@@ -3,7 +3,7 @@ import helmet from 'helmet';
 import responseTime from 'response-time';
 
 import BaseApplication from './base.js';
-import Settings from '../../util/settings/server.js';
+import Settings from '../../settings/server.js';
 
 import Oauth2Success from '../../authorization/oauth2-success.js';
 

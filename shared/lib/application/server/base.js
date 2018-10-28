@@ -1,4 +1,4 @@
-import settings from '../../util/settings/server.js';
+import settings from '../../settings/server.js';
 import process from 'process';
 
 export default class Application {

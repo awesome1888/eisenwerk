@@ -5,10 +5,10 @@ import cors from 'cors';
 import errors from '@feathersjs/errors';
 
 import BaseApplication from './base.js';
-import Database from '../../util/database';
+import Database from '../../database';
 import Authorization from '../../authorization/server.js';
-import handler from '../../util/error-handler.js';
-import MethodFabric from '../../util/method/fabric.js';
+import handler from '../../error-handler.js';
+import MethodFabric from '../../method/fabric.js';
 import EntityServiceFabric from '../../service/fabric.js';
 import qs from 'qs';
 

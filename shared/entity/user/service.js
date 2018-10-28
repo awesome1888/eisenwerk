@@ -3,7 +3,7 @@ import Entity from './entity/server.js';
 import roleEnum from './enum/role.js';
 import AuthorizationHook from './hooks/authorization.js';
 import Context from '../../lib/context';
-import Error from '../../lib/util/error';
+import Error from '../../lib/error';
 
 export default class UserService extends BaseService {
 

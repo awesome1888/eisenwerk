@@ -1,7 +1,7 @@
 import Access from '../access/server.js';
-import Hooks from '../util/hooks.js';
+import Hooks from '../hooks.js';
 import AdapterMongoose from './adapter-mongoose';
-import Error from '../util/error';
+import Error from '../error';
 import Context from '../context';
 
 /**

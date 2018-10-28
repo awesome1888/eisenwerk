@@ -3,24 +3,27 @@
   <component name="ChangeListManager">
     <list default="true" id="5b9cb27b-ee3b-470a-b16b-f358ecaf88e3" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/app.api/webpack.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/app.api/webpack.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/app.front/webpack/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/app.front/webpack/client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/app.front/webpack/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/app.front/webpack/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/entity/file/method.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/entity/file/method.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/entity/user/enum/role.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/entity/user/enum/role.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/entity/user/method.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/entity/user/method.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/entity/user/service.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/entity/user/service.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shared/lib/application/client/feathers.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/application/client/feathers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/application/server/base.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/application/server/base.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shared/lib/application/server/express.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/application/server/express.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shared/lib/application/server/feathers.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/application/server/feathers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/util/authorization/both.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/authorization/both.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/util/authorization/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/authorization/client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/util/authorization/oauth2-failure.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/authorization/oauth2-failure.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/util/authorization/oauth2-success.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/authorization/oauth2-success.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/util/authorization/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/authorization/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/util/enum.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/util/enum.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/util/global/lodash.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/global/lodash.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/util/global/mern.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/global/mern.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/util/global/mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/global/mix.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/util/global/object-id.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/global/object-id.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/util/global/schema.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/global/schema.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/util/global/t-object-id.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/global/t-object-id.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/entity/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/entity/client.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/service/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/service/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/util/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/database.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/util/enum.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/enum.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/util/error-handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/error-handler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/util/error.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/error.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/util/event-emitter.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/event-emitter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/util/hooks.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/hooks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/util/method/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/method/client.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/util/method/fabric.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/method/fabric.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/util/method/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/method/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/util/settings/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/settings/client.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/util/settings/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/settings/server.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -483,15 +486,16 @@
       <workItem from="1538086475607" duration="586000" />
       <workItem from="1538421455833" duration="2131000" />
       <workItem from="1539714522789" duration="50950000" />
-      <workItem from="1540396513192" duration="15209000" />
+      <workItem from="1540396513192" duration="15350000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="936234000" />
+    <option name="totallyTimeSpent" value="936375000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="805" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2410148" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -570,7 +574,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shared/lib/util/database.js">
+    <entry file="file://$PROJECT_DIR$/shared/lib/database.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
           <caret line="21" column="57" lean-forward="true" selection-start-line="21" selection-start-column="57" selection-end-line="21" selection-end-column="57" />
@@ -580,14 +584,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shared/lib/util/settings/client.js">
+    <entry file="file://$PROJECT_DIR$/shared/lib/settings/client.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shared/lib/util/settings/server.js">
+    <entry file="file://$PROJECT_DIR$/shared/lib/settings/server.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="453">
           <caret line="76" column="26" selection-start-line="76" selection-start-column="4" selection-end-line="76" selection-end-column="26" />
@@ -706,7 +710,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shared/lib/util/error-handler.js">
+    <entry file="file://$PROJECT_DIR$/shared/lib/error-handler.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
           <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
@@ -795,7 +799,7 @@
         <state relative-caret-position="-430" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shared/lib/util/error.js">
+    <entry file="file://$PROJECT_DIR$/shared/lib/error.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
@@ -849,7 +853,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shared/lib/util/method/fabric.js">
+    <entry file="file://$PROJECT_DIR$/shared/lib/method/fabric.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
@@ -879,7 +883,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shared/lib/util/method/server.js">
+    <entry file="file://$PROJECT_DIR$/shared/lib/method/server.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="370">
           <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
@@ -896,7 +900,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shared/lib/util/hooks.js">
+    <entry file="file://$PROJECT_DIR$/shared/lib/hooks.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />

@@ -1,4 +1,4 @@
-import EnumFactory from '../../../lib/util/enum';
+import EnumFactory from '../../../lib/enum';
 
 class RoleEnumFactory extends EnumFactory {
     constructor(items) {
