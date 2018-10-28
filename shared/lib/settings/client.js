@@ -1,19 +1,19 @@
 class Settings {
 
-    _getSource() {
+    getSource() {
         return window.__SETTINGS__ || {};
     }
 
     getRootURL() {
-        return this._getSource()['URL.ROOT'] || '';
+        return this.getSource()['URL.ROOT'] || '';
     }
 
     getAPIURL() {
-        return (this._getSource()['URL.API'] || '').replace(/\/+$/, '');
+        return (this.getSource()['URL.API'] || '').replace(/\/+$/, '');
     }
 
     isProduction() {
-        return !!this._getSource().PRODUCTION;
+        return !!this.getSource().PRODUCTION;
     }
 }
 

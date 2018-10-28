@@ -11,18 +11,17 @@ class Settings {
         if (!_.isStringNotEmpty(this.getPort())) {
             missing.push('PORT');
         }
-
         if (_.isArrayNotEmpty(missing)) {
             console.error(`You have the following environment variables missing: ${missing.join(', ')}. You may get into trouble with that, because some of submodules rely on these values and may work inconsistently.`);
         }
     }
 
     getPort() {
-        return this._getSource().PORT || 3000;
+        return this.getSource().PORT || 3000;
     }
 
     getRootURL() {
-        return this._getSource()['URL.ROOT'] || '';
+        return this.getSource()['URL.ROOT'] || '';
     }
 
     getRootURLParsed() {
@@ -30,7 +29,7 @@ class Settings {
     }
 
     getPublicFolder() {
-        const path = this._getSource()['FOLDER.PUBLIC'];
+        const path = this.getSource()['FOLDER.PUBLIC'];
 
         if (_.isStringNotEmpty(path)) {
             return path;
@@ -40,29 +39,29 @@ class Settings {
     }
 
     getRootFolder() {
-        return this._getSource()['FOLDER.ROOT'] || '';
+        return this.getSource()['FOLDER.ROOT'] || '';
     }
 
     getDatabaseURL() {
-        return this._getSource()['URL.DB'] || '';
+        return this.getSource()['URL.DB'] || '';
     }
 
     // todo: this is just ugly, the API server should be client-agnostic, but since otherwise we cant make
     // todo: oauth work, the only way is to let the server know about its clients
     getClientURL() {
-        return this._getSource()['URL.CLIENT-ORIGIN'] || '';
+        return this.getSource()['URL.CLIENT-ORIGIN'] || '';
     }
 
     getAPIURL() {
-        return this._getSource()['URL.API'] || '';
+        return this.getSource()['URL.API'] || '';
     }
 
     isProduction() {
-        return this._getSource().NODE_ENV === 'production';
+        return this.getSource().NODE_ENV === 'production';
     }
 
     getAllowedOrigins() {
-        const origins = this._getSource()['CORS.ORIGIN'];
+        const origins = this.getSource()['CORS.ORIGIN'];
         if (_.isStringNotEmpty(origins)) {
             return origins.split(',').map(x => x.trim());
         }
@@ -71,15 +70,15 @@ class Settings {
     }
 
     getSecret() {
-        return this._getSource()['AUTH.SECRET'] || '';
+        return this.getSource()['AUTH.SECRET'] || '';
     }
 
     getOAuthGoogleClientId() {
-        return this._getSource()['AUTH.GOOGLE.CLIENT-ID'] || '';
+        return this.getSource()['AUTH.GOOGLE.CLIENT-ID'] || '';
     }
 
     getOAuthGoogleSecret() {
-        return this._getSource()['AUTH.GOOGLE.SECRET'] || '';
+        return this.getSource()['AUTH.GOOGLE.SECRET'] || '';
     }
 
     prepareForClient() {
@@ -90,7 +89,7 @@ class Settings {
         });
     }
 
-    _getSource() {
+    getSource() {
         return process.env;
     }
 }
