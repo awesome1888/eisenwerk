@@ -42,17 +42,17 @@ export default class Query {
     }
 
     select(select) {
-        this._parameters.select = _.isObjectNotEmpty(select) ? _.deepClone(select) : {};
+        this._parameters.select = _.isObjectNotEmpty(select) ? _.cloneDeep(select) : {};
         return this;
     }
 
     filter(filter) {
-        this._parameters.filter = _.isObjectNotEmpty(filter) ? _.deepClone(filter) : {};
+        this._parameters.filter = _.isObjectNotEmpty(filter) ? _.cloneDeep(filter) : {};
         return this;
     }
 
     sort(sort) {
-        this._parameters.sort = _.isObjectNotEmpty(sort) ? _.deepClone(sort) : {};
+        this._parameters.sort = _.isObjectNotEmpty(sort) ? _.cloneDeep(sort) : {};
         return this;
     }
 
@@ -67,7 +67,7 @@ export default class Query {
     }
 
     populate(populate) {
-        this._parameters.populate = _.isObjectNotEmpty(populate) ? _.deepClone(populate) : {};
+        this._parameters.populate = _.isObjectNotEmpty(populate) ? _.cloneDeep(populate) : {};
         return this;
     }
 
@@ -103,12 +103,12 @@ export default class Query {
     }
 
     makeQuery() {
-        const q = _.deepClone(this._parameters.filter) || {};
+        const q = _.cloneDeep(this._parameters.filter) || {};
         if (_.isObjectNotEmpty(this._parameters.select)) {
-            q.$select = _.deepClone(this._parameters.select);
+            q.$select = _.cloneDeep(this._parameters.select);
         }
         if (_.isObjectNotEmpty(this._parameters.sort)) {
-            q.$sort = _.deepClone(this._parameters.sort);
+            q.$sort = _.cloneDeep(this._parameters.sort);
         }
         if (_.isNumber(this._parameters.limit)) {
             q.$limit = this._parameters.limit;
@@ -117,7 +117,7 @@ export default class Query {
             q.$skip = this._parameters.offset;
         }
         if (_.isArrayNotEmpty(this._parameters.populate)) {
-            q.$populate = _.deepClone(this._parameters.populate);
+            q.$populate = _.cloneDeep(this._parameters.populate);
         }
 
         return q;
@@ -133,7 +133,7 @@ export default class Query {
         if (this.hasFabric()) {
             this._fabric(parameters || {}, this);
         } else if (_.isObjectNotEmpty(parameters)) {
-            parameters = _.deepClone(parameters);
+            parameters = _.cloneDeep(parameters);
 
             this.filter(parameters.$filter || parameters.filter);
             this.select(parameters.$select || parameters.select);

@@ -2,14 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5b9cb27b-ee3b-470a-b16b-f358ecaf88e3" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/shared/lib/entity/service/context.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/util/service/mongoose.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shared/lib/util/error.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/entity/user/method.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/entity/user/method.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shared/entity/user/service.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/entity/user/service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/application/server/feathers.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/application/server/feathers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/entity/query.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/entity/query.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shared/lib/entity/service/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/entity/service/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/util/error/server/handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/util/error-handler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/util/method/fabric.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/util/method/fabric.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/util/method/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/util/method/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/util/service/mongoose.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/entity/service/adapter-mongoose.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,54 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="application.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app.api/src/application.js">
+      <file leaf-file-name="authorization.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/shared/entity/user/hooks/authorization.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="7" lean-forward="true" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
-              <folding>
-                <element signature="e#0#74#0" expanded="true" />
-                <element signature="e#54#61#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app.api/src/shared/lib/entity/service/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="15" column="24" lean-forward="true" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shared/lib/entity/service/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="187" column="7" lean-forward="true" selection-start-line="187" selection-start-column="7" selection-end-line="187" selection-end-column="7" />
-              <folding>
-                <element signature="e#0#49#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="role.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shared/entity/user/enum/role.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="method.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shared/entity/user/method.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+            <state relative-caret-position="1037">
+              <caret line="119" column="28" selection-start-line="119" selection-start-column="11" selection-end-line="119" selection-end-column="28" />
               <folding>
                 <element signature="e#0#53#0" expanded="true" />
               </folding>
@@ -75,22 +32,45 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shared/entity/file/entity/server.js">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/shared/lib/entity/service/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+            <state relative-caret-position="1497">
+              <caret line="143" lean-forward="true" selection-start-line="143" selection-end-line="143" />
               <folding>
-                <element signature="e#0#34#0" expanded="true" />
+                <element signature="e#0#49#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="both.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shared/entity/file/entity/both.js">
+      <file leaf-file-name="fabric.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/shared/lib/util/method/fabric.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-430" />
+            <state relative-caret-position="242">
+              <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+              <folding>
+                <element signature="e#0#49#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="error.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/shared/lib/util/error.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/shared/lib/util/method/server.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="525">
+              <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
+            </state>
           </provider>
         </entry>
       </file>
@@ -109,20 +89,11 @@
       <file leaf-file-name="service.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/shared/entity/user/service.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="511">
-              <caret line="97" column="17" lean-forward="true" selection-start-line="97" selection-start-column="17" selection-end-line="97" selection-end-column="17" />
+            <state relative-caret-position="298">
+              <caret line="21" column="19" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="19" />
               <folding>
                 <element signature="e#0#60#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="context.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shared/lib/entity/service/context.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="690">
-              <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
             </state>
           </provider>
         </entry>
@@ -138,7 +109,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>testUserAny</find>
       <find>testUser</find>
       <find>testUserSync</find>
       <find>testRoute</find>
@@ -162,15 +132,15 @@
       <find>authentication'</find>
       <find>sl</find>
       <find>Hooks</find>
-      <find>deepClone</find>
       <find>errorHandler</find>
       <find>errors</find>
       <find>isRemote</find>
       <find>isRe</find>
       <find>getPre</find>
+      <find>MongoDBService</find>
+      <find>deepClone</find>
     </findStrings>
     <replaceStrings>
-      <replace>declareAccessHooks</replace>
       <replace>PUBLIC_FOLDER</replace>
       <replace>connectStorage</replace>
       <replace>connectStore</replace>
@@ -199,6 +169,7 @@
       <replace>const</replace>
       <replace>');</replace>
       <replace>getRootURL</replace>
+      <replace>AdapterMongoose</replace>
       <replace>cloneDeep</replace>
     </replaceStrings>
     <dirStrings>
@@ -211,11 +182,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/build/app.api/application.js" />
-        <option value="$PROJECT_DIR$/build/app.browser/webpack/server.js" />
-        <option value="$PROJECT_DIR$/build/app.browser/webpack/client.js" />
-        <option value="$PROJECT_DIR$/script/run.js" />
-        <option value="$PROJECT_DIR$/shared/lib/application/server/serve-bundle.js" />
         <option value="$PROJECT_DIR$/shared/lib/application/server/express.js" />
         <option value="$PROJECT_DIR$/shared/entity/user/entity/client.js" />
         <option value="$PROJECT_DIR$/shared/lib/entity/server.js" />
@@ -259,8 +225,13 @@
         <option value="$PROJECT_DIR$/shared/lib/util/service/mongoose.js" />
         <option value="$PROJECT_DIR$/shared/lib/entity/service/context.js" />
         <option value="$PROJECT_DIR$/shared/lib/application/server/feathers.js" />
-        <option value="$PROJECT_DIR$/shared/lib/entity/service/index.js" />
         <option value="$PROJECT_DIR$/shared/entity/user/method.js" />
+        <option value="$PROJECT_DIR$/shared/lib/util/method/server.js" />
+        <option value="$PROJECT_DIR$/shared/lib/entity/service/adapter-mongoose.js" />
+        <option value="$PROJECT_DIR$/shared/lib/entity/query.js" />
+        <option value="$PROJECT_DIR$/shared/lib/util/error.js" />
+        <option value="$PROJECT_DIR$/shared/lib/util/method/fabric.js" />
+        <option value="$PROJECT_DIR$/shared/lib/entity/service/index.js" />
         <option value="$PROJECT_DIR$/shared/entity/user/service.js" />
       </list>
     </option>
@@ -322,50 +293,7 @@
               <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
               <item name="eisenwerk" type="462c0819:PsiDirectoryNode" />
               <item name="shared" type="462c0819:PsiDirectoryNode" />
-              <item name="entity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="eisenwerk" type="462c0819:PsiDirectoryNode" />
-              <item name="shared" type="462c0819:PsiDirectoryNode" />
-              <item name="entity" type="462c0819:PsiDirectoryNode" />
-              <item name="file" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="eisenwerk" type="462c0819:PsiDirectoryNode" />
-              <item name="shared" type="462c0819:PsiDirectoryNode" />
-              <item name="entity" type="462c0819:PsiDirectoryNode" />
-              <item name="file" type="462c0819:PsiDirectoryNode" />
-              <item name="hooks" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="eisenwerk" type="462c0819:PsiDirectoryNode" />
-              <item name="shared" type="462c0819:PsiDirectoryNode" />
-              <item name="entity" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="eisenwerk" type="462c0819:PsiDirectoryNode" />
-              <item name="shared" type="462c0819:PsiDirectoryNode" />
               <item name="lib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="eisenwerk" type="462c0819:PsiDirectoryNode" />
-              <item name="shared" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="entity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="eisenwerk" type="462c0819:PsiDirectoryNode" />
-              <item name="shared" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="entity" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
@@ -373,14 +301,6 @@
               <item name="shared" type="462c0819:PsiDirectoryNode" />
               <item name="lib" type="462c0819:PsiDirectoryNode" />
               <item name="util" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="eisenwerk" type="462c0819:PsiDirectoryNode" />
-              <item name="shared" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
-              <item name="global" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -403,11 +323,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/shared/lib/entity/service" />
       <recent name="$PROJECT_DIR$/shared/lib/util" />
       <recent name="$PROJECT_DIR$/app.api/src/img" />
       <recent name="$PROJECT_DIR$/app.api/src/shared/lib/util" />
       <recent name="$PROJECT_DIR$/app.api/src/shared/lib" />
-      <recent name="$PROJECT_DIR$/app.api/src/shared/lib/util/global" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/shared/lib" />
@@ -529,12 +449,12 @@
       <workItem from="1538086475607" duration="586000" />
       <workItem from="1538421455833" duration="2131000" />
       <workItem from="1539714522789" duration="50950000" />
-      <workItem from="1540396513192" duration="10464000" />
+      <workItem from="1540396513192" duration="11941000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="931489000" />
+    <option name="totallyTimeSpent" value="932966000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="797" extended-state="6" />
@@ -603,34 +523,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app.api/src/shared/entity/user/enum/role.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="25" lean-forward="true" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shared/vendor/feathersjs/authentication-management/coverage/hooks.js.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="12" lean-forward="true" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script/run.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app.front.server/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
@@ -744,13 +636,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shared/lib/util/method/fabric.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="40" column="56" selection-start-line="40" selection-start-column="52" selection-end-line="40" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/shared/lib/application/server/base.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
@@ -816,16 +701,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shared/entity/user/hooks/authorization.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="40" lean-forward="true" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#53#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/shared/lib/util/authorization/server.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
@@ -887,16 +762,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shared/lib/util/service/mongoose.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/shared/lib/entity/service/context.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="690">
@@ -939,16 +804,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="551">
           <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shared/lib/entity/service/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="187" column="7" lean-forward="true" selection-start-line="187" selection-start-column="7" selection-end-line="187" selection-end-column="7" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1003,6 +858,74 @@
         <state relative-caret-position="-430" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/shared/lib/entity/result.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/lib/util/method/fabric.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/lib/util/error.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/lib/entity/service/adapter-mongoose.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="31" column="7" lean-forward="true" selection-start-line="31" selection-start-column="7" selection-end-line="31" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/lib/util/method/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/lib/entity/query.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2670">
+          <caret line="178" lean-forward="true" selection-start-line="178" selection-end-line="178" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/entity/user/hooks/authorization.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1037">
+          <caret line="119" column="28" selection-start-line="119" selection-start-column="11" selection-end-line="119" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#53#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/lib/entity/service/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1497">
+          <caret line="143" lean-forward="true" selection-start-line="143" selection-end-line="143" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/shared/entity/file/service.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="615">
@@ -1015,8 +938,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/shared/entity/user/service.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="511">
-          <caret line="97" column="17" lean-forward="true" selection-start-line="97" selection-start-column="17" selection-end-line="97" selection-end-column="17" />
+        <state relative-caret-position="298">
+          <caret line="21" column="19" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="19" />
           <folding>
             <element signature="e#0#60#0" expanded="true" />
           </folding>

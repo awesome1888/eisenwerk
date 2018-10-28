@@ -1,11 +1,9 @@
-import errors from '@feathersjs/errors';
 import Access from '../../util/access/server.js';
+import Error from '../../util/error';
 
 export default class Fabric {
     static register(app, declarations = []) {
         const allMethods = this.flattenMethods(declarations);
-        // l(allMethods);
-
         app.getNetwork().use('/method', {
             create: async (data, context) => {
                 let result = {};
@@ -25,7 +23,7 @@ export default class Fabric {
                             const body = this.makeBody(pack, name, declared);
                             result = await body(args, context, app);
                         } else {
-                            throw new errors.GeneralError(`Method not found: ${name}`);
+                            Error.throw400(`Method not found: ${name}`);
                         }
                     }
                 }
@@ -50,12 +48,12 @@ export default class Fabric {
         return async (args, context, application) => {
             const bodyName = declaration.body;
             if (!_.isStringNotEmpty(bodyName)) {
-                throw new errors.GeneralError(`No body for the method: ${name}`);
+                Error.throw400(`No body for the method: ${name}`);
             }
 
             const instance = new Methods();
             if (!_.isFunction(instance[bodyName])) {
-                throw new errors.GeneralError(`The body is not a function for the method: ${name}`);
+                Error.throw400(`The body is not a function for the method: ${name}`);
             }
 
             // check access
@@ -70,7 +68,7 @@ export default class Fabric {
             const result = await Access.testToken(auth.extractToken(context), rule, auth, context);
 
             if (result === false) {
-                this.throw403();
+                Error.throw403();
             }
 
             if (_.isObjectNotEmpty(result) && result.error) {
@@ -87,9 +85,5 @@ export default class Fabric {
 
             return true;
         };
-    }
-
-    static throw403(message = '') {
-        throw new errors.Forbidden(_.isStringNotEmpty(message) ? message : 'Forbidden');
     }
 }

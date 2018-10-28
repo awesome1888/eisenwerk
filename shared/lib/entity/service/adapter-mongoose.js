@@ -7,7 +7,7 @@ import errorHandler from 'feathers-mongoose/lib/error-handler.js';
 /**
  * https://docs.feathersjs.com/api/databases/common.html#extending-adapters
  */
-export default class MongooseService extends Service {
+export default class MongooseAdapter extends Service {
 
     async find(params) {
         // mongoose only supports flat $select, so have to make it so
@@ -30,7 +30,7 @@ export default class MongooseService extends Service {
      * @param params
      * @returns {*}
      */
-    patchMerge(id, data, params) {
+    async patchMerge(id, data, params) {
         // flatten the data pack, to be able to "merge-in" certain sub-paths
         // this is typical behaviour we want probably have in 90% times
         if (!data.$push && !data.$pull && !data.$addToSet && !data.$unset) {

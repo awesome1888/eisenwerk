@@ -1,7 +1,7 @@
 import Access from '../../util/access/server.js';
 import Hooks from '../../util/hooks.js';
-import MongoDBService from '../../util/service/mongoose';
-import errors from '@feathersjs/errors';
+import AdapterMongoose from './adapter-mongoose';
+import Error from '../../util/error';
 import Context from './context';
 
 /**
@@ -30,7 +30,7 @@ export default class ProxyService {
     }
 
     static getAdapter() {
-        return MongoDBService;
+        return AdapterMongoose;
     }
 
     /**
@@ -208,14 +208,14 @@ export default class ProxyService {
 
                         if (!_.isObjectNotEmpty(rule) || !('deny' in rule)) {
                             // no rule specified or was not explicitly allowed -> deny
-                            this.throw403();
+                            Error.throw403();
                         }
 
                         const auth = this.getAuthorization();
                         const result = await Access.testToken(auth.extractToken(context), rule, auth, context);
 
                         if (result === false) {
-                            this.throw403();
+                            Error.throw403();
                         }
 
                         if (_.isObjectNotEmpty(result) && result.error) {
@@ -283,7 +283,7 @@ export default class ProxyService {
     }
 
     patch(id, data, params) {
-        return this.getAdapterInstance().patch(id, data, params);
+        return this.getAdapterInstance().patchMerge(id, data, params);
     }
 
     update(id, data, params) {
@@ -302,9 +302,5 @@ export default class ProxyService {
      */
     async getUser(context) {
         return this.getApplication().getAuthorization().getUserByContext(context);
-    }
-
-    throw403(message = '') {
-        throw new errors.Forbidden(_.isStringNotEmpty(message) ? message : 'Forbidden');
     }
 }

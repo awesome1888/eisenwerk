@@ -3,6 +3,7 @@ import Entity from './entity/server.js';
 import roleEnum from './enum/role.js';
 import AuthorizationHook from './hooks/authorization.js';
 import Context from '../../lib/entity/service/context';
+import Error from '../../lib/util/error';
 
 export default class UserService extends BaseService {
 
@@ -113,7 +114,7 @@ export default class UserService extends BaseService {
                     // user accounts but their own
                     if (!user.hasRole(roleEnum.ADMINISTRATOR)) {
                         if (id.toString() !== user.getId().toString()) {
-                            this.throw403('You are not allowed to update other users');
+                            Error.throw403('You are not allowed to update other users');
                         }
                     }
                 }
@@ -125,7 +126,7 @@ export default class UserService extends BaseService {
                     const nRole = data.role;
                     if (!_.isEqual(nRole, oRole)) {
                         // you are not allowed to change roles in general,
-                        this.throw403('You are not allowed to change roles');
+                        Error.throw403('You are not allowed to change roles');
                     }
                 }
             },
@@ -141,7 +142,7 @@ export default class UserService extends BaseService {
         // you are not allowed to create administrators, unless you came from google
         if (_.contains(data.role, roleEnum.ADMINISTRATOR)) {
             if (!isGoogle || !legalGoogleEmail) {
-                this.throw403('You are not allowed to create administrators');
+                Error.throw403('You are not allowed to create administrators');
             }
         }
 

@@ -32,8 +32,4 @@ export default class Method {
     async getUser() {
         return this.getAuthorization().getUserByContext(this.getContext());
     }
-
-    static throw403(message = '') {
-        throw new errors.Forbidden(_.isStringNotEmpty(message) ? message : 'Forbidden');
-    }
 }
