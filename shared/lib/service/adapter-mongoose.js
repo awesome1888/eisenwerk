@@ -1,8 +1,8 @@
 import Service from 'feathers-mongoose';
 import flatten from 'obj-flatten';
 import traverse from 'traverse';
-import errors from '@feathersjs/errors';
 import errorHandler from 'feathers-mongoose/lib/error-handler.js';
+import Error from '../error';
 
 /**
  * https://docs.feathersjs.com/api/databases/common.html#extending-adapters
@@ -121,7 +121,7 @@ export default class MongooseAdapter extends Service {
           .exec()
           .then(data => {
               if (!data) {
-                  throw new errors.NotFound(`No record found for id '${id}'`);
+                  Error.throw404(`No record found for id '${id}'`);
               }
 
               return data;

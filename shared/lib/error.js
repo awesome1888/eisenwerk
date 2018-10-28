@@ -11,7 +11,7 @@ export default class Error {
     }
 
     static get401(message = '') {
-        throw new errors.NotAuthenticated(_.isStringNotEmpty(message) ? message : 'Not Authenticated');
+        throw new errors.NotAuthenticated(_.isStringNotEmpty(message) ? message : 'Not authenticated');
     }
 
     static throw401(message = '') {
@@ -24,5 +24,13 @@ export default class Error {
 
     static throw403(message = '') {
         throw this.get403(message);
+    }
+
+    static get404(message = '') {
+        throw new errors.NotFound(_.isStringNotEmpty(message) ? message : 'Not found');
+    }
+
+    static throw404(message = '') {
+        throw this.get404(message);
     }
 }
