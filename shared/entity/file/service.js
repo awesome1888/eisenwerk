@@ -15,7 +15,7 @@ export default class FileService extends BaseService {
         return 'uploaded files';
     }
 
-    allowTimestamps() {
+    isTimeStampEnabled() {
         return true;
     }
 

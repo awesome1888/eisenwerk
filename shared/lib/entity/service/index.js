@@ -76,7 +76,7 @@ export default class ProxyService {
         return this.constructor.getPath();
     }
 
-    allowTimestamps() {
+    isTimeStampEnabled() {
         return false;
     }
 
@@ -130,20 +130,20 @@ export default class ProxyService {
         const hooks = new Hooks();
 
         // hooks to pre-modify data before it gets checked with access checks
-        this.declareTimeStampHooks(hooks);
-        this.declarePreProcessHooks(hooks);
+        this.attachTimeStampHooks(hooks);
+        this.attachPrecedingHooks(hooks);
 
         // hooks for access checks. they will only work for remote calls
-        this.declareSecurityHooks(hooks);
+        this.attachSecurityHooks(hooks);
 
-        // hooks for data consistency checks
-        this.declareIntegrityHooks(hooks);
+        // hooks for data consistency checks, applicable on create, update, put, remove
+        this.attachIntegrityHooks(hooks);
 
         return hooks;
     }
 
-    declareTimeStampHooks(hooks) {
-        if (this.allowTimestamps()) {
+    attachTimeStampHooks(hooks) {
+        if (this.isTimeStampEnabled()) {
             hooks.declare({
                 before: {
                     // on create we define createdAt
@@ -177,16 +177,15 @@ export default class ProxyService {
 
     /**
      * Declares hooks which will be executed before security checks.
-     * @param hooks
      */
-    declarePreProcessHooks(hooks) {
+    attachPrecedingHooks() {
     }
 
     /**
      * Declares security hooks
      * @param hooks
      */
-    declareSecurityHooks(hooks) {
+    attachSecurityHooks(hooks) {
         hooks.declare({
             before: {
                 all: [
@@ -229,7 +228,7 @@ export default class ProxyService {
         });
     }
 
-    declareIntegrityHooks(hooks) {
+    attachIntegrityHooks(hooks) {
         hooks.declare({
             before: {
                 all: [

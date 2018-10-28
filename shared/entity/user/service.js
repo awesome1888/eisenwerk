@@ -19,18 +19,18 @@ export default class UserService extends BaseService {
         return 'users persisted in the system';
     }
 
-    allowTimestamps() {
+    isTimeStampEnabled() {
         return true;
     }
 
-    declarePreProcessHooks(hooks) {
+    attachPrecedingHooks(hooks) {
         AuthorizationHook.declarePreProcess(hooks);
-        super.declarePreProcessHooks(hooks);
+        super.attachPrecedingHooks(hooks);
     }
 
-    declareSecurityHooks(hooks) {
+    attachSecurityHooks(hooks) {
         AuthorizationHook.declare(hooks, this.getApplication());
-        super.declareSecurityHooks(hooks);
+        super.attachSecurityHooks(hooks);
     }
 
     /**
@@ -71,7 +71,26 @@ export default class UserService extends BaseService {
      */
     getIntegrityCheckers() {
         return {
-            create: this.checkIntegrityOnCreate.bind(this),
+            create: async (data, context) => {
+                const params = context.params;
+                const email = _.get(data, 'profile.email') || data['profile.email'];
+                const isGoogle = _.isObjectNotEmpty(params.oauth) && params.oauth.provider === 'google';
+                const legalGoogleEmail = AuthorizationHook.isLegalGoogleEmail(email);
+
+                // you are not allowed to create administrators, unless you came from google
+                if (_.contains(data.role, roleEnum.ADMINISTRATOR)) {
+                    if (!isGoogle || !legalGoogleEmail) {
+                        Error.throw403('You are not allowed to create administrators');
+                    }
+                }
+
+                // you are not allowed to register with random emails through google
+                // if (isGoogle && !legalGoogleEmail) {
+                //     this.throw403('You are not allowed to register with that kind of email');
+                // }
+
+                return context;
+            },
         };
     }
 
@@ -131,26 +150,5 @@ export default class UserService extends BaseService {
                 }
             },
         };
-    }
-
-    async checkIntegrityOnCreate(data, context) {
-        const params = context.params;
-        const email = _.get(data, 'profile.email') || data['profile.email'];
-        const isGoogle = _.isObjectNotEmpty(params.oauth) && params.oauth.provider === 'google';
-        const legalGoogleEmail = AuthorizationHook.isLegalGoogleEmail(email);
-
-        // you are not allowed to create administrators, unless you came from google
-        if (_.contains(data.role, roleEnum.ADMINISTRATOR)) {
-            if (!isGoogle || !legalGoogleEmail) {
-                Error.throw403('You are not allowed to create administrators');
-            }
-        }
-
-        // you are not allowed to register with random emails through google
-        // if (isGoogle && !legalGoogleEmail) {
-        //     this.throw403('You are not allowed to register with that kind of email');
-        // }
-
-        return context;
     }
 }

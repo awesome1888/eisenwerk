@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5b9cb27b-ee3b-470a-b16b-f358ecaf88e3" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/shared/lib/util/error.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.api/src/shared/entity/file/service.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.api/src/shared/entity/file/service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.api/src/shared/lib/entity/service/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.api/src/shared/lib/entity/service/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/entity/file/service.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/entity/file/service.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shared/entity/user/service.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/entity/user/service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/entity/query.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/entity/query.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shared/lib/entity/service/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/entity/service/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/util/method/fabric.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/util/method/fabric.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/util/method/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/util/method/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/util/service/mongoose.js" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/entity/service/adapter-mongoose.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -32,11 +29,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/shared/lib/entity/service/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1497">
-              <caret line="143" lean-forward="true" selection-start-line="143" selection-end-line="143" />
+            <state relative-caret-position="530">
+              <caret line="305" lean-forward="true" selection-start-line="305" selection-end-line="305" />
               <folding>
                 <element signature="e#0#49#0" expanded="true" />
               </folding>
@@ -77,8 +74,8 @@
       <file leaf-file-name="service.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shared/entity/file/service.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="615">
-              <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+            <state relative-caret-position="34">
+              <caret line="3" column="45" lean-forward="true" selection-start-line="3" selection-start-column="45" selection-end-line="3" selection-end-column="45" />
               <folding>
                 <element signature="e#0#60#0" expanded="true" />
               </folding>
@@ -86,11 +83,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="service.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="service.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shared/entity/user/service.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="21" column="19" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="19" />
+            <state relative-caret-position="105">
+              <caret line="7" column="45" selection-start-line="7" selection-start-column="45" selection-end-line="7" selection-end-column="45" />
               <folding>
                 <element signature="e#0#60#0" expanded="true" />
               </folding>
@@ -109,12 +106,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>testUser</find>
-      <find>testUserSync</find>
-      <find>testRoute</find>
-      <find>Util</find>
-      <find>enum-factory/index.js</find>
-      <find>enum-factory</find>
       <find>getTaskSrcFolder</find>
       <find>getRootUrlParsed</find>
       <find>isStringNotEmpty</find>
@@ -139,13 +130,14 @@
       <find>getPre</find>
       <find>MongoDBService</find>
       <find>deepClone</find>
+      <find>allowTimestamps</find>
+      <find>\*\/\n</find>
+      <find>declareTimeStampHooks</find>
+      <find>declareSecurityHooks</find>
+      <find>declareIntegrityHooks</find>
+      <find>declarePreProcessHooks</find>
     </findStrings>
     <replaceStrings>
-      <replace>PUBLIC_FOLDER</replace>
-      <replace>connectStorage</replace>
-      <replace>connectStore</replace>
-      <replace>getStoreMapper</replace>
-      <replace>'</replace>
       <replace>this.t(</replace>
       <replace>className=&quot;button button_blue&quot;</replace>
       <replace>getCRUDAccessRules</replace>
@@ -171,6 +163,11 @@
       <replace>getRootURL</replace>
       <replace>AdapterMongoose</replace>
       <replace>cloneDeep</replace>
+      <replace>isTimeStampEnabled</replace>
+      <replace>attachTimeStampHooks</replace>
+      <replace>attachSecurityHooks</replace>
+      <replace>attachIntegrityHooks</replace>
+      <replace>attachPrecedingHooks</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/common/style</dir>
@@ -212,7 +209,6 @@
         <option value="$PROJECT_DIR$/shared/lib/util/hooks.js" />
         <option value="$PROJECT_DIR$/shared/lib/application/server/base.js" />
         <option value="$PROJECT_DIR$/shared/lib/entity/service/fabric.js" />
-        <option value="$PROJECT_DIR$/shared/entity/file/service.js" />
         <option value="$PROJECT_DIR$/app.api/src/vader.js" />
         <option value="$PROJECT_DIR$/app.api/src/img/yoda.js" />
         <option value="$PROJECT_DIR$/app.api/src/shared/entity/user/service.js" />
@@ -231,8 +227,9 @@
         <option value="$PROJECT_DIR$/shared/lib/entity/query.js" />
         <option value="$PROJECT_DIR$/shared/lib/util/error.js" />
         <option value="$PROJECT_DIR$/shared/lib/util/method/fabric.js" />
-        <option value="$PROJECT_DIR$/shared/lib/entity/service/index.js" />
+        <option value="$PROJECT_DIR$/shared/entity/file/service.js" />
         <option value="$PROJECT_DIR$/shared/entity/user/service.js" />
+        <option value="$PROJECT_DIR$/shared/lib/entity/service/index.js" />
       </list>
     </option>
   </component>
@@ -288,6 +285,19 @@
               <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
               <item name="eisenwerk" type="462c0819:PsiDirectoryNode" />
               <item name="shared" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eisenwerk" type="462c0819:PsiDirectoryNode" />
+              <item name="shared" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eisenwerk" type="462c0819:PsiDirectoryNode" />
+              <item name="shared" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="eisenwerk" type="b2602c69:ProjectViewProjectNode" />
@@ -449,12 +459,12 @@
       <workItem from="1538086475607" duration="586000" />
       <workItem from="1538421455833" duration="2131000" />
       <workItem from="1539714522789" duration="50950000" />
-      <workItem from="1540396513192" duration="11941000" />
+      <workItem from="1540396513192" duration="12567000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="932966000" />
+    <option name="totallyTimeSpent" value="933592000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="797" extended-state="6" />
@@ -464,6 +474,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32894737" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.16374269" />
       <window_info anchor="bottom" id="File Transfer" order="8" weight="0.2733918" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3287037" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.17836258" />
@@ -478,7 +489,6 @@
       <window_info anchor="bottom" id="Messages" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.16374269" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -916,20 +926,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shared/lib/entity/service/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1497">
-          <caret line="143" lean-forward="true" selection-start-line="143" selection-end-line="143" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/shared/entity/file/service.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+        <state relative-caret-position="34">
+          <caret line="3" column="45" lean-forward="true" selection-start-line="3" selection-start-column="45" selection-end-line="3" selection-end-column="45" />
           <folding>
             <element signature="e#0#60#0" expanded="true" />
           </folding>
@@ -938,10 +938,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/shared/entity/user/service.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="21" column="19" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="19" />
+        <state relative-caret-position="105">
+          <caret line="7" column="45" selection-start-line="7" selection-start-column="45" selection-end-line="7" selection-end-column="45" />
           <folding>
             <element signature="e#0#60#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/lib/entity/service/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="530">
+          <caret line="305" lean-forward="true" selection-start-line="305" selection-end-line="305" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
           </folding>
         </state>
       </provider>
