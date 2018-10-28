@@ -2,6 +2,7 @@ import BaseService from '../../lib/entity/service/index.js';
 import Entity from './entity/server.js';
 import roleEnum from './enum/role.js';
 import AuthorizationHook from './hooks/authorization.js';
+import Context from '../../lib/entity/service/context';
 
 export default class UserService extends BaseService {
 
@@ -39,10 +40,25 @@ export default class UserService extends BaseService {
         return {
             get: this.getRuleRead(),
             find: this.getRuleRead(),
-            create: this.getRuleCreate(),
-            update: this.getRulePut(),
             patch: this.getRuleUpdate(),
-            default: this.getRuleRemove(),
+
+            // everybody can create a new user, but see the limitations in .checkIntegrityOnCreate()
+            create: {
+                deny: false,
+                authorized: false,
+            },
+
+            // we forbid PUT for this entity, it is inappropriate.
+            update: {
+                deny: true,
+            },
+
+            // only admins can do other operations
+            default: {
+                deny: false,
+                authorized: true,
+                roleAll: [roleEnum.ADMINISTRATOR],
+            },
         };
     }
 
@@ -83,17 +99,6 @@ export default class UserService extends BaseService {
         };
     }
 
-    /**
-     * Everybody can create a new user, but see the limitations in .checkIntegrityOnCreate()
-     * @returns {{deny: boolean, authorized: boolean}}
-     */
-    getRuleCreate() {
-        return {
-            deny: false,
-            authorized: false,
-        };
-    }
-
     getRuleUpdate() {
         return {
             deny: false,
@@ -114,11 +119,11 @@ export default class UserService extends BaseService {
                 }
 
                 if (_.isArrayNotEmpty(data.role)) {
-                    const previous = await this.getPrevious(context);
+                    const previous = await Context.getPrevious(context);
 
                     const oRole = previous.getRole();
                     const nRole = data.role;
-                    if (!_.deepEqual(nRole, oRole)) {
+                    if (!_.isEqual(nRole, oRole)) {
                         // you are not allowed to change roles in general,
                         this.throw403('You are not allowed to change roles');
                     }
@@ -127,31 +132,9 @@ export default class UserService extends BaseService {
         };
     }
 
-    /**
-     * We forbid PUT for this entity, it is inappropriate.
-     * @returns {{deny: boolean}}
-     */
-    getRulePut() {
-        return {
-            deny: true,
-        };
-    }
-
-    /**
-     * Only admins can remove the entity
-     * @returns {{deny: boolean, authorized: boolean, roleAll: *[]}}
-     */
-    getRuleRemove() {
-        return {
-            deny: false,
-            authorized: true,
-            roleAll: [roleEnum.ADMINISTRATOR],
-        };
-    }
-
     async checkIntegrityOnCreate(data, context) {
         const params = context.params;
-        const email = _.getValue(data, 'profile.email') || data['profile.email'];
+        const email = _.get(data, 'profile.email') || data['profile.email'];
         const isGoogle = _.isObjectNotEmpty(params.oauth) && params.oauth.provider === 'google';
         const legalGoogleEmail = AuthorizationHook.isLegalGoogleEmail(email);
 

@@ -1,16 +1,13 @@
-import {Service as BaseService} from 'feathers-mongoose';
-import flatten from 'obj-flatten';
-import traverse from 'traverse';
 import Access from '../../util/access/server.js';
 import Hooks from '../../util/hooks.js';
-
+import MongoDBService from '../../util/service/mongoose';
 import errors from '@feathersjs/errors';
-import errorHandler from 'feathers-mongoose/lib/error-handler.js';
+import Context from './context';
 
 /**
  * https://docs.feathersjs.com/api/databases/common.html#extending-adapters
  */
-export default class Service extends BaseService {
+export default class ProxyService {
 
     /**
      * Returns an entity this service provides an access to
@@ -32,6 +29,15 @@ export default class Service extends BaseService {
         return '';
     }
 
+    static getAdapter() {
+        return MongoDBService;
+    }
+
+    /**
+     * A fabric method which creates an instance of this with the default parameters
+     * @param application
+     * @returns {ProxyService}
+     */
     static make(application) {
         return new this({
             Model: this.getEntity().getModel(),
@@ -44,9 +50,10 @@ export default class Service extends BaseService {
         });
     }
 
-    constructor(params) {
-        super(params);
-        this._application = params.application;
+    constructor(options) {
+        const Adapter = this.getAdapter();
+        this._adapterInstance = new Adapter(options);
+        this._application = options.application;
     }
 
     /**
@@ -55,6 +62,10 @@ export default class Service extends BaseService {
      */
     getEntity() {
         return this.constructor.getEntity();
+    }
+
+    getAdapter() {
+        return this.constructor.getAdapter();
     }
 
     getName() {
@@ -181,7 +192,7 @@ export default class Service extends BaseService {
                 all: [
                     // while executing over the wire, we check rights
                     async (context) => {
-                        if (!this.isRemote(context)) {
+                        if (!Context.isRemote(context)) {
                             return context;
                         }
 
@@ -253,107 +264,34 @@ export default class Service extends BaseService {
     }
 
     // ///////////////////////
-    // operation overrides
+    // proxy operations, we prefer composition here
+
+    getAdapterInstance() {
+        return this._adapterInstance;
+    }
 
     async find(params) {
-        // mongoose only supports flat $select, so have to make it so
-        this.flattenSelect(params);
-
-        this.refineRequestCondition(params);
-
-        return super.find(params);
+        return this.getAdapterInstance().find(params);
     }
 
     async get(id, params) {
-        // mongoose only supports flat $select, so have to make it so
-        this.flattenSelect(params);
-        return super.get(id, params);
+        return this.getAdapterInstance().get(id, params);
     }
 
-    // create(data, params) {
-    //     // do something cool here
-    //     return super.create(data, params);
-    // }
+    create(data, params) {
+        return this.getAdapterInstance().create(data, params);
+    }
 
     patch(id, data, params) {
-        // flatten the data pack, to be able to "merge-in" certain sub-paths
-        // this is typical behaviour we want probably have in 90% times, but...
-        // todo: make the following behaviour switchable off
-        if (!data.$push && !data.$pull && !data.$addToSet && !data.$unset) {
-            data = flatten(data);
-        }
-        return super.patch(id, data, params);
+        return this.getAdapterInstance().patch(id, data, params);
     }
 
-    // update(id, data, params) {
-    //     // do something cool here
-    //     return super.update(id, data, params);
-    // }
-    //
-    // remove(id, params) {
-    //     // do something cool here
-    //     return super.remove(id, params);
-    // }
-
-    // ///////////////////////
-    // util
-
-    flattenSelect(params) {
-        const select = _.getValue(params, 'query.$select');
-        if (_.isObjectNotEmpty(select)) {
-            params.query.$select = flatten(select);
-        }
+    update(id, data, params) {
+        return this.getAdapterInstance().update(id, data, params);
     }
 
-    /**
-     * Tune the request to bypass mongoose-feathersjs limitations
-     * @param params
-     */
-    refineRequestCondition(params) {
-        traverse(params).forEach(function update(x) {
-            // replaces all occurrences of {$regex: 'blah', $options: 'blah'} with new RegExp()
-            if (_.isObject(x) && ('$regex' in x)) {
-                this.update(new RegExp(x.$regex, x.$options || ''));
-            }
-            // make sure that $size operator receives an integer
-            if (_.isObject(x) && ('$size' in x)) {
-                const y = _.clone(x);
-                y.$size = parseInt(x.$size, 10);
-                this.update(y);
-            }
-            // resolve an agreement for an empty array as a value for $ne operator
-            if (_.isObject(x) && ('$ne' in x) && x.$ne === '[]') {
-                const y = _.clone(x);
-                y.$ne = [];
-                this.update(y);
-            }
-        });
-    }
-
-    /**
-     * Attaches an unavoidable mandatory condition to the query filter.
-     * See for details:
-     * https://docs.feathersjs.com/api/databases/querying.html
-     * @param context
-     * @param condition
-     */
-    attachMandatoryCondition(context, condition) {
-        const query = _.deepClone(context.params.query) || {};
-
-        query.$and = query.$and || [];
-        query.$and.push(condition);
-
-        context.params.query = query;
-        context.params.$$extraFilter = condition; // for "get"
-    }
-
-    /**
-     * Returns true if we got called over the wire
-     * @param context
-     * @returns {*|boolean}
-     */
-    isRemote(context) {
-        return _.isStringNotEmpty(_.getValue(context, 'params.provider'));
+    remove(id, params) {
+        return this.getAdapterInstance().remove(id, params);
     }
 
     /**
@@ -366,83 +304,7 @@ export default class Service extends BaseService {
         return this.getApplication().getAuthorization().getUserByContext(context);
     }
 
-    /**
-     * Returns entity item previous data by the id (if any) provided inside the context and stores the item inside
-     * the context for further usage.
-     * @param context
-     * @returns {Promise<*>}
-     */
-    async getPrevious(context) {
-        if (!_.isStringNotEmpty(context.id)) {
-            return null;
-        }
-
-        if (!context.__previous) {
-            context.__previous = await this.getEntity().get(context.id);
-        }
-
-        return context.__previous;
-    }
-
     throw403(message = '') {
         throw new errors.Forbidden(_.isStringNotEmpty(message) ? message : 'Forbidden');
-    }
-
-    /**
-     * A little patch of the underlying class is required, in order to allow extra filter merge. For the original see
-     * https://github.com/feathersjs-ecosystem/feathers-mongoose/blob/master/lib/service.js
-     * @param id
-     * @param params
-     * @returns {Promise<T>}
-     * @private
-     */
-    _get(id, params = {}) {
-        params.query = params.query || {};
-
-        // PATCH START
-        let filter = { [this.id]: id };
-        if (_.isObjectNotEmpty(params.$$extraFilter)) {
-            filter = _.deepClone(params.$$extraFilter);
-            filter[this.id] = id;
-        }
-        // PATCH END
-
-        const discriminator = (params.query || {})[this.discriminatorKey] || this.discriminatorKey;
-        const model = this.discriminators[discriminator] || this.Model;
-
-        // PATCH START
-        let modelQuery = model
-            .findOne(filter);
-        // PATCH END
-
-        // Handle $populate
-        if (params.query.$populate) {
-            modelQuery = modelQuery.populate(params.query.$populate);
-        }
-
-        // Handle $select
-        if (params.query.$select && params.query.$select.length) {
-            let fields = { [this.id]: 1 };
-
-            for (let key of params.query.$select) {
-                fields[key] = 1;
-            }
-
-            modelQuery.select(fields);
-        } else if (params.query.$select && typeof params.query.$select === 'object') {
-            modelQuery.select(params.query.$select);
-        }
-
-        return modelQuery
-            .lean(this.lean)
-            .exec()
-            .then(data => {
-                if (!data) {
-                    throw new errors.NotFound(`No record found for id '${id}'`);
-                }
-
-                return data;
-            })
-            .catch(errorHandler);
     }
 }

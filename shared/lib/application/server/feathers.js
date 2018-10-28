@@ -7,7 +7,7 @@ import errors from '@feathersjs/errors';
 import BaseApplication from './base.js';
 import Database from '../../util/database';
 import Authorization from '../../util/authorization/server.js';
-import handler from '../../util/error/server/handler.js';
+import handler from '../../util/error-handler.js';
 import MethodFabric from '../../util/method/fabric.js';
 import EntityServiceFabric from '../../entity/service/fabric.js';
 import qs from 'qs';
