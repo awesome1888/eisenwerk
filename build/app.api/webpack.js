@@ -77,11 +77,11 @@ const getWebpackConfiguration = async (context) => {
         },
       }),
       new webpack.ProvidePlugin({
-        mix: `${srcFolder}/shared/lib/util/global/mix.js`,
-        _: `${srcFolder}/shared/lib/util/global/lodash.js`,
-        ObjectId: `${srcFolder}/shared/lib/util/global/object-id.js`,
-        TObjectId: `${srcFolder}/shared/lib/util/global/t-object-id.js`,
-        Schema: `${srcFolder}/shared/lib/util/global/schema.js`,
+        mix: `${srcFolder}/shared/lib/global/mix.js`,
+        _: `${srcFolder}/shared/lib/global/lodash.js`,
+        ObjectId: `${srcFolder}/shared/lib/global/object-id.js`,
+        TObjectId: `${srcFolder}/shared/lib/global/t-object-id.js`,
+        Schema: `${srcFolder}/shared/lib/global/schema.js`,
       }),
     ],
   };

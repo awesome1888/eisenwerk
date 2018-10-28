@@ -1,5 +1,5 @@
 import Settings from '../../util/settings/client.js';
-import Authorization from '../../util/authorization/client.js';
+import Authorization from '../../authorization/client.js';
 
 import Entity from '../../../lib/entity/client.js';
 import Method from '../../../lib/util/method/client.js';

@@ -5,7 +5,7 @@ import responseTime from 'response-time';
 import BaseApplication from './base.js';
 import Settings from '../../util/settings/server.js';
 
-import Oauth2Success from '../../util/authorization/oauth2-success.js';
+import Oauth2Success from '../../authorization/oauth2-success.js';
 
 export default class BaseExpressApplication extends BaseApplication {
 

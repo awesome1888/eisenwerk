@@ -171,7 +171,8 @@ const getWebpackConfiguration = async (context) => {
         filename: 'assets.html'
       }),
       new webpack.ProvidePlugin({
-        // mix: `${srcFolder}/common/lib/util/global/mix.js`,
+        _: `${srcFolder}/shared/lib/global/lodash.js`,
+        mix: `${srcFolder}/common/lib/global/mix.js`,
       }),
     ],
   };

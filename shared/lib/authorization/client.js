@@ -2,7 +2,7 @@ import auth from '@feathersjs/authentication-client';
 import AuthorizationBoth from './both.js';
 import openLoginPopup from 'feathers-authentication-popups';
 
-import User from '../../../entity/user/entity/client.js';
+import User from '../../entity/user/entity/client.js';
 
 export default class Authorization extends AuthorizationBoth {
 
