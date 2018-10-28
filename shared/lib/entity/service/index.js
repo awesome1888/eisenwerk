@@ -211,7 +211,7 @@ export default class ProxyService {
                         }
 
                         const auth = this.getAuthorization();
-                        const result = await Access.testToken(auth.extractToken(context), rule, auth, context);
+                        const result = await Access.testToken(Context.extractToken(context), rule, auth, context);
 
                         if (result === false) {
                             Error.throw403();
@@ -300,6 +300,6 @@ export default class ProxyService {
      * @returns {Promise<*>}
      */
     async getUser(context) {
-        return this.getApplication().getAuthorization().getUserByContext(context);
+        return Context.getUserByContext(context, this.getApplication().getAuthorization());
     }
 }

@@ -111,32 +111,4 @@ export default class Authorization extends AuthorizationBoth {
 
         return u;
     }
-
-    /**
-     * Exract token from the context
-     * @param ctx
-     * @returns {*|string}
-     */
-    extractToken(ctx) {
-        return _.getValue(ctx, 'params.headers.authorization');
-    }
-
-    /**
-     * Get user from the context
-     * @param context
-     * @returns {Promise<*>}
-     */
-    async getUserByContext(context) {
-        if (_.isObjectNotEmpty(context.__user)) {
-            return context.__user;
-        }
-
-        const token = this.extractToken(context);
-        if (_.isStringNotEmpty(token)) {
-            context.__user = await this.getUser(token);
-            return context.__user;
-        }
-
-        return null;
-    }
 }

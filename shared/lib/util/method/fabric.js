@@ -1,5 +1,6 @@
 import Access from '../../util/access/server.js';
 import Error from '../../util/error';
+import Context from '../../../lib/entity/service/context';
 
 export default class Fabric {
     static register(app, declarations = []) {
@@ -61,11 +62,11 @@ export default class Fabric {
 
             if (!_.isObjectNotEmpty(rule) || !('deny' in rule)) {
                 // no rule specified or was not explicitly allowed -> deny
-                this.throw403();
+                Error.throw403();
             }
 
             const auth = application.getAuthorization();
-            const result = await Access.testToken(auth.extractToken(context), rule, auth, context);
+            const result = await Access.testToken(Context.extractToken(context), rule, auth, context);
 
             if (result === false) {
                 Error.throw403();

@@ -139,7 +139,7 @@ export default class UserService extends BaseService {
                 }
 
                 if (_.isArrayNotEmpty(data.role)) {
-                    const previous = await Context.getPrevious(context);
+                    const previous = await Context.getPrevious(context, this.getEntity());
 
                     const oRole = previous.getRole();
                     const nRole = data.role;

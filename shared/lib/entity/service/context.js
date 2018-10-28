@@ -43,4 +43,33 @@ export default class Context {
         context.params.query = query;
         context.params.$$extraFilter = condition; // for "get"
     }
+
+    /**
+     * Exract token from the context
+     * @param context
+     * @returns {*|string}
+     */
+    static extractToken(context) {
+        return _.get(context, 'params.headers.authorization');
+    }
+
+    /**
+     * Get user from the context
+     * @param context
+     * @param authorization
+     * @returns {Promise<*>}
+     */
+    static async getUserByContext(context, authorization) {
+        if (_.isObjectNotEmpty(context.__user)) {
+            return context.__user;
+        }
+
+        const token = this.extractToken(context);
+        if (_.isStringNotEmpty(token)) {
+            context.__user = await authorization.getUser(token);
+            return context.__user;
+        }
+
+        return null;
+    }
 }

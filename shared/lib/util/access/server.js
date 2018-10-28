@@ -1,5 +1,6 @@
 import errors from '@feathersjs/errors';
 import AccessBoth from './both.js';
+import Context from '../../entity/service/context';
 
 export default class Access extends AccessBoth {
     static async testToken(token, rule, auth, ctx) {
@@ -11,7 +12,7 @@ export default class Access extends AccessBoth {
             return result;
         }
 
-        const user = await auth.getUserByContext(ctx);
+        const user = await Context.getUserByContext(ctx, auth);
 
         if (rule.authorized !== false) {
             // not specified or true, check user then

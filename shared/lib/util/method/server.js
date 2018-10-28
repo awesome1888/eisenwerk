@@ -1,4 +1,4 @@
-import errors from '@feathersjs/errors';
+import Context from '../../entity/service/context';
 
 export default class Method {
     static getDeclaration() {
@@ -21,15 +21,7 @@ export default class Method {
         this._app = app;
     }
 
-    /**
-     * Just a short-cut.
-     * @returns {*}
-     */
-    getAuthorization() {
-        return this.getApplication().getAuthorization();
-    }
-
     async getUser() {
-        return this.getAuthorization().getUserByContext(this.getContext());
+        return Context.getUserByContext(this.getContext(), this.getApplication().getAuthorization());
     }
 }

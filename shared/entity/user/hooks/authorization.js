@@ -2,11 +2,12 @@ import local from '@feathersjs/authentication-local';
 import commonHooks from 'feathers-hooks-common';
 import roleEnum from '../enum/role.js';
 import hash from '../../../vendor/feathersjs/hasher.js';
+import Context from '../../../lib/entity/service/context';
 
 export default class AuthorizationHook {
     static async isAdmin(auth) {
         return async (context) => {
-            await auth.getUserByContext(context)
+            await Context.getUserByContext(context, auth)
                 .then((user) => {
                     return user.hasRole(roleEnum.ADMINISTRATOR);
                 })
