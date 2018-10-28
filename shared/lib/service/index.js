@@ -300,6 +300,6 @@ export default class ProxyService {
      * @returns {Promise<*>}
      */
     async getUser(context) {
-        return Context.getUserByContext(context, this.getApplication().getAuthorization());
+        return Context.extractUser(context, this.getApplication().getAuthorization());
     }
 }

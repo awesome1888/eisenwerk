@@ -15,7 +15,7 @@ export default class Context {
      * @param entity
      * @returns {Promise<*>}
      */
-    static async getPrevious(context, entity) {
+    static async extractPrevious(context, entity) {
         if (!_.isStringNotEmpty(context.id)) {
             return null;
         }
@@ -25,23 +25,6 @@ export default class Context {
         }
 
         return context.__previous;
-    }
-
-    /**
-     * Attaches an unavoidable mandatory condition to the query filter.
-     * See for details:
-     * https://docs.feathersjs.com/api/databases/querying.html
-     * @param context
-     * @param condition
-     */
-    static attachMandatoryCondition(context, condition) {
-        const query = _.cloneDeep(context.params.query) || {};
-
-        query.$and = query.$and || [];
-        query.$and.push(condition);
-
-        context.params.query = query;
-        context.params.$$extraFilter = condition; // for "get"
     }
 
     /**
@@ -59,7 +42,7 @@ export default class Context {
      * @param authorization
      * @returns {Promise<*>}
      */
-    static async getUserByContext(context, authorization) {
+    static async extractUser(context, authorization) {
         if (_.isObjectNotEmpty(context.__user)) {
             return context.__user;
         }
@@ -71,5 +54,22 @@ export default class Context {
         }
 
         return null;
+    }
+
+    /**
+     * Attaches an unavoidable mandatory condition to the query filter.
+     * See for details:
+     * https://docs.feathersjs.com/api/databases/querying.html
+     * @param context
+     * @param condition
+     */
+    static putUnavoidableCondition(context, condition) {
+        const query = _.cloneDeep(context.params.query) || {};
+
+        query.$and = query.$and || [];
+        query.$and.push(condition);
+
+        context.params.query = query;
+        context.params.$$extraFilter = condition; // for "get"
     }
 }

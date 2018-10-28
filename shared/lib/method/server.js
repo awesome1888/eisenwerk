@@ -22,6 +22,6 @@ export default class Method {
     }
 
     async getUser() {
-        return Context.getUserByContext(this.getContext(), this.getApplication().getAuthorization());
+        return Context.extractUser(this.getContext(), this.getApplication().getAuthorization());
     }
 }

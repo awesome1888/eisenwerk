@@ -12,7 +12,7 @@ export default class Access extends AccessBoth {
             return result;
         }
 
-        const user = await Context.getUserByContext(ctx, auth);
+        const user = await Context.extractUser(ctx, auth);
 
         if (rule.authorized !== false) {
             // not specified or true, check user then

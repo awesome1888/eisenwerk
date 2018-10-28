@@ -7,7 +7,7 @@ import Context from '../../../lib/context';
 export default class AuthorizationHook {
     static async isAdmin(auth) {
         return async (context) => {
-            await Context.getUserByContext(context, auth)
+            await Context.extractUser(context, auth)
                 .then((user) => {
                     return user.hasRole(roleEnum.ADMINISTRATOR);
                 })

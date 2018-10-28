@@ -5,6 +5,7 @@ export default class FileMethod extends Method {
 
     static getDeclaration() {
         const prefix = Entity.getUId();
+        // todo: refactor this to '.token.get': {blah}
         return {
             [`${prefix}.token.get`]: {
                 body: 'tokenGet',

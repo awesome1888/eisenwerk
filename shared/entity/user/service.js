@@ -106,7 +106,7 @@ export default class UserService extends BaseService {
             roleAny: [roleEnum.ADMINISTRATOR],
             // custom: (user, context) => {
             //     if (user.hasRole(roleEnum.SOME_ROLE)) {
-            //         this.attachMandatoryCondition(context, {
+            //         Context.putUnavoidableCondition(context, {
             //             $or: [
             //                 {_id: user.getId()},
             //                 {role: roleEnum.SOME_ROLE},
@@ -139,7 +139,7 @@ export default class UserService extends BaseService {
                 }
 
                 if (_.isArrayNotEmpty(data.role)) {
-                    const previous = await Context.getPrevious(context, this.getEntity());
+                    const previous = await Context.extractPrevious(context, this.getEntity());
 
                     const oRole = previous.getRole();
                     const nRole = data.role;
