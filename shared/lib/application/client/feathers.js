@@ -6,8 +6,14 @@ import Method from '../../method/client.js';
 
 import feathers from '@feathersjs/client';
 import rest from '@feathersjs/rest-client';
+import axios from 'axios';
 
 export default class Application {
+
+    useAuth() {
+        return true;
+    }
+
     launch() {
         // tell all entities to use this network as default when making REST calls (this is important)
         Entity.setNetwork(this.getNetwork());
@@ -26,16 +32,17 @@ export default class Application {
             // https://docs.feathersjs.com/api/client/rest.html
             const restClient = rest(this.getSettings().getAPIURL());
 
-            // we are going to use jQuery transport library ONLY because we already have jQuery in the project
             // see other options in
             // https://docs.feathersjs.com/api/client/rest.html
-            // !!!! app.configure(restClient.jquery($));
+            app.configure(restClient.axios(axios));
 
-            Authorization.prepare(app);
+            if (this.useAuth()) {
+                Authorization.prepare(app);
 
-            app.on('authenticated', this.onLogin.bind(this));
-            app.on('logout', this.onLogout.bind(this));
-            app.on('reauthentication-error', this.onReLoginError.bind(this));
+                app.on('authenticated', this.onLogin.bind(this));
+                app.on('logout', this.onLogout.bind(this));
+                app.on('reauthentication-error', this.onReLoginError.bind(this));
+            }
 
             this._feathers = app;
         }
@@ -60,14 +67,6 @@ export default class Application {
     }
 
     /**
-     * Should return current or new redux store
-     * @returns {null}
-     */
-    getStore() {
-        return null;
-    }
-
-    /**
      * Returns current settings manager, which provides methods like .isProduction() or .getRootURL()
      * @returns {*}
      */
@@ -79,51 +78,15 @@ export default class Application {
         return this.getSettings().isProduction();
     }
 
-    /**
-     * USE WITH CAUTION
-     * Just a shortcut to the user stored in the redux store.
-     * Beware: having the current user in the store DOES NOT MEAN the user is authorized: the token could be easily
-     * invalid or expired. To check whether the token is valid or not, use getUser() method from the Authorization class.
-     * @returns {{}|null}
-     */
-    getUser() {
-        const store = this.getStore();
-
-        if (store) {
-            return store.getState().global.user;
-        }
-
-        return {};
-    }
-
-    /**
-     * USE WITH CAUTION
-     * @returns {boolean}
-     */
-    hasUser() {
-        return !_.isEmpty(this.getUser());
-    }
-
-    /**
-     * Reloads current users data
-     * @returns {Promise<void>}
-     */
-    async reloadUser() {
-        try {
-            this.getUI().setUser(await this.getAuthorization().getUser());
-        } catch(e) {
-        }
-    }
-
     async onLogin() {
-        this.reloadUser();
+        // todo: dispatch an action
     }
 
     onLogout() {
-        this.getUI().setUser({});
+        // todo: dispatch an action
     }
 
     onReLoginError() {
-        this.getUI().setUser({});
+        // todo: dispatch an action
     }
 }

@@ -6,7 +6,8 @@ import * as applicationReducer from '../../components/Application/reducer';
 
 function* loadData() {
     try {
-        const response = yield call(() => Offer.find({token: Auth.getToken()}));
+        // const response = yield call(() => Offer.find({token: Auth.getToken()}));
+        const response = {};
         yield put({ type: reducer.HOME_REQUEST_ENDSUCCESS, payload: response });
     } catch (error) {
         if (error.message === '401') {

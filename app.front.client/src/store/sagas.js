@@ -1,5 +1,5 @@
-// import LoginSaga from '../pages/Login/saga.js';
+import HomePageSaga from '../pages/Home/saga.js';
 
 export default [
-    // LoginSaga,
+    HomePageSaga,
 ];

@@ -5,22 +5,26 @@ import { connect } from 'react-redux';
 
 import * as reducer from './reducer.js';
 import history from '../../lib/history';
-import Auth from '../../api/auth';
+// import Auth from '../../api/auth';
 import Route from '../Route';
 
 // pages
-import LoginPage from '../../pages/Login';
-import JobListPage from '../../pages/JobList';
-import JobDetailPage from '../../pages/JobDetail';
+import HomePage from '../../pages/Home';
 
 import './style.scss';
 
 class Application extends React.Component {
 
     componentDidMount() {
-        const isFresh = Auth.isTokenFresh();
-        this.props.dispatch({type: isFresh ? reducer.APPLICATION_AUTHORIZED_SET : reducer.APPLICATION_AUTHORIZED_UNSET});
-        this.props.dispatch({type: reducer.APPLICATION_READY_SET});
+        if (this.props.useAuth) {
+            // check if we are authorized
+            // todo
+            this.props.dispatch({type: reducer.APPLICATION_READY_SET});
+        } else {
+            this.props.dispatch({type: reducer.APPLICATION_READY_SET});
+        }
+        // const isFresh = Auth.isTokenFresh();
+        // this.props.dispatch({type: isFresh ? reducer.APPLICATION_AUTHORIZED_SET : reducer.APPLICATION_AUTHORIZED_UNSET});
     }
 
     render() {
@@ -30,42 +34,23 @@ class Application extends React.Component {
         }
 
         return (
-          <div className="application">
-              <ConnectedRouter history={history}>
-                  <Switch>
-                      <Route
-                        path="/login"
-                        redirectAuthorized="/"
-                        render={() => (
-                          <LoginPage />
-                        )}
-                        {...this.props}
-                      />
-                      <Route
-                        exact
-                        path="/job/:id"
-                        redirectNotAuthorized="/login"
-                        render={(route) => {
-                            return (
-                              <JobDetailPage match={route.match}/>
-                            );
-                        }}
-                        {...this.props}
-                      />
-                      <Route
-                        exact
-                        path="/"
-                        redirectNotAuthorized="/login"
-                        render={() => (
-                          <JobListPage
-                            title="Jobs Entdecken"
-                          />
-                        )}
-                        {...this.props}
-                      />
-                  </Switch>
-              </ConnectedRouter>
-          </div>
+            <div className="application">
+                <ConnectedRouter history={history}>
+                    <Switch>
+                        <Route
+                            exact
+                            path="/"
+                            // redirectNotAuthorized="/login"
+                            render={(route) => {
+                                return (
+                                    <HomePage match={route.match} />
+                                );
+                            }}
+                            {...this.props}
+                        />
+                    </Switch>
+                </ConnectedRouter>
+            </div>
         );
     }
 }
