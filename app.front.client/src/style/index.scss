@@ -1,0 +1,91 @@
+@import './variables';
+@import 'rem-bem-scss/font/material-icons.scss';
+@import 'rem-bem-scss/primitives/layout.scss';
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700&subset=cyrillic');
+
+html {
+  font-size: 20px;
+}
+
+body {
+  padding: 0 !important;
+  margin: 0 !important;
+  font-weight: 400;
+  font-size: 0.7rem;
+  line-height: 150%;
+  color: $color_main;
+  font-family: 'Roboto', 'Arial', sans-serif;
+  min-width: 20rem;
+  background-color: $color_background;
+}
+
+html, body, #root {
+  height: 100vh;
+}
+
+button, a, input, textarea {
+  outline: none;
+}
+
+* {
+  box-sizing: border-box;
+  &:before, &:after {
+    box-sizing: border-box;
+  }
+
+  outline: none;
+}
+
+.a {
+  @include rb-f-color(inherit, $color_main, 200ms);
+}
+
+.button {
+  font-size: 0.7rem;
+  padding: 0.5rem 1rem;
+  border: 0 none;
+  @include rb-bg-color($color_main, lighten($color_main, 10), 200ms);
+  @include rb-f-color($color_button-text);
+
+  @include rb-smooth-corners();
+  cursor: pointer;
+  user-select: none;
+
+  &_disabled {
+    @include rb-bg-color($color_button-disabled, $color_button-disabled);
+    @include rb-disabled();
+  }
+
+  &_pale {
+    @include rb-bg-color(transparent, transparent, 200ms);
+    @include rb-f-color($color_main, lighten($color_main, 10), 200ms);
+  }
+
+  &_wide {
+    display: block;
+    width: 100%;
+  }
+
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+}
+
+input {
+  color: $color_main;
+}
+
+// Lists
+ul,
+ol,
+dl {
+  list-style-position: outside;
+}
+
+// Unordered lists
+ul {
+  padding: 0 0 0 1rem;
+  margin: 0;
+  list-style-type: disc;
+}

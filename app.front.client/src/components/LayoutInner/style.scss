@@ -1,0 +1,16 @@
+@import '../../style/variables';
+
+.layout-inner {
+
+  &__top {
+	background-color: $color_bg;
+  }
+
+  &__top-container {
+	@include main-container();
+  }
+
+  &__container {
+	@include main-container();
+  }
+}

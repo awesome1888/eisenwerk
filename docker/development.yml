@@ -2,24 +2,24 @@ version: '3'
 
 services:
 
-#  front:
-#    build:
-#      context: ../build/app.front/
-#      dockerfile: docker/development.dockerfile
-#    expose:
-#      - 3000
-#    ports:
-#      - 3000:3000
-#    depends_on:
-#      - db
-#    restart: on-failure
-#    environment:
-#      - ROOT_URL=http://localhost:3000/
-#      - PORT=3000
-#      - DB_URL=mongodb://db:27017/ew
-#      - PUBLIC_FOLDER=/usr/src/app/public/
-#      - API_URL=http://localhost:3100
-#      - ROOT_FOLDER=/usr/src/app
+  front:
+    build:
+      context: ../build/app.front/
+      dockerfile: docker/development.dockerfile
+    expose:
+      - 3000
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+    restart: on-failure
+    environment:
+      - ROOT_URL=http://localhost:3000/
+      - PORT=3000
+      - DB_URL=mongodb://db:27017/ew
+      - PUBLIC_FOLDER=/usr/src/app/public/
+      - API_URL=http://localhost:3100
+      - ROOT_FOLDER=/usr/src/app
 
   api:
     build:

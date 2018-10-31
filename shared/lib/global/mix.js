@@ -11,4 +11,3 @@ class MixinBuilder {
 const mix = superclass => new MixinBuilder(superclass);
 
 module.exports = mix;
-module.exports.default = mix;

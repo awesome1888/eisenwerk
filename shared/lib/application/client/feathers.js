@@ -1,4 +1,4 @@
-import Settings from '../../settings/client.js';
+import settings from '../../settings/client.js';
 import Authorization from '../../authorization/client.js';
 
 import Entity from '../../../lib/entity/client.js';
@@ -8,9 +8,6 @@ import feathers from '@feathersjs/client';
 import rest from '@feathersjs/rest-client';
 
 export default class Application {
-
-    _ui = null;
-
     launch() {
         // tell all entities to use this network as default when making REST calls (this is important)
         Entity.setNetwork(this.getNetwork());
@@ -32,7 +29,7 @@ export default class Application {
             // we are going to use jQuery transport library ONLY because we already have jQuery in the project
             // see other options in
             // https://docs.feathersjs.com/api/client/rest.html
-            app.configure(restClient.jquery($));
+            // !!!! app.configure(restClient.jquery($));
 
             Authorization.prepare(app);
 
@@ -75,7 +72,7 @@ export default class Application {
      * @returns {*}
      */
     getSettings() {
-        return Settings.getInstance();
+        return settings;
     }
 
     isProduction() {
@@ -128,9 +125,5 @@ export default class Application {
 
     onReLoginError() {
         this.getUI().setUser({});
-    }
-
-    async execute(name, args) {
-        return Method.execute(name, args);
     }
 }

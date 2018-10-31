@@ -5,5 +5,6 @@ Disallow: /forgot-password
 Disallow: /reset-password
 Disallow: /account
 Disallow: /403
+Disallow: /404
 
 Sitemap: https://eisenwerk-mern.com/sitemap.xml

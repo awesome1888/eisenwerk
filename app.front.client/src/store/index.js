@@ -1,16 +1,29 @@
-import BaseStore from '../common/lib/util/store.js';
+import { applyMiddleware, compose, createStore } from 'redux';
+import { connectRouter, routerMiddleware } from 'connected-react-router';
+import { combineReducers } from 'redux';
+import createSagaMiddleware from 'redux-saga';
+import { fork, all } from 'redux-saga/effects';
 
-import globalReducer from './reducers/global.js';
-// import actionPageReducer from '../ui/page/actions/reducer.js';
+import history from '../lib/history';
+import reducers from './reducers';
+import sagas from './sagas';
 
-export default class Store extends BaseStore {
-    static getGlobalReducer() {
-        return globalReducer;
-    }
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(
+  connectRouter(history)(combineReducers(reducers.reduce((item, result) => {
+      result[item.__root] = item;
+      return result;
+  }, {}))),
+  {},
+  compose(
+    applyMiddleware(
+      routerMiddleware(history),
+      sagaMiddleware,
+    ),
+  ),
+);
+sagaMiddleware.run(function* composeSagas() {
+    yield all(sagas.map(saga => fork(saga)));
+});
 
-    static getPageReducers() {
-        return [
-            // actionPageReducer,
-        ];
-    }
-}
+export default store;

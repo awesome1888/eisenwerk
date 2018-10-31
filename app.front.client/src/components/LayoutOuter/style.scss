@@ -1,0 +1,11 @@
+@import '../../style/variables';
+
+.layout-outer {
+  background-color: $color_bg;
+  min-height: 100%;
+
+  &__container {
+    @include main-container();
+    padding-bottom: 1rem;
+  }
+}
