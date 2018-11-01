@@ -1,4 +1,4 @@
-import BaseApplication from '../../shared/lib/application/client/feathers.js';
+import BaseApplication from './shared/lib/application/client/feathers.js';
 
 import React from 'react';
 import ReactDOM from 'react-dom';

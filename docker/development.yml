@@ -21,26 +21,26 @@ services:
       - API_URL=http://localhost:3100
       - ROOT_FOLDER=/usr/src/app
 
-  api:
-    build:
-      context: ../build/app.api/
-      dockerfile: docker/development.dockerfile
-    expose:
-      - 3100
-    ports:
-      - 3100:3100
-    depends_on:
-      - db
-    restart: on-failure
-    environment:
-      - URL.ROOT=http://localhost:3100/
-      - PORT=3100
-      - URL.DB=mongodb://db:27017/ew
-      - CORS.ORIGIN=http://localhost:3000,http://localhost:3010
-      - AUTH.SECRET=P4cRdF5mzSMPvy4hCdpKCjHMp3vZ4UvynaxhEAJK
-      - AUTH.GOOGLE.CLIENT-ID=
-      - AUTH.GOOGLE.SECRET=
-      - URL.CLIENT-ORIGIN=http://localhost:3010
+#  api:
+#    build:
+#      context: ../build/app.api/
+#      dockerfile: docker/development.dockerfile
+#    expose:
+#      - 3100
+#    ports:
+#      - 3100:3100
+#    depends_on:
+#      - db
+#    restart: on-failure
+#    environment:
+#      - URL.ROOT=http://localhost:3100/
+#      - PORT=3100
+#      - URL.DB=mongodb://db:27017/ew
+#      - CORS.ORIGIN=http://localhost:3000,http://localhost:3010
+#      - AUTH.SECRET=P4cRdF5mzSMPvy4hCdpKCjHMp3vZ4UvynaxhEAJK
+#      - AUTH.GOOGLE.CLIENT-ID=
+#      - AUTH.GOOGLE.SECRET=
+#      - URL.CLIENT-ORIGIN=http://localhost:3010
 
   db:
       image: "mongo:latest"

@@ -25,7 +25,6 @@
     "feathers-authentication-popups": "^0.1.2",
     "feathers-mongoose": "^6.1.2",
     "helmet": "^3.12.1",
-    "latinize": "^0.4.0",
     "lodash.clonedeep": "^4.5.0",
     "lodash.get": "^4.4.2",
     "lodash.isarraylike": "^4.2.0",
