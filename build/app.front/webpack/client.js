@@ -4,6 +4,7 @@ const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
+const fs = require('fs');
 
 /**
  *
@@ -21,6 +22,11 @@ const getSrcFolder = (context) => {
 const getParameters = () => {
 	return {
         analyzeBundle: true, // create hints for bundle analyzer
+        onAferBuild: async (context) => {
+            // symlink "template" and "public" folders
+            var relativePath = path.relative('/some-dir', '/some-dir/alice.json');
+            fs.symlink(relativePath, '/some-dir/foo', callback);
+        },
 	};
 };
 
