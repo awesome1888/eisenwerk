@@ -4,9 +4,7 @@ const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
-const fs = require('fs');
 const path = require('path');
-const process = require('process');
 
 const Util = require('docker-build-tool').Util;
 
@@ -82,10 +80,9 @@ const getWebpackConfiguration = async (context) => {
               loader: 'babel-loader',
               options: {
                 plugins: [
-                  'transform-class-properties'
+                    ["@babel/plugin-proposal-class-properties", { "loose": true }],
                 ],
                 presets: [
-                  'es2015',
                   'react', // translate jsx
                   'stage-0', // async code
                   'stage-2', // spread operator
