@@ -27,17 +27,11 @@ const getParameters = () => {
 	return {
         analyzeBundle: true, // create hints for bundle analyzer
         onAfterBuild: async (ctx) => {
-            console.dir('ON AFTER BUILD');
-
             const to = ctx.getTaskDstFolder();
             const taskFolder = ctx.getTaskFolder();
 
             Util.makeLink(to, path.resolve(taskFolder, 'public'));
             Util.makeLink(to, path.resolve(taskFolder, 'template'));
-
-            // symlink "template" and "public" folders
-            // var relativePath = path.relative('/some-dir', '/some-dir/alice.json');
-            // fs.symlink(relativePath, '/some-dir/foo', callback);
 
             return true;
         },
