@@ -5,6 +5,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 const fs = require('fs');
+const path = require('path');
+const process = require('process');
+
+const Util = require('docker-build-tool').Util;
 
 /**
  *
@@ -22,10 +26,20 @@ const getSrcFolder = (context) => {
 const getParameters = () => {
 	return {
         analyzeBundle: true, // create hints for bundle analyzer
-        onAferBuild: async (context) => {
+        onAfterBuild: async (ctx) => {
+            console.dir('ON AFTER BUILD');
+
+            const to = ctx.getTaskDstFolder();
+            const taskFolder = ctx.getTaskFolder();
+
+            Util.makeLink(to, path.resolve(taskFolder, 'public'));
+            Util.makeLink(to, path.resolve(taskFolder, 'template'));
+
             // symlink "template" and "public" folders
-            var relativePath = path.relative('/some-dir', '/some-dir/alice.json');
-            fs.symlink(relativePath, '/some-dir/foo', callback);
+            // var relativePath = path.relative('/some-dir', '/some-dir/alice.json');
+            // fs.symlink(relativePath, '/some-dir/foo', callback);
+
+            return true;
         },
 	};
 };
@@ -37,8 +51,8 @@ const getParameters = () => {
  */
 const getWebpackConfiguration = async (context) => {
 
-  const srcFolder = context.getTaskSrcFolder();
-  const dstFolder = await context.makeTaskDstFolder();
+    const srcFolder = context.getTaskSrcFolder();
+    const dstFolder = await context.makeTaskDstFolder();
 
 	console.dir('Src folder: '+srcFolder);
 	console.dir('Dst folder: '+dstFolder);
@@ -178,7 +192,7 @@ const getWebpackConfiguration = async (context) => {
       }),
       new webpack.ProvidePlugin({
         _: `${srcFolder}/shared/lib/global/lodash.js`,
-        mix: `${srcFolder}/common/lib/global/mix.js`,
+        mix: `${srcFolder}/shared/lib/global/mix.js`,
       }),
     ],
   };

@@ -7,10 +7,10 @@
   }
 
   &__top-container {
-	@include main-container();
+	@include rb-centered();
   }
 
   &__container {
-	@include main-container();
+	@include rb-centered();
   }
 }
