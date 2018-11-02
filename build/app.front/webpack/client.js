@@ -80,10 +80,6 @@ const getWebpackConfiguration = async (context) => {
               loader: 'babel-loader',
               options: {
                 plugins: [
-                    ["@babel/plugin-proposal-class-properties", { "loose": true }],
-                ],
-                presets: [
-                  '@babel/react', // translate jsx
                     // Stage 0
                     "@babel/plugin-proposal-function-bind",
 
@@ -107,6 +103,9 @@ const getWebpackConfiguration = async (context) => {
                     "@babel/plugin-syntax-import-meta",
                     ["@babel/plugin-proposal-class-properties", { "loose": false }],
                     "@babel/plugin-proposal-json-strings",
+                ],
+                presets: [
+                  '@babel/react', // translate jsx
                   ['@babel/env', {
                     targets: {
                       browsers: ['last 2 versions'],
