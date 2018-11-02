@@ -1,6 +1,7 @@
 import BaseApplication from './express.js';
 import fs from 'fs';
 import ejs from 'ejs';
+import settings from '../../settings/server.js';
 
 export default class ServeBundleApplication extends BaseApplication {
 
@@ -10,7 +11,7 @@ export default class ServeBundleApplication extends BaseApplication {
     }
 
     getHandler(req, res) {
-        if (this.isProduction()) {
+        if (settings.isProduction()) {
             this.handleRequest(res);
         } else {
             try {

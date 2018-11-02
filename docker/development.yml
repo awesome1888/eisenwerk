@@ -14,12 +14,11 @@ services:
       - db
     restart: on-failure
     environment:
-      - ROOT_URL=http://localhost:3000/
+      - URL.ROOT=http://localhost:3000/
       - PORT=3000
-      - DB_URL=mongodb://db:27017/ew
-      - PUBLIC_FOLDER=/usr/src/app/public/
-      - API_URL=http://localhost:3100
-      - ROOT_FOLDER=/usr/src/app
+      - FOLDER.PUBLIC=/usr/src/app/public/
+      - URL.API=http://localhost:3100
+      - FOLDER.ROOT=/usr/src/app
 
 #  api:
 #    build:
@@ -48,14 +47,14 @@ services:
       ports:
         - 3900:27017
 
-  portainer:
-      image: portainer/portainer
-      ports:
-        - "3800:9000"
-      command: -H unix:///var/run/docker.sock
-      volumes:
-        - /var/run/docker.sock:/var/run/docker.sock
-        - portainer_data:/data
+#  portainer:
+#      image: portainer/portainer
+#      ports:
+#        - "3800:9000"
+#      command: -H unix:///var/run/docker.sock
+#      volumes:
+#        - /var/run/docker.sock:/var/run/docker.sock
+#        - portainer_data:/data
 
 volumes:
   portainer_data:

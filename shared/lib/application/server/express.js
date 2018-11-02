@@ -3,7 +3,7 @@ import helmet from 'helmet';
 import responseTime from 'response-time';
 
 import BaseApplication from './base.js';
-import Settings from '../../settings/server.js';
+import settings from '../../settings/server.js';
 
 import Oauth2Success from '../../authorization/oauth2-success.js';
 
@@ -25,7 +25,7 @@ export default class BaseExpressApplication extends BaseApplication {
             // app.use(ConditionalGet());
             // app.use(ETag());
 
-            const pFolder = Settings.getInstance().getPublicFolder();
+            const pFolder = settings.getPublicFolder();
             if (pFolder !== false) {
                 app.use('/public', express.static(pFolder));
 
@@ -51,9 +51,10 @@ export default class BaseExpressApplication extends BaseApplication {
         // dont remove "next", because...
         // https://expressjs.com/en/guide/using-middleware.html#middleware.error-handling
         app.use((error, req, res, next) => {
+            console.dir(error);
             const code = parseInt(error.message, 10);
             res.status(code === 404 ? 404 : 500);
-            res.send(code === 404 ? 'Not found' : 'Server error');
+            res.send(code === 404 ? 'Not found' : 'Internal error');
         });
     }
 }
