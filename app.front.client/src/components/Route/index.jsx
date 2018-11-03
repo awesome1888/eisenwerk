@@ -21,9 +21,9 @@ const Route = (props) => {
     }
 
     if (!whereTo) {
-        if (_.isObjectNotEmpty(this.props.redirect)) {
-            Object.keys(this.props.redirect).forEach((url) => {
-                const condition = this.props.redirect[url];
+        if (_.isObjectNotEmpty(props.redirect)) {
+            Object.keys(props.redirect).forEach((url) => {
+                const condition = props.redirect[url];
 
                 if (whereTo) {
                     return;
@@ -33,8 +33,8 @@ const Route = (props) => {
                     whereTo = url;
                 }
             });
-        } else if (_.isFunction(this.props.redirect)) {
-            whereTo = this.props.redirect();
+        } else if (_.isFunction(props.redirect)) {
+            whereTo = props.redirect();
         }
     }
 
@@ -44,8 +44,8 @@ const Route = (props) => {
     }
 
     // check the route access
-    const access = this.props.access;
-    const user = this.props.user;
+    const access = props.access;
+    const user = props.user;
 
     if (_.isObjectNotEmpty(access)) {
         const test = Access.testRoute(user, access);

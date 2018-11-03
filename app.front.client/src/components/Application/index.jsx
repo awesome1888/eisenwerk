@@ -1,3 +1,5 @@
+import '../../style/index.scss'; // main style goes before any other
+
 import React from 'react';
 import { Switch } from 'react-router';
 import { ConnectedRouter } from 'connected-react-router';
@@ -28,7 +30,7 @@ class Application extends React.Component {
     }
 
     render() {
-        if (!this.props.ready) {
+        if (false && !this.props.ready) {
             // todo: show me some fancy loader?
             return null;
         }
@@ -42,6 +44,7 @@ class Application extends React.Component {
                             path="/"
                             // redirectNotAuthorized="/login"
                             render={(route) => {
+                                console.dir('match!');
                                 return (
                                     <HomePage match={route.match} />
                                 );

@@ -1,8 +1,8 @@
 import ReducerFabric from '../../shared/lib/reducer/fabric.js';
 
-export const HOME_REQUEST_START = 'job-list.request.start';
-export const HOME_REQUEST_ENDSUCCESS = 'job-list.request.end-success';
-export const HOME_REQUEST_ENDFAILURE = 'job-list.request.end-failure';
+export const HOME_REQUEST_START = 'home.request.start';
+export const HOME_REQUEST_ENDSUCCESS = 'home.request.end-success';
+export const HOME_REQUEST_ENDFAILURE = 'home.request.end-failure';
 
 export default ReducerFabric.make(
     'home',

@@ -10,7 +10,7 @@ import sagas from './sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
-  connectRouter(history)(combineReducers(reducers.reduce((item, result) => {
+  connectRouter(history)(combineReducers(reducers.reduce((result, item) => {
       result[item.__root] = item;
       return result;
   }, {}))),
