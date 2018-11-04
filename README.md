@@ -1,8 +1,10 @@
 # Todo
 
 1) [DONE] volumes, browsersync
+1.5) scripts
+1.6) code splitting
+1.7) ssr
 2) auth in a modern way
-3) ssr
 4) re-think oauth2
 5) migrations
 6) manifest
@@ -11,23 +13,21 @@
 9) sitemap
 10) react strict mode
 11) react error boundary
-12) code splitting
 13) jest
 14) redis 4 sessions
-15) redis for intercomm
+15) redis 4 intercomm
 
 ### Random
-* do oauth2 in a proper way
 * [CANCEL] connect to the database on-demand
-* optimize build tool pipelines and docker images
+* [DONE] optimize build tool pipelines and docker images
 * pack everything that is possible to npm
 * port useful things from pr-legacy project
-    * template
     * global events
     * page scroll
-    * data-store-scroll attribute and logic
+        * data-store-scroll attribute and logic
     * backurl
     * set title
+    * notifications
 * [CANCEL] probably replace filter, sort, limit, etc with $filter, $sort, $limit, ...
 * implement smart population
 * [DONE] ENV dot notation
@@ -37,7 +37,7 @@
 * try to use component-template approach
 
 To NPM:
-Put everything to @eisenwerk/*, like @eisenwerk/build-tool, @eisenwerk/ui.page-scroll
+Put everything to @eisenwerk/*, like @eisenwerk/ui.page-scroll
 
 * selectbox
 * drag n drop

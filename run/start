@@ -16,4 +16,5 @@ process.on('uncaughtException', (err) => {
     composeFile: `${__dirname}/../docker/development.yml`,
     projectFolder: `${__dirname}/../`,
     dockerLogsPollingInterval: 1000,
+    // debug: true,
 })).run();

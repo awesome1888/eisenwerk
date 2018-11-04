@@ -179,7 +179,7 @@ export default class Entity {
 
     getData() {
         if (!this._normalizedData) {
-            this._normalizedData = this.normalizeData(_.deepClone(this._data));
+            this._normalizedData = this.normalizeData(_.cloneDeep(this._data));
         }
 
         return this._normalizedData;
@@ -195,7 +195,7 @@ export default class Entity {
     }
 
     extractData() {
-        return _.deepClone(this.getData());
+        return _.cloneDeep(this.getData());
     }
 
     setSrcDataAt(path, value) {
@@ -235,7 +235,7 @@ export default class Entity {
             this.getData().createdAt = null;
         }
 
-        return _.deepClone(this.getCreatedAt());
+        return _.cloneDeep(this.getCreatedAt());
     }
 
     /**
@@ -253,7 +253,7 @@ export default class Entity {
      * @return void
      */
     putCreatedAt(value) {
-        this.setCreatedAt(_.deepClone(value));
+        this.setCreatedAt(_.cloneDeep(value));
     }
 
     /**
@@ -292,7 +292,7 @@ export default class Entity {
             this.getData().updatedAt = null;
         }
 
-        return _.deepClone(this.getUpdatedAt());
+        return _.cloneDeep(this.getUpdatedAt());
     }
 
     /**
@@ -310,7 +310,7 @@ export default class Entity {
      * @return void
      */
     putUpdatedAt(value) {
-        this.setUpdatedAt(_.deepClone(value));
+        this.setUpdatedAt(_.cloneDeep(value));
     }
 
     /**
