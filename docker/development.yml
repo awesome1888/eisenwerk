@@ -53,7 +53,7 @@ services:
 
   front.browser-sync:
     image: ustwo/browser-sync
-    command: start --proxy "front:3001" --port 3000 --files "*.css"
+    command: start --proxy "front:3001" --port 3000 --files "/source" --no-notify
     volumes:
       - ../build/app.front/build/app.front.client/public/:/source
     expose:
