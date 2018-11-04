@@ -38,7 +38,7 @@ button, a, input, textarea {
 }
 
 .a {
-  @include rb-f-color(inherit, $color_main, 200ms);
+  @include  rb-color(inherit, $color_main, 200ms);
 }
 
 .button {
@@ -46,7 +46,7 @@ button, a, input, textarea {
   padding: 0.5rem 1rem;
   border: 0 none;
   @include rb-bg-color($color_main, lighten($color_main, 10), 200ms);
-  @include rb-f-color($color_button-text);
+  @include  rb-color($color_button-text);
 
   @include rb-smooth-corners();
   cursor: pointer;
@@ -59,7 +59,7 @@ button, a, input, textarea {
 
   &_pale {
     @include rb-bg-color(transparent, transparent, 200ms);
-    @include rb-f-color($color_main, lighten($color_main, 10), 200ms);
+    @include  rb-color($color_main, lighten($color_main, 10), 200ms);
   }
 
   &_wide {
