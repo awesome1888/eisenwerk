@@ -3,7 +3,6 @@ import helmet from 'helmet';
 import responseTime from 'response-time';
 
 import BaseApplication from './base.js';
-import settings from '../../settings/server.js';
 
 import Oauth2Success from '../../authorization/oauth2-success.js';
 
@@ -25,7 +24,7 @@ export default class BaseExpressApplication extends BaseApplication {
             // app.use(ConditionalGet());
             // app.use(ETag());
 
-            const pFolder = settings.getPublicFolder();
+            const pFolder = this.getSettings().getPublicFolder();
             if (pFolder !== false) {
                 app.use('/public', express.static(pFolder));
 
