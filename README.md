@@ -38,7 +38,7 @@ To connect to a running container:
 ## Todo
 
 1) [DONE] volumes, browsersync
-1.5) scripts
+1.5) [DONE] scripts
 1.6) code splitting
 1.7) ssr
 2) auth in a modern way
