@@ -17,7 +17,9 @@ export default class Application extends BaseApplication {
             <Provider store={store}>
                 <UIApplication
                     application={this}
-                    ref={(ref) => { this._ui = ref; }}
+                    ref={(ref) => {
+                        this._ui = ref;
+                    }}
                     useAuth={this.useAuth()}
                 />
             </Provider>,

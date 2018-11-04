@@ -2,7 +2,9 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-LINE=$(docker ps | grep $1)
+LINE=$(docker ps | grep docker_${1}_)
 ALINE=($LINE)
+
+echo ${ALINE[0]};
 
 docker run -it ${ALINE[0]} /bin/bash

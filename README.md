@@ -1,4 +1,41 @@
-# Todo
+## Scripts
+
+To start the composition:
+~~~
+./run/start
+~~~
+
+To shutdown the composition, press `Ctrl(Cmd)+C` or type:
+~~~
+./run/halt
+~~~
+
+To see the log of one specific application:
+~~~
+./run/log <app-name>
+~~~
+
+To see all docker containers running, real-time:
+~~~
+./run/ps
+~~~
+
+To inspect a bundle of the specific application:
+~~~
+./run/inspect-bundle <app-name>
+~~~
+
+To clean up all caches and temporary data:
+~~~
+./run/cleanup
+~~~
+
+To connect to a running container:
+~~~
+./run/dssh <app-name>
+~~~
+
+## Todo
 
 1) [DONE] volumes, browsersync
 1.5) scripts

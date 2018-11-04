@@ -5,7 +5,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 const path = require('path');
-
 const Util = require('docker-build-tool').Util;
 
 /**
@@ -30,8 +29,6 @@ const getParameters = () => {
 
             await Util.copyDir(path.resolve(taskFolder, 'public'), path.resolve(to, 'public'));
             await Util.copyDir(path.resolve(taskFolder, 'template'), path.resolve(to, 'template'));
-
-            return true;
         },
         rebuildImage: false,
 	};
@@ -46,7 +43,7 @@ const getWebpackConfiguration = async (context) => {
 
     const srcFolder = context.getTaskSrcFolder();
     const dstFolder = await context.makeTaskDstFolder();
-    const dstFolderPublic = path.resolve(dstFolder, 'public'); // added for "dev"
+    const dstFolderPublic = path.resolve(dstFolder, 'public');
 
     return {
         // in the production mode webpack will minify everything
