@@ -31,6 +31,7 @@ export default class ServeBundleApplication extends BaseApplication {
     }
 
     getTemplate() {
+        // if not cached or not in production
         if (!this._template || !this.getSettings().isProduction()) {
             const main = this.readTemplate('main.ejs');
 
@@ -57,6 +58,7 @@ export default class ServeBundleApplication extends BaseApplication {
     }
 
     getAssetHTML() {
+        // if not cached or not in production
         if (!this._assetHTML || !this.getSettings().isProduction()) {
             const html = this.readTemplate('../assets.html');
             const assets = {js: '', css: ''};
