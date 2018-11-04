@@ -8,7 +8,7 @@ class HomePage extends React.Component {
     render() {
         return (
             <Layout>
-                Hello there 6
+                Hello there 7
             </Layout>
         );
     }
