@@ -27,7 +27,7 @@
     "babel-loader": "8.x.x",
     "css-loader": "^0.28.11",
     "cssnano": "^4.1.7",
-    "docker-build-tool": "^1.0.1",
+    "docker-build-tool": "^2.0.0",
     "eslint": "^3.16.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.14.0",
