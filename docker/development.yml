@@ -7,9 +7,9 @@ services:
       context: ../build/app.front/
       dockerfile: docker/development.dockerfile
     expose:
-      - 3000
+      - 3001
     ports:
-      - 3000:3000
+      - 3001:3001
     depends_on:
       - db
     restart: on-failure
@@ -18,8 +18,8 @@ services:
       - ../build/app.front/build/app.front.client/template/:/usr/src/app/template/
       - ../build/app.front/build/app.front.client/assets.html:/usr/src/app/assets.html
     environment:
-      - URL.ROOT=http://localhost:3000/
-      - PORT=3000
+      - URL.ROOT=http://localhost:3001/
+      - PORT=3001
       - FOLDER.PUBLIC=/usr/src/app/public/
       - URL.API=http://localhost:3100
       - FOLDER.ROOT=/usr/src/app
@@ -39,7 +39,7 @@ services:
       - URL.ROOT=http://localhost:3100/
       - PORT=3100
       - URL.DB=mongodb://db:27017/ew
-      - CORS.ORIGIN=http://localhost:3000,http://localhost:3010
+      - CORS.ORIGIN=http://localhost:3000,http://localhost:3010,http://localhost:3001
       - AUTH.SECRET=P4cRdF5mzSMPvy4hCdpKCjHMp3vZ4UvynaxhEAJK
       - AUTH.GOOGLE.CLIENT-ID=
       - AUTH.GOOGLE.SECRET=
@@ -51,22 +51,12 @@ services:
       ports:
         - 3900:27017
 
-#  front.browser-sync:
-#    image: ustwo/browser-sync
-#    command: start --server --files "*.css"
-#    volumes:
-#      - ./sandbox:/source
-#    ports:
-#      - "3000:3000"
-
-#  portainer:
-#      image: portainer/portainer
-#      ports:
-#        - "3800:9000"
-#      command: -H unix:///var/run/docker.sock
-#      volumes:
-#        - /var/run/docker.sock:/var/run/docker.sock
-#        - portainer_data:/data
-
-volumes:
-  portainer_data:
+  front.browser-sync:
+    image: ustwo/browser-sync
+    command: start --proxy "front:3001" --port 3000 --files "*.css"
+    volumes:
+      - ../build/app.front/build/app.front.client/public/:/source
+    expose:
+      - 3000
+    ports:
+      - "3000:3000"
