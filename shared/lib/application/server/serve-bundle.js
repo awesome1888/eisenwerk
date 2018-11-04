@@ -31,7 +31,7 @@ export default class ServeBundleApplication extends BaseApplication {
     }
 
     getTemplate() {
-        if (!this._template) {
+        if (!this._template || !this.getSettings().isProduction()) {
             const main = this.readTemplate('main.ejs');
 
             this._template = ejs.render(main, {
@@ -57,8 +57,8 @@ export default class ServeBundleApplication extends BaseApplication {
     }
 
     getAssetHTML() {
-        if (!this._assetHTML) {
-            const html = this.readTemplate('assets.html');
+        if (!this._assetHTML || !this.getSettings().isProduction()) {
+            const html = this.readTemplate('../assets.html');
             const assets = {js: '', css: ''};
 
             let found = html.match(new RegExp('<!-- JS -->\n*(.+)\n*<!-- JS:END -->'));

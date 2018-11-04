@@ -33,6 +33,7 @@ const getParameters = () => {
 
             return true;
         },
+        rebuildImage: false,
 	};
 };
 
@@ -45,9 +46,7 @@ const getWebpackConfiguration = async (context) => {
 
     const srcFolder = context.getTaskSrcFolder();
     const dstFolder = await context.makeTaskDstFolder();
-
-	console.dir('Src folder: '+srcFolder);
-	console.dir('Dst folder: '+dstFolder);
+    const dstFolderPublic = path.resolve(dstFolder, 'public'); // added for "dev"
 
   return {
     // in the production mode webpack will minify everything
@@ -60,8 +59,8 @@ const getWebpackConfiguration = async (context) => {
     // where to put the output bundle
     output: {
       filename: '[name].js',
-      path: dstFolder,
-      publicPath: 'public/',
+      path: dstFolderPublic,
+      // publicPath: 'public/', // commented-out for "dev"
     },
 
     resolve: {
@@ -199,7 +198,7 @@ const getWebpackConfiguration = async (context) => {
         inject: false,
         hash: true,
         template: `${srcFolder}/assets.html`,
-        filename: 'assets.html'
+        filename: `${dstFolder}/assets.html`
       }),
       new webpack.ProvidePlugin({
         _: `${srcFolder}/shared/lib/global/lodash.js`,

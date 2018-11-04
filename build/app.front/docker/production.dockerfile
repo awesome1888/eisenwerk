@@ -16,6 +16,13 @@ COPY ./build/package.json .
 RUN npm install
 COPY ./build/app.front.server/ .
 
-# the client code is served through the volume
+# CLIENT
+# copy templates
+COPY ./build/app.front.client/template/ ./template/
+# client assets, more frequent but still not so much
+COPY ./build/app.front.client/public/ ./public/
+# now bundled client here comes
+COPY ./build/app.front.client/ ./public/
+RUN mv /usr/src/app/public/assets.html ./template/
 
 CMD [ "npm", "run", "dev" ]
