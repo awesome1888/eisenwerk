@@ -1,6 +1,6 @@
 # Todo
 
-1) volumes, browsersync
+1) [DONE] volumes, browsersync
 2) auth in a modern way
 3) ssr
 4) re-think oauth2
