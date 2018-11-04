@@ -24,3 +24,4 @@ export default class Result {
         return this._data;
     }
 }
+
