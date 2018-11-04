@@ -12,9 +12,8 @@ process.on('uncaughtException', (err) => {
 });
 
 (new Project({
-    name: 'replace-this', // todo: derive it
     composeFile: `${__dirname}/../docker/development.yml`,
     projectFolder: `${__dirname}/../`,
     dockerLogsPollingInterval: 1000,
-    // debug: true,
+    debug: true,
 })).run();

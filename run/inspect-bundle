@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
 
 npm install -g webpack-bundle-analyzer;
-webpack-bundle-analyzer /tmp/build-tool-stats/${1} -h 0.0.0.0;
-# /tmp/build-tool//replace-this/front//stats
+webpack-bundle-analyzer /tmp/build-tool/eisenwerk/${1}/stats/ -h 0.0.0.0;
