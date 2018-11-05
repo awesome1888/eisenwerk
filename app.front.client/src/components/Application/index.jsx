@@ -9,8 +9,10 @@ import * as reducer from './reducer.js';
 import history from '../../lib/history';
 // import Auth from '../../api/auth';
 import Route from '../Route';
+import RouteEnter from '../RouteEnter';
+import DynamicImport from '../DynamicImport';
+import LayoutOuter from '../LayoutOuter';
 
-// pages
 import HomePage from '../../pages/Home';
 
 import './style.scss';
@@ -30,10 +32,10 @@ class Application extends React.Component {
     }
 
     render() {
-        if (false && !this.props.ready) {
-            // todo: show me some fancy loader?
-            return null;
-        }
+        // if (!this.props.ready) {
+        //     // todo: show me some fancy loader?
+        //     return null;
+        // }
 
         return (
             <div className="application">
@@ -44,9 +46,27 @@ class Application extends React.Component {
                             path="/"
                             // redirectNotAuthorized="/login"
                             render={(route) => {
-                                console.dir('match!');
                                 return (
-                                    <HomePage match={route.match} />
+                                    <RouteEnter route={route}>
+                                        <LayoutOuter>
+                                            <HomePage match={route.match} />
+                                        </LayoutOuter>
+                                    </RouteEnter>
+                                );
+                            }}
+                            {...this.props}
+                        />
+                        <Route
+                            path="/list"
+                            render={(route) => {
+                                return (
+                                    <RouteEnter route={route}>
+                                        <LayoutOuter>
+                                            <DynamicImport load={() => import('../../pages/List')}>
+                                                {Component => Component && <Component match={route.match} />}
+                                            </DynamicImport>
+                                        </LayoutOuter>
+                                    </RouteEnter>
                                 );
                             }}
                             {...this.props}

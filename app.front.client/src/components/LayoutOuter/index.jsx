@@ -1,12 +1,15 @@
 import React from 'react';
+import LayoutOuterBase from '../LayoutOuterBase';
 import './style.scss';
 
-const LayoutOuter = props => (
-    <div className="layout-outer">
-        <div className="layout-outer__container">
-            {props.children}
-        </div>
-    </div>
-);
-
-export default LayoutOuter;
+export default class LayoutOuter extends LayoutOuterBase {
+    render() {
+        return (
+            <div className="layout-outer">
+                <div className="layout-outer__container">
+                    {this.props.children}
+                </div>
+            </div>
+        );
+    }
+};

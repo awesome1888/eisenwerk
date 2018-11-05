@@ -5,7 +5,7 @@
   min-height: 100%;
 
   &__container {
-    @include main-container();
+    @include rb-centered();
     padding-bottom: 1rem;
   }
 }

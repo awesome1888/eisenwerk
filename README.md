@@ -39,7 +39,8 @@ To connect to a running container:
 
 1) [DONE] volumes, browsersync
 1.5) [DONE] scripts
-1.6) code splitting
+1.6) [DONE] code splitting
+1.61) correct public path
 1.7) ssr
 2) auth in a modern way
 4) re-think oauth2

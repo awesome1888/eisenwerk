@@ -4,16 +4,22 @@ import { connect } from 'react-redux';
 import Layout from '../../components/LayoutInner';
 import { Link } from 'react-router-dom';
 
-class HomePage extends React.Component {
+class ListPage extends React.Component {
+
+    componentDidMount() {
+        console.dir('Page rendered');
+    }
 
     render() {
         return (
             <Layout>
-                Hello there 7
-                <Link to="/list">List</Link>
+                Ein
+                Zwei
+                Drei
+                <Link to="/">Home</Link>
             </Layout>
         );
     }
 }
 
-export default connect(state => state.home)(HomePage);
+export default connect(state => state.home)(ListPage);

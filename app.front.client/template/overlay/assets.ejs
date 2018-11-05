@@ -1,9 +1,6 @@
 <script>
     window.__overlay = {
         hide: function() {
-            if (!window.__overlay.ready) {
-                return;
-            }
             var overlay = document.getElementById('global-overlay');
             if (overlay) {
                 overlay.classList.add('global-overlay_fading');
@@ -19,11 +16,7 @@
                 overlay.classList.remove('global-overlay_invisible');
             }
         },
-        setReady: function() {
-            window.__overlay.ready = true;
-        }
     };
-    window.__overlay.ready = false;
 </script>
 <style>
     .global-overlay {
