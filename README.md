@@ -73,6 +73,7 @@ To connect to a running container:
 * [CANCEL] cron (cancelled, because for cron there should be a separate app according to the microservices architecture)
 * [CANCEL] Web sockets!
 * try to use component-template approach
+* make global __DEV__ constant, this will be easier to utilize
 
 To NPM:
 Put everything to @eisenwerk/*, like @eisenwerk/ui.page-scroll

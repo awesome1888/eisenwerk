@@ -8,27 +8,29 @@ export default class ServeBundleApplication extends BaseApplication {
         super.attachMiddleware();
         // todo: instead of just putting * we need to check here if we are trying to get a route-like url
         // todo: i.e. /something/like/that/, but /blah.jpg will not be the case
-        this.getNetwork().get('*', this.getHandler.bind(this));
+        this.getNetwork().get('*', (req, res) => {
+            res.status(200);
+            res.set('Content-Type', 'text/html');
+            res.send(this.getTemplate());
+        });
     }
 
-    getHandler(req, res) {
-        if (this.getSettings().isProduction()) {
-            this.handleRequest(res);
-        } else {
-            try {
-                this.handleRequest(res);
-            } catch (e) {
-                res.status(500);
+    attachErrorHandler() {
+        const app = this.getNetwork();
+
+        // dont remove "next", because...
+        // https://expressjs.com/en/guide/using-middleware.html#middleware.error-handling
+        app.use((error, req, res, next) => {
+            const code = parseInt(error.message, 10);
+            res.status(code);
+
+            if (!this.getSettings().isProduction()) {
                 res.set('Content-Type', 'text/html');
-                res.send(`<div style="white-space: pre-wrap">${e.stack}</div>`);
+                res.send(`<div style="white-space: pre-wrap">${error.stack}</div>`);
+            } else {
+                res.send(code === 404 ? 'Not found' : 'Error');
             }
-        }
-    }
-
-    handleRequest(res) {
-        res.status(200);
-        res.set('Content-Type', 'text/html');
-        res.send(this.getTemplate());
+        });
     }
 
     getTemplate() {

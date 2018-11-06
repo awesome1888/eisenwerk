@@ -46,8 +46,8 @@ export default class BaseExpressApplication extends BaseApplication {
         // https://expressjs.com/en/guide/using-middleware.html#middleware.error-handling
         app.use((error, req, res, next) => {
             const code = parseInt(error.message, 10);
-            res.status(code === 404 ? 404 : 500);
-            res.send(code === 404 ? 'Not found' : 'Internal error');
+            res.status(code);
+            res.send(code === 404 ? 'Not found' : 'Error');
         });
     }
 }

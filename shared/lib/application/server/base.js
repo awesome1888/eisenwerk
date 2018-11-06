@@ -19,8 +19,8 @@ export default class Application {
         this.getSettings().checkMandatory();
 
         this.attachMiddleware();
-        this.attachErrorHandler();
         this.attachErrorTrigger();
+        this.attachErrorHandler();
 
         this.createServer();
     }
@@ -39,8 +39,12 @@ export default class Application {
 
     attachErrorTrigger() {
         // if nothing were served above with GET, then we should obviously send 404
-        this.getNetwork().get('/', () => {
+        this.getNetwork().get(() => {
             throw new Error('404');
+        });
+        // all the rest - not implemented
+        this.getNetwork().use(() => {
+            throw new Error('501');
         });
     }
 
