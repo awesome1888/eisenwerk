@@ -40,7 +40,7 @@ To connect to a running container:
 1) [DONE] volumes, browsersync
 1.5) [DONE] scripts
 1.6) [DONE] code splitting
-1.61) correct public path
+1.61) [DONE] correct public path
 1.7) ssr
 2) auth in a modern way
 4) re-think oauth2
@@ -97,6 +97,7 @@ Put everything to @eisenwerk/*, like @eisenwerk/ui.page-scroll
 * enum fabric
 * migrations
     f_migration
+* decouple and port global event manager (without jquery)
 
 Create "rem-bem-scss" package, port all really useful things from rem-bem, and besides:
 * make useful rb-content-** alignment classes
@@ -106,3 +107,10 @@ Create "rem-bem-scss" package, port all really useful things from rem-bem, and b
 * generate all mixins and classes for margins and paddings
 * put the MIT license inside the file with color codes:
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+## Effects
+
+1) overlay on different layout change (i.e. login -> main or visa versa)
+2) on route change (or any load data action?) we show a progressbar
+3) if load data takes too long - show some good animated SVG loader, but not instantly to avoid flicking
+4) after the page is ready, we show the content not instantly, but with animation (different, see tech insightes for animation notes)

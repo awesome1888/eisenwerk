@@ -2,7 +2,7 @@ import BaseApplication from './express.js';
 import fs from 'fs';
 import ejs from 'ejs';
 
-export default class ServeBundleApplication extends BaseApplication {
+export default class FrontServerApplication extends BaseApplication {
 
     attachMiddleware() {
         super.attachMiddleware();

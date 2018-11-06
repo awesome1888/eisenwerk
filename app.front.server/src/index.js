@@ -1,4 +1,4 @@
 import 'babel-polyfill';
-import Application from './shared/lib/application/server/serve-bundle.js';
+import Application from './shared/lib/application/server/front-server.js';
 
 (new Application()).launch();
