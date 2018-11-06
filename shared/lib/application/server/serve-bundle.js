@@ -6,6 +6,8 @@ export default class ServeBundleApplication extends BaseApplication {
 
     attachMiddleware() {
         super.attachMiddleware();
+        // todo: instead of just putting * we need to check here if we are trying to get a route-like url
+        // todo: i.e. /something/like/that/, but /blah.jpg will not be the case
         this.getNetwork().get('*', this.getHandler.bind(this));
     }
 

@@ -26,12 +26,7 @@ export default class BaseExpressApplication extends BaseApplication {
 
             const pFolder = this.getSettings().getPublicFolder();
             if (pFolder !== false) {
-                app.use('/public', express.static(pFolder));
-
-                // if nothing were served by static, and we are still here, then we should obviously send 404
-                app.use('/public', () => {
-                    throw new Error('404');
-                });
+                app.use('/', express.static(pFolder));
             }
 
             this._express = app;
@@ -50,7 +45,6 @@ export default class BaseExpressApplication extends BaseApplication {
         // dont remove "next", because...
         // https://expressjs.com/en/guide/using-middleware.html#middleware.error-handling
         app.use((error, req, res, next) => {
-            console.dir(error);
             const code = parseInt(error.message, 10);
             res.status(code === 404 ? 404 : 500);
             res.send(code === 404 ? 'Not found' : 'Internal error');

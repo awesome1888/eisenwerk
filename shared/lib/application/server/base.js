@@ -20,6 +20,7 @@ export default class Application {
 
         this.attachMiddleware();
         this.attachErrorHandler();
+        this.attachErrorTrigger();
 
         this.createServer();
     }
@@ -34,6 +35,13 @@ export default class Application {
      * Attaches the final middleware, basically the 404 middlware
      */
     attachErrorHandler() {
+    }
+
+    attachErrorTrigger() {
+        // if nothing were served above with GET, then we should obviously send 404
+        this.getNetwork().get('/', () => {
+            throw new Error('404');
+        });
     }
 
     createServer() {

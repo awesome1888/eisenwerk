@@ -57,7 +57,7 @@ const getWebpackConfiguration = async (context) => {
         output: {
             filename: '[name].js',
             path: dstFolderPublic,
-            publicPath: 'public/', // this is important
+            publicPath: '',
         },
 
         resolve: {
