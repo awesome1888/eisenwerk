@@ -74,6 +74,8 @@ To connect to a running container:
 * [CANCEL] Web sockets!
 * try to use component-template approach
 * make global __DEV__ constant, this will be easier to utilize
+* use https://www.npmjs.com/package/compression
+* instead of doing `props.something`, do de-composition as `({className, children}) => { return (<div className={className}>{children}</div>) };`
 
 To NPM:
 Put everything to @eisenwerk/*, like @eisenwerk/ui.page-scroll
