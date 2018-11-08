@@ -2,7 +2,8 @@ import React from 'react';
 
 export default class RouteEnter extends React.Component {
     componentDidUpdate() {
-        console.dir('route changed');
+        // todo: use reselect here?
+        // console.dir('route changed');
     }
 
     render() {

@@ -4,14 +4,47 @@ import ejs from 'ejs';
 
 export default class FrontServerApplication extends BaseApplication {
 
+    enableSSR() {
+        // todo: get this value from an ENV var
+        return true;
+    }
+
+    useSSR() {
+        return this.enableSSR() && true/* todo: check some coditions, like user agent or get parameter */;
+    }
+
+    /**
+     * Import reducers here, sagas, store and pages
+     * @returns {{}}
+     */
+    getFrontendPart() {
+        return {};
+    }
+
+    async getRenderer() {
+        if (!this._renderer) {
+            const Renderer = (await import('../../renderer')).default;
+            this._renderer = new Renderer(this.getFrontendPart());
+        }
+
+        return this._renderer;
+    }
+
     attachMiddleware() {
         super.attachMiddleware();
         // todo: instead of just putting * we need to check here if we are trying to get a route-like url
         // todo: i.e. /something/like/that/, but /blah.jpg will not be the case
-        this.getNetwork().get('*', (req, res) => {
-            res.status(200);
-            res.set('Content-Type', 'text/html');
-            res.send(this.getTemplate());
+        this.getNetwork().get('*', async (req, res) => {
+            if (this.useSSR()) {
+                // give back the page html
+                const renderer = await this.getRenderer();
+                await renderer.render(req, res);
+            } else {
+                // just serve as-is
+                res.status(200);
+                res.set('Content-Type', 'text/html');
+                res.send(this.getTemplate());
+            }
         });
     }
 
