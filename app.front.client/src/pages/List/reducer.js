@@ -12,7 +12,7 @@ export default ReducerFabric.make(
     },
     {
         [LIST_REQUEST_START]: state => ({ ...state, loading: true, error: null, data: {} }),
-        [LIST_REQUEST_ENDSUCCESS]: (state, action) => ({ ...state, loading: false, error: null, data: action.payload }),
-        [LIST_REQUEST_ENDFAILURE]: (state, action) => ({ ...state, loading: false, error: action.error, data: {} }),
+        [LIST_REQUEST_ENDSUCCESS]: (state, payload) => ({ ...state, loading: false, error: null, data: payload }),
+        [LIST_REQUEST_ENDFAILURE]: (state, payload) => ({ ...state, loading: false, error: payload, data: {} }),
     }
 );

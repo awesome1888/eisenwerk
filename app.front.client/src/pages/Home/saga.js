@@ -13,7 +13,7 @@ function* loadData() {
         if (error.message === '401') {
             yield put({ type: applicationReducer.APPLICATION_AUTHORIZED_UNSET});
         }
-        yield put({ type: reducer.HOME_REQUEST_ENDFAILURE, error });
+        yield put({ type: reducer.HOME_REQUEST_ENDFAILURE, payload: error });
     }
 }
 
