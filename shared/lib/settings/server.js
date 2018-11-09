@@ -94,4 +94,5 @@ class Settings {
     }
 }
 
-export default new Settings();
+const settings = new Settings();
+export default settings;
