@@ -41,7 +41,9 @@ To connect to a running container:
 1.5) [DONE] scripts
 1.6) [DONE] code splitting
 1.61) [DONE] correct public path
+1.62) use relative to source root paths
 1.7) ssr
+    1) 
 2) auth in a modern way
 4) re-think oauth2
 5) migrations
@@ -74,8 +76,10 @@ To connect to a running container:
 * [CANCEL] Web sockets!
 * try to use component-template approach
 * make global __DEV__ constant, this will be easier to utilize
+    define-plugin
 * use https://www.npmjs.com/package/compression
 * instead of doing `props.something`, do de-composition as `({className, children}) => { return (<div className={className}>{children}</div>) };`
+* https://www.npmjs.com/package/babel-plugin-transform-react-jsx-source
 
 To NPM:
 Put everything to @eisenwerk/*, like @eisenwerk/ui.page-scroll

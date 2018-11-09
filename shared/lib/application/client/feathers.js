@@ -11,6 +11,7 @@ import axios from 'axios';
 export default class Application {
 
     useAuth() {
+        // todo: bring this flag from the ENV vars
         return true;
     }
 
@@ -39,6 +40,7 @@ export default class Application {
             if (this.useAuth()) {
                 Authorization.prepare(app);
 
+                // todo: connect it to the store
                 app.on('authenticated', this.onLogin.bind(this));
                 app.on('logout', this.onLogout.bind(this));
                 app.on('reauthentication-error', this.onReLoginError.bind(this));
@@ -56,14 +58,6 @@ export default class Application {
         }
 
         return this._authorization;
-    }
-
-    /**
-     * Returns an instance of a "UI" application, which manages the way of displaying the information to use end user
-     * @returns {*|null}
-     */
-    getUI() {
-        return this._ui;
     }
 
     /**

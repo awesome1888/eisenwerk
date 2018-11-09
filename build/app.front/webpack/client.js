@@ -57,7 +57,7 @@ const getWebpackConfiguration = async (context) => {
         output: {
             filename: '[name].js',
             path: dstFolderPublic,
-            publicPath: '',
+            publicPath: '/',
         },
 
         resolve: {
@@ -75,6 +75,7 @@ const getWebpackConfiguration = async (context) => {
                 {
                   loader: 'babel-loader',
                   options: {
+                    cacheDirectory: true,
                     plugins: [
                         // Stage 0
                         "@babel/plugin-proposal-function-bind",

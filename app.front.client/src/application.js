@@ -9,17 +9,11 @@ import store from './store';
 
 export default class Application extends BaseApplication {
     launch() {
-        // tmp
-        window._store = store;
-
         super.launch();
         ReactDOM.render(
             <Provider store={store}>
                 <UIApplication
                     application={this}
-                    ref={(ref) => {
-                        this._ui = ref;
-                    }}
                     useAuth={this.useAuth()}
                 />
             </Provider>,

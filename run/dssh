@@ -7,4 +7,4 @@ ALINE=($LINE)
 
 echo ${ALINE[0]};
 
-docker run -it ${ALINE[0]} /bin/bash
+docker exec -i ${ALINE[0]} /bin/bash
