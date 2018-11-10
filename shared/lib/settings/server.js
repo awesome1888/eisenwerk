@@ -85,6 +85,10 @@ class Settings {
         return this.getSource()['AUTH.GOOGLE.SECRET'] || '';
     }
 
+    useSSR() {
+        return this.getSource()['SSR.ENABLED'] !== '0';
+    }
+
     prepareForClient() {
         return JSON.stringify({
             'URL.ROOT': this.getRootURL(),

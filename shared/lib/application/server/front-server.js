@@ -4,13 +4,13 @@ import ejs from 'ejs';
 
 export default class FrontServerApplication extends BaseApplication {
 
-    enableSSR() {
-        // todo: get this value from an ENV var
-        return true;
-    }
+    useSSR(res) {
+        if (!this.getSettings().useSSR()) {
+            return false;
+        }
 
-    useSSR() {
-        return this.enableSSR() && true/* todo: check some conditions, like user agent or get parameter */;
+        // todo: check for res
+        return true;
     }
 
     /**
@@ -35,7 +35,7 @@ export default class FrontServerApplication extends BaseApplication {
         // todo: instead of just putting * we need to check here if we are trying to get a route-like url
         // todo: i.e. /something/like/that/, but /blah.jpg will not be the case
         this.getNetwork().get('*', async (req, res) => {
-            if (this.useSSR()) {
+            if (this.useSSR(req)) {
                 // give back the page html
                 const renderer = await this.getRenderer();
                 await renderer.render(req, res);

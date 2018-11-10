@@ -77,6 +77,7 @@ To connect to a running container:
 * try to use component-template approach
 * make global __DEV__ constant, this will be easier to utilize
     define-plugin
+* rebuild Settings with deep freeze
 * use https://www.npmjs.com/package/compression
 * instead of doing `props.something`, do de-composition as `({className, children}) => { return (<div className={className}>{children}</div>) };`
 * https://www.npmjs.com/package/babel-plugin-transform-react-jsx-source

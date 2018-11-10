@@ -21,6 +21,7 @@ const getSrcFolder = (context) => {
 const getParameters = () => {
 	return {
         copyPackageJson: true, // copy package.json to a target build folder, in order to access it with Dockerfile
+        rebuildImage: false,
 	};
 };
 
