@@ -10,12 +10,9 @@ RUN mkdir /usr/src/app/public/
 RUN mkdir /usr/src/app/template/
 RUN chown -R owner:owner /usr/src/app/template/
 
-# SERVER
-# server is being changed way rearely, so it goes first
 COPY ./build/package.json .
 RUN npm install
-COPY ./build/app.front.server/ .
-
+# the server code is served through the volume
 # the client code is served through the volume
 
 CMD [ "npm", "run", "dev" ]

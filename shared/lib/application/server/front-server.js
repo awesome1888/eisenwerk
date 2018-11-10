@@ -10,7 +10,7 @@ export default class FrontServerApplication extends BaseApplication {
     }
 
     useSSR() {
-        return this.enableSSR() && true/* todo: check some coditions, like user agent or get parameter */;
+        return this.enableSSR() && true/* todo: check some conditions, like user agent or get parameter */;
     }
 
     /**
@@ -124,6 +124,10 @@ export default class FrontServerApplication extends BaseApplication {
     }
 
     readTemplate(file) {
-        return fs.readFileSync(`${this.getSettings().getRootFolder()}/template/${file}`).toString('utf8');
+        let folder = this.getSettings().getTemplateFolder();
+        if (!_.isStringNotEmpty(folder)) {
+            folder = `${this.getSettings().getRootFolder()}/template/`;
+        }
+        return fs.readFileSync(`${folder}/${file}`).toString('utf8');
     }
 }
