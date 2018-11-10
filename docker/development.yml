@@ -14,17 +14,16 @@ services:
       - db
     restart: on-failure
     volumes:
-      - ../build/app.front/build/app.front.client/public/:/usr/src/app/public/
-      - ../build/app.front/build/app.front.client/template/:/usr/src/app/template/
-      - ../build/app.front/build/app.front.client/assets.html:/usr/src/app/assets.html
+      - ../build/app.front/build/app.front.client/:/usr/src/app/client/
       - ../build/app.front/build/app.front.server/:/usr/src/app/server/
     environment:
-      - URL.ROOT=http://localhost:3001/
       - PORT=3001
-      - FOLDER.PUBLIC=/usr/src/app/public/
+      - URL.ROOT=http://localhost:3001/
       - URL.API=http://localhost:3100
       - FOLDER.ROOT=/usr/src/app/
-      - FOLDER.TEMPLATE=/usr/src/app/template/
+      - FOLDER.PUBLIC=/usr/src/app/client/public/
+      - FOLDER.TEMPLATE=/usr/src/app/client/template/
+      - FILE.TEMPLATE.ASSETS=/usr/src/app/client/assets.html
 
   api:
     build:

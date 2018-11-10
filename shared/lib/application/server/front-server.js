@@ -12,18 +12,10 @@ export default class FrontServerApplication extends BaseApplication {
         return res.query && (!!res.query.__ssr || !!res.query.__srr);
     }
 
-    /**
-     * Import reducers here, sagas, store and pages
-     * @returns {{}}
-     */
-    getFrontendPart() {
-        return {};
-    }
-
     async getRenderer() {
         if (!this._renderer) {
             const Renderer = (await import('../../renderer')).default;
-            this._renderer = new Renderer(this.getFrontendPart());
+            this._renderer = new Renderer(null);
         }
 
         return this._renderer;
@@ -68,7 +60,7 @@ export default class FrontServerApplication extends BaseApplication {
     getTemplate() {
         // if not cached or not in production
         if (!this._template || !this.getSettings().isProduction()) {
-            const main = this.readTemplate('main.ejs');
+            const main = this.readTemplateRelative('main.ejs');
 
             this._template = ejs.render(main, {
                 settings: this.getSettings().prepareForClient(),
@@ -95,7 +87,7 @@ export default class FrontServerApplication extends BaseApplication {
     getAssetHTML() {
         // if not cached or not in production
         if (!this._assetHTML || !this.getSettings().isProduction()) {
-            const html = this.readTemplate('../assets.html');
+            const html = this.readTemplate(this.getAssetsFilePath());
             const assets = {js: '', css: ''};
 
             let found = html.match(new RegExp('<!-- JS -->\n*(.+)\n*<!-- JS:END -->'));
@@ -115,18 +107,36 @@ export default class FrontServerApplication extends BaseApplication {
     }
 
     getOverlayAssets() {
-        return this.readTemplate('overlay/assets.ejs');
+        return this.readTemplateRelative('overlay/assets.ejs');
     }
 
     getOverlayHTML() {
-        return this.readTemplate('overlay/html.ejs');
+        return this.readTemplateRelative('overlay/html.ejs');
     }
 
-    readTemplate(file) {
+    getAssetsFilePath() {
+        let fPath = this.getSettings().getAssetsFilePath();
+        if (!_.isStringNotEmpty(fPath)) {
+            fPath = `${this.getTemplateFolder()}/../assets.html`;
+        }
+
+        return fPath;
+    }
+
+    getTemplateFolder() {
         let folder = this.getSettings().getTemplateFolder();
         if (!_.isStringNotEmpty(folder)) {
             folder = `${this.getSettings().getRootFolder()}/template/`;
         }
-        return fs.readFileSync(`${folder}/${file}`).toString('utf8');
+
+        return folder;
+    }
+
+    readTemplateRelative(file) {
+        return this.readTemplate(`${this.getTemplateFolder()}/${file}`);
+    }
+
+    readTemplate(path) {
+        return fs.readFileSync(path).toString('utf8');
     }
 }

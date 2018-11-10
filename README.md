@@ -56,6 +56,7 @@ To connect to a running container:
 13) jest
 14) redis 4 sessions
 15) redis 4 intercomm
+16) npm WARN deprecated feathers-errors@2.9.2: Feathers v3 is out and has moved to @feathersjs/errors. See https://docs.feathersjs.com/migrating.html for more information.
 
 ### Random
 * [CANCEL] connect to the database on-demand

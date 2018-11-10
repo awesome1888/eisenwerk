@@ -6,9 +6,6 @@ USER owner
 RUN printf "alias ll=\"ls -alh\"\n" >> /home/owner/.bashrc
 
 RUN chown -R owner:owner /usr/src/app
-RUN mkdir /usr/src/app/public/
-RUN mkdir /usr/src/app/template/
-RUN chown -R owner:owner /usr/src/app/template/
 
 COPY ./build/package.json .
 RUN npm install

@@ -46,6 +46,10 @@ class Settings {
         return this.getSource()['FOLDER.TEMPLATE'] || '';
     }
 
+    getAssetsFilePath() {
+        return this.getSource()['FILE.TEMPLATE.ASSETS'] || '';
+    }
+
     getDatabaseURL() {
         return this.getSource()['URL.DB'] || '';
     }
