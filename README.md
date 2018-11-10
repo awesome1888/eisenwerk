@@ -57,6 +57,8 @@ To connect to a running container:
 14) redis 4 sessions
 15) redis 4 intercomm
 16) npm WARN deprecated feathers-errors@2.9.2: Feathers v3 is out and has moved to @feathersjs/errors. See https://docs.feathersjs.com/migrating.html for more information.
+17) separate class for templating
+18) Couldn't open browser (if you are using BrowserSync in a headless environment, you might want to set the open option to false)]
 
 ### Random
 * [CANCEL] connect to the database on-demand

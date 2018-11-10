@@ -175,27 +175,27 @@ const getWebpackConfiguration = async (context) => {
             /moment[\/\\]locale$/,
             /en/
           ),
-          // // a cache, for incremental builds
-          // new HardSourceWebpackPlugin({
-          //   cacheDirectory: `${context.getHardSourcePluginFolder()}`,
-          //   cachePrune: {
-          //     // wipe out cache older than 1 minute
-          //     maxAge: 60 * 1000,
-          //     // wipe out cache higher than 50mb
-          //     sizeThreshold: 50 * 1024 * 1024
-          //   },
-          //   info: {
-          //     // 'debug', 'log', 'info', 'warn', or 'error'.
-          //     level: 'info',
-          //   },
-          // }),
+          // a cache, for incremental builds
+          new HardSourceWebpackPlugin({
+            cacheDirectory: `${context.getHardSourcePluginFolder()}`,
+            cachePrune: {
+              // wipe out cache older than 1 minute
+              maxAge: 60 * 1000,
+              // wipe out cache higher than 50mb
+              sizeThreshold: 50 * 1024 * 1024
+            },
+            info: {
+              // 'debug', 'log', 'info', 'warn', or 'error'.
+              level: 'info',
+            },
+          }),
           new MiniCssExtractPlugin({
             filename: 'style.css',
           }),
           new HtmlWebpackPlugin({
             inject: false,
             hash: true,
-            template: `${srcFolder}/assets.html`,
+            template: `${srcFolder}/../assets.html`,
             filename: `${dstFolder}/assets.html`
           }),
           new webpack.ProvidePlugin({
