@@ -14,4 +14,5 @@ class RoleEnumFactory extends EnumFactory {
     }
 }
 
-export default new RoleEnumFactory();
+const factory = new RoleEnumFactory();
+export default factory;
