@@ -9,8 +9,7 @@ export default class FrontServerApplication extends BaseApplication {
             return false;
         }
 
-        // todo: check for res
-        return true;
+        return res.query && !!res.query.__ssr;
     }
 
     /**

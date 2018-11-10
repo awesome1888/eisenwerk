@@ -43,7 +43,7 @@ To connect to a running container:
 1.61) [DONE] correct public path
 1.62) use relative to source root paths
 1.7) ssr
-    1) 
+    1) bug: ssr will work on missing 404 (i.e. favicon.ico)
 2) auth in a modern way
 4) re-think oauth2
 5) migrations
