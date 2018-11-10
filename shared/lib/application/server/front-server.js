@@ -9,7 +9,7 @@ export default class FrontServerApplication extends BaseApplication {
             return false;
         }
 
-        return res.query && !!res.query.__ssr;
+        return res.query && (!!res.query.__ssr || !!res.query.__srr);
     }
 
     /**
