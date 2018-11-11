@@ -59,9 +59,11 @@ const getWebpackConfiguration = async (context) => {
             filename: 'index.js',
             path: dstFolder,
             libraryTarget: 'commonjs2',
+            publicPath: '/',
         },
 
         resolve: {
+            extensions: ['.js', '.jsx'],
             // disable "symlink resolution", in order to make it work as expected
             symlinks: false,
         },

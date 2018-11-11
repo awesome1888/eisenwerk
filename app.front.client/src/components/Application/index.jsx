@@ -32,7 +32,6 @@ class Application extends React.Component {
     }
 
     render() {
-        console.dir('?????????????');
         return (
           <div className="application">
               <HomePage />
