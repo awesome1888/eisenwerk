@@ -3,6 +3,10 @@ import process from 'process';
 
 export default class Application {
 
+    constructor(params = {}) {
+        this._params = params;
+    }
+
     getNetwork() {
         throw new Error('Not implemented: .getNetwork()');
     }
@@ -62,5 +66,9 @@ export default class Application {
 
     getSettings() {
         return settings;
+    }
+
+    getParams() {
+        return this._params;
     }
 }

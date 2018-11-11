@@ -28,7 +28,7 @@ export default class Template {
 
     getAssetHTML() {
         // if not cached or not in production
-        if (!this._assetHTML || !this._settings.isProduction()) {
+        if (__DEV__ || !this._assetHTML) {
             const html = this.readTemplate(this.getAssetsFilePath());
             const assets = {js: '', css: ''};
 

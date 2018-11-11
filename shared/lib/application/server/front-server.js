@@ -16,6 +16,7 @@ export default class FrontServerApplication extends BaseApplication {
             const Renderer = (await import('../../renderer')).default;
             this._renderer = new Renderer({
                 template: this.getTemplate(),
+                clientApplication: this.getParams().clientApplication,
             });
         }
 
@@ -53,7 +54,7 @@ export default class FrontServerApplication extends BaseApplication {
     attachErrorHandler() {
         const app = this.getNetwork();
 
-        // dont remove "next", because...
+        // don't remove "next", because...
         // https://expressjs.com/en/guide/using-middleware.html#middleware.error-handling
         app.use((error, req, res, next) => {
             const code = parseInt(error.message, 10);
