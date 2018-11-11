@@ -21,6 +21,7 @@
     "babel-polyfill": "^6.26.0",
     "bcrypt": "^3.0.0",
     "cors": "^2.8.4",
+    "deep-freeze-node": "^1.1.3",
     "feathers-authentication-management": "^2.0.1",
     "feathers-authentication-popups": "^0.1.2",
     "feathers-mongoose": "^6.1.2",

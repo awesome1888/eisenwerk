@@ -5,11 +5,11 @@ class Settings {
     }
 
     getRootURL() {
-        return this.getSource()['URL.ROOT'] || '';
+        return this.getSource()['URL__ROOT'] || '';
     }
 
     getAPIURL() {
-        return (this.getSource()['URL.API'] || '').replace(/\/+$/, '');
+        return (this.getSource()['URL__API'] || '').replace(/\/+$/, '');
     }
 
     isProduction() {

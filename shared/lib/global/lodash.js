@@ -5,6 +5,7 @@ const isNumber = require('lodash.isnumber');
 const isFunction = require('lodash.isfunction');
 const get = require('lodash.get');
 const cloneDeep = require('lodash.clonedeep');
+const deepFreeze = require('deep-freeze-node');
 const isEqual = require('lodash.isequal');
 
 module.exports = {
@@ -37,4 +38,5 @@ module.exports = {
     deepClone: cloneDeep, // compatibility
     get,
     getValue: get, // compatibility
+    deepFreeze,
 };

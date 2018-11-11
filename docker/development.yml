@@ -18,12 +18,12 @@ services:
       - ../build/app.front/build/app.front.server/:/usr/src/app/server/
     environment:
       - PORT=3001
-      - URL.ROOT=http://localhost:3001/
-      - URL.API=http://localhost:3100
-      - FOLDER.ROOT=/usr/src/app/
-      - FOLDER.PUBLIC=/usr/src/app/client/public/
-      - FOLDER.TEMPLATE=/usr/src/app/client/template/
-      - FILE.TEMPLATE.ASSETS=/usr/src/app/client/assets.html
+      - URL__ROOT=http://localhost:3001/
+      - URL__API=http://localhost:3100
+      - FOLDER__ROOT=/usr/src/app/
+      - FOLDER__PUBLIC=/usr/src/app/client/public/
+      - FOLDER__TEMPLATE=/usr/src/app/client/template/
+      - FILE__TEMPLATE__ASSETS=/usr/src/app/client/assets.html
 
   api:
     build:
@@ -37,14 +37,14 @@ services:
       - db
     restart: on-failure
     environment:
-      - URL.ROOT=http://localhost:3100/
       - PORT=3100
-      - URL.DB=mongodb://db:27017/ew
-      - CORS.ORIGIN=http://localhost:3000,http://localhost:3010,http://localhost:3001
-      - AUTH.SECRET=P4cRdF5mzSMPvy4hCdpKCjHMp3vZ4UvynaxhEAJK
-      - AUTH.GOOGLE.CLIENT-ID=
-      - AUTH.GOOGLE.SECRET=
-      - URL.CLIENT-ORIGIN=http://localhost:3010
+      - URL__ROOT=http://localhost:3100/
+      - URL__DB=mongodb://db:27017/ew
+      - URL__CLIENT_ORIGIN=http://localhost:3010
+      - CORS__ORIGIN=http://localhost:3000,http://localhost:3010,http://localhost:3001
+      - AUTH__SECRET=P4cRdF5mzSMPvy4hCdpKCjHMp3vZ4UvynaxhEAJK
+      - AUTH__GOOGLE__CLIENT_ID=
+      - AUTH__GOOGLE__SECRET=
 
   db:
       image: "mongo:latest"

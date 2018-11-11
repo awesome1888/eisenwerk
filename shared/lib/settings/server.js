@@ -3,10 +3,14 @@ import parse from 'url-parse';
 
 class Settings {
 
+    constructor() {
+        this.env = _.deepFreeze(_.cloneDeep(process.env));
+    }
+
     checkMandatory() {
         const missing = [];
         if (!_.isStringNotEmpty(this.getRootURL())) {
-            missing.push('ROOT_URL');
+            missing.push('URL__ROOT');
         }
         if (!_.isStringNotEmpty(this.getPort())) {
             missing.push('PORT');
@@ -21,7 +25,7 @@ class Settings {
     }
 
     getRootURL() {
-        return this.getSource()['URL.ROOT'] || '';
+        return this.getSource()['URL__ROOT'] || '';
     }
 
     getRootURLParsed() {
@@ -29,7 +33,7 @@ class Settings {
     }
 
     getPublicFolder() {
-        const path = this.getSource()['FOLDER.PUBLIC'];
+        const path = this.getSource()['FOLDER__PUBLIC'];
 
         if (_.isStringNotEmpty(path)) {
             return path;
@@ -39,29 +43,29 @@ class Settings {
     }
 
     getRootFolder() {
-        return this.getSource()['FOLDER.ROOT'] || '';
+        return this.getSource()['FOLDER__ROOT'] || '';
     }
 
     getTemplateFolder() {
-        return this.getSource()['FOLDER.TEMPLATE'] || '';
+        return this.getSource()['FOLDER__TEMPLATE'] || '';
     }
 
     getAssetsFilePath() {
-        return this.getSource()['FILE.TEMPLATE.ASSETS'] || '';
+        return this.getSource()['FILE__TEMPLATE__ASSETS'] || '';
     }
 
     getDatabaseURL() {
-        return this.getSource()['URL.DB'] || '';
+        return this.getSource()['URL__DB'] || '';
     }
 
     // todo: this is just ugly, the API server should be client-agnostic, but since otherwise we cant make
     // todo: oauth work, the only way is to let the server know about its clients
     getClientURL() {
-        return this.getSource()['URL.CLIENT-ORIGIN'] || '';
+        return this.getSource()['URL__CLIENT_ORIGIN'] || '';
     }
 
     getAPIURL() {
-        return this.getSource()['URL.API'] || '';
+        return this.getSource()['URL__API'] || '';
     }
 
     isProduction() {
@@ -69,7 +73,7 @@ class Settings {
     }
 
     getAllowedOrigins() {
-        const origins = this.getSource()['CORS.ORIGIN'];
+        const origins = this.getSource()['CORS__ORIGIN'];
         if (_.isStringNotEmpty(origins)) {
             return origins.split(',').map(x => x.trim());
         }
@@ -78,25 +82,25 @@ class Settings {
     }
 
     getSecret() {
-        return this.getSource()['AUTH.SECRET'] || '';
+        return this.getSource()['AUTH__SECRET'] || '';
     }
 
     getOAuthGoogleClientId() {
-        return this.getSource()['AUTH.GOOGLE.CLIENT-ID'] || '';
+        return this.getSource()['AUTH__GOOGLE__CLIENT_ID'] || '';
     }
 
     getOAuthGoogleSecret() {
-        return this.getSource()['AUTH.GOOGLE.SECRET'] || '';
+        return this.getSource()['AUTH__GOOGLE__SECRET'] || '';
     }
 
     useSSR() {
-        return this.getSource()['SSR.ENABLED'] !== '0';
+        return this.getSource()['SSR__ENABLED'] !== '0';
     }
 
     prepareForClient() {
         return JSON.stringify({
-            'URL.ROOT': this.getRootURL(),
-            'URL.API': this.getAPIURL(),
+            'URL__ROOT': this.getRootURL(),
+            'URL__API': this.getAPIURL(),
             PRODUCTION: this.isProduction(),
         });
     }
