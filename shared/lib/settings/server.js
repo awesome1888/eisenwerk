@@ -4,7 +4,7 @@ import parse from 'url-parse';
 class Settings {
 
     constructor() {
-        this.env = _.deepFreeze(_.cloneDeep(process.env));
+        this.env = process.env;
     }
 
     checkMandatory() {
@@ -21,11 +21,11 @@ class Settings {
     }
 
     getPort() {
-        return this.getSource().PORT || 3000;
+        return this.env.PORT || 3000;
     }
 
     getRootURL() {
-        return this.getSource()['URL__ROOT'] || '';
+        return this.env.URL__ROOT || '';
     }
 
     getRootURLParsed() {
@@ -33,7 +33,7 @@ class Settings {
     }
 
     getPublicFolder() {
-        const path = this.getSource()['FOLDER__PUBLIC'];
+        const path = this.env.FOLDER__PUBLIC;
 
         if (_.isStringNotEmpty(path)) {
             return path;
@@ -43,37 +43,37 @@ class Settings {
     }
 
     getRootFolder() {
-        return this.getSource()['FOLDER__ROOT'] || '';
+        return this.env.FOLDER__ROOT || '';
     }
 
     getTemplateFolder() {
-        return this.getSource()['FOLDER__TEMPLATE'] || '';
+        return this.env.FOLDER__TEMPLATE || '';
     }
 
     getAssetsFilePath() {
-        return this.getSource()['FILE__TEMPLATE__ASSETS'] || '';
+        return this.env.FILE__TEMPLATE__ASSETS || '';
     }
 
     getDatabaseURL() {
-        return this.getSource()['URL__DB'] || '';
+        return this.env.URL__DB || '';
     }
 
     // todo: this is just ugly, the API server should be client-agnostic, but since otherwise we cant make
     // todo: oauth work, the only way is to let the server know about its clients
     getClientURL() {
-        return this.getSource()['URL__CLIENT_ORIGIN'] || '';
+        return this.env.URL__CLIENT_ORIGIN || '';
     }
 
     getAPIURL() {
-        return this.getSource()['URL__API'] || '';
+        return this.env.URL__API || '';
     }
 
     isProduction() {
-        return this.getSource().NODE_ENV === 'production';
+        return this.env.NODE_ENV === 'production';
     }
 
     getAllowedOrigins() {
-        const origins = this.getSource()['CORS__ORIGIN'];
+        const origins = this.env.CORS__ORIGIN;
         if (_.isStringNotEmpty(origins)) {
             return origins.split(',').map(x => x.trim());
         }
@@ -82,31 +82,27 @@ class Settings {
     }
 
     getSecret() {
-        return this.getSource()['AUTH__SECRET'] || '';
+        return this.env.AUTH__SECRET || '';
     }
 
     getOAuthGoogleClientId() {
-        return this.getSource()['AUTH__GOOGLE__CLIENT_ID'] || '';
+        return this.env.AUTH__GOOGLE__CLIENT_ID || '';
     }
 
     getOAuthGoogleSecret() {
-        return this.getSource()['AUTH__GOOGLE__SECRET'] || '';
+        return this.env.AUTH__GOOGLE__SECRET || '';
     }
 
     useSSR() {
-        return this.getSource()['SSR__ENABLED'] !== '0';
+        return this.env.SSR__ENABLED !== '0';
     }
 
     prepareForClient() {
         return JSON.stringify({
-            'URL__ROOT': this.getRootURL(),
-            'URL__API': this.getAPIURL(),
+            URL__ROOT: this.getRootURL(),
+            URL__API: this.getAPIURL(),
             PRODUCTION: this.isProduction(),
         });
-    }
-
-    getSource() {
-        return process.env;
     }
 }
 

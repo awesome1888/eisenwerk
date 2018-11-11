@@ -8,8 +8,6 @@ export default class FrontServerApplication extends BaseApplication {
             return false;
         }
 
-        console.dir(this.getSettings().env);
-
         return res.query && (!!res.query.__ssr || !!res.query.__srr);
     }
 
