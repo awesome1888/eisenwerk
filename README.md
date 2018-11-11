@@ -44,6 +44,9 @@ To connect to a running container:
 1.62) use relative to source root paths
 1.7) ssr
     1) bug: ssr will work on missing 404 (i.e. favicon.ico)
+1.8) EHHH Shitty decisions made... 
+    Re-think the whole idea about how we dockerize: there is a simpler way to do that with no docker-build-tool involved
+    Run as dockerized or not: should not be important
 2) auth in a modern way
 4) re-think oauth2
 5) migrations
@@ -57,7 +60,7 @@ To connect to a running container:
 14) redis 4 sessions
 15) redis 4 intercomm
 16) npm WARN deprecated feathers-errors@2.9.2: Feathers v3 is out and has moved to @feathersjs/errors. See https://docs.feathersjs.com/migrating.html for more information.
-17) separate class for templating
+17) [DONE] separate class for templating
 18) Couldn't open browser (if you are using BrowserSync in a headless environment, you might want to set the open option to false)]
 
 ### Random
@@ -78,8 +81,7 @@ To connect to a running container:
 * [CANCEL] cron (cancelled, because for cron there should be a separate app according to the microservices architecture)
 * [CANCEL] Web sockets!
 * try to use component-template approach
-* make global __DEV__ constant, this will be easier to utilize
-    define-plugin
+* [DONE] make global __DEV__ constant, this will be easier to utilize
 * rebuild Settings with deep freeze
 * use https://www.npmjs.com/package/compression
 * instead of doing `props.something`, do de-composition as `({className, children}) => { return (<div className={className}>{children}</div>) };`

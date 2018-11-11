@@ -83,6 +83,9 @@ const getWebpackConfiguration = async (context) => {
                 _: `${srcFolder}/shared/lib/global/lodash.js`,
                 mix: `${srcFolder}/shared/lib/global/mix.js`,
             }),
+            new webpack.DefinePlugin({
+                __DEV__: process.env.NODE_ENV !== 'production',
+            }),
         ],
     };
 };

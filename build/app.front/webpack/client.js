@@ -170,38 +170,41 @@ const getWebpackConfiguration = async (context) => {
         // https://webpack.js.org/configuration/devtool/
         devtool: 'source-map',
         plugins: [
-          // remove unused momentjs locales
-          new webpack.ContextReplacementPlugin(
-            /moment[\/\\]locale$/,
-            /en/
-          ),
-          // a cache, for incremental builds
-          new HardSourceWebpackPlugin({
-            cacheDirectory: `${context.getHardSourcePluginFolder()}`,
-            cachePrune: {
-              // wipe out cache older than 1 minute
-              maxAge: 60 * 1000,
-              // wipe out cache higher than 50mb
-              sizeThreshold: 50 * 1024 * 1024
-            },
-            info: {
-              // 'debug', 'log', 'info', 'warn', or 'error'.
-              level: 'info',
-            },
-          }),
-          new MiniCssExtractPlugin({
-            filename: 'style.css',
-          }),
-          new HtmlWebpackPlugin({
-            inject: false,
-            hash: true,
-            template: `${srcFolder}/../assets.html`,
-            filename: `${dstFolder}/assets.html`
-          }),
-          new webpack.ProvidePlugin({
-            _: `${srcFolder}/shared/lib/global/lodash.js`,
-            mix: `${srcFolder}/shared/lib/global/mix.js`,
-          }),
+            // remove unused momentjs locales
+            new webpack.ContextReplacementPlugin(
+                /moment[\/\\]locale$/,
+                /en/
+            ),
+            // a cache, for incremental builds
+            new HardSourceWebpackPlugin({
+                cacheDirectory: `${context.getHardSourcePluginFolder()}`,
+                cachePrune: {
+                    // wipe out cache older than 1 minute
+                    maxAge: 60 * 1000,
+                    // wipe out cache higher than 50mb
+                    sizeThreshold: 50 * 1024 * 1024
+                },
+                info: {
+                    // 'debug', 'log', 'info', 'warn', or 'error'.
+                    level: 'info',
+                },
+            }),
+            new MiniCssExtractPlugin({
+                filename: 'style.css',
+            }),
+            new HtmlWebpackPlugin({
+                inject: false,
+                hash: true,
+                template: `${srcFolder}/../assets.html`,
+                filename: `${dstFolder}/assets.html`
+            }),
+            new webpack.ProvidePlugin({
+                _: `${srcFolder}/shared/lib/global/lodash.js`,
+                mix: `${srcFolder}/shared/lib/global/mix.js`,
+            }),
+            new webpack.DefinePlugin({
+                __DEV__: process.env.NODE_ENV !== 'production',
+            }),
         ],
     };
 };

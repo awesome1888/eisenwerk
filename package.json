@@ -86,7 +86,8 @@
       "TObjectId": true,
       "Schema": true,
       "navigator": true,
-      "mix": true
+      "mix": true,
+      "__DEV__": true
     },
     "parser": "babel-eslint",
     "parserOptions": {

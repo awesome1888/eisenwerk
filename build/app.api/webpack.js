@@ -132,6 +132,9 @@ const getWebpackConfiguration = async (context) => {
         TObjectId: `${srcFolder}/shared/lib/global/t-object-id.js`,
         Schema: `${srcFolder}/shared/lib/global/schema.js`,
       }),
+        new webpack.DefinePlugin({
+            __DEV__: process.env.NODE_ENV !== 'production',
+        }),
     ],
   };
 };
