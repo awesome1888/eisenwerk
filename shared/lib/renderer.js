@@ -17,17 +17,18 @@ export default class Renderer {
 
             await application.launch();
 
-            // ReactDOMServer.renderToString(
-            //   application.getUI()
-            // );
+            const body = ReactDOMServer.renderToString(
+              application.getUI()
+            );
 
             res.status(200);
             res.set('Content-Type', 'text/html');
-            res.send(this._template.get());
+            res.send(this._template.get({
+                body,
+                settings: {},
+            }));
         } else {
-            res.status(500);
-            res.set('Content-Type', 'text/html');
-            res.send('Nothing to render');
+            throw new Error(500);
         }
     }
 }

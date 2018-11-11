@@ -7,28 +7,30 @@ export default class Template {
         this._settings = settings;
     }
 
-    get() {
-        // if not cached or not in production
-        if (__DEV__ || !this._template) {
-            const main = this.readTemplateRelative('main.ejs');
-
-            this._template = ejs.render(main, {
-                settings: this._settings.prepareForClient(),
-                overlay: this.getOverlayHTML(),
-                assets: {
-                    js: this.getAssetHTML().js,
-                    css: this.getAssetHTML().css,
-                    overlay: this.getOverlayAssets(),
-                },
-            });
+    get(data = {}) {
+        if (!_.isObject(data)) {
+            data = {};
         }
 
-        return this._template;
+        data.settings = data.settings || this._settings.prepareForClient();
+        data.overlay = this.getOverlayHTML();
+        data.assets = {
+            js: this.getAssetHTML().js,
+            css: this.getAssetHTML().css,
+            overlay: this.getOverlayAssets(),
+        };
+
+        data.title = data.title || this._settings.env.PROJECT__NAME || '';
+        data.description = data.description || '';
+        data.keywords = data.keywords || '';
+        data.body = data.body || '';
+
+        return ejs.render(this.getMain(), data);
     }
 
     getAssetHTML() {
         // if not cached or not in production
-        if (__DEV__ || !this._assetHTML) {
+        if (!this._assetHTML) {
             const html = this.readTemplate(this.getAssetsFilePath());
             const assets = {js: '', css: ''};
 
@@ -48,12 +50,28 @@ export default class Template {
         return this._assetHTML;
     }
 
+    getMain() {
+        if (!this._main) {
+            this._main = this.readTemplateRelative('main.ejs');
+        }
+
+        return this._main;
+    }
+
     getOverlayAssets() {
-        return this.readTemplateRelative('overlay/assets.ejs');
+        if (!this._overlayAssets) {
+            this._overlayAssets = this.readTemplateRelative('overlay/assets.ejs');;
+        }
+
+        return this._overlayAssets;
     }
 
     getOverlayHTML() {
-        return this.readTemplateRelative('overlay/html.ejs');
+        if (!this._overlayHTML) {
+            this._overlayHTML = this.readTemplateRelative('overlay/html.ejs');
+        }
+
+        return this._overlayHTML;
     }
 
     getAssetsFilePath() {

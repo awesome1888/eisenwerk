@@ -1,8 +1,23 @@
 <!doctype html>
 <html>
 <head>
-    <title>Eisenwerk</title>
-    <meta name="title" content="Eisenwerk">
+    <title><%- title %></title>
+    <meta name="title" content="<%- title %>">
+    <meta name="keywords" content="<%- keywords %>">
+    <meta name="description" content="<%- description %>">
+
+    <meta property="og:title" content="<%- title %>" />
+    <meta property="og:description" content="<%- description %>" />
+    <meta property="og:type" content="website" />
+    <% if (typeof url !== 'undefined') { %>
+    <meta property="og:url" content="<%= url %>" />
+    <% } %>
+    <% if (typeof image !== 'undefined') { %>
+    <meta property="og:image" content="<%= image %>" />
+    <meta property="og:image:alt" content="<%- title %>" />
+    <% } %>
+    <meta property="og:locale" content="en_GB" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
     <link href="/images/favicon.png?v=4" rel="shortcut icon" type="image/x-icon">
     <link href="/images/webclip.png?v=4" rel="apple-touch-icon">
@@ -11,7 +26,7 @@
 </head>
 <body class="body_background_default">
 <%- overlay %>
-<div id="root"></div>
+<div id="root"><%- body %></div>
 <script>
     window.__SETTINGS__ = <%- settings %>;
 </script>

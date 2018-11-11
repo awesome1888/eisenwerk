@@ -44,6 +44,8 @@ To connect to a running container:
 1.62) use relative to source root paths
 1.7) ssr
     1) bug: ssr will work on missing 404 (i.e. favicon.ico)
+    2) memory leak in saga?!!!
+        https://github.com/redux-saga/redux-saga/issues/13#issuecomment-182883680
 1.8) EHHH Shitty decisions made... 
     Re-think the whole idea about how we dockerize: there is a simpler way to do that with no docker-build-tool involved
     Run as dockerized or not: should not be important

@@ -10,6 +10,7 @@ const isEqual = require('lodash.isequal');
 
 module.exports = {
     isArray: isArrayLike,
+    isObject,
     isArrayNotEmpty: (arg) => {
         return isArrayLike(arg) && arg.length > 0;
     },
