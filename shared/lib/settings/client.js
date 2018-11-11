@@ -1,7 +1,5 @@
 class Settings {
     constructor(settings) {
-        console.dir('Init settings');
-        console.dir(settings);
         if (settings) {
             this.env = settings;
         } else {
