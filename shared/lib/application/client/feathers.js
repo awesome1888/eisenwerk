@@ -1,4 +1,4 @@
-import settings from '../../settings/client.js';
+import Settings from '../../settings/client.js';
 import Authorization from '../../authorization/client.js';
 
 import Entity from '../../../lib/entity/client.js';
@@ -10,12 +10,23 @@ import axios from 'axios';
 
 export default class Application {
 
+    constructor(param = {}) {
+        this._settings = new Settings(param.settings);
+    }
+
     useAuth() {
         // todo: bring this flag from the ENV vars
         return true;
     }
 
-    launch() {
+    async launch() {
+        if (__SSR__ || !window) {
+            const Storage = (await import('node-storage-shim')).default;
+            this._storage = new Storage();
+        } else {
+            this._storage = window.localStorage;
+        }
+
         // tell all entities to use this network as default when making REST calls (this is important)
         Entity.setNetwork(this.getNetwork());
         Method.setNetwork(this.getNetwork());
@@ -28,25 +39,25 @@ export default class Application {
      */
     getNetwork() {
         if (!this._feathers) {
-            const app = feathers();
+            const application = feathers();
 
             // https://docs.feathersjs.com/api/client/rest.html
             const restClient = rest(this.getSettings().getAPIURL());
 
             // see other options in
             // https://docs.feathersjs.com/api/client/rest.html
-            app.configure(restClient.axios(axios));
+            application.configure(restClient.axios(axios));
 
             if (this.useAuth()) {
-                Authorization.prepare(app);
+                Authorization.prepare({application, storage: this._storage});
 
                 // todo: connect it to the store
-                app.on('authenticated', this.onLogin.bind(this));
-                app.on('logout', this.onLogout.bind(this));
-                app.on('reauthentication-error', this.onReLoginError.bind(this));
+                application.on('authenticated', this.onLogin.bind(this));
+                application.on('logout', this.onLogout.bind(this));
+                application.on('reauthentication-error', this.onReLoginError.bind(this));
             }
 
-            this._feathers = app;
+            this._feathers = application;
         }
 
         return this._feathers;
@@ -65,7 +76,7 @@ export default class Application {
      * @returns {*}
      */
     getSettings() {
-        return settings;
+        return this._settings;
     }
 
     isProduction() {

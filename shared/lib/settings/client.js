@@ -1,7 +1,12 @@
 class Settings {
-
-    constructor() {
-        this.env = window.__SETTINGS__ || {};
+    constructor(settings) {
+        console.dir('Init settings');
+        console.dir(settings);
+        if (settings) {
+            this.env = settings;
+        } else {
+            this.env = (window ? window.__SETTINGS__ : {}) || {};
+        }
     }
 
     getRootURL() {
@@ -17,4 +22,4 @@ class Settings {
     }
 }
 
-export default new Settings();
+export default Settings;

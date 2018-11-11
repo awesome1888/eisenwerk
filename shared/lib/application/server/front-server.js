@@ -17,6 +17,7 @@ export default class FrontServerApplication extends BaseApplication {
             this._renderer = new Renderer({
                 template: this.getTemplate(),
                 clientApplication: this.getParams().clientApplication,
+                settings: this.getSettings(),
             });
         }
 

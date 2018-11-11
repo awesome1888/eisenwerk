@@ -187,6 +187,7 @@ const getWebpackConfiguration = async (context) => {
             }),
             new webpack.DefinePlugin({
                 __DEV__: process.env.NODE_ENV !== 'production',
+                __SSR__: true,
             }),
         ],
     };

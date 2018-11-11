@@ -51,7 +51,7 @@ const getWebpackConfiguration = async (context) => {
 
         // we specify the root file to allow webpack to
         // calculate the dependency tree and strip away unused stuff
-        entry: `${srcFolder}/index.client.js`,
+        entry: `${srcFolder}/index.js`,
 
         // where to put the output bundle
         output: {

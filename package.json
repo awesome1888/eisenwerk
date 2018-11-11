@@ -87,7 +87,8 @@
       "Schema": true,
       "navigator": true,
       "mix": true,
-      "__DEV__": true
+      "__DEV__": true,
+      "__SSR__": true
     },
     "parser": "babel-eslint",
     "parserOptions": {

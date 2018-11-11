@@ -1,6 +1,5 @@
 import auth from '@feathersjs/authentication-client';
 import AuthorizationBoth from './both.js';
-import openLoginPopup from 'feathers-authentication-popups';
 
 import User from '../../entity/user/entity/client.js';
 
@@ -8,12 +7,12 @@ export default class Authorization extends AuthorizationBoth {
 
     /**
      * Tune feathersjs client app with appropriate configuration.
-     * @param app
+     * @param param
      */
-    static prepare(app) {
-        app.configure(auth({
+    static prepare({application, storage}) {
+        application.configure(auth({
             // todo: use custom storage in order to obtain the token either from localStorage or the URL
-            storage: window.localStorage,
+            storage,
         }));
     }
 
@@ -22,8 +21,14 @@ export default class Authorization extends AuthorizationBoth {
      * @returns {Promise<*>}
      */
     async signInThroughGoogle() {
+        if (__SSR__ || !window) {
+            return null;
+        }
+
         const ctx = this.getSettings();
 
+        // we don't want this when doing ssr
+        const openLoginPopup = (await import('feathers-authentication-popups')).default;
         openLoginPopup(`${ctx.getAPIURL()}/auth/google`, {
             width: 600,
             height: 600,
