@@ -45,9 +45,18 @@ export default class BaseExpressApplication extends BaseApplication {
         // dont remove "next", because...
         // https://expressjs.com/en/guide/using-middleware.html#middleware.error-handling
         app.use((error, req, res, next) => {
-            const code = parseInt(error.message, 10);
+            if (res.headersSent) {
+                return next(error);
+            }
+
+            let code = parseInt(error.message, 10);
+            if (isNaN(code)) {
+                code = 500;
+            }
             res.status(code);
+
             res.send(code === 404 ? 'Not found' : 'Error');
+            return true;
         });
     }
 }

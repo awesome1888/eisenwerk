@@ -39,11 +39,14 @@ export default class FrontServerApplication extends BaseApplication {
         super.attachMiddleware();
         // todo: instead of just putting * we need to check here if we are trying to get a route-like url
         // todo: i.e. /something/like/that/, but /blah.jpg will not be the case
-        this.getNetwork().get('*', async (req, res) => {
+        this.getNetwork().get('*', async (req, res, next) => {
             if (this.useSSR(req)) {
-                // give back the page html
-                const renderer = await this.getRenderer();
-                await renderer.render(req, res);
+                try {
+                    const renderer = await this.getRenderer();
+                    await renderer.render(req, res);
+                } catch (e) {
+                    next(e);
+                }
             } else {
                 // just serve as-is
                 res.status(200);
@@ -59,7 +62,14 @@ export default class FrontServerApplication extends BaseApplication {
         // don't remove "next", because...
         // https://expressjs.com/en/guide/using-middleware.html#middleware.error-handling
         app.use((error, req, res, next) => {
-            const code = parseInt(error.message, 10);
+            if (res.headersSent) {
+                return next(error);
+            }
+
+            let code = parseInt(error.message, 10);
+            if (isNaN(code)) {
+                code = 500;
+            }
             res.status(code);
 
             if (!this.getSettings().isProduction()) {
