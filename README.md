@@ -126,3 +126,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 2) on route change (or any load data action?) we show a progressbar
 3) if load data takes too long - show some good animated SVG loader, but not instantly to avoid flicking
 4) after the page is ready, we show the content not instantly, but with animation (different, see tech insightes for animation notes)
+
+
+https://github.com/mzgoddard/hard-source-webpack-plugin/pull/444

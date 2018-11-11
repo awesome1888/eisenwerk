@@ -10,7 +10,7 @@ export default class Renderer {
 
     async render(req, res) {
         if (_.isFunction(this._frontend)) {
-            const Application = (await this._frontend()).default;
+            const Application = await (this._frontend()).default;
             const application = new Application({
                 settings: this._settings.prepareForClient(),
             });

@@ -32,6 +32,10 @@ export default class Application {
         Method.setNetwork(this.getNetwork());
     }
 
+    getUI() {
+        return null;
+    }
+
     /**
      * Returns an instance of a "network" application, which manages REST, WebSocket
      * and other stuff that provides the client-server communications

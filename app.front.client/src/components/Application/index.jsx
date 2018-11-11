@@ -1,17 +1,17 @@
 import '../../style/index.scss'; // main style goes before any other
 
 import React from 'react';
-import { Switch } from 'react-router';
-import { ConnectedRouter } from 'connected-react-router';
+// import { Switch } from 'react-router';
+// import { ConnectedRouter } from 'connected-react-router';
 import { connect } from 'react-redux';
 
 import * as reducer from './reducer.js';
-import history from '../../lib/history';
-// import Auth from '../../api/auth';
-import Route from '../Route';
-import RouteEnter from '../RouteEnter';
-import DynamicImport from '../DynamicImport';
-import LayoutOuter from '../LayoutOuter';
+// import history from '../../lib/history';
+// // import Auth from '../../api/auth';
+// import Route from '../Route';
+// import RouteEnter from '../RouteEnter';
+// import DynamicImport from '../DynamicImport';
+// import LayoutOuter from '../LayoutOuter';
 
 import HomePage from '../../pages/Home';
 
@@ -32,49 +32,50 @@ class Application extends React.Component {
     }
 
     render() {
-        // if (!this.props.ready) {
-        //     // todo: show me some fancy loader?
-        //     return null;
-        // }
-
+        console.dir('?????????????');
         return (
-            <div className="application">
-                <ConnectedRouter history={history}>
-                    <Switch>
-                        <Route
-                            exact
-                            path="/"
-                            // redirectNotAuthorized="/login"
-                            render={(route) => {
-                                return (
-                                    <RouteEnter route={route}>
-                                        <LayoutOuter>
-                                            <HomePage match={route.match} />
-                                        </LayoutOuter>
-                                    </RouteEnter>
-                                );
-                            }}
-                            {...this.props}
-                        />
-                        <Route
-                            path="/list"
-                            render={(route) => {
-                                return (
-                                    <RouteEnter route={route}>
-                                        <LayoutOuter>
-                                            <DynamicImport load={() => import('../../pages/List')}>
-                                                {Component => Component && <Component match={route.match} />}
-                                            </DynamicImport>
-                                        </LayoutOuter>
-                                    </RouteEnter>
-                                );
-                            }}
-                            {...this.props}
-                        />
-                    </Switch>
-                </ConnectedRouter>
-            </div>
+          <div className="application">
+              <HomePage />
+          </div>
         );
+        // return (
+        //     <div className="application">
+        //         <ConnectedRouter history={history}>
+        //             <Switch>
+        //                 <Route
+        //                     exact
+        //                     path="/"
+        //                     // redirectNotAuthorized="/login"
+        //                     render={(route) => {
+        //                         return (
+        //                             <RouteEnter route={route}>
+        //                                 <LayoutOuter>
+        //                                     <HomePage match={route.match} />
+        //                                 </LayoutOuter>
+        //                             </RouteEnter>
+        //                         );
+        //                     }}
+        //                     {...this.props}
+        //                 />
+        //                 <Route
+        //                     path="/list"
+        //                     render={(route) => {
+        //                         return (
+        //                             <RouteEnter route={route}>
+        //                                 <LayoutOuter>
+        //                                     <DynamicImport load={() => import('../../pages/List')}>
+        //                                         {Component => Component && <Component match={route.match} />}
+        //                                     </DynamicImport>
+        //                                 </LayoutOuter>
+        //                             </RouteEnter>
+        //                         );
+        //                     }}
+        //                     {...this.props}
+        //                 />
+        //             </Switch>
+        //         </ConnectedRouter>
+        //     </div>
+        // );
     }
 }
 
