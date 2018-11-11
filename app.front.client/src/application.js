@@ -7,14 +7,14 @@ import UIApplication from './components/Application/index.jsx';
 import store from './store';
 
 export default class Application extends BaseApplication {
-    // getUI() {
-    //     return (
-    //         <Provider store={store}>
-    //             <UIApplication
-    //                 application={this}
-    //                 useAuth={this.useAuth()}
-    //             />
-    //         </Provider>
-    //     );
-    // }
+    getUI() {
+        return (
+            <Provider store={store}>
+                <UIApplication
+                    application={this}
+                    useAuth={this.useAuth()}
+                />
+            </Provider>
+        );
+    }
 }

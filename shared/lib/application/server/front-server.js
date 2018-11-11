@@ -8,6 +8,7 @@ export default class FrontServerApplication extends BaseApplication {
             return false;
         }
 
+        // todo: look at the user agent here
         return res.query && (!!res.query.__ssr || !!res.query.__srr);
     }
 

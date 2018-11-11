@@ -6,6 +6,13 @@ const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+// making MiniCssExtractPlugin functional server-side
+class ServerMiniCssExtractPlugin extends MiniCssExtractPlugin {
+    getCssChunkObject(mainChunk) {
+        return {};
+    }
+}
+
 /**
  *
  * @param context
@@ -110,8 +117,8 @@ const getWebpackConfiguration = async (context) => {
                     test: /\.(sa|sc|c)ss$/,
                     exclude: /node_modules/,
                     use: [
-                        'style-loader',
-                        MiniCssExtractPlugin.loader,
+                        // 'style-loader',
+                        ServerMiniCssExtractPlugin.loader,
                         {
                             loader: 'css-loader',
                             options: {
@@ -130,8 +137,8 @@ const getWebpackConfiguration = async (context) => {
                     test: /\.less$/,
                     exclude: /node_modules/,
                     use: [
-                        'style-loader',
-                        MiniCssExtractPlugin.loader,
+                        // 'style-loader',
+                        ServerMiniCssExtractPlugin.loader,
                         {
                             loader: 'css-loader',
                             options: {
@@ -181,7 +188,7 @@ const getWebpackConfiguration = async (context) => {
             //         level: 'info',
             //     },
             // }),
-            new MiniCssExtractPlugin({
+            new ServerMiniCssExtractPlugin({
                 filename: 'style.css',
             }),
             new webpack.ProvidePlugin({
