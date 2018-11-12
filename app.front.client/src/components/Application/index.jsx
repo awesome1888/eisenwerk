@@ -13,7 +13,7 @@ import * as reducer from './reducer.js';
 // import DynamicImport from '../DynamicImport';
 // import LayoutOuter from '../LayoutOuter';
 
-import HomePage from '../../pages/Home';
+import HomePage from '../../pages/Home/ui';
 
 import './style.scss';
 

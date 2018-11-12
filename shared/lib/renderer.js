@@ -21,6 +21,8 @@ export default class Renderer {
               application.getUI()
             );
 
+            await application.teardown();
+
             res.status(200);
             res.set('Content-Type', 'text/html');
             res.send(this._template.get({

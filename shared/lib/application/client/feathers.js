@@ -32,6 +32,9 @@ export default class Application {
         Method.setNetwork(this.getNetwork());
     }
 
+    async teardown() {
+    }
+
     getUI() {
         return null;
     }

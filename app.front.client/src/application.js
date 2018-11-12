@@ -2,19 +2,39 @@ import BaseApplication from './shared/lib/application/client/feathers.js';
 
 import React from 'react';
 import { Provider } from 'react-redux';
-import UIApplication from './components/Application/index.jsx';
+import Store from './shared/lib/store';
 
-import store from './store'; // todo: ssr memory leak!
+import UIApplication from './components/Application';
+import mainReducer from './components/Application/reducer';
+import pages from './pages';
 
 export default class Application extends BaseApplication {
+
+    getStore() {
+        if (!this._store) {
+            this._store = Store.make({
+                mainReducer,
+                pages,
+            });
+        }
+
+        return this._store;
+    }
+
     getUI() {
         return (
-            <Provider store={store}>
+            <Provider store={this.getStore().getReduxStore()}>
                 <UIApplication
                     application={this}
                     useAuth={this.useAuth()}
                 />
             </Provider>
         );
+    }
+
+    async teardown() {
+        if (this._store) {
+            this._store.shutdown();
+        }
     }
 }
