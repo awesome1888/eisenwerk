@@ -43,12 +43,23 @@ To connect to a running container:
 1.61) [DONE] correct public path
 1.62) use relative to source root paths
 1.7) ssr
-    1) bug: ssr will work on missing 404 (i.e. favicon.ico)
-    2) [DONE] memory leak in saga?!!!
+    0) execute application's init action
+    1) catch the moment when the data is loaded, asynchroniously, with the timeout
+    2) implement router server-side, forward route data to dispatch()
+    3) the same for the client-side
+    4) make reducer fabric
+    5) make saga fabric
+    6) implement setting and getting of the title, description and other stuff
+    7) bug: ssr will work on missing 404 (i.e. favicon.ico)
+    8) [DONE] memory leak in saga?!!!
         https://github.com/redux-saga/redux-saga/issues/13#issuecomment-182883680
-    3) implement at least simple cache with redis
-        how to make it decoupled?
-    4) 404 with code when doing SSR
+    9) implement at least simple cache with redis
+        make it decoupled: with hooks
+    10) 404 with code when doing SSR
+    11) disable overlay for SSR
+    12) enable SSR by user agent
+        https://support.google.com/webmasters/answer/80553
+        https://support.google.com/webmasters/answer/1061943?hl=en
 1.71) 404 with code when doing CSR
 1.8) EHHH Shitty decisions made... 
     Re-think the whole idea about how we dockerize: there is a simpler way to do that with no docker-build-tool involved

@@ -24,14 +24,9 @@ export default class Renderer {
 
             const store = application.getStore().getReduxStore();
 
-            console.dir('Initial:');
-            console.dir(store.getState());
-
             const unsubscribe = store.subscribe(() => {
                 console.dir(store.getState());
             });
-            console.dir('dispatch');
-            console.dir({type: tmpPage.initial, payload: {/*todo: route data*/}});
             store.dispatch({type: tmpPage.initial, payload: {/*todo: route data*/}});
 
             await new Promise((resolve) => {setTimeout(resolve, 2000)});
