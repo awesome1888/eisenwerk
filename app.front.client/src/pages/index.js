@@ -1,5 +1,5 @@
 import Home from './Home';
-import List from './Home';
+import List from './List';
 
 export default [
     Home,

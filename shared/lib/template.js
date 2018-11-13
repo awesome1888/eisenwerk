@@ -12,10 +12,14 @@ export default class Template {
             data = {};
         }
 
-        data.settings = data.settings || this._settings.prepareForClient();
+        if (data.dry) {
+            data.settings = JSON.stringify({});
+        } else {
+            data.settings = data.settings ? JSON.stringify(data.settings) : this._settings.prepareForClient();
+        }
         data.overlay = this.getOverlayHTML();
         data.assets = {
-            js: this.getAssetHTML().js,
+            js: data.dry ? '' : this.getAssetHTML().js,
             css: this.getAssetHTML().css,
             overlay: this.getOverlayAssets(),
         };

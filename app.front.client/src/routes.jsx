@@ -8,7 +8,7 @@ export default [
         path: '/',
         // redirectNotAuthorized: '/login',
 
-        page: pages.Home,
+        page: pages[0],
         // this...
         layoutUI: LayoutOuter,
         // ...or render()
@@ -16,7 +16,7 @@ export default [
     {
         path: '/list',
 
-        page: pages.List,
+        page: pages[1],
         // this...
         layoutUI: LayoutOuter,
         // ...or render()

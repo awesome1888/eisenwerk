@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Layout from '../../components/LayoutInner';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import * as reducer from './reducer';
 
 class ListPage extends React.Component {
@@ -23,7 +23,7 @@ class ListPage extends React.Component {
                         ))}
                     </div>
                 }
-                <Link to="/">Home</Link>
+                {/*<Link to="/">Home</Link>*/}
             </Layout>
         );
     }

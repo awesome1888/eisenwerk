@@ -13,10 +13,12 @@ function* loadData() {
         }
         yield put({ type: reducer.HOME_REQUEST_ENDFAILURE, payload: error });
     }
+
+    yield put({ type: reducer.HOME_FINISH });
 }
 
 export default function* watcher() {
     yield all([
-        fork(function* loadDataGenerator() { yield takeLatest(reducer.HOME_REQUEST_START, loadData); }),
+        fork(function* loadDataGenerator() { yield takeLatest(reducer.HOME_START, loadData); }),
     ]);
 }

@@ -13,7 +13,7 @@ import * as reducer from './reducer.js';
 // import DynamicImport from '../DynamicImport';
 // import LayoutOuter from '../LayoutOuter';
 
-import HomePage from '../../pages/Home/ui';
+import ListPage from '../../pages/List/ui';
 
 import './style.scss';
 
@@ -34,7 +34,7 @@ class Application extends React.Component {
     render() {
         return (
           <div className="application">
-              <HomePage />
+              <ListPage />
           </div>
         );
         // return (

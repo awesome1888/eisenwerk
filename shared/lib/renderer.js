@@ -2,10 +2,11 @@ import ReactDOMServer from 'react-dom/server';
 
 export default class Renderer {
 
-    constructor({settings, clientApplication, template}) {
+    constructor({settings, clientApplication, template, hooks}) {
         this._settings = settings;
         this._frontend = clientApplication;
         this._template = template;
+        this._hooks = hooks;
     }
 
     async render(req, res) {
@@ -17,10 +18,27 @@ export default class Renderer {
 
             await application.launch();
 
-            const body = ReactDOMServer.renderToString(
-              application.getUI()
-            );
+            // load data
+            const pages = Application.getPages();
+            const tmpPage = pages[1]; // tmp, this should come from router
 
+            const store = application.getStore().getReduxStore();
+
+            console.dir('Initial:');
+            console.dir(store.getState());
+
+            const unsubscribe = store.subscribe(() => {
+                console.dir(store.getState());
+            });
+            console.dir('dispatch');
+            console.dir({type: tmpPage.initial, payload: {/*todo: route data*/}});
+            store.dispatch({type: tmpPage.initial, payload: {/*todo: route data*/}});
+
+            await new Promise((resolve) => {setTimeout(resolve, 2000)});
+
+            unsubscribe();
+
+            const body = ReactDOMServer.renderToStaticMarkup(application.getUI());
             await application.teardown();
 
             res.status(200);
@@ -28,6 +46,7 @@ export default class Renderer {
             res.send(this._template.get({
                 body,
                 settings: {},
+                dry: true,
             }));
         } else {
             throw new Error(500);

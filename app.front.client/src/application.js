@@ -10,11 +10,15 @@ import pages from './pages';
 
 export default class Application extends BaseApplication {
 
+    static getPages() {
+        return pages;
+    }
+
     getStore() {
         if (!this._store) {
             this._store = Store.make({
                 mainReducer,
-                pages,
+                pages: this.getPages(),
             });
         }
 

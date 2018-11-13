@@ -10,6 +10,10 @@ import axios from 'axios';
 
 export default class Application {
 
+    static getPages() {
+        return [];
+    }
+
     constructor(param = {}) {
         this._settings = new Settings(param.settings);
     }
@@ -37,6 +41,10 @@ export default class Application {
 
     getUI() {
         return null;
+    }
+
+    getPages() {
+        return this.constructor.getPages();
     }
 
     /**

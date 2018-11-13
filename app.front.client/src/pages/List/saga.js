@@ -14,10 +14,12 @@ function* loadData() {
         }
         yield put({ type: reducer.LIST_REQUEST_ENDFAILURE, payload: error });
     }
+
+    yield put({ type: reducer.LIST_FINISH });
 }
 
 export default function* watcher() {
     yield all([
-        fork(function* loadDataGenerator() { yield takeLatest(reducer.LIST_REQUEST_START, loadData); }),
+        fork(function* loadDataGenerator() { yield takeLatest(reducer.LIST_START, loadData); }),
     ]);
 }

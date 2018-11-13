@@ -20,7 +20,7 @@ export default class Store {
                     reducers.push(page.reducer);
                 }
                 if (page.saga) {
-                    reducers.push(page.saga);
+                    sagas.push(page.saga);
                 }
             }
         });
