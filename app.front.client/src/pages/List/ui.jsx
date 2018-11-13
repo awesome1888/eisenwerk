@@ -6,7 +6,7 @@ import * as reducer from './reducer';
 
 class ListPage extends React.Component {
     componentDidMount() {
-        this.props.dispatch({type: reducer.LIST_REQUEST_START});
+        this.props.dispatch({type: reducer.LIST_START});
     }
 
     render() {
