@@ -43,8 +43,8 @@ To connect to a running container:
 1.61) [DONE] correct public path
 1.62) use relative to source root paths
 1.7) ssr
-    0) execute application's init action
-    1) catch the moment when the data is loaded, asynchroniously, with the timeout
+    0) [DONE] execute application's init action
+    1) [DONE] catch the moment when the data is loaded, asynchroniously, with the timeout
     2) implement router server-side, forward route data to dispatch()
     3) the same for the client-side
     4) make reducer fabric

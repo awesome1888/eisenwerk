@@ -1,8 +1,12 @@
 import ReducerFabric from '../../shared/lib/reducer/fabric.js';
 
+export const APPLICATION_START = 'application.start';
+export const APPLICATION_FINISH = 'application.finish';
+
 export const APPLICATION_AUTHORIZED_SET = 'application.authorized.set';
 export const APPLICATION_AUTHORIZED_UNSET = 'application.authorized.unset';
-export const APPLICATION_READY_SET = 'application.ready.set';
+
+export const initial = APPLICATION_START;
 
 export default ReducerFabric.make(
     'application',
@@ -11,8 +15,8 @@ export default ReducerFabric.make(
         authorized: false,
     },
     {
+        [APPLICATION_FINISH]: state => ({ ...state, ready: true }),
         [APPLICATION_AUTHORIZED_SET]: state => ({ ...state, authorized: true }),
         [APPLICATION_AUTHORIZED_UNSET]: state => ({ ...state, authorized: false }),
-        [APPLICATION_READY_SET]: state => ({ ...state, ready: true }),
     }
 );

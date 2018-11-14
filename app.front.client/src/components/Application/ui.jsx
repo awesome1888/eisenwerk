@@ -20,22 +20,32 @@ import './style.scss';
 class Application extends React.Component {
 
     componentDidMount() {
-        if (this.props.useAuth) {
-            // check if we are authorized
-            // todo
-            this.props.dispatch({type: reducer.APPLICATION_READY_SET});
-        } else {
-            this.props.dispatch({type: reducer.APPLICATION_READY_SET});
-        }
-        // const isFresh = Auth.isTokenFresh();
-        // this.props.dispatch({type: isFresh ? reducer.APPLICATION_AUTHORIZED_SET : reducer.APPLICATION_AUTHORIZED_UNSET});
+        this.props.dispatch({type: reducer.APPLICATION_START});
+        // if (this.props.useAuth) {
+        //     // check if we are authorized
+        //     // todo
+        //     this.props.dispatch({type: reducer.APPLICATION_READY_SET});
+        // } else {
+        //
+        // }
+        // // const isFresh = Auth.isTokenFresh();
+        // // this.props.dispatch({type: isFresh ? reducer.APPLICATION_AUTHORIZED_SET : reducer.APPLICATION_AUTHORIZED_UNSET});
     }
 
     render() {
+        const { ready } = this.props;
+
         return (
-          <div className="application">
-              <ListPage />
-          </div>
+            <React.Fragment>
+                <div className="application">
+                    {
+                        ready
+                        &&
+                        <div>I am ready to be free!!!</div>
+                    }
+                    <ListPage />
+                </div>
+            </React.Fragment>
         );
         // return (
         //     <div className="application">

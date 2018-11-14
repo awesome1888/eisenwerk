@@ -17,7 +17,7 @@ export default class Application extends BaseApplication {
     getStore() {
         if (!this._store) {
             this._store = Store.make({
-                mainReducer,
+                application: UIApplication,
                 pages: this.getPages(),
             });
         }
@@ -28,7 +28,7 @@ export default class Application extends BaseApplication {
     getUI() {
         return (
             <Provider store={this.getStore().getReduxStore()}>
-                <UIApplication
+                <UIApplication.ui
                     application={this}
                     useAuth={this.useAuth()}
                 />

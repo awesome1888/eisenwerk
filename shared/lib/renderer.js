@@ -22,27 +22,26 @@ export default class Renderer {
             const pages = Application.getPages();
             const tmpPage = pages[1]; // tmp, this should come from router
 
-            const store = application.getStore().getReduxStore();
+            const store = application.getStore();
 
-            const unsubscribe = store.subscribe(() => {
-                console.dir(store.getState());
-            });
-            store.dispatch({type: tmpPage.initial, payload: {/*todo: route data*/}});
+            await store.loadApplicationData();
+            if (store.checkApplicationData()) {
+                await store.loadPageData(tmpPage, {/* todo: route data */});
+            }
 
-            await new Promise((resolve) => {setTimeout(resolve, 2000)});
-
-            unsubscribe();
+            console.dir('result state:');
+            console.dir(store.getReduxStore().getState());
 
             const body = ReactDOMServer.renderToStaticMarkup(application.getUI());
             await application.teardown();
 
             res.status(200);
             res.set('Content-Type', 'text/html');
-            res.send(this._template.get({
+            res.send(new Buffer(this._template.get({
                 body,
                 settings: {},
                 dry: true,
-            }));
+            })));
         } else {
             throw new Error(500);
         }
