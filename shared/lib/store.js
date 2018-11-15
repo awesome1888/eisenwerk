@@ -5,7 +5,7 @@ import createSagaMiddleware from 'redux-saga';
 import { fork, all } from 'redux-saga/effects';
 
 export default class Store {
-    static make({pages, history, application, addMiddleware}) {
+    static make({pages, application, alterMiddleware, alterReducers}) {
 
         const self = new this();
         self._application = application;
@@ -31,20 +31,21 @@ export default class Store {
         const sagaMiddleware = createSagaMiddleware();
 
         let middlewares = [];
-        if (_.isFunction(addMiddleware)) {
-            middlewares = _.union(middlewares, addMiddleware());
+        if (_.isFunction(alterMiddleware)) {
+            middlewares = alterMiddleware(middlewares);
         }
         middlewares.push(sagaMiddleware);
 
+        let cReducers = combineReducers(reducers.reduce((result, item) => {
+            result[item.__root] = item;
+            return result;
+        }, {}));
+        if (_.isFunction(alterReducers)) {
+            cReducers = alterReducers(cReducers);
+        }
+
         self._store = createStore(
-          // connectRouter(history)(combineReducers(reducers.reduce((result, item) => {
-          //     result[item.__root] = item;
-          //     return result;
-          // }, {}))),
-          combineReducers(reducers.reduce((result, item) => {
-              result[item.__root] = item;
-              return result;
-          }, {})),
+          cReducers,
           {},
           compose(
             applyMiddleware(...middlewares),

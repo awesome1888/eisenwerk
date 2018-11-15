@@ -4,16 +4,24 @@ import ReactDOM from 'react-dom';
 import Application from './application';
 
 import { Switch } from 'react-router';
-import { ConnectedRouter } from 'connected-react-router';
+import { ConnectedRouter, routerMiddleware, connectRouter } from 'connected-react-router';
+import { createBrowserHistory } from 'history';
 import Route from './shared/components/Route';
 
-const application = new Application();
+const history = createBrowserHistory();
+
+const application = new Application({
+    redux: {
+        alterMiddleware: () => [routerMiddleware(history)],
+        alterReducers: reducers => connectRouter(history)(reducers),
+    },
+});
 application.launch().then(() => {
 
     ReactDOM.render(
       application.render({
           children: (
-              <ConnectedRouter history={application.getHistory()}>
+              <ConnectedRouter history={history}>
                   <Switch>
                       {application.getRoutes().map(route => (
                           <Route

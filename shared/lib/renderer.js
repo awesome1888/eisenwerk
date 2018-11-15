@@ -1,4 +1,4 @@
-import React from 'react;'
+import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 
 export default class Renderer {
@@ -34,7 +34,7 @@ export default class Renderer {
             console.dir(store.getReduxStore().getState());
 
             const body = ReactDOMServer.renderToStaticMarkup(application.render({
-                children: (props) => (
+                children: props => (
                     <React.Fragment>
                         {
                             props.ready

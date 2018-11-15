@@ -1,9 +1,9 @@
 import React from 'react';
+import DynamicImport from '../DynamicImport';
 
-const PagePlugin = ({page, route, layout}) => {
-    const Layout = layout ? layout : React.Fragment;
+const PagePlugin = ({page, route}) => {
     return (
-        <Layout>
+        <React.Fragment>
             {
                 page.lazy
                 &&
@@ -16,7 +16,7 @@ const PagePlugin = ({page, route, layout}) => {
                 &&
                 <page.ui route={route} />
             }
-        </Layout>
+        </React.Fragment>
     );
 };
 

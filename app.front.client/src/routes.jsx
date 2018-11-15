@@ -10,11 +10,25 @@ export default [
         page: pages[0],
 
         render: route => (
-            <PagePlugin
-                layout={LayoutOuter}
-                page={pages[0]}
-                route={route}
-            />
+            <LayoutOuter>
+                <PagePlugin
+                    page={pages[0]}
+                    route={route}
+                />
+            </LayoutOuter>
+        ),
+    },
+    {
+        path: '/list',
+        page: pages[1],
+
+        render: route => (
+            <LayoutOuter>
+                <PagePlugin
+                    page={pages[1]}
+                    route={route}
+                />
+            </LayoutOuter>
         ),
     },
 ];

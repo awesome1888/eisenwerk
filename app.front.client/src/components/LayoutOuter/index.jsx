@@ -3,6 +3,11 @@ import LayoutOuterBase from '../LayoutOuterBase';
 import './style.scss';
 
 export default class LayoutOuter extends LayoutOuterBase {
+
+    componentWillUnmount() {
+        console.dir('never!');
+    }
+
     render() {
         return (
             <div className="layout-outer">

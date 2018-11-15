@@ -2,7 +2,6 @@ import BaseApplication from './shared/lib/application/client/feathers.js';
 
 import React from 'react';
 import { Provider } from 'react-redux';
-import { createBrowserHistory } from 'history';
 import Store from './shared/lib/store';
 
 import ApplicationUI from './components/Application';
@@ -30,20 +29,13 @@ export default class Application extends BaseApplication {
                     saga: applicationSaga,
                     initial: applicationInitial,
                 },
-                history: this.getHistory(),
                 pages: this.getPages(),
+                alterMiddleware: this._reduxSettings.alterMiddleware,
+                alterReducers: this._reduxSettings.alterReducers,
             });
         }
 
         return this._store;
-    }
-
-    getHistory() {
-        if (!this._history) {
-            this._history = createBrowserHistory();
-        }
-
-        return this._history;
     }
 
     /**

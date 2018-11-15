@@ -18,8 +18,9 @@ export default class Application {
         return [];
     }
 
-    constructor({ settings }) {
-        this._settings = new Settings(settings);
+    constructor(props = {}) {
+        this._settings = new Settings(props.settings);
+        this._reduxSettings = props.redux || {};
     }
 
     useAuth() {
