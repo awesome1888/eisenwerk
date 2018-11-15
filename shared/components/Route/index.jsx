@@ -1,12 +1,8 @@
 import React from 'react';
 import { Route as RouteComponent, Redirect} from 'react-router-dom';
-import Access from '../../shared/lib/access/client.js';
+import Access from '../../lib/access/client.js';
 
 const Route = (props) => {
-    // if (props.ready === false) {
-    //     return null;
-    // }
-
     // find where to redirect
     const ra = props.redirectAuthorized;
     const rna = props.redirectNotAuthorized;

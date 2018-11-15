@@ -1,3 +1,4 @@
+import React from 'react;'
 import ReactDOMServer from 'react-dom/server';
 
 export default class Renderer {
@@ -32,7 +33,18 @@ export default class Renderer {
             console.dir('result state:');
             console.dir(store.getReduxStore().getState());
 
-            const body = ReactDOMServer.renderToStaticMarkup(application.getUI());
+            const body = ReactDOMServer.renderToStaticMarkup(application.render({
+                children: (props) => (
+                    <React.Fragment>
+                        {
+                            props.ready
+                            &&
+                            <div>I am ready to be free!!!</div>
+                        }
+                        <tmpPage.ui />
+                    </React.Fragment>
+                ),
+            }));
             await application.teardown();
 
             res.status(200);

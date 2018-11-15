@@ -14,8 +14,12 @@ export default class Application {
         return [];
     }
 
-    constructor(param = {}) {
-        this._settings = new Settings(param.settings);
+    static getRoutes() {
+        return [];
+    }
+
+    constructor({ settings }) {
+        this._settings = new Settings(settings);
     }
 
     useAuth() {
@@ -39,12 +43,16 @@ export default class Application {
     async teardown() {
     }
 
-    getUI() {
+    render() {
         return null;
     }
 
     getPages() {
         return this.constructor.getPages();
+    }
+
+    getRoutes() {
+        return this.constructor.getRoutes();
     }
 
     /**

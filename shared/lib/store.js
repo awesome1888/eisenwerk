@@ -5,7 +5,7 @@ import createSagaMiddleware from 'redux-saga';
 import { fork, all } from 'redux-saga/effects';
 
 export default class Store {
-    static make({pages, history, application}) {
+    static make({pages, history, application, addMiddleware}) {
 
         const self = new this();
         self._application = application;
@@ -29,6 +29,13 @@ export default class Store {
         });
 
         const sagaMiddleware = createSagaMiddleware();
+
+        let middlewares = [];
+        if (_.isFunction(addMiddleware)) {
+            middlewares = _.union(middlewares, addMiddleware());
+        }
+        middlewares.push(sagaMiddleware);
+
         self._store = createStore(
           // connectRouter(history)(combineReducers(reducers.reduce((result, item) => {
           //     result[item.__root] = item;
@@ -40,10 +47,7 @@ export default class Store {
           }, {})),
           {},
           compose(
-            applyMiddleware(
-              // routerMiddleware(history),
-              sagaMiddleware,
-            ),
+            applyMiddleware(...middlewares),
           ),
         );
         self._sagaHandler = sagaMiddleware.run(function* composeSagas() {

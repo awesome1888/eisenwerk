@@ -3,6 +3,7 @@ const isString = require('lodash.isstring');
 const isObject = require('lodash.isobject');
 const isNumber = require('lodash.isnumber');
 const isFunction = require('lodash.isfunction');
+const union = require('lodash.union');
 const get = require('lodash.get');
 const cloneDeep = require('lodash.clonedeep');
 const deepFreeze = require('deep-freeze-node');
@@ -40,4 +41,5 @@ module.exports = {
     get,
     getValue: get, // compatibility
     deepFreeze,
+    union,
 };
