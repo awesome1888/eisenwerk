@@ -24,9 +24,12 @@ export default class Template {
             overlay: this.getOverlayAssets(),
         };
 
-        data.title = data.title || this._settings.env.PROJECT__NAME || '';
-        data.description = data.description || '';
-        data.keywords = data.keywords || '';
+        const page = data.page || {};
+
+        data.title = page.title || this._settings.env.PROJECT__NAME || '';
+        data.description = page.description || '';
+        data.keywords = page.keywords || '';
+
         data.body = data.body || '';
 
         return ejs.render(this.getMain(), data);

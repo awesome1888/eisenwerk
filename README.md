@@ -50,6 +50,7 @@ To connect to a running container:
     4) make page reducer fabric
     5) make page saga fabric
     6) implement setting and getting of the title, description and other stuff
+        6.0) "Page" HOC?
         6.1) server
         6.2) client
     7) bug: ssr will work on missing 404 (i.e. favicon.ico)
@@ -62,6 +63,7 @@ To connect to a running container:
     12) enable SSR by user agent
         https://support.google.com/webmasters/answer/80553
         https://support.google.com/webmasters/answer/1061943?hl=en
+    13) in outer layout replace OOP with HOC
 1.71) 404 with code when doing CSR
 1.8) EHHH Shitty decisions made... 
     Re-think the whole idea about how we dockerize: there is a simpler way to do that with no docker-build-tool involved
