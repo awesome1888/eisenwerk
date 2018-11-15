@@ -47,9 +47,11 @@ To connect to a running container:
     1) [DONE] catch the moment when the data is loaded, asynchroniously, with the timeout
     2) implement router server-side, forward route data to dispatch()
     3) the same for the client-side
-    4) make reducer fabric
-    5) make saga fabric
+    4) make page reducer fabric
+    5) make page saga fabric
     6) implement setting and getting of the title, description and other stuff
+        6.1) server
+        6.2) client
     7) bug: ssr will work on missing 404 (i.e. favicon.ico)
     8) [DONE] memory leak in saga?!!!
         https://github.com/redux-saga/redux-saga/issues/13#issuecomment-182883680
@@ -68,6 +70,7 @@ To connect to a running container:
 4) re-think oauth2
 5) migrations
 6) manifest
+6.1) web worker
 7) favicon
 8) webicon
 9) sitemap
