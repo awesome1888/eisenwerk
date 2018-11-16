@@ -24,11 +24,11 @@ class Application extends React.Component {
     }
 
     render() {
-        const { children } = this.props;
+        // const { children } = this.props;
 
         return (
             <div className="application">
-                {children}
+                {this.props.children}
             </div>
         );
     }

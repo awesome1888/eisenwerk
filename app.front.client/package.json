@@ -40,6 +40,7 @@
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.0",
+    "redux-logger": "^3.0.6",
     "redux-saga": "^0.16.2",
     "rem-bem-scss": "^1.0.0",
     "set-value": "^3.0.0",

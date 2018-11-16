@@ -16,6 +16,11 @@ const application = new Application({
         alterReducers: reducers => connectRouter(history)(reducers),
     },
 });
+
+const routes = application.getRoutes();
+// console.dir({...routes[0]});
+// console.dir({...routes[1]});
+
 application.launch().then(() => {
 
     ReactDOM.render(
@@ -23,12 +28,24 @@ application.launch().then(() => {
           children: (
               <ConnectedRouter history={history}>
                   <Switch>
-                      {application.getRoutes().map(route => (
-                          <Route
-                              {...route}
-                              key={route.path}
-                          />
-                      ))}
+                      <Route
+                          path="/"
+                          exact
+                          render={routes[0].render}
+                          key={1}
+                      />
+                      <Route
+                          path="/list"
+                          render={routes[1].render}
+                          key={2}
+                      />
+
+                      {/*{application.getRoutes().map(route => (*/}
+                          {/*<Route*/}
+                              {/*{...route}*/}
+                              {/*key={route.path}*/}
+                          {/*/>*/}
+                      {/*))}*/}
                   </Switch>
               </ConnectedRouter>
           )

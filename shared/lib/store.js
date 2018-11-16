@@ -1,8 +1,8 @@
 import { applyMiddleware, compose, createStore } from 'redux';
-// import { connectRouter, routerMiddleware } from 'connected-react-router';
 import { combineReducers } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { fork, all } from 'redux-saga/effects';
+import logger from 'redux-logger';
 
 export default class Store {
     static make({pages, application, alterMiddleware, alterReducers}) {
@@ -35,6 +35,9 @@ export default class Store {
             middlewares = alterMiddleware(middlewares);
         }
         middlewares.push(sagaMiddleware);
+        if (__DEV__) {
+            middlewares.push(logger);
+        }
 
         let cReducers = combineReducers(reducers.reduce((result, item) => {
             result[item.__root] = item;
