@@ -37,28 +37,18 @@ export default class Renderer {
                 console.dir('route');
                 console.dir(route);
 
-                // routing
-                // 1) задание роутера
-                // 2) 404 ошибка в режиме ssr и без
-                // 3) 403 ошибка в режиме ssr
-
                 await store.loadPageData(route.page, {/* todo: route data */});
 
-                console.dir('result state:');
-                console.dir(store.getReduxStore().getState());
+                // console.dir('result state:');
+                // console.dir(store.getReduxStore().getState());
 
-                const body = ReactDOMServer.renderToStaticMarkup(application.render({
-                    // children: props => (
-                    //     <React.Fragment>
-                    //         {
-                    //             props.ready
-                    //             &&
-                    //             <div>I am ready to be free!!!</div>
-                    //         }
-                    //         <tmpPage.ui />
-                    //     </React.Fragment>
-                    // ),
-                }));
+                // pre-load ui
+                if (route.page.lazy) {
+                    route.page.ui = (await route.page.ui()).default;
+                    route.page.lazy = false;
+                }
+
+                const body = ReactDOMServer.renderToStaticMarkup(application.render());
                 await application.teardown();
 
                 res.status(200);

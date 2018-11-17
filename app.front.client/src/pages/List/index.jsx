@@ -23,7 +23,8 @@ class ListPage extends React.Component {
                         ))}
                     </div>
                 }
-                <Link to="/">Home</Link>
+                <Link to="/">Home</Link><br />
+                <Link to="/?__ssr=1">Home (static)</Link><br />
             </Layout>
         );
     }
