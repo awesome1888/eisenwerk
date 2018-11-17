@@ -7,7 +7,7 @@ import React from 'react';
  * no overlay will be displayed. But when we switch the route from one type of layout to another, componentWillUnmount()
  * and componentDidMount() will be called, so as our overlay.show() and overlay.hide()
  */
-export default class LayoutOuterBase extends React.Component {
+export default class LayoutBase extends React.Component {
     componentDidMount() {
         if (window.__overlay) {
             window.__overlay.hide();

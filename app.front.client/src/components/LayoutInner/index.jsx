@@ -1,10 +1,10 @@
 import React from 'react';
 import './style.scss';
-import LayoutOuterBase from "components/LayoutOuterBase";
+import LayoutBase from '../../components/LayoutBase';
 
 // import Menu from '../../components/Menu';
 
-export default class LayoutInner extends LayoutOuterBase {
+export default class LayoutInner extends LayoutBase {
 
     componentWillUnmount() {
         console.dir('unmount inner');
@@ -13,18 +13,11 @@ export default class LayoutInner extends LayoutOuterBase {
     render() {
         return (
             <div className="layout-inner">
-                <div className="layout-inner__top">
-                    <div className="layout-inner__top-container">
-                        {/*<Menu {...props} />*/}
-                    </div>
-                </div>
-                <div className="layout-inner__container">
-                    {props.children}
-                </div>
+                {this.props.children}
             </div>
         );
     }
-};
+}
 
 //
 //

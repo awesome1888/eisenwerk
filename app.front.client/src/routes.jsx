@@ -13,12 +13,10 @@ export default [
 
         render: route => (
             <LayoutOuter>
-                {/*<PagePlugin*/}
-                    {/*page={pages[0]}*/}
-                    {/*route={route}*/}
-                {/*/>*/}
-                HOME - 2
-                <Link to="/list">List</Link>
+                <PagePlugin
+                    page={pages[0]}
+                    route={route}
+                />
             </LayoutOuter>
         ),
     },
@@ -28,12 +26,10 @@ export default [
 
         render: route => (
             <LayoutOuter>
-                {/*<PagePlugin*/}
-                    {/*page={pages[1]}*/}
-                    {/*route={route}*/}
-                {/*/>*/}
-                LIST - 2
-                <Link to="/">Home</Link>
+                <PagePlugin
+                    page={pages[1]}
+                    route={route}
+                />
             </LayoutOuter>
         ),
     },

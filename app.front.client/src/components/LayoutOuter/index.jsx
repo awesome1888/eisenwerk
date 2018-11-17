@@ -1,8 +1,8 @@
 import React from 'react';
-import LayoutOuterBase from '../LayoutOuterBase';
+import LayoutBase from '../LayoutBase';
 import './style.scss';
 
-export default class LayoutOuter extends LayoutOuterBase {
+export default class LayoutOuter extends LayoutBase {
 
     componentDidMount() {
         console.dir('outer mounted!');
@@ -18,7 +18,7 @@ export default class LayoutOuter extends LayoutOuterBase {
                 <div className="layout-inner__top">
                     <div className="layout-inner__top-container">
                         {/*<Menu {...props} />*/}
-                        234434232
+                        MENU
                     </div>
                 </div>
                 <div className="layout-inner__container">
