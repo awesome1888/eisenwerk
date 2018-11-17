@@ -9,6 +9,8 @@ import applicationReducer, { initial as applicationInitial } from './components/
 import applicationSaga from './components/Application/saga';
 import { createBrowserHistory, createMemoryHistory } from 'history';
 import { ConnectedRouter } from 'connected-react-router';
+import { Switch } from 'react-router';
+import Route from './shared/components/Route';
 
 import pages from './pages';
 import routeMap from './routes';
@@ -66,14 +68,27 @@ export default class Application extends BaseApplication {
         return this._props.currentURL || '/'; // tmp
     }
 
+    renderRoutes() {
+        const routes = this.getRoutes();
+
+        return (
+            <Switch>
+                <Route
+                    {...routes[0]}
+                />
+                <Route
+                    {...routes[1]}
+                />
+            </Switch>
+        );
+    }
+
     /**
      * This method is available both on server and client
      * @param {children}
      * @returns {*}
      */
-    render({ routes }) {
-        routes = routes || null;
-
+    render() {
         return (
             <Provider store={this.getStore().getReduxStore()}>
                 <ApplicationUI
@@ -81,7 +96,7 @@ export default class Application extends BaseApplication {
                     useAuth={this.useAuth()}
                 >
                     <ConnectedRouter history={this.getHistory()}>
-                        {routes}
+                        {this.renderRoutes()}
                     </ConnectedRouter>
                 </ApplicationUI>
             </Provider>

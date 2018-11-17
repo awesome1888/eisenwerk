@@ -1,16 +1,11 @@
 @import '../../style/variables';
 
-.layout-inner {
-
-  &__top {
-	background-color: $color_bg;
-  }
-
-  &__top-container {
-	@include rb-centered();
-  }
+.layout-outer {
+  background-color: $color_bg;
+  min-height: 100%;
 
   &__container {
 	@include rb-centered();
+	padding-bottom: 1rem;
   }
 }
