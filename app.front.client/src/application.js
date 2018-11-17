@@ -11,14 +11,19 @@ import { createBrowserHistory, createMemoryHistory } from 'history';
 import { ConnectedRouter } from 'connected-react-router';
 
 import pages from './pages';
+import routeMap from './routes';
 
 /**
  * todo: move this to lib
  */
 export default class Application extends BaseApplication {
 
-    static getPages() {
+    getPages() {
         return pages;
+    }
+
+    getRoutes() {
+        return routeMap;
     }
 
     getStore() {

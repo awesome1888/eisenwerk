@@ -19,7 +19,7 @@ export default [
         ),
     },
     {
-        path: '/list',
+        path: '/list/:category/:topic/:way',
         page: pages[1],
 
         render: route => (

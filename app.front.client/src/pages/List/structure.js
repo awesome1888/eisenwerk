@@ -1,4 +1,4 @@
-import reducer, { initial } from './reducer';
+import reducer, { initial, code } from './reducer';
 import saga from './saga';
 
 export default {
@@ -7,4 +7,5 @@ export default {
     reducer,
     saga,
     initial,
+    code,
 };

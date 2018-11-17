@@ -3,7 +3,12 @@ class Settings {
         if (settings) {
             this.env = settings;
         } else {
-            this.env = (window ? window.__SETTINGS__ : {}) || {};
+            if (window) {
+                this.env = window.__SETTINGS__ || {};
+                delete window.__SETTINGS__;
+            } else {
+                this.env = {};
+            }
         }
     }
 

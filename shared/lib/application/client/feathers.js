@@ -40,10 +40,6 @@ export default class Application {
         return null;
     }
 
-    getPages() {
-        return this.constructor.getPages();
-    }
-
     /**
      * Returns an instance of a "network" application, which manages REST, WebSocket
      * and other stuff that provides the client-server communications

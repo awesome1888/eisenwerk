@@ -1,5 +1,7 @@
 import ReducerFabric from '../../shared/lib/reducer/fabric.js';
 
+export const code = 'list';
+
 export const LIST_START = 'list.start';
 export const LIST_FINISH = 'list.finish';
 
@@ -10,7 +12,7 @@ export const LIST_REQUEST_ENDFAILURE = 'list.request.end-failure';
 export const initial = LIST_START;
 
 export default ReducerFabric.make(
-    'list',
+    code,
     {
         ready: false,
         loading: false,

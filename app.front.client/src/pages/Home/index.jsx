@@ -10,7 +10,7 @@ class HomePage extends React.Component {
         return (
             <Layout>
                 Hello there 7
-                <Link to="/list">List</Link>
+                <Link to="/list/seamonkeys/porn/live">List</Link>
                 <TestComponent />
             </Layout>
         );

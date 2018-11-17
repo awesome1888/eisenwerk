@@ -1,5 +1,7 @@
 import ReducerFabric from '../../shared/lib/reducer/fabric.js';
 
+export const code = 'home';
+
 export const HOME_START = 'home.start';
 export const HOME_FINISH = 'home.finish';
 
@@ -10,7 +12,7 @@ export const HOME_REQUEST_ENDFAILURE = 'home.request.end-failure';
 export const initial = HOME_START;
 
 export default ReducerFabric.make(
-    'home',
+    code,
     {
         ready: false,
         loading: false,
