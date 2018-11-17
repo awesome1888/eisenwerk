@@ -21,6 +21,13 @@ export default class Renderer {
 
             // load data
             const pages = Application.getPages();
+
+            // routing
+            // 1) задание роутера
+            // 2) 404 ошибка в режиме ssr и без
+            // 3) 403 ошибка в режиме ssr
+            // 4) <Link /> должны работать
+
             const tmpPage = pages[1]; // tmp, this should come from router
 
             const store = application.getStore();

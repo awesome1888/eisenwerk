@@ -8,10 +8,6 @@ import { ConnectedRouter, routerMiddleware, connectRouter } from 'connected-reac
 import { createBrowserHistory } from 'history';
 import Route from './shared/components/Route';
 
-import LayoutOuter from './components/LayoutOuter';
-// import LayoutInner from "components/LayoutInner";
-import { Link } from 'react-router-dom';
-
 const history = createBrowserHistory();
 
 const application = new Application({
@@ -36,16 +32,6 @@ application.launch().then(() => {
                       <Route
                           {...routes[1]}
                       />
-
-                      {/*{application.getRoutes().map(route => {*/}
-                          {/*console.dir(route);*/}
-                          {/*return (*/}
-                              {/*<Route*/}
-                                  {/*{...route}*/}
-                                  {/*key={route.path}*/}
-                              {/*/>*/}
-                          {/*);*/}
-                      {/*})}*/}
                   </Switch>
               </ConnectedRouter>
           )

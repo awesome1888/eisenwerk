@@ -3,8 +3,6 @@ import LayoutOuter from './components/LayoutOuter';
 import PagePlugin from './shared/components/PagePlugin';
 import pages from './pages';
 
-import { Link } from 'react-router-dom';
-
 export default [
     {
         exact: true,

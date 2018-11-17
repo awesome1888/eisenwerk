@@ -35,7 +35,7 @@ export default class Store {
             middlewares = alterMiddleware(middlewares);
         }
         middlewares.push(sagaMiddleware);
-        if (__DEV__) {
+        if (__DEV__ && !__SSR__) {
             middlewares.push(logger);
         }
 
@@ -96,6 +96,10 @@ export default class Store {
 
     loadPageData(page, route = {}) {
         return this.loadData(page.initial, page.reducer, route);
+    }
+
+    getPageData(page) {
+        return _.get(this.getReduxStore().getState(), page.reducer.__root);
     }
 
     checkApplicationData() {
