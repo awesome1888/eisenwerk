@@ -22,8 +22,6 @@ const application = new Application({
 });
 
 const routes = application.getRoutes();
-// console.dir({...routes[0]});
-// console.dir({...routes[1]});
 
 application.launch().then(() => {
 
@@ -33,39 +31,21 @@ application.launch().then(() => {
               <ConnectedRouter history={history}>
                   <Switch>
                       <Route
-                          path="/"
-                          exact
-                          // render={() => {
-                          //     return (
-                          //         <LayoutOuter>
-                          //             HOME
-                          //             <Link to="/list">List</Link>
-                          //         </LayoutOuter>
-                          //     );
-                          // }}
-                          render={routes[0].render}
-                          // key={1}
+                          {...routes[0]}
                       />
                       <Route
-                          path="/list"
-                          // render={() => {
-                          //     return (
-                          //         <LayoutOuter>
-                          //             LIST
-                          //             <Link to="/">Home</Link>
-                          //         </LayoutOuter>
-                          //     );
-                          // }}
-                          render={routes[1].render}
-                          // key={2}
+                          {...routes[1]}
                       />
 
-                      {/*{application.getRoutes().map(route => (*/}
-                          {/*<Route*/}
-                              {/*{...route}*/}
-                              {/*key={route.path}*/}
-                          {/*/>*/}
-                      {/*))}*/}
+                      {/*{application.getRoutes().map(route => {*/}
+                          {/*console.dir(route);*/}
+                          {/*return (*/}
+                              {/*<Route*/}
+                                  {/*{...route}*/}
+                                  {/*key={route.path}*/}
+                              {/*/>*/}
+                          {/*);*/}
+                      {/*})}*/}
                   </Switch>
               </ConnectedRouter>
           )
