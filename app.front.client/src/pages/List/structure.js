@@ -2,7 +2,7 @@ import reducer, { initial } from './reducer';
 import saga from './saga';
 
 export default {
-    ui: () => import('./ui'),
+    ui: () => import('./index'),
     lazy: true,
     reducer,
     saga,

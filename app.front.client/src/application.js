@@ -46,7 +46,6 @@ export default class Application extends BaseApplication {
     render({ children }) {
         children = children || null;
 
-        console.dir('RENDER!');
         return (
             <Provider store={this.getStore().getReduxStore()}>
                 <ApplicationUI

@@ -204,6 +204,7 @@ const getWebpackConfiguration = async (context) => {
             }),
             new webpack.DefinePlugin({
                 __SSR__: false,
+                __DEV__: context.getMode() !== 'production',
             }),
         ],
     };

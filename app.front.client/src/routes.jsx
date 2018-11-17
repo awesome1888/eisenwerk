@@ -3,6 +3,8 @@ import LayoutOuter from './components/LayoutOuter';
 import PagePlugin from './shared/components/PagePlugin';
 import pages from './pages';
 
+import { Link } from 'react-router-dom';
+
 export default [
     {
         exact: true,
@@ -11,10 +13,12 @@ export default [
 
         render: route => (
             <LayoutOuter>
-                <PagePlugin
-                    page={pages[0]}
-                    route={route}
-                />
+                {/*<PagePlugin*/}
+                    {/*page={pages[0]}*/}
+                    {/*route={route}*/}
+                {/*/>*/}
+                HOME - 2
+                <Link to="/list">List</Link>
             </LayoutOuter>
         ),
     },
@@ -24,10 +28,12 @@ export default [
 
         render: route => (
             <LayoutOuter>
-                <PagePlugin
-                    page={pages[1]}
-                    route={route}
-                />
+                {/*<PagePlugin*/}
+                    {/*page={pages[1]}*/}
+                    {/*route={route}*/}
+                {/*/>*/}
+                LIST - 2
+                <Link to="/">Home</Link>
             </LayoutOuter>
         ),
     },
