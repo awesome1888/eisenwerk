@@ -10,17 +10,9 @@ import axios from 'axios';
 
 export default class Application {
 
-    static getPages() {
-        return [];
-    }
-
-    static getRoutes() {
-        return [];
-    }
-
     constructor(props = {}) {
-        this._settings = new Settings(props.settings);
-        this._reduxSettings = props.redux || {};
+        this._props = props || {};
+        this._settings = new Settings(this._props.settings);
     }
 
     useAuth() {
@@ -29,7 +21,7 @@ export default class Application {
     }
 
     async launch() {
-        if (__SSR__ || !window) {
+        if (__SSR__) {
             const Storage = (await import('node-storage-shim')).default;
             this._storage = new Storage();
         } else {
@@ -50,10 +42,6 @@ export default class Application {
 
     getPages() {
         return this.constructor.getPages();
-    }
-
-    getRoutes() {
-        return this.constructor.getRoutes();
     }
 
     /**

@@ -7,35 +7,58 @@ import Store from './shared/lib/store';
 import ApplicationUI from './components/Application';
 import applicationReducer, { initial as applicationInitial } from './components/Application/reducer';
 import applicationSaga from './components/Application/saga';
+import { createBrowserHistory, createMemoryHistory } from 'history';
+import { ConnectedRouter } from 'connected-react-router';
 
 import pages from './pages';
-import routes from './routes';
 
+/**
+ * todo: move this to lib
+ */
 export default class Application extends BaseApplication {
 
     static getPages() {
         return pages;
     }
 
-    static getRoutes() {
-        return routes;
-    }
-
     getStore() {
         if (!this._store) {
-            this._store = Store.make({
+            const redux = this._props.redux || {};
+            this._store = new Store({
+                ...redux,
                 application: {
                     reducer: applicationReducer,
                     saga: applicationSaga,
                     initial: applicationInitial,
                 },
                 pages: this.getPages(),
-                alterMiddleware: this._reduxSettings.alterMiddleware,
-                alterReducers: this._reduxSettings.alterReducers,
+                history: this.getHistory(),
             });
+            this._store.init();
         }
 
         return this._store;
+    }
+
+    getHistory() {
+        if (!this._history) {
+            let history = null;
+            if (__SSR__) {
+                history = createMemoryHistory({
+                    initialEntries: [this.getCurrentURL()]
+                });
+            } else {
+                history = createBrowserHistory();
+            }
+
+            this._history = history;
+        }
+
+        return this._history;
+    }
+
+    getCurrentURL() {
+        return this._props.currentURL || '/'; // tmp
     }
 
     /**
@@ -43,8 +66,8 @@ export default class Application extends BaseApplication {
      * @param {children}
      * @returns {*}
      */
-    render({ children }) {
-        children = children || null;
+    render({ routes }) {
+        routes = routes || null;
 
         return (
             <Provider store={this.getStore().getReduxStore()}>
@@ -52,7 +75,9 @@ export default class Application extends BaseApplication {
                     application={this}
                     useAuth={this.useAuth()}
                 >
-                    {children}
+                    <ConnectedRouter history={this.getHistory()}>
+                        {routes}
+                    </ConnectedRouter>
                 </ApplicationUI>
             </Provider>
         );

@@ -2,38 +2,32 @@ import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Application from './application';
-
 import { Switch } from 'react-router';
-import { ConnectedRouter, routerMiddleware, connectRouter } from 'connected-react-router';
-import { createBrowserHistory } from 'history';
-import Route from './shared/components/Route';
 
-const history = createBrowserHistory();
+import routes from './routes';
+import Route from './shared/components/Route';
 
 const application = new Application({
     redux: {
-        alterMiddleware: () => [routerMiddleware(history)],
-        alterReducers: reducers => connectRouter(history)(reducers),
+        initialState: window.__STATE__,
     },
 });
 
-const routes = application.getRoutes();
+delete window.__STATE__;
 
 application.launch().then(() => {
 
     ReactDOM.render(
       application.render({
-          children: (
-              <ConnectedRouter history={history}>
-                  <Switch>
-                      <Route
-                          {...routes[0]}
-                      />
-                      <Route
-                          {...routes[1]}
-                      />
-                  </Switch>
-              </ConnectedRouter>
+          routes: (
+              <Switch>
+                  <Route
+                      {...routes[0]}
+                  />
+                  <Route
+                      {...routes[1]}
+                  />
+              </Switch>
           )
       }),
       document.getElementById('root')

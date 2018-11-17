@@ -15,6 +15,7 @@ export default class Renderer {
             const Application = (await this._frontend()).default;
             const application = new Application({
                 settings: this._settings.prepareForClient(),
+                currentURL: req.path,
             });
 
             await application.launch();
@@ -41,16 +42,16 @@ export default class Renderer {
             console.dir(store.getReduxStore().getState());
 
             const body = ReactDOMServer.renderToStaticMarkup(application.render({
-                children: props => (
-                    <React.Fragment>
-                        {
-                            props.ready
-                            &&
-                            <div>I am ready to be free!!!</div>
-                        }
-                        <tmpPage.ui />
-                    </React.Fragment>
-                ),
+                // children: props => (
+                //     <React.Fragment>
+                //         {
+                //             props.ready
+                //             &&
+                //             <div>I am ready to be free!!!</div>
+                //         }
+                //         <tmpPage.ui />
+                //     </React.Fragment>
+                // ),
             }));
             await application.teardown();
 

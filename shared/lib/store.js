@@ -3,12 +3,17 @@ import { combineReducers } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { fork, all } from 'redux-saga/effects';
 import logger from 'redux-logger';
+import {connectRouter, routerMiddleware} from 'connected-react-router';
 
 export default class Store {
-    static make({pages, application, alterMiddleware, alterReducers}) {
 
-        const self = new this();
-        self._application = application;
+    constructor(params = {}) {
+        this._params = params;
+    }
+
+    init() {
+        const {pages, application, alterMiddleware, alterReducers, history, initialState} = this._params;
+        this._application = application;
 
         const reducers = [
             application.reducer,
@@ -34,6 +39,7 @@ export default class Store {
         if (_.isFunction(alterMiddleware)) {
             middlewares = alterMiddleware(middlewares);
         }
+        middlewares.push(routerMiddleware(history));
         middlewares.push(sagaMiddleware);
         if (__DEV__ && !__SSR__) {
             middlewares.push(logger);
@@ -47,18 +53,18 @@ export default class Store {
             cReducers = alterReducers(cReducers);
         }
 
-        self._store = createStore(
+        cReducers = connectRouter(history)(cReducers);
+
+        this._store = createStore(
           cReducers,
-          {},
+          initialState || {},
           compose(
             applyMiddleware(...middlewares),
           ),
         );
-        self._sagaHandler = sagaMiddleware.run(function* composeSagas() {
+        this._sagaHandler = sagaMiddleware.run(function* composeSagas() {
             yield all(sagas.map(saga => fork(saga)));
         });
-
-        return self;
     }
 
     loadData(type, reducer, payload = {}) {

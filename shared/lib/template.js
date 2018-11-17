@@ -14,8 +14,10 @@ export default class Template {
 
         if (data.dry) {
             data.settings = JSON.stringify({});
+            data.state = JSON.stringify({});
         } else {
             data.settings = data.settings ? JSON.stringify(data.settings) : this._settings.prepareForClient();
+            data.state = JSON.stringify(data.state || {});
         }
         data.overlay = this.getOverlayHTML();
         data.assets = {
