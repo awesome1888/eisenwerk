@@ -1,31 +1,54 @@
-import pathToRegexp from 'path-to-regexp';
+// import pathToRegexp from 'path-to-regexp';
+import pathMatch from 'path-match';
+
+const pmRoute = pathMatch({
+    sensitive: false,
+    strict: false,
+    end: false,
+});
 
 export default class SSRRouter {
     static match(url = '/', routes = []) {
-        let found = null;
-        // let rData = {};
+        let route = null;
+        const match = {};
 
         if (_.isArrayNotEmpty(routes)) {
             for (let k = 0; k < routes.length; k++) {
-                const route = routes[k];
+                const routeTest = routes[k];
 
-                if (route.exact && route.path === url) {
-                    found = route;
+                if (routeTest.exact && routeTest.path === url) {
+                    route = routeTest;
+                    match.exact = true;
                     break;
                 }
 
-                const re = pathToRegexp(route.path);
-                const match = re.exec(url);
-
-                if (match) {
-                    found = route;
-                    // rData = match;
+                const result = pmRoute(routeTest.path)(url);
+                if (result) {
+                    route = routeTest;
+                    match.params = result;
                     break;
                 }
             }
         }
 
-        return found;
+        if (route) {
+            match.params = match.params || {};
+            match.path = route.path;
+            match.url = url;
+        }
+
+        console.dir('match');
+        console.dir(match);
+
+        // [ '/list/seamonkeys/porn/live',
+        //     'seamonkeys',
+        //     'porn',
+        //     'live',
+        //     index: 0,
+        //     input: '/list/seamonkeys/porn/live',
+        //     // groups: undefined ]
+
+        return route;
         // match:
         //     isExact: true
         // params:
@@ -34,6 +57,5 @@ export default class SSRRouter {
         //     way: "live"
         // path: "/list/:category/:topic/:way"
         // url: "/list/seamonkey/porn/live"
-        // staticContext: undefined
     }
 }
