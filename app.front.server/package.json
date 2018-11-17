@@ -26,6 +26,7 @@
     "lodash.isobject": "^3.0.2",
     "lodash.isstring": "^4.0.1",
     "lodash.union": "^4.6.0",
+    "path-match": "^1.2.4",
     "path-to-regexp": "^2.4.0",
     "react": "^16.7.0-alpha.0",
     "react-dom": "^16.7.0-alpha.0",

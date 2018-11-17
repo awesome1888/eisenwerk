@@ -16,7 +16,7 @@ export default class Renderer {
             const Application = (await this._frontend()).default;
             const application = new Application({
                 settings: this._settings.prepareForClient(),
-                currentURL: req.path,
+                currentURL: req.originalUrl,
             });
 
             await application.launch();
@@ -29,18 +29,15 @@ export default class Renderer {
                 // load page data
 
                 // need to calculate what page to show...
-                const route = SSRRouter.match(req.path, application.getRoutes());
+                const { route, match } = SSRRouter.match(req.path, application.getRoutes());
                 if (!route) {
                     // todo: ???
                 }
 
-                console.dir('route');
-                console.dir(route);
+                const routeState = store.getReduxStore().getState().router;
+                routeState.match = match;
 
-                await store.loadPageData(route.page, {/* todo: route data */});
-
-                // console.dir('result state:');
-                // console.dir(store.getReduxStore().getState());
+                await store.loadPageData(route.page, { route: routeState });
 
                 // pre-load ui
                 if (route.page.lazy) {

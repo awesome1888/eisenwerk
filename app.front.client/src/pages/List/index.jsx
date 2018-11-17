@@ -6,11 +6,10 @@ import * as reducer from './reducer';
 
 class ListPage extends React.Component {
     componentDidMount() {
-        this.props.dispatch({type: reducer.initial});
+        this.props.dispatch({type: reducer.initial}, {route: this.props.route});
     }
 
     render() {
-        // console.dir(this.props);
         return (
             <Layout>
                 {
