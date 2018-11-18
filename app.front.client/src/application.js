@@ -15,17 +15,12 @@ import Route from './shared/components/Route';
 import LayoutOuter from './components/LayoutOuter';
 import PagePlugin from './shared/components/PagePlugin';
 
-import pages from './pages';
 import routeMap from './routes';
 
 /**
  * todo: move this to lib
  */
 export default class Application extends BaseApplication {
-
-    getPages() {
-        return pages;
-    }
 
     getRoutes() {
         return routeMap;
@@ -41,7 +36,7 @@ export default class Application extends BaseApplication {
                     saga: applicationSaga,
                     initial: applicationInitial,
                 },
-                pages: this.getPages(),
+                routes: this.getRoutes(),
                 history: this.getHistory(),
             });
             this._store.init();
@@ -77,22 +72,22 @@ export default class Application extends BaseApplication {
         return (
             <Switch>
                 <Route
-                    {...routes[0]}
+                    {...routes.home}
                     render={route => (
                         <LayoutOuter>
                             <PagePlugin
-                                page={pages[0]}
+                                page={routes.home.page}
                                 route={route}
                             />
                         </LayoutOuter>
                     )}
                 />
                 <Route
-                    {...routes[1]}
+                    {...routes.list}
                     render={route => (
                         <LayoutOuter>
                             <PagePlugin
-                                page={pages[1]}
+                                page={routes.list.page}
                                 route={route}
                             />
                         </LayoutOuter>

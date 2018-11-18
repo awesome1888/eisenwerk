@@ -12,7 +12,7 @@ export default class Store {
     }
 
     init() {
-        const {pages, application, alterMiddleware, alterReducers, history, initialState} = this._params;
+        const {routes, application, alterMiddleware, alterReducers, history, initialState} = this._params;
         this._application = application;
 
         const reducers = [
@@ -22,7 +22,8 @@ export default class Store {
             application.saga,
         ];
 
-        pages.forEach((page) => {
+        const pageList = Object.values(routes).map(r => r.page);
+        pageList.forEach((page) => {
             if (page) {
                 if (page.reducer) {
                     reducers.push(page.reducer);

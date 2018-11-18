@@ -1,13 +1,26 @@
-import pages from './pages';
+import Home from './pages/Home/structure';
+import List from './pages/List/structure';
 
-export default [
-    {
+export default {
+    home: {
         exact: true,
         path: '/',
-        page: pages[0],
+        page: Home,
     },
-    {
+    list: {
         path: '/list/:category/:topic/:way',
-        page: pages[1],
-    },
-];
+        page: List,
+    }
+};
+
+// export default [
+//     {
+//         exact: true,
+//         path: '/',
+//         page: Home,
+//     },
+//     {
+//         path: '/list/:category/:topic/:way',
+//         page: List,
+//     },
+// ];

@@ -7,13 +7,14 @@ const pmRoute = pathMatch({
 });
 
 export default class SSRRouter {
-    static match(url = '/', routes = []) {
+    static match(url = '/', routes = {}) {
         let route = null;
         const match = {};
 
-        if (_.isArrayNotEmpty(routes)) {
+        if (_.isObjectNotEmpty(routes)) {
             // todo: support redirects here
 
+            routes = Object.values(routes);
             for (let k = 0; k < routes.length; k++) {
                 const routeTest = routes[k];
                 if (routeTest.exact) {
