@@ -1,14 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import Layout from '../../components/LayoutInner';
 import { Link } from 'react-router-dom';
 import * as reducer from './reducer';
+import page from '../../shared/components/Page';
 
 class ListPage extends React.Component {
-    componentDidMount() {
-        this.props.dispatch({type: reducer.initial}, {route: this.props.route});
-    }
-
     render() {
         return (
             <Layout>
@@ -30,4 +26,4 @@ class ListPage extends React.Component {
     }
 }
 
-export default connect(state => state.list)(ListPage);
+export default page(ListPage, reducer, state => state.list);

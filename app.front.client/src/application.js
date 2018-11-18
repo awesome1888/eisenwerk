@@ -13,7 +13,7 @@ import { Switch } from 'react-router';
 import Route from './shared/components/Route';
 
 import LayoutOuter from './components/LayoutOuter';
-import PagePlugin from './shared/components/PagePlugin';
+import PageLoader from './shared/components/PageLoader';
 
 import routeMap from './routes';
 
@@ -75,7 +75,7 @@ export default class Application extends BaseApplication {
                     {...routes.home}
                     render={route => (
                         <LayoutOuter>
-                            <PagePlugin
+                            <PageLoader
                                 page={routes.home.page}
                                 route={route}
                             />
@@ -86,7 +86,7 @@ export default class Application extends BaseApplication {
                     {...routes.list}
                     render={route => (
                         <LayoutOuter>
-                            <PagePlugin
+                            <PageLoader
                                 page={routes.list.page}
                                 route={route}
                             />

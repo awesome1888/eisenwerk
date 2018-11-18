@@ -1,7 +1,7 @@
 import React from 'react';
 import DynamicImport from '../DynamicImport';
 
-const PagePlugin = ({page, route}) => {
+const PageLoader = ({page, route}) => {
     return (
         <React.Fragment>
             {
@@ -20,4 +20,4 @@ const PagePlugin = ({page, route}) => {
     );
 };
 
-export default PagePlugin;
+export default PageLoader;
