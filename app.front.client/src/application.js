@@ -99,7 +99,6 @@ export default class Application extends BaseApplication {
 
     /**
      * This method is available both on server and client
-     * @param {children}
      * @returns {*}
      */
     render() {

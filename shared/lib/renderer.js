@@ -52,7 +52,7 @@ export default class Renderer {
                 res.set('Content-Type', 'text/html');
                 res.send(new Buffer(this._template.get({
                     body,
-                    page: {}, //store.getPageData(tmpPage),
+                    page: store.getPageMeta(route.page),
                     settings: {},
                     state: store.getReduxStore().getState(),
                     dry: true,

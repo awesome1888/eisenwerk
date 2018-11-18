@@ -4,6 +4,7 @@ export const code = 'home';
 
 export const HOME_START = 'home.start';
 export const HOME_FINISH = 'home.finish';
+export const HOME_META_SET = 'home.meta.set';
 
 export const HOME_REQUEST_START = 'home.request.start';
 export const HOME_REQUEST_ENDSUCCESS = 'home.request.end-success';
@@ -17,9 +18,11 @@ export default ReducerFabric.make(
         ready: false,
         loading: false,
         data: {},
+        meta: {},
     },
     {
         [HOME_FINISH]: state => ({ ...state, ready: true }),
+        [HOME_META_SET]: (state, payload) => ({ ...state, meta: payload }),
         [HOME_REQUEST_START]: state => ({ ...state, loading: true, error: null, data: {} }),
         [HOME_REQUEST_ENDSUCCESS]: (state, payload) => ({ ...state, loading: false, error: null, data: payload }),
         [HOME_REQUEST_ENDFAILURE]: (state, payload) => ({ ...state, loading: false, error: payload, data: {} }),

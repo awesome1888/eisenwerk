@@ -105,8 +105,8 @@ export default class Store {
         return this.loadData(page.initial, page.reducer, route);
     }
 
-    getPageData(page) {
-        return _.get(this.getReduxStore().getState(), page.reducer.__root);
+    getPageMeta(page) {
+        return _.get(this.getReduxStore().getState(), `${page.reducer.__root}.meta`);
     }
 
     checkApplicationData() {
