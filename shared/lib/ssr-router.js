@@ -12,6 +12,8 @@ export default class SSRRouter {
         const match = {};
 
         if (_.isArrayNotEmpty(routes)) {
+            // todo: support redirects here
+
             for (let k = 0; k < routes.length; k++) {
                 const routeTest = routes[k];
                 if (routeTest.exact) {

@@ -12,6 +12,9 @@ import { ConnectedRouter } from 'connected-react-router';
 import { Switch } from 'react-router';
 import Route from './shared/components/Route';
 
+import LayoutOuter from './components/LayoutOuter';
+import PagePlugin from './shared/components/PagePlugin';
+
 import pages from './pages';
 import routeMap from './routes';
 
@@ -65,7 +68,7 @@ export default class Application extends BaseApplication {
     }
 
     getCurrentURL() {
-        return this._props.currentURL || '/'; // tmp
+        return this._props.currentURL || '/';
     }
 
     renderRoutes() {
@@ -75,9 +78,25 @@ export default class Application extends BaseApplication {
             <Switch>
                 <Route
                     {...routes[0]}
+                    render={route => (
+                        <LayoutOuter>
+                            <PagePlugin
+                                page={pages[0]}
+                                route={route}
+                            />
+                        </LayoutOuter>
+                    )}
                 />
                 <Route
                     {...routes[1]}
+                    render={route => (
+                        <LayoutOuter>
+                            <PagePlugin
+                                page={pages[1]}
+                                route={route}
+                            />
+                        </LayoutOuter>
+                    )}
                 />
             </Switch>
         );

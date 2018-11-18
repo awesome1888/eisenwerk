@@ -45,10 +45,10 @@ To connect to a running container:
 1.7) ssr
     0) [DONE] execute application's init action
     1) [DONE] catch the moment when the data is loaded, asynchroniously, with the timeout
-    2) implement router server-side, forward route data to dispatch()
+    2) [DONE] implement router server-side, forward route data to dispatch()
     3) [DONE] the same for the client-side
-    4) make page reducer fabric
-    5) make page saga fabric
+    4) [CANCEL] make page reducer fabric
+    5) [CANCEL] make page saga fabric
     6) implement setting and getting of the title, description and other stuff
         6.0) "Page" HOC?
         6.1) server
