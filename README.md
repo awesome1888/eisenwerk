@@ -61,6 +61,7 @@ To connect to a running container:
     10) 404 with code when doing SSR
     11) disable overlay for SSR
     12) enable SSR by user agent
+        https://www.npmjs.com/package/spider-detector
         https://support.google.com/webmasters/answer/80553
         https://support.google.com/webmasters/answer/1061943?hl=en
     13) in outer layout replace OOP with HOC

@@ -12,15 +12,3 @@ export default {
         page: List,
     }
 };
-
-// export default [
-//     {
-//         exact: true,
-//         path: '/',
-//         page: Home,
-//     },
-//     {
-//         path: '/list/:category/:topic/:way',
-//         page: List,
-//     },
-// ];
