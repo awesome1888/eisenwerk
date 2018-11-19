@@ -43,5 +43,10 @@
   },
   "devDependencies": {
     "jest": "^23.6.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   }
 }

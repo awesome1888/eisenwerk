@@ -53,18 +53,19 @@ To connect to a running container:
         6.0) [DONE] "Page" HOC?
         6.1) [DONE] server
         6.2) [DONE] client
-    7) bug: ssr will work on missing 404 (i.e. favicon.ico)
+    7) http codes
+        
+    7.1) bug: ssr will work on missing 404 (i.e. favicon.ico)
     8) [DONE] memory leak in saga?!!!
         https://github.com/redux-saga/redux-saga/issues/13#issuecomment-182883680
     9) implement at least simple cache with redis
         make it decoupled: with hooks
-    10) 404 with code when doing SSR
     11) disable overlay for SSR
     12) enable SSR by user agent
         https://www.npmjs.com/package/spider-detector
         https://support.google.com/webmasters/answer/80553
         https://support.google.com/webmasters/answer/1061943?hl=en
-    13) in outer layout replace OOP with HOC
+    13) [CANCEL] in outer layout replace OOP with HOC
 1.71) 404 with code when doing CSR
 1.8) EHHH Shitty decisions made...
     Re-think the whole idea about how we dockerize: there is a simpler way to do that with no docker-build-tool involved
