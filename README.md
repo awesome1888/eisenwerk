@@ -54,7 +54,9 @@ To connect to a running container:
         6.1) [DONE] server
         6.2) [DONE] client
     7) http codes
-        
+        make "enter" and "leave" actions
+        make "setHTTPCode" and "unsetHTTPCode" actions
+        when SSR, check store for the http code other than 200 or undefined
     7.1) bug: ssr will work on missing 404 (i.e. favicon.ico)
     8) [DONE] memory leak in saga?!!!
         https://github.com/redux-saga/redux-saga/issues/13#issuecomment-182883680
@@ -70,6 +72,8 @@ To connect to a running container:
 1.8) EHHH Shitty decisions made...
     Re-think the whole idea about how we dockerize: there is a simpler way to do that with no docker-build-tool involved
     Run as dockerized or not: should not be important
+        https://www.npmjs.com/package/nodemon-webpack-plugin
+        
 2) auth in a modern way
 4) re-think oauth2
 5) migrations
