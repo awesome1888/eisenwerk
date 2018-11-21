@@ -54,9 +54,11 @@ To connect to a running container:
         6.1) [DONE] server
         6.2) [DONE] client
     7) http codes
-        make "enter" and "leave" actions
-        make "setHTTPCode" and "unsetHTTPCode" actions
-        when SSR, check store for the http code other than 200 or undefined
+        [DONE] make "enter" and "leave" actions
+        [DONE] make "setHTTPCode" and "unsetHTTPCode" actions
+        Write down all scenarios for CSR, SSR when working with codes, implement it
+            server-side load process got broken
+            when SSR, check store for the http code other than 200 or undefined
     7.1) bug: ssr will work on missing 404 (i.e. favicon.ico)
     8) [DONE] memory leak in saga?!!!
         https://github.com/redux-saga/redux-saga/issues/13#issuecomment-182883680

@@ -80,6 +80,7 @@ export default class Store {
                     resolve();
                 }
             });
+            console.dir('dispatching '+type);
             store.dispatch({type, payload});
             setTimeout(() => {
                 reject('Timeout');

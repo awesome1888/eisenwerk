@@ -38,6 +38,9 @@ export default class Renderer {
 
                 await store.loadPageData(route.page, { route: routeState });
 
+                console.dir('state:');
+                console.dir(store.getReduxStore().getState());
+
                 // pre-load ui
                 if (route.page.lazy) {
                     route.page.ui = (await route.page.ui()).default;
