@@ -99,7 +99,7 @@ export default class Store {
     }
 
     loadApplicationData() {
-        return this.loadData(this._application.initial, this._application.reducer);
+        return this.loadData(this._application.enter, this._application.reducer);
     }
 
     loadPageData(page, route = {}) {

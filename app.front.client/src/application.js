@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import Store from './shared/lib/store';
 
 import ApplicationUI from './components/Application';
-import applicationReducer, { initial as applicationInitial } from './components/Application/reducer';
+import applicationReducer, { enter as applicationEnter } from './components/Application/reducer';
 import applicationSaga from './components/Application/saga';
 import { createBrowserHistory, createMemoryHistory } from 'history';
 import { ConnectedRouter } from 'connected-react-router';
@@ -34,7 +34,7 @@ export default class Application extends BaseApplication {
                 application: {
                     reducer: applicationReducer,
                     saga: applicationSaga,
-                    initial: applicationInitial,
+                    enter: applicationEnter,
                 },
                 routes: this.getRoutes(),
                 history: this.getHistory(),
