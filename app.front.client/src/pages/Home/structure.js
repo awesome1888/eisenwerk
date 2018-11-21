@@ -1,4 +1,4 @@
-import reducer, { initial } from './reducer';
+import reducer, { enter, leave } from './reducer';
 import saga from './saga';
 
 export default {
@@ -6,5 +6,6 @@ export default {
     lazy: true,
     reducer,
     saga,
-    initial,
+    enter,
+    leave,
 };

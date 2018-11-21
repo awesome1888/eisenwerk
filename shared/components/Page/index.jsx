@@ -9,11 +9,19 @@ export default (Page, reducer, stateMapper = null) => {
 
     return connect(stateMapper)(class extends React.Component {
         componentDidMount() {
-            this.props.dispatch({type: reducer.initial}, {route: this.props.route});
+            if (reducer.enter) {
+                this.props.dispatch({type: reducer.enter}, {route: this.props.route});
+            }
         }
 
         componentDidUpdate() {
             this.setMeta(this.props.meta);
+        }
+
+        componentWillUnmount() {
+            if (reducer.leave) {
+                this.props.dispatch({type: reducer.leave});
+            }
         }
 
         setMeta(meta = {}) {

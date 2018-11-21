@@ -102,7 +102,7 @@ export default class Store {
     }
 
     loadPageData(page, route = {}) {
-        return this.loadData(page.initial, page.reducer, route);
+        return this.loadData(page.enter, page.reducer, route);
     }
 
     getPageMeta(page) {

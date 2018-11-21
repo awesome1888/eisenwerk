@@ -13,14 +13,16 @@ function* loadData() {
         if (error.message === '401') {
             yield put({ type: applicationReducer.APPLICATION_AUTHORIZED_UNSET});
         }
+        yield put({ type: reducer.LIST_HTTPCODE_SET, payload: error.message });
+
         yield put({ type: reducer.LIST_REQUEST_ENDFAILURE, payload: error });
     }
 
-    yield put({ type: reducer.LIST_FINISH });
+    yield put({ type: reducer.LIST_DONE });
 }
 
 export default function* watcher() {
     yield all([
-        fork(function* loadDataGenerator() { yield takeLatest(reducer.LIST_START, loadData); }),
+        fork(function* loadDataGenerator() { yield takeLatest(reducer.LIST_ENTER, loadData); }),
     ]);
 }
