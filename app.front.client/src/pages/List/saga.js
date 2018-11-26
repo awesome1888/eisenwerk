@@ -6,12 +6,14 @@ import axios from 'axios';
 
 function* loadData() {
     try {
+        console.dir('LOADING DATA');
         const response = yield call(() => axios.get('https://swapi.co/api/people/'));
         yield put({ type: reducer.REQUEST_ENDSUCCESS, payload: response.data.results });
         yield put({ type: reducer.META_SET, payload: {title: 'List', description: 'List page', keywords: ['home', 'list']} });
     } catch (error) {
+        console.dir(error);
         if (error.message === '401') {
-            yield put({ type: applicationReducer.APPLICATION_AUTHORIZED_UNSET});
+            yield put({ type: applicationReducer.AUTHORIZED_UNSET});
         }
         yield put({ type: reducer.HTTPCODE_SET, payload: error.message });
 

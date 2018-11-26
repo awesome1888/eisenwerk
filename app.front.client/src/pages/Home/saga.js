@@ -10,7 +10,7 @@ function* loadData() {
         yield put({ type: reducer.META_SET, payload: {title: 'Home', description: 'Home page', keywords: ['home', 'page']} });
     } catch (error) {
         if (error.message === '401') {
-            yield put({ type: applicationReducer.APPLICATION_AUTHORIZED_UNSET});
+            yield put({ type: applicationReducer.AUTHORIZED_UNSET});
         }
         yield put({ type: reducer.HTTPCODE_SET, payload: error.message });
 

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import * as reducer from './reducer';
 import page from '../../shared/components/Page';
 
-const ListPage = ({ data }) => (
+const Page = ({ data }) => (
     <Layout>
         {
             _.isArrayNotEmpty(data)
@@ -22,4 +22,4 @@ const ListPage = ({ data }) => (
     </Layout>
 );
 
-export default page(ListPage, reducer, state => state.list);
+export default page(Page, reducer, state => state.list);

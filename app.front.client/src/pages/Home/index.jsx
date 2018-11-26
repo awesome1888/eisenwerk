@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import * as reducer from './reducer';
 import page from '../../shared/components/Page';
 
-const HomePage = () => (
+const Page = () => (
     <Layout>
         Hello there 7
         <Link to="/list/seamonkeys/porn/live">List</Link><br />
@@ -12,4 +12,4 @@ const HomePage = () => (
     </Layout>
 );
 
-export default page(HomePage, reducer, state => state.home);
+export default page(Page, reducer, state => state.home);

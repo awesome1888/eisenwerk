@@ -15,10 +15,10 @@ export default class ReducerFabric {
     static makePage(root, initialState = {}, actions = {}) {
         const pageInitial = {
             ready: false,
-            loading: false,
-            data: {},
-            meta: {},
-            httpCode: null,
+            loading: false, // indicates that the page is still loading
+            data: {}, // contains page data
+            meta: {}, // contains page meta, like title and other SEO stuff
+            httpCode: null, // contains an HTTP status, i.e. 200, 400, 500
         };
 
         const initialStateMixed = _.cloneDeep(initialState);
@@ -26,11 +26,14 @@ export default class ReducerFabric {
 
         actions = _.cloneDeep(actions);
         Object.assign(actions, {
-            [`${root}.enter`]: state => ({ ...state, ready: true }),
+            [`${root}.done`]: state => ({ ...state, ready: true }),
             [`${root}.meta.set`]: (state, payload) => ({ ...state, meta: payload }),
             [`${root}.http-code.set`]: (state, payload) => ({ ...state, httpCode: payload }),
             [`${root}.leave`]: state => ({ ...state, ..._.deepClone(pageInitial) }),
         });
+
+        console.dir('actions');
+        console.dir(actions);
 
         return this.make(root, initialStateMixed, actions);
     }
