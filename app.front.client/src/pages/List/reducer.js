@@ -16,32 +16,14 @@ export const REQUEST_ENDFAILURE = `${code}.request.end-failure`;
 export const enter = ENTER;
 export const leave = LEAVE;
 
-// export default ReducerFabric.makePage(
-//     code,
-//     {},
-//     {
-//         [REQUEST_START]: state => ({ ...state, loading: true, error: null, data: {} }),
-//         [REQUEST_ENDSUCCESS]: (state, payload) => {
-//             console.dir('executed?');
-//             return { ...state, loading: false, error: null, data: payload }
-//         },
-//         [REQUEST_ENDFAILURE]: (state, payload) => ({ ...state, loading: false, error: payload, data: {} }),
-//     }
-// );
-
-export default ReducerFabric.make(
+export default ReducerFabric.makePage(
     code,
+    {},
     {
-        ready: false,
-        loading: false,
-        data: {},
-        meta: {},
-    },
-    {
-        [DONE]: state => ({ ...state, ready: true }),
-        [META_SET]: (state, payload) => ({ ...state, meta: payload }),
         [REQUEST_START]: state => ({ ...state, loading: true, error: null, data: {} }),
-        [REQUEST_ENDSUCCESS]: (state, payload) => ({ ...state, loading: false, error: null, data: payload }),
+        [REQUEST_ENDSUCCESS]: (state, payload) => {
+            return { ...state, loading: false, error: null, data: payload }
+        },
         [REQUEST_ENDFAILURE]: (state, payload) => ({ ...state, loading: false, error: payload, data: {} }),
     }
 );
