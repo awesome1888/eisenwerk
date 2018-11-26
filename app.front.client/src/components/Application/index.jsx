@@ -11,7 +11,7 @@ import './style.scss';
 class Application extends React.Component {
 
     componentDidMount() {
-        this.props.dispatch({type: reducer.APPLICATION_START});
+        this.props.dispatch({type: reducer.enter});
         // if (this.props.useAuth) {
         //     // check if we are authorized
         //     // todo

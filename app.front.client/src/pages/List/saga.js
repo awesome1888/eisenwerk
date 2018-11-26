@@ -7,8 +7,6 @@ import axios from 'axios';
 function* loadData() {
     try {
         const response = yield call(() => axios.get('https://swapi.co/api/people/'));
-        console.dir('res');
-        console.dir(response.data.results);
         yield put({ type: reducer.REQUEST_ENDSUCCESS, payload: response.data.results });
         yield put({ type: reducer.META_SET, payload: {title: 'List', description: 'List page', keywords: ['home', 'list']} });
     } catch (error) {
