@@ -105,6 +105,14 @@ export default class Store {
         return this.loadData(page.enter, page.reducer, route);
     }
 
+    getPageHttpCode(page) {
+        const code = parseInt(_.get(this.getReduxStore().getState(), `${page.reducer.__root}.httpCode`), 10);
+        if (!code || isNaN(code)) {
+            return 200;
+        }
+        return code;
+    }
+
     getPageMeta(page) {
         return _.get(this.getReduxStore().getState(), `${page.reducer.__root}.meta`);
     }

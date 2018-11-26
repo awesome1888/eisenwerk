@@ -50,7 +50,7 @@ export default class Renderer {
                 const body = ReactDOMServer.renderToStaticMarkup(application.render());
                 await application.teardown();
 
-                res.status(200);
+                res.status(store.getPageHttpCode(route.page));
                 res.set('Content-Type', 'text/html');
                 res.send(new Buffer(this._template.get({
                     body,

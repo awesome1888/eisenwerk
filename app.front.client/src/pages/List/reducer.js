@@ -21,9 +21,7 @@ export default ReducerFabric.makePage(
     {},
     {
         [REQUEST_START]: state => ({ ...state, loading: true, error: null, data: {} }),
-        [REQUEST_ENDSUCCESS]: (state, payload) => {
-            return { ...state, loading: false, error: null, data: payload }
-        },
+        [REQUEST_ENDSUCCESS]: (state, payload) => ({ ...state, loading: false, error: null, data: payload }),
         [REQUEST_ENDFAILURE]: (state, payload) => ({ ...state, loading: false, error: payload, data: {} }),
     }
 );
