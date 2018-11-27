@@ -87,6 +87,7 @@ export default class Store {
         };
 
         let unsubscribe = null;
+        let timer = null;
         return new Promise((resolve, reject) => {
             if (checkReady(reducer, resolve) === true) {
                 // it is already "ready", no need to dispatch anything
@@ -95,11 +96,12 @@ export default class Store {
                 // subscribe to the store change, dispatch reducer.ENTER
                 unsubscribe = store.subscribe(() => {
                     if (checkReady(reducer) === true) {
+                        clearTimeout(timer);
                         resolve();
                     }
                 });
                 store.dispatch({ type, payload });
-                setTimeout(() => {
+                timer = setTimeout(() => {
                     // 45 seconds passed, cant wait any longer, consider it "ready" as it is now
                     reject('Timeout');
                 }, 45 * 1000);
