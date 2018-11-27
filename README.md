@@ -66,16 +66,17 @@ To connect to a running container:
             2) ???
 
         7.05) Refactor
-            1) simplify watcher in saga
-            2) DONE -> READY
-            3) REQUEST_END(SUCCESS|FAILURE) => SUCCESS|FAILURE
-            4) saga fabric
-        7.1) bug: ssr will work on missing 404 (i.e. favicon.ico)
-        7.2) client-side 404 "route" is missing
+            1) [CANCEL] simplify watcher in saga
+            2) [DONE] DONE -> READY
+            3) [DONE] REQUEST_END(SUCCESS|FAILURE) => SUCCESS|FAILURE
+            4) [CANCEL] saga fabric
+        7.1) [DONE] bug: ssr will work on missing 404 (i.e. favicon.ico)
+        7.2) [DONE] client-side 404 "route" is missing
         8) [DONE] memory leak in saga?!!!
             https://github.com/redux-saga/redux-saga/issues/13#issuecomment-182883680
         9) implement at least simple cache with redis
             make it decoupled: with hooks
+            dont make any cache if status is not 200
         11) disable overlay for SSR
         12) enable SSR by user agent
             https://www.npmjs.com/package/spider-detector
@@ -108,62 +109,62 @@ To connect to a running container:
 
 ### Random
 
-- [CANCEL] connect to the database on-demand
-- [DONE] optimize build tool pipelines and docker images
-- pack everything that is possible to npm
-- port useful things from pr-legacy project
-  - global events (as a separate event manager)
-  - page scroll
-    - data-store-scroll attribute and logic
-  - backurl
-  - [CANCEL] set title
-  - notifications
-- [CANCEL] probably replace filter, sort, limit, etc with $filter,$sort, \$limit, ...
-- implement smart population
-- [DONE] ENV dot notation
-- [DONE] real data and normalized data
-- [CANCEL] cron (cancelled, because for cron there should be a separate app according to the microservices architecture)
-- [CANCEL] Web sockets!
-- try to use component-template approach
-- [DONE] make global **DEV** constant, this will be easier to utilize
-- [CANCEL] rebuild Settings with deep freeze
-- use https://www.npmjs.com/package/compression
-- instead of doing `props.something`, do de-composition as `({className, children}) => { return (<div className={className}>{children}</div>) };`
-- https://www.npmjs.com/package/babel-plugin-transform-react-jsx-source
+-   [CANCEL] connect to the database on-demand
+-   [DONE] optimize build tool pipelines and docker images
+-   pack everything that is possible to npm
+-   port useful things from pr-legacy project
+    -   global events (as a separate event manager)
+    -   page scroll
+        -   data-store-scroll attribute and logic
+    -   backurl
+    -   [CANCEL] set title
+    -   notifications
+-   [CANCEL] probably replace filter, sort, limit, etc with $filter,$sort, \$limit, ...
+-   implement smart population
+-   [DONE] ENV dot notation
+-   [DONE] real data and normalized data
+-   [CANCEL] cron (cancelled, because for cron there should be a separate app according to the microservices architecture)
+-   [CANCEL] Web sockets!
+-   try to use component-template approach
+-   [DONE] make global **DEV** constant, this will be easier to utilize
+-   [CANCEL] rebuild Settings with deep freeze
+-   use https://www.npmjs.com/package/compression
+-   instead of doing `props.something`, do de-composition as `({className, children}) => { return (<div className={className}>{children}</div>) };`
+-   https://www.npmjs.com/package/babel-plugin-transform-react-jsx-source
 
 To NPM:
 Put everything to @eisenwerk/\*, like @eisenwerk/ui.page-scroll
 
-- selectbox
-- drag n drop
-- scrollpane
-- modal
-- button loader
-- page scroll
-- [CANCEL] csv client side generator
-- [CANCEL] csv server side generator
-- [CANCEL] build tool
-  [CANCEL] local_build-tool
-- page up button
-- scrollbars
-- notifications
-- top menu with mobile support
-- file uploader
-- image viewer
-- enum fabric
-- migrations
-  f_migration
-- decouple and port global event manager (without jquery)
+-   selectbox
+-   drag n drop
+-   scrollpane
+-   modal
+-   button loader
+-   page scroll
+-   [CANCEL] csv client side generator
+-   [CANCEL] csv server side generator
+-   [CANCEL] build tool
+    [CANCEL] local_build-tool
+-   page up button
+-   scrollbars
+-   notifications
+-   top menu with mobile support
+-   file uploader
+-   image viewer
+-   enum fabric
+-   migrations
+    f_migration
+-   decouple and port global event manager (without jquery)
 
 Create "rem-bem-scss" package, port all really useful things from rem-bem, and besides:
 
-- make useful rb-content-\*\* alignment classes
-- [DONE] make useful rb-icon-label already!
-- [CANCEL] generate all mixins over all google icons, for sake
-- [DONE] \_rb-bg-cover(): allow to pass an image as an argument
-- [CANCEL] generate all mixins and classes for margins and paddings
-- put the MIT license inside the file with color codes:
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-   make useful rb-content-\*\* alignment classes
+-   [DONE] make useful rb-icon-label already!
+-   [CANCEL] generate all mixins over all google icons, for sake
+-   [DONE] \_rb-bg-cover(): allow to pass an image as an argument
+-   [CANCEL] generate all mixins and classes for margins and paddings
+-   put the MIT license inside the file with color codes:
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ## Effects
 

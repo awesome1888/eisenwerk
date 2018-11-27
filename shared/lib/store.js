@@ -75,25 +75,35 @@ export default class Store {
     loadData(reducer, payload = {}) {
         const type = reducer.ENTER;
         if (!type) {
-            // nothing to wait for, the page does not load any data
+            // nothing to dispatch, it seems that the page does not load any data, consider it "ready"
             return true;
         }
 
         const store = this.getReduxStore();
 
+        const checkReady = red => {
+            const state = store.getState();
+            return _.get(state, `${red.code}.ready`);
+        };
+
         let unsubscribe = null;
         return new Promise((resolve, reject) => {
-            unsubscribe = store.subscribe(() => {
-                const state = store.getState();
-                const ready = _.get(state, `${reducer.code}.ready`);
-                if (ready === true) {
-                    resolve();
-                }
-            });
-            store.dispatch({ type, payload });
-            setTimeout(() => {
-                reject('Timeout');
-            }, 45 * 1000);
+            if (checkReady(reducer, resolve) === true) {
+                // it is already "ready", no need to dispatch anything
+                resolve();
+            } else {
+                // subscribe to the store change, dispatch reducer.ENTER
+                unsubscribe = store.subscribe(() => {
+                    if (checkReady(reducer) === true) {
+                        resolve();
+                    }
+                });
+                store.dispatch({ type, payload });
+                setTimeout(() => {
+                    // 45 seconds passed, cant wait any longer, consider it "ready" as it is now
+                    reject('Timeout');
+                }, 45 * 1000);
+            }
         })
             .then(() => {
                 if (unsubscribe) {

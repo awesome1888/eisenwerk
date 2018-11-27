@@ -23,13 +23,21 @@ export default class SSRRouter {
                         match.exact = true;
                         break;
                     }
-                } else {
+                } else if (_.isStringNotEmpty(routeTest.path)) {
                     const result = pmRoute(routeTest.path)(url);
                     if (result) {
                         route = routeTest;
                         match.params = result;
                         break;
                     }
+                }
+            }
+
+            if (!route) {
+                // last chance: check if we have route without path, that would be our 404
+                const notFound = routes.find(r => !_.isStringNotEmpty(r.path));
+                if (notFound) {
+                    route = notFound;
                 }
             }
         }

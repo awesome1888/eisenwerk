@@ -85,6 +85,16 @@ export default class Application extends BaseApplication {
                         </LayoutOuter>
                     )}
                 />
+                <Route
+                    render={route => (
+                        <LayoutOuter>
+                            <PageLoader
+                                page={routes.notFound.page}
+                                route={route}
+                            />
+                        </LayoutOuter>
+                    )}
+                />
             </Switch>
         );
     }
