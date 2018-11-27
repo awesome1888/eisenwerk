@@ -58,8 +58,12 @@ To connect to a running container:
     Write down all scenarios for CSR, SSR when working with codes, implement it
     [DONE] server-side load process got broken
     [DONE] when SSR, check store for the http code other than 200 or undefined
-      
-     1) CSR 1) Just test for 404 according to the routes, and set status either to 200 or to 404 2) SSR 1) [DONE] Check code after dispatching 2) ???
+
+         1) CSR
+            1) Just test for 404 according to the routes, and set status either to 200 or to 404
+         2) SSR
+            1) [DONE] Check code after dispatching
+            2) ???
 
         7.1) bug: ssr will work on missing 404 (i.e. favicon.ico)
         7.2) client-side 404 "route" is missing

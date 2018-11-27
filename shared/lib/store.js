@@ -1,134 +1,147 @@
-import { applyMiddleware, compose, createStore } from 'redux';
-import { combineReducers } from 'redux';
-import createSagaMiddleware from 'redux-saga';
-import { fork, all } from 'redux-saga/effects';
-import logger from 'redux-logger';
-import {connectRouter, routerMiddleware} from 'connected-react-router';
+import { applyMiddleware, compose, createStore } from "redux";
+import { combineReducers } from "redux";
+import createSagaMiddleware from "redux-saga";
+import { fork, all } from "redux-saga/effects";
+import logger from "redux-logger";
+import { connectRouter, routerMiddleware } from "connected-react-router";
 
 export default class Store {
+  constructor(params = {}) {
+    this._params = params;
+  }
 
-    constructor(params = {}) {
-        this._params = params;
-    }
+  init() {
+    const {
+      routes,
+      application,
+      alterMiddleware,
+      alterReducers,
+      history,
+      initialState
+    } = this._params;
+    this._application = application;
 
-    init() {
-        const {routes, application, alterMiddleware, alterReducers, history, initialState} = this._params;
-        this._application = application;
+    const reducers = [application.reducer];
+    const sagas = [application.saga];
 
-        const reducers = [
-            application.reducer,
-        ];
-        const sagas = [
-            application.saga,
-        ];
-
-        const pageList = Object.values(routes).map(r => r.page);
-        pageList.forEach((page) => {
-            if (page) {
-                if (page.reducer) {
-                    reducers.push(page.reducer);
-                }
-                if (page.saga) {
-                    sagas.push(page.saga);
-                }
-            }
-        });
-
-        const sagaMiddleware = createSagaMiddleware();
-
-        let middlewares = [];
-        if (_.isFunction(alterMiddleware)) {
-            middlewares = alterMiddleware(middlewares);
+    const pageList = Object.values(routes).map(r => r.page);
+    pageList.forEach(page => {
+      if (page) {
+        if (page.reducer) {
+          reducers.push(page.reducer);
         }
-        middlewares.push(routerMiddleware(history));
-        middlewares.push(sagaMiddleware);
-        if (__DEV__ && !__SSR__) {
-            middlewares.push(logger);
+        if (page.saga) {
+          sagas.push(page.saga);
+        }
+      }
+    });
+
+    const sagaMiddleware = createSagaMiddleware();
+
+    let middlewares = [];
+    if (_.isFunction(alterMiddleware)) {
+      middlewares = alterMiddleware(middlewares);
+    }
+    middlewares.push(routerMiddleware(history));
+    middlewares.push(sagaMiddleware);
+    if (__DEV__ && !__SSR__) {
+      middlewares.push(logger);
+    }
+
+    let cReducers = combineReducers(
+      reducers.reduce((result, item) => {
+        result[item.__root] = item;
+        return result;
+      }, {})
+    );
+    if (_.isFunction(alterReducers)) {
+      cReducers = alterReducers(cReducers);
+    }
+
+    cReducers = connectRouter(history)(cReducers);
+
+    this._store = createStore(
+      cReducers,
+      initialState || {},
+      compose(applyMiddleware(...middlewares))
+    );
+    this._sagaHandler = sagaMiddleware.run(function* composeSagas() {
+      yield all(sagas.map(saga => fork(saga)));
+    });
+  }
+
+  loadData(type, reducer, payload = {}) {
+    const store = this.getReduxStore();
+
+    let unsubscribe = null;
+    return new Promise((resolve, reject) => {
+      unsubscribe = store.subscribe(() => {
+        const state = store.getState();
+        const ready = _.get(state, `${reducer.__root}.ready`);
+        if (ready === true) {
+          resolve();
+        }
+      });
+      store.dispatch({ type, payload });
+      setTimeout(() => {
+        reject("Timeout");
+      }, 45 * 1000);
+    })
+      .then(() => {
+        if (unsubscribe) {
+          unsubscribe();
+        }
+      })
+      .catch(e => {
+        if (unsubscribe) {
+          unsubscribe();
         }
 
-        let cReducers = combineReducers(reducers.reduce((result, item) => {
-            result[item.__root] = item;
-            return result;
-        }, {}));
-        if (_.isFunction(alterReducers)) {
-            cReducers = alterReducers(cReducers);
-        }
+        throw e;
+      });
+  }
 
-        cReducers = connectRouter(history)(cReducers);
+  loadApplicationData() {
+    return this.loadData(this._application.ENTER, this._application.reducer);
+  }
 
-        this._store = createStore(
-          cReducers,
-          initialState || {},
-          compose(
-            applyMiddleware(...middlewares),
-          ),
-        );
-        this._sagaHandler = sagaMiddleware.run(function* composeSagas() {
-            yield all(sagas.map(saga => fork(saga)));
-        });
+  loadPageData(page, route = {}) {
+    return this.loadData(page.reducer.ENTER, page.reducer, route);
+  }
+
+  getPageHttpCode(page) {
+    const code = parseInt(
+      _.get(this.getReduxStore().getState(), `${page.reducer.__root}.httpCode`),
+      10
+    );
+    if (!code || isNaN(code)) {
+      return 200;
     }
+    return code;
+  }
 
-    loadData(type, reducer, payload = {}) {
-        const store = this.getReduxStore();
+  getPageMeta(page) {
+    return _.get(
+      this.getReduxStore().getState(),
+      `${page.reducer.__root}.meta`
+    );
+  }
 
-        let unsubscribe = null;
-        return new Promise((resolve, reject) => {
-            unsubscribe = store.subscribe(() => {
-                const state = store.getState();
-                const ready = _.get(state, `${reducer.__root}.ready`);
-                if (ready === true) {
-                    resolve();
-                }
-            });
-            store.dispatch({type, payload});
-            setTimeout(() => {
-                reject('Timeout');
-            }, 45 * 1000);
-        }).then(() => {
-            if (unsubscribe) {
-                unsubscribe();
-            }
-        }).catch((e) => {
-            if (unsubscribe) {
-                unsubscribe();
-            }
+  checkApplicationData() {
+    const appData = _.get(
+      this.getReduxStore().getState(),
+      this._application.reducer.__root
+    );
+    return appData.ready === true; // todo: so far only this
+  }
 
-            throw e;
-        });
+  getReduxStore() {
+    return this._store;
+  }
+
+  shutdown() {
+    if (this._sagaHandler) {
+      this._sagaHandler.cancel();
     }
-
-    loadApplicationData() {
-        return this.loadData(this._application.enter, this._application.reducer);
-    }
-
-    loadPageData(page, route = {}) {
-        return this.loadData(page.enter, page.reducer, route);
-    }
-
-    getPageHttpCode(page) {
-        const code = parseInt(_.get(this.getReduxStore().getState(), `${page.reducer.__root}.httpCode`), 10);
-        if (!code || isNaN(code)) {
-            return 200;
-        }
-        return code;
-    }
-
-    getPageMeta(page) {
-        return _.get(this.getReduxStore().getState(), `${page.reducer.__root}.meta`);
-    }
-
-    checkApplicationData() {
-        const appData = _.get(this.getReduxStore().getState(), this._application.reducer.__root);
-        return appData.ready === true; // todo: so far only this
-    }
-
-    getReduxStore() {
-        return this._store;
-    }
-
-    shutdown() {
-        if (this._sagaHandler) {
-            this._sagaHandler.cancel();
-        }
-    }
+  }
 }

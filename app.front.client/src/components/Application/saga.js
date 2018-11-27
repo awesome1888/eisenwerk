@@ -1,12 +1,14 @@
-import { takeLatest, put, fork, all } from 'redux-saga/effects';
-import * as reducer from './reducer';
+import { takeLatest, put, fork, all } from "redux-saga/effects";
+import * as reducer from "./reducer";
 
 function* loadData() {
-    yield put({ type: reducer.DONE });
+  yield put({ type: reducer.DONE });
 }
 
 export default function* watcher() {
-    yield all([
-        fork(function* loadDataGenerator() { yield takeLatest(reducer.enter, loadData); }),
-    ]);
+  yield all([
+    fork(function* loadDataGenerator() {
+      yield takeLatest(reducer.ENTER, loadData);
+    })
+  ]);
 }
