@@ -30,7 +30,7 @@ function* loadData() {
     yield put({ type: reducer.REQUEST_ENDFAILURE, payload: error });
   }
 
-  yield put({ type: reducer.DONE });
+  yield put({ type: reducer.READY });
 }
 
 export default function* watcher() {

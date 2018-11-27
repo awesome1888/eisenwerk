@@ -2,7 +2,7 @@ import { takeLatest, put, fork, all } from "redux-saga/effects";
 import * as reducer from "./reducer";
 
 function* loadData() {
-  yield put({ type: reducer.DONE });
+  yield put({ type: reducer.READY });
 }
 
 export default function* watcher() {

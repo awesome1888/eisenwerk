@@ -4,7 +4,7 @@ export const code = "list";
 export const {
   ENTER,
   LEAVE,
-  DONE,
+  READY,
   META_SET,
   HTTPCODE_SET
 } = ReducerFabric.makePageActions(code);
