@@ -61,6 +61,11 @@ To connect to a running container:
       
      1) CSR 1) Just test for 404 according to the routes, and set status either to 200 or to 404 2) SSR 1) [DONE] Check code after dispatching 2) ???
 
+        7.05) Refactor
+            1) simplify watcher in saga
+            2) DONE -> READY
+            3) REQUEST_END(SUCCESS|FAILURE) => SUCCESS|FAILURE
+            4) saga fabric
         7.1) bug: ssr will work on missing 404 (i.e. favicon.ico)
         7.2) client-side 404 "route" is missing
         8) [DONE] memory leak in saga?!!!
