@@ -59,11 +59,21 @@ To connect to a running container:
     [DONE] server-side load process got broken
     [DONE] when SSR, check store for the http code other than 200 or undefined
 
-         1) CSR
-            1) Just test for 404 according to the routes, and set status either to 200 or to 404
-         2) SSR
-            1) [DONE] Check code after dispatching
-            2) ???
+        1) 404
+            1) CSR: redirect to /404 client-side and on the server set status either to 200 or to 404
+            2) SSR: [DONE] redirect to /404 page and set status to 404
+        2) 401/402
+            1) CSR:
+                We need redirect calculation support client-side, then we decide what to do next
+            2) SSR:
+                We need redirect caclulation support server-side in order to be able to send 301, then we decide what to do next
+        3) 500
+            1) CSR:
+                1) production: we will show an error screen by using error boundary or something else
+                2) just show console error and that is it
+            2) SSR: ???
+                1) production: we need to set status to 500 and instead of the app layout show special screen (where to get it?)
+                2) just res.send() error trace, set status to 500
 
         7.05) Refactor
             1) [CANCEL] simplify watcher in saga
@@ -78,13 +88,12 @@ To connect to a running container:
             make it decoupled: with hooks
             dont make any cache if status is not 200
         11) disable overlay for SSR
-        12) enable SSR by user agent
+        12) enable SSR by user agent or __ssr=1
             https://www.npmjs.com/package/spider-detector
             https://support.google.com/webmasters/answer/80553
             https://support.google.com/webmasters/answer/1061943?hl=en
         13) [CANCEL] in outer layout replace OOP with HOC
 
-    1.71) 404 with code when doing CSR
     1.8) EHHH Shitty decisions made...
     Re-think the whole idea about how we dockerize: there is a simpler way to do that with no docker-build-tool involved
     Run as dockerized or not: should not be important
