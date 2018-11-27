@@ -9,29 +9,20 @@ export const {
   HTTPCODE_SET
 } = ReducerFabric.makePageActions(code);
 
-export const REQUEST_START = `${code}.request.start`;
-export const REQUEST_ENDSUCCESS = `${code}.request.end-success`;
-export const REQUEST_ENDFAILURE = `${code}.request.end-failure`;
+export const SUCCESS = `${code}.success`;
+export const FAILURE = `${code}.failure`;
 
 export default ReducerFabric.makePage(
   code,
   {},
   {
-    [REQUEST_START]: state => ({
+    [SUCCESS]: (state, payload) => ({
       ...state,
-      loading: true,
-      error: null,
-      data: {}
-    }),
-    [REQUEST_ENDSUCCESS]: (state, payload) => ({
-      ...state,
-      loading: false,
       error: null,
       data: payload
     }),
-    [REQUEST_ENDFAILURE]: (state, payload) => ({
+    [FAILURE]: (state, payload) => ({
       ...state,
-      loading: false,
       error: payload,
       data: {}
     })

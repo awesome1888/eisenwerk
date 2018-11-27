@@ -26,13 +26,14 @@ export default class ReducerFabric {
 
     actions = _.cloneDeep(actions);
     Object.assign(actions, {
-      [`${root}.leave`]: state => ({ ...state, ..._.deepClone(pageInitial) }),
-      [`${root}.ready`]: state => ({ ...state, ready: true }),
+      [`${root}.enter`]: state => ({ ...state, loading: true }),
       [`${root}.meta.set`]: (state, payload) => ({ ...state, meta: payload }),
       [`${root}.http-code.set`]: (state, payload) => ({
         ...state,
         httpCode: payload
-      })
+      }),
+      [`${root}.ready`]: state => ({ ...state, ready: true, loading: false }),
+      [`${root}.leave`]: state => ({ ...state, ..._.deepClone(pageInitial) })
     });
 
     return this.make(root, initialStateMixed, actions);
@@ -41,10 +42,10 @@ export default class ReducerFabric {
   static makePageActions(code) {
     return {
       ENTER: `${code}.enter`,
-      LEAVE: `${code}.leave`,
-      READY: `${code}.ready`,
       META_SET: `${code}.meta.set`,
-      HTTPCODE_SET: `${code}.http-code.set`
+      HTTPCODE_SET: `${code}.http-code.set`,
+      READY: `${code}.ready`,
+      LEAVE: `${code}.leave`
     };
   }
 }

@@ -6,7 +6,6 @@ function* loadData() {
   try {
     // const response = yield call(() => Offer.find({token: Auth.getToken()}));
     const response = {};
-    yield put({ type: reducer.REQUEST_ENDSUCCESS, payload: response });
     yield put({
       type: reducer.META_SET,
       payload: {
@@ -15,13 +14,14 @@ function* loadData() {
         keywords: ["home", "page"]
       }
     });
+    yield put({ type: reducer.SUCCESS, payload: response });
   } catch (error) {
     if (error.message === "401") {
       yield put({ type: applicationReducer.AUTHORIZED_UNSET });
     }
     yield put({ type: reducer.HTTPCODE_SET, payload: error.message });
 
-    yield put({ type: reducer.REQUEST_ENDFAILURE, payload: error });
+    yield put({ type: reducer.FAILURE, payload: error });
   }
 
   yield put({ type: reducer.READY });
