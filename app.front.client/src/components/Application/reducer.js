@@ -1,12 +1,12 @@
-import ReducerFabric from '../../shared/lib/reducer/fabric.js';
+import ReducerFabric from '../../shared/lib/reducer/fabric';
 
 export const code = 'application';
 
-export const ENTER = 'application.enter';
-export const READY = 'application.ready';
+export const ENTER = `${code}.enter`;
+export const READY = `${code}.ready`;
 
-export const AUTHORIZED_SET = 'application.authorized.set';
-export const AUTHORIZED_UNSET = 'application.authorized.unset';
+export const AUTHORIZED_SET = `${code}.authorized.set`;
+export const AUTHORIZED_UNSET = `${code}.authorized.unset`;
 
 export default ReducerFabric.make(
     code,
