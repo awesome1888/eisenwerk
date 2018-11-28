@@ -45,47 +45,73 @@ To connect to a running container:
 ## Todo
 
 1. [DONE] volumes, browsersync
-   1.5) [DONE] scripts
-   1.6) [DONE] code splitting
-   1.61) [DONE] correct public path
-   1.62) use relative to source root paths
-   1.7) ssr 0) [DONE] execute application's init action 1) [DONE] catch the moment when the data is loaded, asynchroniously, with the timeout 2) [DONE] implement router server-side, forward route data to dispatch() 3) [DONE] the same for the client-side 4) [CANCEL] make page reducer fabric 5) [CANCEL] make page saga fabric 6) [DONE] implement setting and getting of the title, description and other stuff
-   6.0) [DONE] "Page" HOC?
-   6.1) [DONE] server
-   6.2) [DONE] client 7) http codes
-   [DONE] make "enter" and "leave" actions
-   [DONE] make "setHTTPCode" and "unsetHTTPCode" actions
-   Write down all scenarios for CSR, SSR when working with codes, implement it
-   [DONE] server-side load process got broken
-   [DONE] when SSR, check store for the http code other than 200 or undefined
-   General error handling 1) 404 1) CSR: [DONE] redirect to /404 client-side and on the server set status either to 200 or to 404 2) SSR: [DONE] redirect to /404 page and set status to 404 2) 401/402 1) CSR:
-   We need redirect calculation support client-side, then we decide what to do next 2) SSR:
-   We need redirect caclulation support server-side in order to be able to send 301, then we decide what to do next 3) 500 0) Both: 1) In saga we check for the error code, if it is ordinal, we set is as a httpCode, otherwise we set the code to 500 2) When the page receives this.props.error as 500, it shows "sorry screen" instead of it's body. the same about the application 3) Additionally, in application we use error boundary, which does the same as 2) 4) For development, we also call console.error() 2) SSR: 1) error happened inside the UI app, see 0) 2) otherwise: 1) production: set status to 500 and instead of the app layout show "sorry screen" 2) development: set status to 500 and res.send() error trace
-   7.04) I don't like our render() function in Renderer, and also componentDidMount(){ load() }, move the logic partially inside the app saga, also implement sub-reducers and sub-sags of pages relative to the app
-   7.05) Refactor 1) [CANCEL] simplify watcher in saga 2) [DONE] DONE -> READY 3) [DONE] REQUEST_END(SUCCESS|FAILURE) => SUCCESS|FAILURE 4) [CANCEL] saga fabric
-   7.1) [DONE] bug: ssr will work on missing 404 (i.e. favicon.ico)
-   7.2) [DONE] client-side 404 "route" is missing 8) [DONE] memory leak in saga?!!!
-   https://github.com/redux-saga/redux-saga/issues/13#issuecomment-182883680 9) implement at least simple cache with redis
-   make it decoupled: with hooks
-   dont make any cache if status is not 200 11) disable overlay for SSR 12) enable SSR by user agent or \_\_ssr=1
-   https://www.npmjs.com/package/spider-detector
-   https://support.google.com/webmasters/answer/80553
-   https://support.google.com/webmasters/answer/1061943?hl=en 13) [CANCEL] in outer layout replace OOP with HOC
+    1.5) [DONE] scripts
+    1.6) [DONE] code splitting
+    1.61) [DONE] correct public path
+    1.62) use relative to source root paths
+    1.7) ssr 0) [DONE] execute application's init action 1) [DONE] catch the moment when the data is loaded, asynchroniously, with the timeout 2) [DONE] implement router server-side, forward route data to dispatch() 3) [DONE] the same for the client-side 4) [CANCEL] make page reducer fabric 5) [CANCEL] make page saga fabric 6) [DONE] implement setting and getting of the title, description and other stuff
+    6.0) [DONE] "Page" HOC?
+    6.1) [DONE] server
+    6.2) [DONE] client 7) http codes
+    [DONE] make "enter" and "leave" actions
+    [DONE] make "setHTTPCode" and "unsetHTTPCode" actions
+    Write down all scenarios for CSR, SSR when working with codes, implement it
+    [DONE] server-side load process got broken
+    [DONE] when SSR, check store for the http code other than 200 or undefined
+    General error handling
+        1) 404
+            1) CSR: [DONE] redirect to /404 client-side and on the server set status either to 200 or to 404
+            2) SSR: [DONE] redirect to /404 page and set status to 404
+        2) 401/402
+            1) CSR:
+                We need redirect calculation support client-side, then we decide what to do next
+            2) SSR:
+                We need redirect caclulation support server-side in order to be able to send 301, then we decide what to do next
+        3) 500
+            0) Both:
+                1) In saga we check for the error code, if it is ordinal, we set is as a httpCode, otherwise we set the code to 500
+                2) When the page receives this.props.error as 500, it shows "sorry screen" instead of it's body. the same about the application
+                3) Additionally, in application we use error boundary, which does the same as 2)
+                4) For development, we also call console.error()
+            2) SSR:
+                1) error happened inside the UI app, see 0)
+                2) otherwise:
+                    1) production: set status to 500 and instead of the app layout show "sorry screen"
+                    2) development: set status to 500 and res.send() error trace
+        7.04) I don't like our render() function in Renderer, and also componentDidMount(){ load() }, move the logic partially inside the app saga, also implement sub-reducers and sub-sags of pages relative to the app 
+        7.05) Refactor
+            1) [CANCEL] simplify watcher in saga
+            2) [DONE] DONE -> READY
+            3) [DONE] REQUEST_END(SUCCESS|FAILURE) => SUCCESS|FAILURE
+            4) [CANCEL] saga fabric
+        7.1) [DONE] bug: ssr will work on missing 404 (i.e. favicon.ico)
+        7.2) [DONE] client-side 404 "route" is missing
+        8) [DONE] memory leak in saga?!!!
+            https://github.com/redux-saga/redux-saga/issues/13#issuecomment-182883680
+        9) implement at least simple cache with redis
+            make it decoupled: with hooks
+            dont make any cache if status is not 200
+        11) disable overlay for SSR
+        12) enable SSR by user agent or __ssr=1
+            https://www.npmjs.com/package/spider-detector
+            https://support.google.com/webmasters/answer/80553
+            https://support.google.com/webmasters/answer/1061943?hl=en
+        13) [CANCEL] in outer layout replace OOP with HOC
 
     1.8) EHHH Shitty decisions made...
     Re-think the whole idea about how we dockerize: there is a simpler way to do that with no docker-build-tool involved
     Run as dockerized or not: should not be important
     https://www.npmjs.com/package/nodemon-webpack-plugin
 
-2. auth in a modern way
-3. re-think oauth2
-4. migrations
-5. manifest
-   6.1) web worker
-6. favicon
-7. webicon
-8. sitemap
-9. react strict mode
+2.  auth in a modern way
+3.  re-think oauth2
+4.  migrations
+5.  manifest
+    6.1) web worker
+6.  favicon
+7.  webicon
+8.  sitemap
+9.  react strict mode
 10. react error boundary
 11. jest
 12. redis 4 sessions
