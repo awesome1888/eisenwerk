@@ -1,8 +1,8 @@
-import BaseApplication from './express.js';
+import BaseApplication from './express';
 import Template from '../../template';
+import SSRRouter from '../../ssr-router';
 
 export default class FrontServerApplication extends BaseApplication {
-
     useSSR(res) {
         if (!this.getSettings().useSSR()) {
             return false;
@@ -49,7 +49,7 @@ export default class FrontServerApplication extends BaseApplication {
                 }
             } else {
                 // just serve as-is
-                res.status(200);
+                res.status(await this.getStatusCode(req));
                 res.set('Content-Type', 'text/html');
                 res.send(this.getTemplate().get());
             }
@@ -74,10 +74,28 @@ export default class FrontServerApplication extends BaseApplication {
 
             if (!this.getSettings().isProduction()) {
                 res.set('Content-Type', 'text/html');
-                res.send(`<div style="white-space: pre-wrap">${error.stack}</div>`);
+                res.send(
+                    `<div style="white-space: pre-wrap">${error.stack}</div>`,
+                );
             } else {
                 res.send(code === 404 ? 'Not found' : 'Error');
             }
+
+            return true;
         });
+    }
+
+    async getStatusCode(req) {
+        let routes = null;
+        if (_.isFunction(this.getParams().routes)) {
+            routes = (await this.getParams().routes()).default;
+
+            if (_.isObjectNotEmpty(routes)) {
+                const { route } = SSRRouter.match(req.path, routes);
+                return route ? 200 : 404;
+            }
+        }
+
+        return 200;
     }
 }
