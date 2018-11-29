@@ -64,6 +64,8 @@ export default class Renderer {
                     state: store.getReduxStore().getState(),
                     dry: true,
                 });
+            } else {
+                throw new Error('Unable to load data');
             }
         } catch (e) {
             if (!__DEV__ && application) {
