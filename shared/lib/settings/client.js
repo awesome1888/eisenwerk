@@ -20,6 +20,7 @@ class Settings {
         return (this.env.URL__API || '').replace(/\/+$/, '');
     }
 
+    // todo: remove this
     isProduction() {
         return !!this.env.PRODUCTION;
     }

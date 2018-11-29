@@ -10,13 +10,13 @@ export default class Renderer {
     }
 
     async render(req, res) {
-        if (_.isFunction(this._frontend)) {
+        let application = null;
+        try {
             const Application = (await this._frontend()).default;
-            const application = new Application({
+            application = new Application({
                 settings: this._settings.prepareForClient(),
                 currentURL: req.originalUrl,
             });
-
             await application.launch();
 
             const store = application.getStore();
@@ -57,23 +57,41 @@ export default class Renderer {
                 console.dir('state:');
                 console.dir(store.getReduxStore().getState());
 
-                res.set('Content-Type', 'text/html');
-                res.send(
-                    new Buffer(
-                        this._template.get({
-                            body,
-                            page,
-                            settings: {},
-                            state: store.getReduxStore().getState(),
-                            dry: true,
-                        }),
-                    ),
+                this.send(res, {
+                    body,
+                    page,
+                    settings: {},
+                    state: store.getReduxStore().getState(),
+                    dry: true,
+                });
+            }
+        } catch (e) {
+            if (!__DEV__ && application) {
+                // we can show something meaningful
+                this.send(
+                    res,
+                    {
+                        body: ReactDOMServer.renderToStaticMarkup(
+                            application.renderError(e),
+                        ),
+                        page: {
+                            title: 'Error',
+                        },
+                        settings: {},
+                        state: {},
+                        dry: true,
+                    },
+                    500,
                 );
             } else {
-                throw new Error('500');
+                throw e;
             }
-        } else {
-            throw new Error('500');
         }
+    }
+
+    send(res, data, status = 200) {
+        res.status(status);
+        res.set('Content-Type', 'text/html');
+        res.send(new Buffer(this._template.get(data)));
     }
 }

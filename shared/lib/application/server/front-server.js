@@ -8,6 +8,10 @@ export default class FrontServerApplication extends BaseApplication {
             return false;
         }
 
+        if (!_.isFunction(this.getParams().clientApplication)) {
+            return false;
+        }
+
         // todo: look at the user agent here
         return res.query && (!!res.query.__ssr || !!res.query.__srr);
     }
@@ -72,7 +76,7 @@ export default class FrontServerApplication extends BaseApplication {
             }
             res.status(code);
 
-            if (!this.getSettings().isProduction()) {
+            if (__DEV__) {
                 res.set('Content-Type', 'text/html');
                 res.send(
                     `<div style="white-space: pre-wrap">${error.stack}</div>`,

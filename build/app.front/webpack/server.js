@@ -18,8 +18,8 @@ class ServerMiniCssExtractPlugin extends MiniCssExtractPlugin {
  * @param context
  * @returns {string}
  */
-const getSrcFolder = (context) => {
-	return `${context.getProjectFolder()}/app.front.server/`;
+const getSrcFolder = context => {
+    return `${context.getProjectFolder()}/app.front.server/`;
 };
 
 /**
@@ -27,10 +27,10 @@ const getSrcFolder = (context) => {
  * @returns {{analyzeBundle: boolean}}
  */
 const getParameters = () => {
-	return {
+    return {
         copyPackageJson: true, // copy package.json to a target build folder, in order to access it with Dockerfile
         rebuildImage: false,
-	};
+    };
 };
 
 /**
@@ -38,8 +38,7 @@ const getParameters = () => {
  * @param context
  * @returns {Promise<{mode, target: string, entry: string, output: {filename: string, path: *, libraryTarget: string}, resolve: {symlinks: boolean}, plugins: *[]}>}
  */
-const getWebpackConfiguration = async (context) => {
-
+const getWebpackConfiguration = async context => {
     const srcFolder = context.getTaskSrcFolder();
     const dstFolder = await context.makeTaskDstFolder();
 
@@ -80,40 +79,58 @@ const getWebpackConfiguration = async (context) => {
                                 cacheDirectory: true,
                                 plugins: [
                                     // Stage 0
-                                    "@babel/plugin-proposal-function-bind",
+                                    '@babel/plugin-proposal-function-bind',
 
                                     // Stage 1
-                                    "@babel/plugin-proposal-export-default-from",
-                                    "@babel/plugin-proposal-logical-assignment-operators",
-                                    ["@babel/plugin-proposal-optional-chaining", { "loose": false }],
-                                    ["@babel/plugin-proposal-pipeline-operator", { "proposal": "minimal" }],
-                                    ["@babel/plugin-proposal-nullish-coalescing-operator", { "loose": false }],
-                                    "@babel/plugin-proposal-do-expressions",
+                                    '@babel/plugin-proposal-export-default-from',
+                                    '@babel/plugin-proposal-logical-assignment-operators',
+                                    [
+                                        '@babel/plugin-proposal-optional-chaining',
+                                        { loose: false },
+                                    ],
+                                    [
+                                        '@babel/plugin-proposal-pipeline-operator',
+                                        { proposal: 'minimal' },
+                                    ],
+                                    [
+                                        '@babel/plugin-proposal-nullish-coalescing-operator',
+                                        { loose: false },
+                                    ],
+                                    '@babel/plugin-proposal-do-expressions',
 
                                     // Stage 2
-                                    ["@babel/plugin-proposal-decorators", { "legacy": true }],
-                                    "@babel/plugin-proposal-function-sent",
-                                    "@babel/plugin-proposal-export-namespace-from",
-                                    "@babel/plugin-proposal-numeric-separator",
-                                    "@babel/plugin-proposal-throw-expressions",
+                                    [
+                                        '@babel/plugin-proposal-decorators',
+                                        { legacy: true },
+                                    ],
+                                    '@babel/plugin-proposal-function-sent',
+                                    '@babel/plugin-proposal-export-namespace-from',
+                                    '@babel/plugin-proposal-numeric-separator',
+                                    '@babel/plugin-proposal-throw-expressions',
 
                                     // Stage 3
-                                    "@babel/plugin-syntax-dynamic-import",
-                                    "@babel/plugin-syntax-import-meta",
-                                    ["@babel/plugin-proposal-class-properties", { "loose": false }],
-                                    "@babel/plugin-proposal-json-strings",
+                                    '@babel/plugin-syntax-dynamic-import',
+                                    '@babel/plugin-syntax-import-meta',
+                                    [
+                                        '@babel/plugin-proposal-class-properties',
+                                        { loose: false },
+                                    ],
+                                    '@babel/plugin-proposal-json-strings',
                                 ],
                                 presets: [
                                     '@babel/react', // translate jsx
-                                    ['@babel/env', {
-                                        targets: {
-                                            browsers: ['last 2 versions'],
-                                        }
-                                    }]
-                                ]
-                            }
-                        }
-                    ]
+                                    [
+                                        '@babel/env',
+                                        {
+                                            targets: {
+                                                browsers: ['last 2 versions'],
+                                            },
+                                        },
+                                    ],
+                                ],
+                            },
+                        },
+                    ],
                 },
                 {
                     test: /\.(sa|sc|c)ss$/,
@@ -124,15 +141,15 @@ const getWebpackConfiguration = async (context) => {
                         {
                             loader: 'css-loader',
                             options: {
-                                sourceMap: true
-                            }
+                                sourceMap: true,
+                            },
                         },
                         {
                             loader: 'sass-loader',
                             options: {
-                                sourceMap: true
-                            }
-                        }
+                                sourceMap: true,
+                            },
+                        },
                     ],
                 },
                 {
@@ -144,15 +161,15 @@ const getWebpackConfiguration = async (context) => {
                         {
                             loader: 'css-loader',
                             options: {
-                                sourceMap: true
-                            }
+                                sourceMap: true,
+                            },
                         },
                         {
                             loader: 'less-loader',
                             options: {
-                                sourceMap: true
-                            }
-                        }
+                                sourceMap: true,
+                            },
+                        },
                     ],
                 },
                 {
@@ -166,7 +183,7 @@ const getWebpackConfiguration = async (context) => {
                         },
                     ],
                 },
-            ]
+            ],
         },
 
         plugins: [
@@ -198,7 +215,7 @@ const getWebpackConfiguration = async (context) => {
                 mix: `${srcFolder}/shared/lib/global/mix.js`,
             }),
             new webpack.DefinePlugin({
-                __DEV__: process.env.NODE_ENV !== 'production',
+                __DEV__: process.env.NODE_ENV === 'development',
                 __SSR__: true,
             }),
         ],

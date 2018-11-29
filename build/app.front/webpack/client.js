@@ -12,8 +12,8 @@ const Util = require('docker-build-tool').Util;
  * @param context
  * @returns {string}
  */
-const getSrcFolder = (context) => {
-	return `${context.getProjectFolder()}/app.front.client/`;
+const getSrcFolder = context => {
+    return `${context.getProjectFolder()}/app.front.client/`;
 };
 
 /**
@@ -21,17 +21,23 @@ const getSrcFolder = (context) => {
  * @returns {{analyzeBundle: boolean}}
  */
 const getParameters = () => {
-	return {
+    return {
         dumpBundleStats: true, // create hints for bundle analyzer
-        onAfterBuild: async (ctx) => {
+        onAfterBuild: async ctx => {
             const to = ctx.getTaskDstFolder();
             const taskFolder = ctx.getTaskFolder();
 
-            await Util.copyDir(path.resolve(taskFolder, 'public'), path.resolve(to, 'public'));
-            await Util.copyDir(path.resolve(taskFolder, 'template'), path.resolve(to, 'template'));
+            await Util.copyDir(
+                path.resolve(taskFolder, 'public'),
+                path.resolve(to, 'public'),
+            );
+            await Util.copyDir(
+                path.resolve(taskFolder, 'template'),
+                path.resolve(to, 'template'),
+            );
         },
         rebuildImage: false,
-	};
+    };
 };
 
 /**
@@ -39,8 +45,7 @@ const getParameters = () => {
  * @param context
  * @returns {Promise<{mode, target: string, entry: string, output: {filename: string, path: *, libraryTarget: string}, resolve: {symlinks: boolean}, plugins: *[]}>}
  */
-const getWebpackConfiguration = async (context) => {
-
+const getWebpackConfiguration = async context => {
     const srcFolder = context.getTaskSrcFolder();
     const dstFolder = await context.makeTaskDstFolder();
     const dstFolderPublic = path.resolve(dstFolder, 'public');
@@ -67,114 +72,129 @@ const getWebpackConfiguration = async (context) => {
         },
 
         module: {
-          rules: [
-            {
-              test: /\.jsx?$/,
-              exclude: /node_modules(\/|\\)(?!(@feathersjs))/,
-              use: [
+            rules: [
                 {
-                  loader: 'babel-loader',
-                  options: {
-                    cacheDirectory: true,
-                    plugins: [
-                        // Stage 0
-                        "@babel/plugin-proposal-function-bind",
+                    test: /\.jsx?$/,
+                    exclude: /node_modules(\/|\\)(?!(@feathersjs))/,
+                    use: [
+                        {
+                            loader: 'babel-loader',
+                            options: {
+                                cacheDirectory: true,
+                                plugins: [
+                                    // Stage 0
+                                    '@babel/plugin-proposal-function-bind',
 
-                        // Stage 1
-                        "@babel/plugin-proposal-export-default-from",
-                        "@babel/plugin-proposal-logical-assignment-operators",
-                        ["@babel/plugin-proposal-optional-chaining", { "loose": false }],
-                        ["@babel/plugin-proposal-pipeline-operator", { "proposal": "minimal" }],
-                        ["@babel/plugin-proposal-nullish-coalescing-operator", { "loose": false }],
-                        "@babel/plugin-proposal-do-expressions",
+                                    // Stage 1
+                                    '@babel/plugin-proposal-export-default-from',
+                                    '@babel/plugin-proposal-logical-assignment-operators',
+                                    [
+                                        '@babel/plugin-proposal-optional-chaining',
+                                        { loose: false },
+                                    ],
+                                    [
+                                        '@babel/plugin-proposal-pipeline-operator',
+                                        { proposal: 'minimal' },
+                                    ],
+                                    [
+                                        '@babel/plugin-proposal-nullish-coalescing-operator',
+                                        { loose: false },
+                                    ],
+                                    '@babel/plugin-proposal-do-expressions',
 
-                        // Stage 2
-                        ["@babel/plugin-proposal-decorators", { "legacy": true }],
-                        "@babel/plugin-proposal-function-sent",
-                        "@babel/plugin-proposal-export-namespace-from",
-                        "@babel/plugin-proposal-numeric-separator",
-                        "@babel/plugin-proposal-throw-expressions",
+                                    // Stage 2
+                                    [
+                                        '@babel/plugin-proposal-decorators',
+                                        { legacy: true },
+                                    ],
+                                    '@babel/plugin-proposal-function-sent',
+                                    '@babel/plugin-proposal-export-namespace-from',
+                                    '@babel/plugin-proposal-numeric-separator',
+                                    '@babel/plugin-proposal-throw-expressions',
 
-                        // Stage 3
-                        "@babel/plugin-syntax-dynamic-import",
-                        "@babel/plugin-syntax-import-meta",
-                        ["@babel/plugin-proposal-class-properties", { "loose": false }],
-                        "@babel/plugin-proposal-json-strings",
+                                    // Stage 3
+                                    '@babel/plugin-syntax-dynamic-import',
+                                    '@babel/plugin-syntax-import-meta',
+                                    [
+                                        '@babel/plugin-proposal-class-properties',
+                                        { loose: false },
+                                    ],
+                                    '@babel/plugin-proposal-json-strings',
+                                ],
+                                presets: [
+                                    '@babel/react', // translate jsx
+                                    [
+                                        '@babel/env',
+                                        {
+                                            targets: {
+                                                browsers: ['last 2 versions'],
+                                            },
+                                        },
+                                    ],
+                                ],
+                            },
+                        },
                     ],
-                    presets: [
-                      '@babel/react', // translate jsx
-                      ['@babel/env', {
-                        targets: {
-                          browsers: ['last 2 versions'],
-                        }
-                      }]
-                    ]
-                  }
-                }
-              ]
-            },
-            {
-              test: /\.(sa|sc|c)ss$/,
-              exclude: /node_modules/,
-              use: [
-                'style-loader',
-                MiniCssExtractPlugin.loader,
-                {
-                  loader: 'css-loader',
-                  options: {
-                    sourceMap: true
-                  }
                 },
                 {
-                  loader: 'sass-loader',
-                  options: {
-                    sourceMap: true
-                  }
-                }
-              ],
-            },
-            {
-              test: /\.less$/,
-              exclude: /node_modules/,
-              use: [
-                'style-loader',
-                MiniCssExtractPlugin.loader,
-                {
-                  loader: 'css-loader',
-                  options: {
-                    sourceMap: true
-                  }
+                    test: /\.(sa|sc|c)ss$/,
+                    exclude: /node_modules/,
+                    use: [
+                        'style-loader',
+                        MiniCssExtractPlugin.loader,
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                sourceMap: true,
+                            },
+                        },
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                sourceMap: true,
+                            },
+                        },
+                    ],
                 },
                 {
-                  loader: 'less-loader',
-                  options: {
-                    sourceMap: true
-                  }
-                }
-              ],
-            },
-            {
-              test: /\.(jpe?g|gif|png|svg|ico)$/i,
-              use: [
-                {
-                  loader: 'url-loader',
-                  options: {
-                    limit: 10000,
-                  },
+                    test: /\.less$/,
+                    exclude: /node_modules/,
+                    use: [
+                        'style-loader',
+                        MiniCssExtractPlugin.loader,
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                sourceMap: true,
+                            },
+                        },
+                        {
+                            loader: 'less-loader',
+                            options: {
+                                sourceMap: true,
+                            },
+                        },
+                    ],
                 },
-              ],
-            },
-          ]
+                {
+                    test: /\.(jpe?g|gif|png|svg|ico)$/i,
+                    use: [
+                        {
+                            loader: 'url-loader',
+                            options: {
+                                limit: 10000,
+                            },
+                        },
+                    ],
+                },
+            ],
         },
 
         // https://webpack.js.org/configuration/devtool/
         devtool: 'source-map',
         plugins: [
             // remove unused momentjs locales
-            new webpack.ContextReplacementPlugin(
-                /moment[\/\\]locale$/,
-                /en/
-            ),
+            new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/),
             // // a cache, for incremental builds
             // new HardSourceWebpackPlugin({
             //     cacheDirectory: `${context.getHardSourcePluginFolder()}`,
@@ -196,7 +216,7 @@ const getWebpackConfiguration = async (context) => {
                 inject: false,
                 hash: true,
                 template: `${srcFolder}/../assets.html`,
-                filename: `${dstFolder}/assets.html`
+                filename: `${dstFolder}/assets.html`,
             }),
             new webpack.ProvidePlugin({
                 _: `${srcFolder}/shared/lib/global/lodash.js`,
@@ -204,7 +224,7 @@ const getWebpackConfiguration = async (context) => {
             }),
             new webpack.DefinePlugin({
                 __SSR__: false,
-                __DEV__: context.getMode() !== 'production',
+                __DEV__: context.getMode() === 'development',
             }),
         ],
     };

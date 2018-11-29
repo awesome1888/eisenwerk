@@ -76,9 +76,9 @@ To connect to a running container:
             2) SSR:
                 1) [DONE] error happened inside the UI app, see 0)
                 2) otherwise:
-                    1) production: set status to 500 and instead of the app layout show "sorry screen"
-                    2) development: set status to 500 and res.send() error trace
-        7.04) I don't like our render() function in Renderer, and also componentDidMount(){ load() }, move the logic partially inside the app saga, also implement sub-reducers and sub-sags of pages relative to the app 
+                    1) [DONE] production: set status to 500 and instead of the app layout show "sorry screen"
+                    2) [DONE] development: set status to 500 and res.send() error trace
+        7.04) [CANCEL] I don't like our render() function in Renderer, and also componentDidMount(){ load() }, move the logic partially inside the app saga, also implement sub-reducers and sub-sags of pages relative to the app 
         7.05) Refactor
             1) [CANCEL] simplify watcher in saga
             2) [DONE] DONE -> READY

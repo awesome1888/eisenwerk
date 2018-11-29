@@ -9,7 +9,6 @@ import rest from '@feathersjs/rest-client';
 import axios from 'axios';
 
 export default class Application {
-
     constructor(props = {}) {
         this._props = props || {};
         this._settings = new Settings(this._props.settings);
@@ -33,8 +32,7 @@ export default class Application {
         Method.setNetwork(this.getNetwork());
     }
 
-    async teardown() {
-    }
+    async teardown() {}
 
     render() {
         return null;
@@ -57,12 +55,15 @@ export default class Application {
             application.configure(restClient.axios(axios));
 
             if (this.useAuth()) {
-                Authorization.prepare({application, storage: this._storage});
+                Authorization.prepare({ application, storage: this._storage });
 
                 // todo: connect it to the store
                 application.on('authenticated', this.onLogin.bind(this));
                 application.on('logout', this.onLogout.bind(this));
-                application.on('reauthentication-error', this.onReLoginError.bind(this));
+                application.on(
+                    'reauthentication-error',
+                    this.onReLoginError.bind(this),
+                );
             }
 
             this._feathers = application;
@@ -73,7 +74,10 @@ export default class Application {
 
     getAuthorization() {
         if (!this._authorization) {
-            this._authorization = new Authorization(this.getNetwork(), this.getSettings());
+            this._authorization = new Authorization(
+                this.getNetwork(),
+                this.getSettings(),
+            );
         }
 
         return this._authorization;
@@ -87,6 +91,7 @@ export default class Application {
         return this._settings;
     }
 
+    // todo: remove this
     isProduction() {
         return this.getSettings().isProduction();
     }

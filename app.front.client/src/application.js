@@ -14,6 +14,7 @@ import Route from './shared/components/Route';
 
 import LayoutOuter from './components/LayoutOuter';
 import PageLoader from './shared/components/PageLoader';
+import SorryScreen from './components/SorryScreen';
 
 import routeMap from './routes';
 
@@ -113,6 +114,13 @@ export default class Application extends BaseApplication {
                 </ApplicationUI>
             </Provider>
         );
+    }
+
+    /**
+     * Render error server-side
+     */
+    renderError(error) {
+        return <SorryScreen error={error} />;
     }
 
     async teardown() {
