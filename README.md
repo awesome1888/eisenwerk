@@ -102,6 +102,7 @@ To connect to a running container:
     Re-think the whole idea about how we dockerize: there is a simpler way to do that with no docker-build-tool involved
     Run as dockerized or not: should not be important
     https://www.npmjs.com/package/nodemon-webpack-plugin
+    1.9) simplify that oop multi-level crap with Apps, use composition for sake
 
 2.  auth in a modern way
 3.  re-think oauth2

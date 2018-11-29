@@ -1,5 +1,5 @@
 export default class ReducerFabric {
-    static make(root, initialState = {}, actions = {}) {
+    static makeReducer(mountPoint, initialState = {}, actions = {}) {
         const r = (state = initialState, action) => {
             if (actions[action.type]) {
                 return actions[action.type](state, action.payload);
@@ -7,16 +7,15 @@ export default class ReducerFabric {
                 return state;
             }
         };
-        r.__root = root;
+        r.mountPoint = mountPoint;
 
         return r;
     }
 
-    static makePage(root, initialState = {}, actions = {}) {
+    static makePageReducer(mountPoint, initialState = {}, actions = {}) {
         const pageInitial = {
             ready: false, // indicates that the loading process is finished
             loading: false, // indicates that the page is still loading
-            data: {}, // contains page data
             meta: {}, // contains page meta, like title and other SEO stuff
             httpCode: null, // contains an HTTP status, i.e. 200, 400, 500
         };
@@ -36,27 +35,27 @@ export default class ReducerFabric {
 
         actions = _.cloneDeep(actions);
         Object.assign(actions, {
-            [`${root}.enter`]: state => ({ ...state, loading: true }),
-            [`${root}.meta.set`]: (state, payload) => ({
+            [`${mountPoint}.enter`]: state => ({ ...state, loading: true }),
+            [`${mountPoint}.meta.set`]: (state, payload) => ({
                 ...state,
                 meta: payload,
             }),
-            [`${root}.http-code.set`]: (state, payload) => ({
+            [`${mountPoint}.http-code.set`]: (state, payload) => ({
                 ...state,
                 httpCode: payload,
             }),
-            [`${root}.ready`]: state => ({
+            [`${mountPoint}.ready`]: state => ({
                 ...state,
                 ready: true,
                 loading: false,
             }),
-            [`${root}.leave`]: state => ({
+            [`${mountPoint}.leave`]: state => ({
                 ...state,
-                ..._.deepClone(pageInitial),
+                ..._.cloneDeep(pageInitial),
             }),
         });
 
-        return this.make(root, initialStateMixed, actions);
+        return this.makeReducer(mountPoint, initialStateMixed, actions);
     }
 
     static makePageActions(code) {

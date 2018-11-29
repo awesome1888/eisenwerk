@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 
 export default parameters => {
     parameters = parameters || {};
-    let { reducer, mapState } = parameters;
+    let { reducer, mapStateToProps } = parameters;
 
-    if (!mapState) {
-        mapState = state => state[reducer.code];
+    if (!mapStateToProps) {
+        mapStateToProps = state => state[reducer.mountPoint];
     }
 
     return Component =>
-        connect(mapState)(
+        connect(mapStateToProps)(
             class extends React.Component {
                 componentDidMount() {
                     if (reducer.ENTER) {

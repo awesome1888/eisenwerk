@@ -12,7 +12,7 @@ export const {
 export const SUCCESS = `${code}.success`;
 export const FAILURE = `${code}.failure`;
 
-export default ReducerFabric.makePage(
+export default ReducerFabric.makePageReducer(
     code,
     {},
     {

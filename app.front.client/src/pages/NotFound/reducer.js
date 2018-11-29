@@ -3,7 +3,7 @@ import ReducerFabric from '../../shared/lib/reducer/fabric.js';
 export const code = 'notFound';
 export const { ENTER, LEAVE, READY } = ReducerFabric.makePageActions(code);
 
-export default ReducerFabric.makePage(code, {
+export default ReducerFabric.makePageReducer(code, {
     ready: true,
     meta: {
         title: '404',

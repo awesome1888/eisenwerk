@@ -1,15 +1,15 @@
 import ReducerFabric from '../../shared/lib/reducer/fabric';
 
-export const code = 'application';
+export const mountPoint = 'application';
 
-export const ENTER = `${code}.enter`;
-export const READY = `${code}.ready`;
+export const ENTER = `${mountPoint}.enter`;
+export const READY = `${mountPoint}.ready`;
 
-export const AUTHORIZED_SET = `${code}.authorized.set`;
-export const AUTHORIZED_UNSET = `${code}.authorized.unset`;
+export const AUTHORIZED_SET = `${mountPoint}.authorized.set`;
+export const AUTHORIZED_UNSET = `${mountPoint}.authorized.unset`;
 
-export default ReducerFabric.make(
-    code,
+export default ReducerFabric.makeReducer(
+    mountPoint,
     {
         ready: false,
         authorized: false,

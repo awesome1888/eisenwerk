@@ -21,15 +21,13 @@ export default class Store {
         } = this._params;
         this._application = application;
 
-        const reducers = [application.reducer.default];
+        const reducers = [application.reducer];
         const sagas = [application.saga];
 
         const pageList = Object.values(routes).map(r => r.page);
         pageList.forEach(page => {
             if (page) {
-                if (_.isFunction(page.reducer.default)) {
-                    reducers.push(page.reducer.default);
-                } else if (_.isFunction(page.reducer)) {
+                if (page.reducer) {
                     reducers.push(page.reducer);
                 }
                 if (page.saga) {
@@ -51,8 +49,8 @@ export default class Store {
         }
 
         let cReducers = combineReducers(
-            reducers.reduce((result, item) => {
-                result[item.__root] = item;
+            reducers.reduce((result, red) => {
+                result[red.mountPoint] = red.default;
                 return result;
             }, {}),
         );
@@ -83,7 +81,7 @@ export default class Store {
 
         const checkReady = red => {
             const state = store.getState();
-            return _.get(state, `${red.code}.ready`);
+            return _.get(state, `${red.mountPoint}.ready`);
         };
 
         let unsubscribe = null;
@@ -133,7 +131,7 @@ export default class Store {
         const code = parseInt(
             _.get(
                 this.getReduxStore().getState(),
-                `${page.reducer.code}.httpCode`,
+                `${page.reducer.mountPoint}.httpCode`,
             ),
             10,
         );
@@ -146,14 +144,14 @@ export default class Store {
     getPageMeta(page) {
         return _.get(
             this.getReduxStore().getState(),
-            `${page.reducer.code}.meta`,
+            `${page.reducer.mountPoint}.meta`,
         );
     }
 
     checkApplicationData() {
         const appData = _.get(
             this.getReduxStore().getState(),
-            this._application.reducer.code,
+            this._application.reducer.mountPoint,
         );
         return appData.ready === true; // todo: so far only this
     }
