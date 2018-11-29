@@ -3,6 +3,7 @@ import Layout from '../../components/LayoutInner';
 import { Link } from 'react-router-dom';
 import * as reducer from './reducer';
 import connectPage from '../../shared/lib/connectPage';
+import SorryScreen from '../../components/SorryScreen';
 
 const ListPage = ({ data }) => (
     <Layout>
@@ -22,4 +23,4 @@ const ListPage = ({ data }) => (
     </Layout>
 );
 
-export default connectPage({ reducer })(ListPage);
+export default connectPage({ reducer })(ListPage, SorryScreen);

@@ -9,7 +9,7 @@ export default parameters => {
         mapStateToProps = state => state[reducer.mountPoint];
     }
 
-    return Component =>
+    return (Component, ErrorScreen = null) =>
         connect(mapStateToProps)(
             class extends React.Component {
                 componentDidMount() {
@@ -36,6 +36,14 @@ export default parameters => {
                 }
 
                 render() {
+                    if (
+                        this.props.ready &&
+                        this.props.httpCode !== 200 &&
+                        ErrorScreen
+                    ) {
+                        const { httpCode, error } = this.props;
+                        return <ErrorScreen status={httpCode} error={error} />;
+                    }
                     return <Component {...this.props} />;
                 }
             },

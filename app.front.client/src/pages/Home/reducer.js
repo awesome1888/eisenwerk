@@ -1,19 +1,19 @@
 import ReducerFabric from '../../shared/lib/reducer/fabric.js';
 
-export const code = 'home';
+export const mountPoint = 'home';
 export const {
     ENTER,
     LEAVE,
     READY,
     META_SET,
     HTTPCODE_SET,
-} = ReducerFabric.makePageActions(code);
+} = ReducerFabric.makePageActions(mountPoint);
 
-export const SUCCESS = `${code}.success`;
-export const FAILURE = `${code}.failure`;
+export const SUCCESS = `${mountPoint}.success`;
+export const FAILURE = `${mountPoint}.failure`;
 
 export default ReducerFabric.makePageReducer(
-    code,
+    mountPoint,
     {},
     {
         [SUCCESS]: (state, payload) => ({

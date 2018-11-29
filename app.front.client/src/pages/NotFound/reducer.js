@@ -1,9 +1,11 @@
 import ReducerFabric from '../../shared/lib/reducer/fabric.js';
 
-export const code = 'notFound';
-export const { ENTER, LEAVE, READY } = ReducerFabric.makePageActions(code);
+export const mountPoint = 'notFound';
+export const { ENTER, LEAVE, READY } = ReducerFabric.makePageActions(
+    mountPoint,
+);
 
-export default ReducerFabric.makePageReducer(code, {
+export default ReducerFabric.makePageReducer(mountPoint, {
     ready: true,
     meta: {
         title: '404',

@@ -62,19 +62,19 @@ To connect to a running container:
         1) 404
             1) CSR: [DONE] redirect to /404 client-side and on the server set status either to 200 or to 404
             2) SSR: [DONE] redirect to /404 page and set status to 404
-        2) 401/402
+        2) 401/403
             1) CSR:
                 We need redirect calculation support client-side, then we decide what to do next
             2) SSR:
                 We need redirect caclulation support server-side in order to be able to send 301, then we decide what to do next
         3) 500
             0) Both:
-                1) In saga we check for the error code, if it is ordinal, we set is as a httpCode, otherwise we set the code to 500
-                2) When the page receives this.props.error as 500, it shows "sorry screen" instead of it's body. the same about the application
-                3) Additionally, in application we use error boundary, which does the same as 2)
-                4) For development, we also call console.error()
+                1) [DONE] In saga we check for the error code, if it is ordinal, we set is as a httpCode, otherwise we set the code to 500
+                2) [DONE] When the page receives this.props.error as 500, it shows "sorry screen" instead of it's body. the same about the application
+                3) [DONE] Additionally, in application we use error boundary, which does the same as 2)
+                4) [DONE] For development, we also call console.error()
             2) SSR:
-                1) error happened inside the UI app, see 0)
+                1) [DONE] error happened inside the UI app, see 0)
                 2) otherwise:
                     1) production: set status to 500 and instead of the app layout show "sorry screen"
                     2) development: set status to 500 and res.send() error trace

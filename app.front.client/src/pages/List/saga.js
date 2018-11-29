@@ -2,6 +2,7 @@ import { takeLatest, call, put, fork, all } from 'redux-saga/effects';
 import * as reducer from './reducer.js';
 import * as applicationReducer from '../../components/Application/reducer';
 import axios from 'axios';
+import { makeStatus } from '../../shared/lib/util';
 
 function* loadData() {
     try {
@@ -21,10 +22,15 @@ function* loadData() {
             payload: response.data.results,
         });
     } catch (error) {
-        if (error.message === '401') {
+        if (__DEV__) {
+            console.error(error);
+        }
+
+        const status = makeStatus(error);
+        if (status === 401) {
             yield put({ type: applicationReducer.AUTHORIZED_UNSET });
         }
-        yield put({ type: reducer.HTTPCODE_SET, payload: error.message });
+        yield put({ type: reducer.HTTPCODE_SET, payload: status });
 
         yield put({ type: reducer.FAILURE, payload: error });
     }

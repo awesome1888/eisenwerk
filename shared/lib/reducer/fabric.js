@@ -17,7 +17,7 @@ export default class ReducerFabric {
             ready: false, // indicates that the loading process is finished
             loading: false, // indicates that the page is still loading
             meta: {}, // contains page meta, like title and other SEO stuff
-            httpCode: null, // contains an HTTP status, i.e. 200, 400, 500
+            httpCode: 200, // contains an HTTP status, i.e. 200, 400, 500
         };
 
         if ('ready' in initialState) {
