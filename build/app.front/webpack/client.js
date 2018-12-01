@@ -224,7 +224,7 @@ const getWebpackConfiguration = async context => {
             }),
             new webpack.DefinePlugin({
                 __SSR__: false,
-                __DEV__: context.getMode() === 'development',
+                __DEV__: true, //context.getMode() === 'development',
             }),
         ],
     };

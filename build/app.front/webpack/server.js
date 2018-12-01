@@ -215,7 +215,7 @@ const getWebpackConfiguration = async context => {
                 mix: `${srcFolder}/shared/lib/global/mix.js`,
             }),
             new webpack.DefinePlugin({
-                __DEV__: process.env.NODE_ENV === 'development',
+                __DEV__: true, // context.getMode() === 'development',
                 __SSR__: true,
             }),
         ],

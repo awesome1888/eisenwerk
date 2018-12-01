@@ -1,6 +1,7 @@
 import BaseApplication from './express';
 import Template from '../../template';
 import SSRRouter from '../../ssr-router';
+import { makeStatus } from '../../util';
 
 export default class FrontServerApplication extends BaseApplication {
     useSSR(res) {
@@ -70,11 +71,8 @@ export default class FrontServerApplication extends BaseApplication {
                 return next(error);
             }
 
-            let code = parseInt(error.message, 10);
-            if (isNaN(code)) {
-                code = 500;
-            }
-            res.status(code);
+            const status = makeStatus(error.message);
+            res.status(status);
 
             if (__DEV__) {
                 res.set('Content-Type', 'text/html');
@@ -82,7 +80,7 @@ export default class FrontServerApplication extends BaseApplication {
                     `<div style="white-space: pre-wrap">${error.stack}</div>`,
                 );
             } else {
-                res.send(code === 404 ? 'Not found' : 'Error');
+                res.send(status === 404 ? 'Not found' : 'Error');
             }
 
             return true;

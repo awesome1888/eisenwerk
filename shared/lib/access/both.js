@@ -1,4 +1,12 @@
 export default class Access {
+    static testRoute(user, rule) {
+        if (rule.deny === true) {
+            return false;
+        }
+
+        return this.testUser(user, rule);
+    }
+
     /**
      * Test the given rule against the given user
      * @param user
@@ -6,7 +14,6 @@ export default class Access {
      * @returns boolean True if the access can be granted
      */
     static testUser(user, rule) {
-
         if (rule.authorized === true && !_.isObjectNotEmpty(user)) {
             return false;
         }

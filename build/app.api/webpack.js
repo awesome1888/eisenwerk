@@ -150,7 +150,7 @@ const getWebpackConfiguration = async context => {
                 Schema: `${srcFolder}/shared/lib/global/schema.js`,
             }),
             new webpack.DefinePlugin({
-                __DEV__: process.env.NODE_ENV === 'development',
+                __DEV__: true, //process.env.NODE_ENV === 'development',
             }),
         ],
     };

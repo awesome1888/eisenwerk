@@ -4,10 +4,10 @@ import responseTime from 'response-time';
 
 import BaseApplication from './base.js';
 
-import Oauth2Success from '../../authorization/oauth2-success.js';
+import Oauth2Success from '../../authorization/oauth2-success';
+import { makeStatus } from '../../util';
 
 export default class BaseExpressApplication extends BaseApplication {
-
     getNetwork() {
         if (!this._express) {
             const app = express();
@@ -16,9 +16,11 @@ export default class BaseExpressApplication extends BaseApplication {
             // turn on JSON parser for REST services
             app.use(express.json());
             // turn on URL-encoded parser for REST services
-            app.use(express.urlencoded({
-                extended: true,
-            }));
+            app.use(
+                express.urlencoded({
+                    extended: true,
+                }),
+            );
             app.use(responseTime());
 
             // app.use(ConditionalGet());
@@ -49,13 +51,10 @@ export default class BaseExpressApplication extends BaseApplication {
                 return next(error);
             }
 
-            let code = parseInt(error.message, 10);
-            if (isNaN(code)) {
-                code = 500;
-            }
-            res.status(code);
+            const status = makeStatus(error.message);
+            res.status(status);
 
-            res.send(code === 404 ? 'Not found' : 'Error');
+            res.send(status === 404 ? 'Not found' : 'Error');
             return true;
         });
     }
