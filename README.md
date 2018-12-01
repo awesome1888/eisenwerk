@@ -61,10 +61,10 @@ Error handling
     1) [DONE] 404
         1) CSR: [DONE] redirect to /404 client-side and on the server set status either to 200 or to 404
         2) SSR: [DONE] redirect to /404 page and set status to 404
-    2) 401/403
+    2) 403
         1) CSR:
             We need redirect calculation support client-side, then we decide what to do next
-        2) SSR:
+        2) [DONE] SSR:
             We need redirect caclulation support server-side in order to be able to send 301, then we decide what to do next
     3) [DONE] 500
         0) [DONE] Both:

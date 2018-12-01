@@ -9,4 +9,7 @@ export default {
     restricted: {
         path: '/restricted/:category/:topic/:way',
     },
+    forbidden: {
+        path: '/403',
+    },
 };

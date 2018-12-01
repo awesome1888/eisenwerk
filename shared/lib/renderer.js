@@ -49,21 +49,27 @@ export default class Renderer {
                 await application.teardown();
 
                 let page = {};
+                let status = 200;
+
                 if (route && match) {
-                    res.status(store.getPageHttpCode(route.page));
+                    status = store.getPageHttpCode(route.page);
                     page = store.getPageMeta(route.page);
                 }
 
                 console.dir('state:');
                 console.dir(store.getReduxStore().getState());
 
-                this.send(res, {
-                    body,
-                    page,
-                    settings: {},
-                    state: store.getReduxStore().getState(),
-                    dry: true,
-                });
+                this.send(
+                    res,
+                    {
+                        body,
+                        page,
+                        settings: {},
+                        state: store.getReduxStore().getState(),
+                        dry: true,
+                    },
+                    status,
+                );
             } else {
                 throw new Error('Unable to load data');
             }

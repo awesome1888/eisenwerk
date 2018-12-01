@@ -98,6 +98,17 @@ export default class Application extends BaseApplication {
                     )}
                 />
                 <Route
+                    {...routes.forbidden}
+                    render={route => (
+                        <LayoutOuter>
+                            <PageLoader
+                                page={routes.forbidden.page}
+                                route={route}
+                            />
+                        </LayoutOuter>
+                    )}
+                />
+                <Route
                     render={route => (
                         <LayoutOuter>
                             <PageLoader
