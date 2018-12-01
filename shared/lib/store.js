@@ -119,9 +119,17 @@ export default class Store {
             });
     }
 
+    // application
+
     loadApplicationData() {
         return this.loadData(this._application.reducer);
     }
+
+    getApplicationData() {
+        return this.getStateAt(this._application.reducer.mountPoint);
+    }
+
+    // page
 
     loadPageData(page, route = {}) {
         return this.loadData(page.reducer, route);
@@ -129,10 +137,7 @@ export default class Store {
 
     getPageHttpCode(page) {
         const code = parseInt(
-            _.get(
-                this.getReduxStore().getState(),
-                `${page.reducer.mountPoint}.httpCode`,
-            ),
+            this.getStateAt(`${page.reducer.mountPoint}.httpCode`),
             10,
         );
         if (!code || isNaN(code)) {
@@ -148,16 +153,12 @@ export default class Store {
         );
     }
 
-    checkApplicationData() {
-        const appData = _.get(
-            this.getReduxStore().getState(),
-            this._application.reducer.mountPoint,
-        );
-        return appData.ready === true; // todo: so far only this
-    }
-
     getReduxStore() {
         return this._store;
+    }
+
+    getStateAt(point) {
+        return _.get(this.getReduxStore().getState(), point);
     }
 
     shutdown() {

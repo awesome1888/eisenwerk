@@ -23,7 +23,7 @@ export default class Renderer {
             const store = application.getStore();
             // load main reducer data
             await store.loadApplicationData();
-            if (store.checkApplicationData()) {
+            if (store.getApplicationData().ready) {
                 // load page data
 
                 // need to calculate what page to show...
@@ -32,7 +32,15 @@ export default class Renderer {
                     application.getRoutes(),
                 );
                 if (route && match) {
+                    console.dir('state:');
+                    console.dir(store.getReduxStore().getState());
+
+                    const aData = store.getApplicationData();
+                    console.dir('aData');
+                    console.dir(aData);
+
                     const redirect = redirector();
+                    console.dir('REDIRECT:');
                     console.dir(redirect);
 
                     const routeState = store.getReduxStore().getState().router;
@@ -60,8 +68,8 @@ export default class Renderer {
                     page = store.getPageMeta(route.page);
                 }
 
-                console.dir('state:');
-                console.dir(store.getReduxStore().getState());
+                // console.dir('state:');
+                // console.dir(store.getReduxStore().getState());
 
                 this.send(
                     res,
