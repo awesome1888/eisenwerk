@@ -30,24 +30,9 @@ export default class Renderer {
                     application.getRoutes(),
                 );
                 if (route && match) {
-                    const aData = store.getApplicationData();
-
-                    const routeProps = _.mergeShallow(match, route);
-                    routeProps.useAuth = application.useAuth();
-                    if (routeProps.useAuth) {
-                        Object.assign(routeProps, {
-                            user: aData.user,
-                        });
-                    }
-
-                    // console.dir('ROUTE PROPS');
-                    // console.dir(routeProps);
-
-                    const redirect = redirector(routeProps);
-                    if (_.isStringNotEmpty(redirect)) {
-                        res.status(302);
-                        res.set('Location', redirect);
-                        res.send('');
+                    if (
+                        this.makeRedirect(store, application, res, match, route)
+                    ) {
                         return;
                     }
 
@@ -76,8 +61,8 @@ export default class Renderer {
                     page = store.getPageMeta(route.page);
                 }
 
-                console.dir('state:');
-                console.dir(store.getReduxStore().getState());
+                // console.dir('state:');
+                // console.dir(store.getReduxStore().getState());
 
                 this.send(
                     res,
@@ -111,10 +96,42 @@ export default class Renderer {
                     },
                     500,
                 );
+                await application.teardown();
             } else {
                 throw e;
             }
         }
+    }
+
+    /**
+     * Maybe make server-side redirect based on application state and resolved route rules
+     * @param store
+     * @param application
+     * @param res
+     * @param match
+     * @param route
+     * @returns {boolean}
+     */
+    makeRedirect(store, application, res, match, route) {
+        const aData = store.getApplicationData();
+
+        const routeProps = _.mergeShallow(match, route);
+        routeProps.useAuth = application.useAuth();
+        if (routeProps.useAuth) {
+            Object.assign(routeProps, {
+                user: aData.user,
+            });
+        }
+
+        const redirect = redirector(routeProps);
+        if (_.isStringNotEmpty(redirect)) {
+            res.status(302);
+            res.set('Location', redirect);
+            res.send('');
+            return true;
+        }
+
+        return false;
     }
 
     send(res, data, status = 200) {
