@@ -25,23 +25,31 @@ export default class Renderer {
             await store.loadApplicationData();
             if (store.getApplicationData().ready) {
                 // load page data
-
-                // need to calculate what page to show...
                 const { route, match } = SSRRouter.match(
                     req.path,
                     application.getRoutes(),
                 );
                 if (route && match) {
-                    console.dir('state:');
-                    console.dir(store.getReduxStore().getState());
-
                     const aData = store.getApplicationData();
-                    console.dir('aData');
-                    console.dir(aData);
 
-                    const redirect = redirector();
-                    console.dir('REDIRECT:');
-                    console.dir(redirect);
+                    const routeProps = _.mergeShallow(match, route);
+                    routeProps.useAuth = application.useAuth();
+                    if (routeProps.useAuth) {
+                        Object.assign(routeProps, {
+                            user: aData.user,
+                        });
+                    }
+
+                    // console.dir('ROUTE PROPS');
+                    // console.dir(routeProps);
+
+                    const redirect = redirector(routeProps);
+                    if (_.isStringNotEmpty(redirect)) {
+                        res.status(302);
+                        res.set('Location', redirect);
+                        res.send('');
+                        return;
+                    }
 
                     const routeState = store.getReduxStore().getState().router;
                     routeState.match = match;
@@ -68,8 +76,8 @@ export default class Renderer {
                     page = store.getPageMeta(route.page);
                 }
 
-                // console.dir('state:');
-                // console.dir(store.getReduxStore().getState());
+                console.dir('state:');
+                console.dir(store.getReduxStore().getState());
 
                 this.send(
                     res,

@@ -57,12 +57,12 @@ To connect to a running container:
 [DONE] make "setHTTPCode" and "unsetHTTPCode" actions
 [DONE] server-side load process got broken
 [DONE] when SSR, check store for the http code other than 200 or undefined
-Error handling
+[DONE] Error handling
     1) [DONE] 404
         1) CSR: [DONE] redirect to /404 client-side and on the server set status either to 200 or to 404
         2) SSR: [DONE] redirect to /404 page and set status to 404
     2) 403
-        1) CSR:
+        1) [DONE] CSR:
             We need redirect calculation support client-side, then we decide what to do next
         2) [DONE] SSR:
             We need redirect caclulation support server-side in order to be able to send 301, then we decide what to do next
