@@ -6,4 +6,7 @@ export default {
     list: {
         path: '/list/:category/:topic/:way',
     },
+    restricted: {
+        path: '/restricted/:category/:topic/:way',
+    },
 };

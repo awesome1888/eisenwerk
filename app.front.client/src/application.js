@@ -87,6 +87,17 @@ export default class Application extends BaseApplication {
                     )}
                 />
                 <Route
+                    {...routes.restricted}
+                    render={route => (
+                        <LayoutOuter>
+                            <PageLoader
+                                page={routes.restricted.page}
+                                route={route}
+                            />
+                        </LayoutOuter>
+                    )}
+                />
+                <Route
                     render={route => (
                         <LayoutOuter>
                             <PageLoader
