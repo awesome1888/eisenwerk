@@ -13,14 +13,9 @@ class Application extends React.Component {
     componentDidMount() {
         this.props.dispatch({ type: reducer.ENTER });
         // if (this.props.useAuth) {
-        //     // check if we are authorized
-        //     // todo
-        //     this.props.dispatch({type: reducer.APPLICATION_READY_SET});
-        // } else {
-        //
+        //  const isFresh = Auth.isTokenFresh();
+        //  this.props.dispatch({type: isFresh ? reducer.APPLICATION_AUTHORIZED_SET : reducer.APPLICATION_AUTHORIZED_UNSET});
         // }
-        // // const isFresh = Auth.isTokenFresh();
-        // // this.props.dispatch({type: isFresh ? reducer.APPLICATION_AUTHORIZED_SET : reducer.APPLICATION_AUTHORIZED_UNSET});
     }
 
     componentDidCatch(e) {
@@ -31,7 +26,10 @@ class Application extends React.Component {
         if (this.props.ready && this.props.error && SorryScreen) {
             return <SorryScreen error={this.props.error} />;
         }
-        return <div className="application">{this.props.children}</div>;
+
+        return (
+            <div className="application">{this.props.routes(this.props)}</div>
+        );
     }
 }
 

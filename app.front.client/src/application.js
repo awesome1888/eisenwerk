@@ -65,13 +65,12 @@ export default class Application extends BaseApplication {
         return this._props.currentURL || '/';
     }
 
-    renderRoutes() {
+    renderRoutes(appProps) {
         const routes = this.getRoutes();
-
         return (
             <Switch>
                 <Route
-                    {...routes.home}
+                    {..._.mergeShallow(routes.home, appProps)}
                     render={route => (
                         <LayoutOuter>
                             <PageLoader page={routes.home.page} route={route} />
@@ -79,7 +78,7 @@ export default class Application extends BaseApplication {
                     )}
                 />
                 <Route
-                    {...routes.list}
+                    {..._.mergeShallow(routes.list, appProps)}
                     render={route => (
                         <LayoutOuter>
                             <PageLoader page={routes.list.page} route={route} />
@@ -87,7 +86,7 @@ export default class Application extends BaseApplication {
                     )}
                 />
                 <Route
-                    {...routes.restricted}
+                    {..._.mergeShallow(routes.restricted, appProps)}
                     render={route => (
                         <LayoutOuter>
                             <PageLoader
@@ -98,7 +97,7 @@ export default class Application extends BaseApplication {
                     )}
                 />
                 <Route
-                    {...routes.forbidden}
+                    {..._.mergeShallow(routes.forbidden, appProps)}
                     render={route => (
                         <LayoutOuter>
                             <PageLoader
@@ -109,6 +108,7 @@ export default class Application extends BaseApplication {
                     )}
                 />
                 <Route
+                    {..._.mergeShallow(routes.notFound, appProps)}
                     render={route => (
                         <LayoutOuter>
                             <PageLoader
@@ -129,11 +129,26 @@ export default class Application extends BaseApplication {
     render() {
         return (
             <Provider store={this.getStore().getReduxStore()}>
-                <ApplicationUI application={this} useAuth={this.useAuth()}>
-                    <ConnectedRouter history={this.getHistory()}>
-                        {this.renderRoutes()}
-                    </ConnectedRouter>
-                </ApplicationUI>
+                <ApplicationUI
+                    application={this}
+                    useAuth={this.useAuth()}
+                    routes={appProps => {
+                        const applicationProps = {
+                            useAuth: this.useAuth(),
+                        };
+                        if (this.useAuth()) {
+                            Object.assign(applicationProps, {
+                                user: appProps.user,
+                            });
+                        }
+
+                        return (
+                            <ConnectedRouter history={this.getHistory()}>
+                                {this.renderRoutes(applicationProps)}
+                            </ConnectedRouter>
+                        );
+                    }}
+                />
             </Provider>
         );
     }

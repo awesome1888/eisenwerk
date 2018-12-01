@@ -1,5 +1,6 @@
 import ReactDOMServer from 'react-dom/server';
 import SSRRouter from './ssr-router';
+import redirector from './redirector';
 
 export default class Renderer {
     constructor({ settings, clientApplication, template, hooks }) {
@@ -31,6 +32,9 @@ export default class Renderer {
                     application.getRoutes(),
                 );
                 if (route && match) {
+                    const redirect = redirector();
+                    console.dir(redirect);
+
                     const routeState = store.getReduxStore().getState().router;
                     routeState.match = match;
 

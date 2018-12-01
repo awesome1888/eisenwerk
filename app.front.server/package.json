@@ -1,45 +1,46 @@
 {
-  "name": "desktop.server",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon --watch ./server/ ./server/index.js",
-    "test": "jest --watch"
-  },
-  "author": "",
-  "license": "MIT",
-  "dependencies": {
-    "babel-polyfill": "^6.26.0",
-    "deep-freeze-node": "^1.1.3",
-    "ejs": "^2.6.1",
-    "express": "^4.16.3",
-    "feathers-authentication-popups": "^0.1.2",
-    "helmet": "^3.13.0",
-    "lodash.clonedeep": "^4.5.0",
-    "lodash.get": "^4.4.2",
-    "lodash.isarraylike": "^4.2.0",
-    "lodash.isequal": "^4.5.0",
-    "lodash.isfunction": "^3.0.9",
-    "lodash.isnumber": "^3.0.3",
-    "lodash.isobject": "^3.0.2",
-    "lodash.isstring": "^4.0.1",
-    "lodash.union": "^4.6.0",
-    "path-match": "^1.2.4",
-    "path-to-regexp": "^2.4.0",
-    "react": "^16.7.0-alpha.0",
-    "react-dom": "^16.7.0-alpha.0",
-    "response-time": "^2.3.2",
-    "url-parse": "^1.4.3"
-  },
-  "devDependencies": {
-    "jest": "^23.6.0",
-    "nodemon": "^1.18.6"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
+    "name": "desktop.server",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "dev": "nodemon --watch ./server/ ./server/index.js",
+        "test": "jest --watch"
+    },
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+        "babel-polyfill": "^6.26.0",
+        "deep-freeze-node": "^1.1.3",
+        "ejs": "^2.6.1",
+        "express": "^4.16.3",
+        "feathers-authentication-popups": "^0.1.2",
+        "helmet": "^3.13.0",
+        "lodash.clonedeep": "^4.5.0",
+        "lodash.get": "^4.4.2",
+        "lodash.isarraylike": "^4.2.0",
+        "lodash.isequal": "^4.5.0",
+        "lodash.isfunction": "^3.0.9",
+        "lodash.isnumber": "^3.0.3",
+        "lodash.isobject": "^3.0.2",
+        "lodash.isstring": "^4.0.1",
+        "lodash.union": "^4.6.0",
+        "object.intersect": "0.0.3",
+        "path-match": "^1.2.4",
+        "path-to-regexp": "^2.4.0",
+        "react": "^16.7.0-alpha.0",
+        "react-dom": "^16.7.0-alpha.0",
+        "response-time": "^2.3.2",
+        "url-parse": "^1.4.3"
+    },
+    "devDependencies": {
+        "jest": "^23.6.0",
+        "nodemon": "^1.18.6"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "pretty-quick --staged"
+        }
     }
-  }
 }

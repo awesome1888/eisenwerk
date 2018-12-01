@@ -14,12 +14,12 @@ export default ReducerFabric.makeReducer(
     {
         ready: false,
         error: null,
-        authorized: false,
+        user: null,
     },
     {
         [READY]: state => ({ ...state, ready: true }),
         [FAILURE]: (state, payload) => ({ ...state, error: payload }),
-        [AUTHORIZED_SET]: state => ({ ...state, authorized: true }),
-        [AUTHORIZED_UNSET]: state => ({ ...state, authorized: false }),
+        [AUTHORIZED_SET]: (state, payload) => ({ ...state, user: payload }),
+        [AUTHORIZED_UNSET]: state => ({ ...state, user: null }),
     },
 );
