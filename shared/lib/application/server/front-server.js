@@ -17,6 +17,14 @@ export default class FrontServerApplication extends BaseApplication {
         return res.query && (!!res.query.__ssr || !!res.query.__srr);
     }
 
+    readCache = () => {
+        console.dir('reading cache!');
+    };
+
+    storeCache = () => {
+        console.dir('store cache');
+    };
+
     async getRenderer() {
         if (!this._renderer) {
             const Renderer = (await import('../../renderer')).default;
@@ -25,6 +33,8 @@ export default class FrontServerApplication extends BaseApplication {
                 clientApplication: this.getParams().clientApplication,
                 settings: this.getSettings(),
             });
+            this._renderer.on('before', this.readCache);
+            this._renderer.on('after', this.storeCache);
         }
 
         return this._renderer;

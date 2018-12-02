@@ -78,7 +78,7 @@ To connect to a running container:
                 1) [DONE] production: set status to 500 and instead of the app layout show "sorry screen"
                 2) [DONE] development: set status to 500 and res.send() error trace
 7.04) [CANCEL] I don't like our render() function in Renderer, and also componentDidMount(){ load() }, move the logic partially inside the app saga, also implement sub-reducers and sub-sags of pages relative to the app 
-7.045) do something about the fuckup when you can receive data in time, also teardown the app on possible error
+7.045) [DONE] do something about the fuckup when you can receive data in time, also teardown the app on possible error
 7.05) [DONE] Refactor
     1) [CANCEL] simplify watcher in saga
     2) [DONE] DONE -> READY

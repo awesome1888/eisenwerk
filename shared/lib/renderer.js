@@ -3,15 +3,58 @@ import SSRRouter from './ssr-router';
 import redirector from './redirector';
 
 export default class Renderer {
-    constructor({ settings, clientApplication, template, hooks }) {
+    constructor({ settings, clientApplication, template }) {
         this._settings = settings;
         this._frontend = clientApplication;
         this._template = template;
-        this._hooks = hooks;
+        this._hooks = {};
+    }
+
+    on(where, what) {
+        if (!_.isStringNotEmpty(where) || !_.isFunction(what)) {
+            return;
+        }
+        this._hooks[where] = this._hooks[where] || [];
+        this._hooks[where].push(what);
+    }
+
+    off(where, what) {
+        if (_.isArrayNotEmpty(this._hooks[where])) {
+            return;
+        }
+
+        this._hooks[where] = this._hooks[where].filter(x => x !== what);
+    }
+
+    processBefore(req, res) {
+        if (_.isArrayNotEmpty(this._hooks.before)) {
+            for (let i = 0; i < this._hooks.before.length; i++) {
+                const result = this._hooks.before[i](req, res);
+                if (_.isStringNotEmpty(result)) {
+                    this.send(res, result, 200);
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    processAfter(result, req, res) {
+        if (_.isArrayNotEmpty(this._hooks.after)) {
+            for (let i = 0; i < this._hooks.after.length; i++) {
+                this._hooks.after[i](result, req, res);
+            }
+        }
     }
 
     async render(req, res) {
         let application = null;
+
+        if (!this.processBefore(req, res)) {
+            return;
+        }
+
         try {
             const Application = (await this._frontend()).default;
             application = new Application({
@@ -64,17 +107,19 @@ export default class Renderer {
                 // console.dir('state:');
                 // console.dir(store.getReduxStore().getState());
 
-                this.send(
-                    res,
-                    {
-                        body,
-                        page,
-                        settings: {},
-                        state: store.getReduxStore().getState(),
-                        dry: true,
-                    },
-                    status,
-                );
+                const result = {
+                    body,
+                    page,
+                    settings: {},
+                    state: store.getReduxStore().getState(),
+                    dry: true,
+                };
+
+                if (status === 200) {
+                    this.processAfter(result, req, res);
+                }
+
+                this.send(res, result, status);
             } else {
                 throw new Error('Unable to load data');
             }
