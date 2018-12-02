@@ -52,9 +52,9 @@ services:
             context: ../app.ssr.cache/
             dockerfile: development.dockerfile
         expose:
-            - 3100
+            - 6379
         ports:
-            - 3100:3100
+            - 6379:6379
 
     db:
         image: 'mongo:latest'

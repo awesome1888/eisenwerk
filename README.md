@@ -103,6 +103,7 @@ Re-think the whole idea about how we dockerize: there is a simpler way to do tha
 Run as dockerized or not: should not be important
 https://www.npmjs.com/package/nodemon-webpack-plugin
 1.9) simplify that oop multi-level crap with Apps, use composition for sake
+1.95) move styles to styled-components
 
 2.  auth in a modern way
 3.  re-think oauth2
@@ -112,11 +113,11 @@ https://www.npmjs.com/package/nodemon-webpack-plugin
 6.  favicon
 7.  webicon
 8.  sitemap
-9.  react strict mode
+9.  [CANCEL] react strict mode
 10. [DONE] react error boundary
-11. jest
+11. [CANCEL] jest
 12. redis 4 sessions
-13. redis 4 intercomm
+13. [CANCEL] redis 4 intercomm
 14. npm WARN deprecated feathers-errors@2.9.2: Feathers v3 is out and has moved to @feathersjs/errors. See https://docs.feathersjs.com/migrating.html for more information.
 15. [DONE] separate class for templating
 16. [CANCEL] Couldn't open browser (if you are using BrowserSync in a headless environment, you might want to set the open option to false)]

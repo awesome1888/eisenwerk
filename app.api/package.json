@@ -1,52 +1,54 @@
 {
-  "name": "api",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js",
-    "dev": "node index.js",
-    "test": "jest --watch"
-  },
-  "author": "",
-  "license": "MIT",
-  "dependencies": {
-    "@feathersjs/authentication": "^2.1.7",
-    "@feathersjs/authentication-jwt": "^2.0.1",
-    "@feathersjs/authentication-local": "^1.2.1",
-    "@feathersjs/authentication-oauth2": "^1.1.0",
-    "@feathersjs/errors": "^3.3.0",
-    "@feathersjs/express": "^1.2.3",
-    "@feathersjs/feathers": "^3.1.7",
-    "babel-polyfill": "^6.26.0",
-    "bcrypt": "^3.0.0",
-    "cors": "^2.8.4",
-    "deep-freeze-node": "^1.1.3",
-    "feathers-authentication-management": "^2.0.1",
-    "feathers-authentication-popups": "^0.1.2",
-    "feathers-mongoose": "^6.1.2",
-    "helmet": "^3.12.1",
-    "lodash.clonedeep": "^4.5.0",
-    "lodash.get": "^4.4.2",
-    "lodash.isarraylike": "^4.2.0",
-    "lodash.isequal": "^4.5.0",
-    "lodash.isfunction": "^3.0.9",
-    "lodash.isnumber": "^3.0.3",
-    "lodash.isobject": "^3.0.2",
-    "lodash.isstring": "^4.0.1",
-    "mongoose": "^5.2.0",
-    "obj-flatten": "^2.0.3",
-    "passport-google-oauth20": "^1.0.0",
-    "set-value": "^3.0.0",
-    "traverse": "^0.6.6",
-    "url-parse": "^1.4.3"
-  },
-  "devDependencies": {
-    "jest": "^23.6.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
+    "name": "api",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "dev": "node index.js",
+        "test": "jest --watch"
+    },
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+        "@feathersjs/authentication": "^2.1.7",
+        "@feathersjs/authentication-jwt": "^2.0.1",
+        "@feathersjs/authentication-local": "^1.2.1",
+        "@feathersjs/authentication-oauth2": "^1.1.0",
+        "@feathersjs/errors": "^3.3.0",
+        "@feathersjs/express": "^1.2.3",
+        "@feathersjs/feathers": "^3.1.7",
+        "babel-polyfill": "^6.26.0",
+        "bcrypt": "^3.0.0",
+        "cors": "^2.8.4",
+        "deep-freeze-node": "^1.1.3",
+        "feathers-authentication-management": "^2.0.1",
+        "feathers-authentication-popups": "^0.1.2",
+        "feathers-mongoose": "^6.1.2",
+        "helmet": "^3.12.1",
+        "lodash.clonedeep": "^4.5.0",
+        "lodash.get": "^4.4.2",
+        "lodash.isarraylike": "^4.2.0",
+        "lodash.isequal": "^4.5.0",
+        "lodash.isfunction": "^3.0.9",
+        "lodash.isnumber": "^3.0.3",
+        "lodash.isobject": "^3.0.2",
+        "lodash.isstring": "^4.0.1",
+        "lodash.union": "^4.6.0",
+        "mongoose": "^5.2.0",
+        "obj-flatten": "^2.0.3",
+        "object.intersect": "0.0.3",
+        "passport-google-oauth20": "^1.0.0",
+        "set-value": "^3.0.0",
+        "traverse": "^0.6.6",
+        "url-parse": "^1.4.3"
+    },
+    "devDependencies": {
+        "jest": "^23.6.0"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "pretty-quick --staged"
+        }
     }
-  }
 }
