@@ -90,6 +90,7 @@ To connect to a running container:
 9) implement at least simple cache with redis
     make it decoupled: with hooks
     dont make any cache if status is not 200
+    https://www.compose.com/articles/api-caching-with-redis-and-nodejs/
 11) disable overlay for SSR
 12) enable SSR by user agent or __ssr=1
     https://www.npmjs.com/package/spider-detector
