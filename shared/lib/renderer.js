@@ -114,6 +114,7 @@ export default class Renderer {
                         settings: {},
                         state: store.getReduxStore().getState(),
                         dry: true,
+                        ssr: true,
                     }),
                 );
 
@@ -141,6 +142,7 @@ export default class Renderer {
                             settings: {},
                             state: {},
                             dry: true,
+                            ssr: true,
                         }),
                     ),
                     500,

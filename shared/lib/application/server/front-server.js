@@ -18,11 +18,11 @@ export default class FrontServerApplication extends BaseApplication {
         return res.query && (!!res.query.__ssr || !!res.query.__srr);
     }
 
-    readCache = async req => {
+    readSSRCache = async req => {
         return this.getCache().get(req.originalUrl);
     };
 
-    storeCache = async (data, req) => {
+    storeSSRCache = async (data, req) => {
         await this.getCache().set(req.originalUrl, data.toString(), 60 * 5);
     };
 
@@ -30,7 +30,7 @@ export default class FrontServerApplication extends BaseApplication {
         if (!this._rendererCache) {
             const cache = new Cache();
             cache.init({
-                url: this.getSettings().getSSRRedisCache(),
+                url: this.getSettings().getSSRCacheURL(),
             });
 
             this._rendererCache = cache;
@@ -47,8 +47,11 @@ export default class FrontServerApplication extends BaseApplication {
                 clientApplication: this.getParams().clientApplication,
                 settings: this.getSettings(),
             });
-            this._renderer.on('before', this.readCache);
-            this._renderer.on('after', this.storeCache);
+
+            if (_.isStringNotEmpty(this.getSettings().getSSRCacheURL())) {
+                this._renderer.on('before', this.readSSRCache);
+                this._renderer.on('after', this.storeSSRCache);
+            }
         }
 
         return this._renderer;

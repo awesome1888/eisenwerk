@@ -96,12 +96,12 @@ class Settings {
         return this.env.AUTH__GOOGLE__SECRET || '';
     }
 
-    getSSRRedisCache() {
-        return this.env.SSR__REDIS_CACHE || '';
-    }
-
     useSSR() {
         return this.env.SSR__ENABLED !== '0';
+    }
+
+    getSSRCacheURL() {
+        return this.env.SSR__CACHE__URL || '';
     }
 
     prepareForClient() {

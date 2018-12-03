@@ -87,11 +87,10 @@ To connect to a running container:
 7.1) [DONE] bug: ssr will work on missing 404 (i.e. favicon.ico)
 7.2) [DONE] client-side 404 "route" is missing
 8) [DONE] memory leak in saga?!!! https://github.com/redux-saga/redux-saga/issues/13#issuecomment-182883680
-9) implement at least simple cache with redis
-    make it decoupled: with hooks
-    dont make any cache if status is not 200
-    https://www.compose.com/articles/api-caching-with-redis-and-nodejs/
-11) disable overlay for SSR
+9) [DONE] implement at least simple cache with redis
+    [DONE] make it decoupled: with hooks
+    [DONE] dont make any cache if status is not 200
+11) [DONE] disable overlay for SSR
 12) enable SSR by user agent or __ssr=1
     https://www.npmjs.com/package/spider-detector
     https://support.google.com/webmasters/answer/80553
@@ -104,6 +103,7 @@ Run as dockerized or not: should not be important
 https://www.npmjs.com/package/nodemon-webpack-plugin
 1.9) simplify that oop multi-level crap with Apps, use composition for sake
 1.95) move styles to styled-components
+1.955) new overlay and progressbar mechanic based on watching the store and\or EventEmitter on componentDidUpdate of page when switching from ready false -> true
 
 2.  auth in a modern way
 3.  re-think oauth2

@@ -21,11 +21,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
     <link href="/images/favicon.png?v=4" rel="shortcut icon" type="image/x-icon">
     <link href="/images/webclip.png?v=4" rel="apple-touch-icon">
+    <% if (!ssr) { %>
     <%- assets.overlay %>
+    <% } %>
     <%- assets.css %>
 </head>
 <body class="body_background_default">
+<% if (!ssr) { %>
 <%- overlay %>
+<% } %>
 <div id="root"><%- body %></div>
 <script>
     window.__SETTINGS__ = <%- settings %>;

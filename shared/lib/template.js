@@ -2,8 +2,7 @@ import fs from 'fs';
 import ejs from 'ejs';
 
 export default class Template {
-
-    constructor({settings}) {
+    constructor({ settings }) {
         this._settings = settings;
     }
 
@@ -16,7 +15,9 @@ export default class Template {
             data.settings = JSON.stringify({});
             data.state = JSON.stringify({});
         } else {
-            data.settings = data.settings ? JSON.stringify(data.settings) : this._settings.prepareForClient();
+            data.settings = data.settings
+                ? JSON.stringify(data.settings)
+                : this._settings.prepareForClient();
             data.state = JSON.stringify(data.state || {});
         }
         data.overlay = this.getOverlayHTML();
@@ -25,6 +26,7 @@ export default class Template {
             css: this.getAssetHTML().css,
             overlay: this.getOverlayAssets(),
         };
+        data.ssr = !!data.ssr;
 
         const page = data.page || {};
 
@@ -41,14 +43,18 @@ export default class Template {
         // if not cached or not in production
         if (!this._assetHTML) {
             const html = this.readTemplate(this.getAssetsFilePath());
-            const assets = {js: '', css: ''};
+            const assets = { js: '', css: '' };
 
-            let found = html.match(new RegExp('<!-- JS -->\n*(.+)\n*<!-- JS:END -->'));
+            let found = html.match(
+                new RegExp('<!-- JS -->\n*(.+)\n*<!-- JS:END -->'),
+            );
             if (_.isArrayNotEmpty(found) && _.isStringNotEmpty(found[1])) {
                 assets.js = found[1];
             }
 
-            found = html.match(new RegExp('<!-- CSS -->\n*(.+)\n*<!-- CSS:END -->'));
+            found = html.match(
+                new RegExp('<!-- CSS -->\n*(.+)\n*<!-- CSS:END -->'),
+            );
             if (_.isArrayNotEmpty(found) && _.isStringNotEmpty(found[1])) {
                 assets.css = found[1];
             }
@@ -69,7 +75,9 @@ export default class Template {
 
     getOverlayAssets() {
         if (!this._overlayAssets) {
-            this._overlayAssets = this.readTemplateRelative('overlay/assets.ejs');;
+            this._overlayAssets = this.readTemplateRelative(
+                'overlay/assets.ejs',
+            );
         }
 
         return this._overlayAssets;
