@@ -1,13 +1,14 @@
 import redis from 'redis';
 
 export default class Cache {
-    constructor(params = {}) {
-        this._params = params;
-    }
+    init(params = {}) {
+        params = params || {};
 
-    init() {
         let client = null;
-        const connectionString = this._params.url;
+        const connectionString = params.url;
+        if (!_.isStringNotEmpty(connectionString)) {
+            throw new Error('"url" parameter is missing');
+        }
 
         if (connectionString.startsWith('rediss://')) {
             client = redis.createClient(connectionString, {
@@ -27,12 +28,36 @@ export default class Cache {
     }
 
     async set(key, data, ttl = 0) {
-        console.dir('SET!');
+        return new Promise((resolve, reject) => {
+            const cb = (err, res) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(res);
+                }
+            };
+
+            if (ttl <= 0) {
+                this._client.set(key, data, cb);
+            } else {
+                this._client.set(key, data, 'EX', ttl, cb);
+            }
+        });
     }
 
     async get(key) {
-        console.dir('GET!');
+        return new Promise((resolve, reject) => {
+            this._client.get(key, (err, res) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(res);
+                }
+            });
+        });
     }
 
-    async delete(key) {}
+    async delete(key) {
+        // todo
+    }
 }

@@ -107,13 +107,15 @@ export default class Renderer {
                 // console.dir('state:');
                 // console.dir(store.getReduxStore().getState());
 
-                const result = {
-                    body,
-                    page,
-                    settings: {},
-                    state: store.getReduxStore().getState(),
-                    dry: true,
-                };
+                const result = new Buffer(
+                    this._template.get({
+                        body,
+                        page,
+                        settings: {},
+                        state: store.getReduxStore().getState(),
+                        dry: true,
+                    }),
+                );
 
                 if (status === 200) {
                     await this.processAfter(result, req, res);
@@ -128,17 +130,19 @@ export default class Renderer {
                 // we can show something meaningful
                 this.send(
                     res,
-                    {
-                        body: ReactDOMServer.renderToStaticMarkup(
-                            application.renderError(e),
-                        ),
-                        page: {
-                            title: 'Error',
-                        },
-                        settings: {},
-                        state: {},
-                        dry: true,
-                    },
+                    new Buffer(
+                        this._template.get({
+                            body: ReactDOMServer.renderToStaticMarkup(
+                                application.renderError(e),
+                            ),
+                            page: {
+                                title: 'Error',
+                            },
+                            settings: {},
+                            state: {},
+                            dry: true,
+                        }),
+                    ),
                     500,
                 );
                 await application.teardown();
@@ -182,6 +186,6 @@ export default class Renderer {
     send(res, data, status = 200) {
         res.status(status);
         res.set('Content-Type', 'text/html');
-        res.send(new Buffer(this._template.get(data)));
+        res.send(data);
     }
 }

@@ -25,6 +25,7 @@ services:
             - FOLDER__TEMPLATE=/usr/src/app/client/template/
             - FILE__TEMPLATE__ASSETS=/usr/src/app/client/assets.html
             - PROJECT__NAME=Eisenwerk
+            - SSR__REDIS_CACHE=redis://ssr.cache:6379
 
     api:
         build:

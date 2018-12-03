@@ -2,7 +2,6 @@ import process from 'process';
 import parse from 'url-parse';
 
 class Settings {
-
     constructor() {
         this.env = process.env;
     }
@@ -16,7 +15,11 @@ class Settings {
             missing.push('PORT');
         }
         if (_.isArrayNotEmpty(missing)) {
-            console.error(`You have the following environment variables missing: ${missing.join(', ')}. You may get into trouble with that, because some of submodules rely on these values and may work inconsistently.`);
+            console.error(
+                `You have the following environment variables missing: ${missing.join(
+                    ', ',
+                )}. You may get into trouble with that, because some of submodules rely on these values and may work inconsistently.`,
+            );
         }
     }
 
@@ -91,6 +94,10 @@ class Settings {
 
     getOAuthGoogleSecret() {
         return this.env.AUTH__GOOGLE__SECRET || '';
+    }
+
+    getSSRRedisCache() {
+        return this.env.SSR__REDIS_CACHE || '';
     }
 
     useSSR() {
