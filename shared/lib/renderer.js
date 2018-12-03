@@ -26,10 +26,10 @@ export default class Renderer {
         this._hooks[where] = this._hooks[where].filter(x => x !== what);
     }
 
-    processBefore(req, res) {
+    async processBefore(req, res) {
         if (_.isArrayNotEmpty(this._hooks.before)) {
             for (let i = 0; i < this._hooks.before.length; i++) {
-                const result = this._hooks.before[i](req, res);
+                const result = await this._hooks.before[i](req);
                 if (_.isStringNotEmpty(result)) {
                     this.send(res, result, 200);
                     return false;
@@ -40,10 +40,10 @@ export default class Renderer {
         return true;
     }
 
-    processAfter(result, req, res) {
+    async processAfter(result, req, res) {
         if (_.isArrayNotEmpty(this._hooks.after)) {
             for (let i = 0; i < this._hooks.after.length; i++) {
-                this._hooks.after[i](result, req, res);
+                await this._hooks.after[i](result, req, res);
             }
         }
     }
@@ -51,7 +51,7 @@ export default class Renderer {
     async render(req, res) {
         let application = null;
 
-        if (!this.processBefore(req, res)) {
+        if (!(await this.processBefore(req, res))) {
             return;
         }
 
@@ -116,7 +116,7 @@ export default class Renderer {
                 };
 
                 if (status === 200) {
-                    this.processAfter(result, req, res);
+                    await this.processAfter(result, req, res);
                 }
 
                 this.send(res, result, status);
