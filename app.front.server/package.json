@@ -33,6 +33,7 @@
         "react-dom": "^16.7.0-alpha.0",
         "redis": "^2.8.0",
         "response-time": "^2.3.2",
+        "spider-detector": "^1.0.18",
         "url-parse": "^1.4.3"
     },
     "devDependencies": {

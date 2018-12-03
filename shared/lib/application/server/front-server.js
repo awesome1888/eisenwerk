@@ -1,3 +1,5 @@
+import spiderDetector from 'spider-detector';
+
 import BaseApplication from './express';
 import Template from '../../template';
 import SSRRouter from '../../ssr-router';
@@ -5,7 +7,7 @@ import { makeStatus } from '../../util';
 import Cache from '../../cache';
 
 export default class FrontServerApplication extends BaseApplication {
-    useSSR(res) {
+    useSSR(req) {
         if (!this.getSettings().useSSR()) {
             return false;
         }
@@ -15,7 +17,10 @@ export default class FrontServerApplication extends BaseApplication {
         }
 
         // todo: look at the user agent here
-        return res.query && (!!res.query.__ssr || !!res.query.__srr);
+        return (
+            (req.query && (!!req.query.__ssr || !!req.query.__srr)) ||
+            req.isSpider()
+        );
     }
 
     readSSRCache = async req => {
@@ -69,6 +74,7 @@ export default class FrontServerApplication extends BaseApplication {
 
     attachMiddleware() {
         super.attachMiddleware();
+        this.getNetwork().use(spiderDetector.middleware());
         // todo: instead of just putting * we need to check here if we are trying to get a route-like url
         // todo: i.e. /something/like/that/, but /blah.jpg will not be the case
         this.getNetwork().get('*', async (req, res, next) => {

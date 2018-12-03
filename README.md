@@ -91,10 +91,10 @@ To connect to a running container:
     [DONE] make it decoupled: with hooks
     [DONE] dont make any cache if status is not 200
 11) [DONE] disable overlay for SSR
-12) enable SSR by user agent or __ssr=1
-    https://www.npmjs.com/package/spider-detector
-    https://support.google.com/webmasters/answer/80553
-    https://support.google.com/webmasters/answer/1061943?hl=en
+12) [DONE] enable SSR by user agent or __ssr=1
+    [DONE] https://www.npmjs.com/package/spider-detector
+    [DONE] https://support.google.com/webmasters/answer/80553
+    [DONE] https://support.google.com/webmasters/answer/1061943?hl=en
 13) [CANCEL] in outer layout replace OOP with HOC
 
 1.8) EHHH Shitty decisions made...
