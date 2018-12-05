@@ -1,14 +1,14 @@
-import Settings from '../../settings/client.js';
-import Authorization from '../../authorization/client.js';
+import Settings from '../settings/client.js';
+import Authorization from '../authorization/client.js';
 
-import Entity from '../../../lib/entity/client.js';
-import Method from '../../method/client.js';
+import Entity from '../entity/client.js';
+import Method from '../method/client.js';
 
 import feathers from '@feathersjs/client';
 import rest from '@feathersjs/rest-client';
 import axios from 'axios';
 
-export default class Application {
+export default class DesktopApplication {
     constructor(props = {}) {
         this._props = props || {};
         this._settings = new Settings(this._props.settings);

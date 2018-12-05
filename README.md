@@ -101,7 +101,7 @@ To connect to a running container:
 1.95) move styles to styled-components
 1.955) new overlay and progressbar mechanic based on watching the store and\or EventEmitter on componentDidUpdate of page when switching from ready false -> true
 2.  auth in a modern way
-    2.1) for entities remove server and client, make it isomorphic working through services
+2.1) for entities remove server and client, make it isomorphic working through services
 3.  re-think oauth2
 4.  migrations
 5.  manifest
@@ -111,7 +111,7 @@ To connect to a running container:
 8.  sitemap
 9.  [CANCEL] react strict mode
 10. [DONE] react error boundary
-11. [CANCEL] jest
+11. jest (see article about lerna)
 12. redis 4 sessions
 13. [CANCEL] redis 4 intercomm
 14. npm WARN deprecated feathers-errors@2.9.2: Feathers v3 is out and has moved to @feathersjs/errors. See https://docs.feathersjs.com/migrating.html for more information.
