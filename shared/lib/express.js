@@ -108,18 +108,28 @@ export default class ExpressApplication {
 
         // if nothing were served above with GET, then we should obviously send 404
         this.getApp().get(() => {
+            let error = null;
             if (_.isFunction(mkErr)) {
-                throw mkErr(404);
+                error = mkErr(404);
             }
-            throw new Error('404');
+            if (!error) {
+                error = new Error('404');
+            }
+
+            throw error;
         });
 
         // all the rest - not implemented
         this.getApp().use(() => {
+            let error = null;
             if (_.isFunction(mkErr)) {
-                throw mkErr(501);
+                error = mkErr(501);
             }
-            throw new Error('501');
+            if (!error) {
+                error = new Error('501');
+            }
+
+            throw error;
         });
     }
 

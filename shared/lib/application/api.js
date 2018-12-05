@@ -2,16 +2,19 @@ import feathers from '@feathersjs/feathers';
 import express from '@feathersjs/express';
 import errors from '@feathersjs/errors';
 
-import settings from '../settings/server.js';
+import escape from 'escape-html';
 import Database from '../database';
 import Authorization from '../authorization/server';
 import handler from '../error-handler';
 import MethodFabric from '../method/fabric';
 import EntityServiceFabric from '../service/fabric';
 
+import Application from './base';
 import Express from '../express';
+import LordVader from '../ascii/vader';
+import Yoda from '../ascii/yoda';
 
-export default class API {
+export default class APIApplication extends Application {
     async launch() {
         process.on('unhandledRejection', (reason, p) => {
             console.log('Unhandled Rejection at: ', p, ' reason: ', reason);
@@ -41,6 +44,32 @@ export default class API {
 
                     this.createEntityServices(eApp);
                     this.createMethods(eApp);
+
+                    app.get('/', (req, res) => {
+                        res.status(200);
+                        if (this.getSettings().isProduction()) {
+                            res.send(`<pre>${LordVader}</pre>`);
+                        } else {
+                            res.send(`
+                                <style>body{font-family: sans-serif}</style>
+                                <pre>${Yoda}</pre>
+                                <h3>The entities following use you may, young Padawan:</h3>
+                                <ul>
+                                    ${this.getServices()
+                                        .map(service => {
+                                            return `<li><a href="${escape(
+                                                service.getPath(),
+                                            )}">${escape(
+                                                service.getPath(),
+                                            )}</a> &mdash; ${escape(
+                                                service.getDesciption(),
+                                            )}</li>`;
+                                        })
+                                        .join('')}
+                            </ul>
+                        `);
+                        }
+                    });
                 },
                 attachErrorHandler: eApp => {
                     eApp.use(
@@ -113,10 +142,6 @@ export default class API {
         if (this.hasNetwork()) {
             this.getNetwork().tearDown();
         }
-        process.exit(1);
-    }
-
-    getSettings() {
-        return settings;
+        super.tearDown();
     }
 }

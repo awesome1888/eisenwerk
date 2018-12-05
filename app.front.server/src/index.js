@@ -1,5 +1,5 @@
 import 'babel-polyfill';
-import Application from './shared/lib/application/server/front-server.js';
+import Application from './shared/lib/application/front';
 
 new Application({
     clientApplication: () =>

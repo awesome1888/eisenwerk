@@ -30,7 +30,7 @@ export default class Template {
 
         const page = data.page || {};
 
-        data.title = page.title || this._settings.env.PROJECT__NAME || '';
+        data.title = page.title || this._settings.getProjectName();
         data.description = page.description || '';
         data.keywords = page.keywords || '';
 

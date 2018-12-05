@@ -97,15 +97,11 @@ To connect to a running container:
     [DONE] https://support.google.com/webmasters/answer/1061943?hl=en
 13) [CANCEL] in outer layout replace OOP with HOC
 
-1.8) EHHH Shitty decisions made...
-Re-think the whole idea about how we dockerize: there is a simpler way to do that with no docker-build-tool involved
-Run as dockerized or not: should not be important
-https://www.npmjs.com/package/nodemon-webpack-plugin
 1.9) simplify that oop multi-level crap with Apps, use composition for sake
 1.95) move styles to styled-components
 1.955) new overlay and progressbar mechanic based on watching the store and\or EventEmitter on componentDidUpdate of page when switching from ready false -> true
-
 2.  auth in a modern way
+    2.1) for entities remove server and client, make it isomorphic working through services
 3.  re-think oauth2
 4.  migrations
 5.  manifest
@@ -121,6 +117,12 @@ https://www.npmjs.com/package/nodemon-webpack-plugin
 14. npm WARN deprecated feathers-errors@2.9.2: Feathers v3 is out and has moved to @feathersjs/errors. See https://docs.feathersjs.com/migrating.html for more information.
 15. [DONE] separate class for templating
 16. [CANCEL] Couldn't open browser (if you are using BrowserSync in a headless environment, you might want to set the open option to false)]
+17. pack everything that is possible to npm
+        lerna
+1.8) EHHH Shitty decisions made...
+Re-think the whole idea about how we dockerize: there is a simpler way to do that with no docker-build-tool involved
+Run as dockerized or not: should not be important
+https://www.npmjs.com/package/nodemon-webpack-plugin
 
 ### Random
 

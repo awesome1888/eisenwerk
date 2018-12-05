@@ -72,7 +72,15 @@ class Settings {
     }
 
     isProduction() {
-        return this.env.NODE_ENV === 'production';
+        return (
+            !__DEV__ &&
+            this.env.NODE_ENV !== 'development' &&
+            this.env.NODE_ENV !== 'test'
+        );
+    }
+
+    isDevelopment() {
+        return !this.isProduction();
     }
 
     getAllowedOrigins() {
@@ -102,6 +110,10 @@ class Settings {
 
     getSSRCacheURL() {
         return this.env.SSR__CACHE__URL || '';
+    }
+
+    getProjectName() {
+        return this.env.PROJECT__NAME || '';
     }
 
     prepareForClient() {
