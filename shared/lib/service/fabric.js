@@ -1,7 +1,6 @@
 export default class Fabric {
-    static register(app, services) {
-        const network = app.getNetwork();
-        services.forEach((service) => {
+    static register(network, services) {
+        services.forEach(service => {
             // make instance
             const serviceInstance = service.make(app);
             // define middleware

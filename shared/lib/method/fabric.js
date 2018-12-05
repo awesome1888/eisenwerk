@@ -3,9 +3,9 @@ import Error from '../error';
 import Context from '../context';
 
 export default class Fabric {
-    static register(app, declarations = []) {
+    static register(network, declarations = []) {
         const allMethods = this.flattenMethods(declarations);
-        app.getNetwork().use('/method', {
+        network.use('/method', {
             create: async (data, context) => {
                 let result = {};
 
@@ -14,9 +14,11 @@ export default class Fabric {
                     const args = data.arguments || [];
 
                     if (_.isStringNotEmpty(name)) {
-
                         // make aligned with hook context structure
-                        context = {params: context, method: {name, arguments: args}};
+                        context = {
+                            params: context,
+                            method: { name, arguments: args },
+                        };
 
                         const pack = allMethods[name];
                         const declared = pack.getDeclaration()[name];
@@ -36,7 +38,7 @@ export default class Fabric {
 
     static flattenMethods(declarations) {
         const all = {};
-        declarations.forEach((pack) => {
+        declarations.forEach(pack => {
             _.forEach(pack.getDeclaration(), (info, name) => {
                 all[name] = pack;
             });
@@ -54,7 +56,9 @@ export default class Fabric {
 
             const instance = new Methods();
             if (!_.isFunction(instance[bodyName])) {
-                Error.throw400(`The body is not a function for the method: ${name}`);
+                Error.throw400(
+                    `The body is not a function for the method: ${name}`,
+                );
             }
 
             // check access
@@ -66,7 +70,12 @@ export default class Fabric {
             }
 
             const auth = application.getAuthorization();
-            const result = await Access.testToken(Context.extractToken(context), rule, auth, context);
+            const result = await Access.testToken(
+                Context.extractToken(context),
+                rule,
+                auth,
+                context,
+            );
 
             if (result === false) {
                 Error.throw403();
