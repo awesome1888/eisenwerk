@@ -98,11 +98,19 @@ To connect to a running container:
 13) [CANCEL] in outer layout replace OOP with HOC
 
 1.9) simplify that oop multi-level crap with Apps, use composition for sake
+==== NPM!!!!! ====
 1.95) move styles to styled-components
 1.955) new overlay and progressbar mechanic based on watching the store and\or EventEmitter on componentDidUpdate of page when switching from ready false -> true
+    Item types:
+        1) progressbar to show every time something loads
+        2) on-first-load overlay, it is shown when the website loads for the first time
+        3) between-layouts fade-in-out overlay, just to make transitions more smooth
+        4) skeleton components
 2.  auth in a modern way
-2.1) for entities remove server and client, make it isomorphic working through services
-3.  re-think oauth2
+    2.1) for entities remove server and client, make it isomorphic working through services
+        3.  re-think oauth2
+        4. graphql for entities instead of REST and feathersjs?
+            1. what about caching?
 4.  migrations
 5.  manifest
     6.1) web worker
