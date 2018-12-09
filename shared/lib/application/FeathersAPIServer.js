@@ -4,10 +4,10 @@ import errors from '@feathersjs/errors';
 
 import escape from 'escape-html';
 import Database from '../database';
-import Authorization from '../authorization/server';
-import handler from '../error-handler';
-import MethodFabric from '../method/fabric';
-import EntityServiceFabric from '../service/fabric';
+import Authorization from '../vendor/feathersjs/authorization/server';
+import handler from '../vendor/feathersjs/error-handler';
+import MethodFabric from '../vendor/feathersjs/method/fabric';
+import EntityServiceFabric from '../vendor/feathersjs/service/fabric';
 
 import ServerApplication from './Server';
 import Express from '../express';

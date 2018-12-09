@@ -1,7 +1,6 @@
 import errors from '@feathersjs/errors';
 
-export default function (params = {}) {
-
+export default function(params = {}) {
     params = params || {};
     const isProduction = params.isProduction;
 
@@ -12,7 +11,7 @@ export default function (params = {}) {
             if (error.type !== 'FeathersError') {
                 const oldError = error;
                 error = new errors.GeneralError(oldError.message, {
-                    errors: oldError.errors
+                    errors: oldError.errors,
                 });
 
                 if (oldError.stack) {
@@ -29,7 +28,7 @@ export default function (params = {}) {
 
             if (!isProduction) {
                 if (_.isStringNotEmpty(error.stack)) {
-                    output.stack = error.stack.split("\n");
+                    output.stack = error.stack.split('\n');
                 }
             }
 

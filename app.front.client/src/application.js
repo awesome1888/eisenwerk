@@ -17,7 +17,7 @@ import routeMap from './routes/withUI';
 import routeRender from './routes/render';
 import Authorization from './shared/lib/authorization/client';
 import Entity from '../../shared/lib/entity/client';
-import Method from '../../shared/lib/method/client';
+import Method from '../../shared/lib/vendor/feathersjs/method/client';
 
 /**
  * todo: move this to lib

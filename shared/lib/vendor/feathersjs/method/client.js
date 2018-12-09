@@ -1,9 +1,11 @@
 export default class Method {
     static execute(name, args) {
-        return this.getNetwork().service('method').create({
-            method: name,
-            arguments: args,
-        });
+        return this.getNetwork()
+            .service('method')
+            .create({
+                method: name,
+                arguments: args,
+            });
     }
 
     static getNetwork() {

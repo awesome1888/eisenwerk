@@ -1,14 +1,13 @@
-import Access from '../access/server.js';
+import Access from '../../../access/server.js';
 import Hooks from '../hooks.js';
 import AdapterMongoose from './adapter-mongoose';
 import Error from '../error';
-import Context from '../context';
+import Context from '../../../context';
 
 /**
  * https://docs.feathersjs.com/api/databases/common.html#extending-adapters
  */
 export default class ProxyService {
-
     /**
      * Returns an entity this service provides an access to
      * @returns {Entity}
@@ -148,27 +147,27 @@ export default class ProxyService {
                 before: {
                     // on create we define createdAt
                     create: [
-                        (context) => {
+                        context => {
                             if (!_.isExist(context.data.createdAt)) {
                                 context.data.createdAt = new Date();
                             }
-                        }
+                        },
                     ],
                     update: [
                         // on update we define updatedAt
-                        (context) => {
+                        context => {
                             if (!_.isExist(context.data.updatedAt)) {
                                 context.data.updatedAt = new Date();
                             }
-                        }
+                        },
                     ],
                     patch: [
                         // on update we define updatedAt
-                        (context) => {
+                        context => {
                             if (!_.isExist(context.data.updatedAt)) {
                                 context.data.updatedAt = new Date();
                             }
-                        }
+                        },
                     ],
                 },
             });
@@ -178,8 +177,7 @@ export default class ProxyService {
     /**
      * Declares hooks which will be executed before security checks.
      */
-    attachPrecedingHooks() {
-    }
+    attachPrecedingHooks() {}
 
     /**
      * Declares security hooks
@@ -190,7 +188,7 @@ export default class ProxyService {
             before: {
                 all: [
                     // while executing over the wire, we check rights
-                    async (context) => {
+                    async context => {
                         if (!Context.isRemote(context)) {
                             return context;
                         }
@@ -211,7 +209,12 @@ export default class ProxyService {
                         }
 
                         const auth = this.getAuthorization();
-                        const result = await Access.testToken(Context.extractToken(context), rule, auth, context);
+                        const result = await Access.testToken(
+                            Context.extractToken(context),
+                            rule,
+                            auth,
+                            context,
+                        );
 
                         if (result === false) {
                             Error.throw403();
@@ -222,7 +225,7 @@ export default class ProxyService {
                         }
 
                         return context;
-                    }
+                    },
                 ],
             },
         });
@@ -232,13 +235,21 @@ export default class ProxyService {
         hooks.declare({
             before: {
                 all: [
-                    async (context) => {
+                    async context => {
                         const method = context.method;
-                        if (method === 'create' || method === 'update' || method === 'patch' || method === 'remove') {
+                        if (
+                            method === 'create' ||
+                            method === 'update' ||
+                            method === 'patch' ||
+                            method === 'remove'
+                        ) {
                             const checkers = this.getIntegrityCheckers();
 
                             let checker = null;
-                            if (_.isObjectNotEmpty(checkers) && _.isFunction(checkers[method])) {
+                            if (
+                                _.isObjectNotEmpty(checkers) &&
+                                _.isFunction(checkers[method])
+                            ) {
                                 checker = checkers[method];
                             }
 
@@ -247,7 +258,11 @@ export default class ProxyService {
                                     await checker(context.data, context);
                                 }
                                 if (method === 'update' || method === 'patch') {
-                                    await checker(context.id, context.data, context);
+                                    await checker(
+                                        context.id,
+                                        context.data,
+                                        context,
+                                    );
                                 }
                                 if (method === 'remove') {
                                     await checker(context.id, context);
@@ -256,7 +271,7 @@ export default class ProxyService {
                         }
 
                         return context;
-                    }
+                    },
                 ],
             },
         });
@@ -300,6 +315,9 @@ export default class ProxyService {
      * @returns {Promise<*>}
      */
     async getUser(context) {
-        return Context.extractUser(context, this.getApplication().getAuthorization());
+        return Context.extractUser(
+            context,
+            this.getApplication().getAuthorization(),
+        );
     }
 }

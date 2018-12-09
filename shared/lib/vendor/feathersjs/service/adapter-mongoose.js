@@ -8,7 +8,6 @@ import Error from '../error';
  * https://docs.feathersjs.com/api/databases/common.html#extending-adapters
  */
 export default class MongooseAdapter extends Service {
-
     async find(params) {
         // mongoose only supports flat $select, so have to make it so
         this.flattenSelect(params);
@@ -53,17 +52,17 @@ export default class MongooseAdapter extends Service {
     refineRequestCondition(params) {
         traverse(params).forEach(function update(x) {
             // replaces all occurrences of {$regex: 'blah', $options: 'blah'} with new RegExp()
-            if (_.isObject(x) && ('$regex' in x)) {
+            if (_.isObject(x) && '$regex' in x) {
                 this.update(new RegExp(x.$regex, x.$options || ''));
             }
             // make sure that $size operator receives an integer
-            if (_.isObject(x) && ('$size' in x)) {
+            if (_.isObject(x) && '$size' in x) {
                 const y = _.clone(x);
                 y.$size = parseInt(x.$size, 10);
                 this.update(y);
             }
             // resolve an agreement for an empty array as a value for $ne operator
-            if (_.isObject(x) && ('$ne' in x) && x.$ne === '[]') {
+            if (_.isObject(x) && '$ne' in x && x.$ne === '[]') {
                 const y = _.clone(x);
                 y.$ne = [];
                 this.update(y);
@@ -90,12 +89,13 @@ export default class MongooseAdapter extends Service {
         }
         // PATCH END
 
-        const discriminator = (params.query || {})[this.discriminatorKey] || this.discriminatorKey;
+        const discriminator =
+            (params.query || {})[this.discriminatorKey] ||
+            this.discriminatorKey;
         const model = this.discriminators[discriminator] || this.Model;
 
         // PATCH START
-        let modelQuery = model
-          .findOne(filter);
+        let modelQuery = model.findOne(filter);
         // PATCH END
 
         // Handle $populate
@@ -112,20 +112,23 @@ export default class MongooseAdapter extends Service {
             }
 
             modelQuery.select(fields);
-        } else if (params.query.$select && typeof params.query.$select === 'object') {
+        } else if (
+            params.query.$select &&
+            typeof params.query.$select === 'object'
+        ) {
             modelQuery.select(params.query.$select);
         }
 
         return modelQuery
-          .lean(this.lean)
-          .exec()
-          .then(data => {
-              if (!data) {
-                  Error.throw404(`No record found for id '${id}'`);
-              }
+            .lean(this.lean)
+            .exec()
+            .then(data => {
+                if (!data) {
+                    Error.throw404(`No record found for id '${id}'`);
+                }
 
-              return data;
-          })
-          .catch(errorHandler);
+                return data;
+            })
+            .catch(errorHandler);
     }
 }

@@ -1,6 +1,6 @@
 import AccessBoth from './both.js';
 import Context from '../context';
-import Error from '../error';
+import Error from '../vendor/feathersjs/error';
 
 export default class Access extends AccessBoth {
     static async testToken(token, rule, auth, ctx) {

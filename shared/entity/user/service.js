@@ -1,12 +1,11 @@
-import BaseService from '../../lib/service/index.js';
+import BaseService from '../../lib/vendor/feathersjs/service/index.js';
 import Entity from './entity/server.js';
 import roleEnum from './enum/role.js';
 import AuthorizationHook from './hooks/authorization.js';
 import Context from '../../lib/context';
-import Error from '../../lib/error';
+import Error from '../../lib/vendor/feathersjs/error';
 
 export default class UserService extends BaseService {
-
     /**
      * Returns an entity this service provides an access to
      * @returns {Entity}
@@ -73,14 +72,21 @@ export default class UserService extends BaseService {
         return {
             create: async (data, context) => {
                 const params = context.params;
-                const email = _.get(data, 'profile.email') || data['profile.email'];
-                const isGoogle = _.isObjectNotEmpty(params.oauth) && params.oauth.provider === 'google';
-                const legalGoogleEmail = AuthorizationHook.isLegalGoogleEmail(email);
+                const email =
+                    _.get(data, 'profile.email') || data['profile.email'];
+                const isGoogle =
+                    _.isObjectNotEmpty(params.oauth) &&
+                    params.oauth.provider === 'google';
+                const legalGoogleEmail = AuthorizationHook.isLegalGoogleEmail(
+                    email,
+                );
 
                 // you are not allowed to create administrators, unless you came from google
                 if (_.contains(data.role, roleEnum.ADMINISTRATOR)) {
                     if (!isGoogle || !legalGoogleEmail) {
-                        Error.throw403('You are not allowed to create administrators');
+                        Error.throw403(
+                            'You are not allowed to create administrators',
+                        );
                     }
                 }
 
@@ -133,13 +139,18 @@ export default class UserService extends BaseService {
                     // user accounts but their own
                     if (!user.hasRole(roleEnum.ADMINISTRATOR)) {
                         if (id.toString() !== user.getId().toString()) {
-                            Error.throw403('You are not allowed to update other users');
+                            Error.throw403(
+                                'You are not allowed to update other users',
+                            );
                         }
                     }
                 }
 
                 if (_.isArrayNotEmpty(data.role)) {
-                    const previous = await Context.extractPrevious(context, this.getEntity());
+                    const previous = await Context.extractPrevious(
+                        context,
+                        this.getEntity(),
+                    );
 
                     const oRole = previous.getRole();
                     const nRole = data.role;

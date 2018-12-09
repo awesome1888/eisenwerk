@@ -1,5 +1,5 @@
 import BaseEntity from './both.js';
-import Method from '../method/client.js';
+import Method from '../vendor/feathersjs/method/client.js';
 
 export default class Entity extends BaseEntity {
     /**

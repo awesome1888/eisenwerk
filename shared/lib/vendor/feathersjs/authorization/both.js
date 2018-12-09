@@ -1,5 +1,4 @@
 export default class Authorization {
-
     /**
      * Specifies what field is used to store user login
      * @returns {string}
@@ -74,7 +73,7 @@ export default class Authorization {
         return authManagement.create({
             action: 'sendResetPwd',
             value: {
-                'profile.email': email
+                'profile.email': email,
             },
             // notifierOptions: {
             //     preferredComm: 'email'
@@ -99,7 +98,7 @@ export default class Authorization {
             action: 'passwordChange',
             value: {
                 user: {
-                    'profile.email': email
+                    'profile.email': email,
                 },
                 oldPassword,
                 password, // new password
@@ -114,11 +113,11 @@ export default class Authorization {
             value: {
                 password,
                 changes: {
-                    'profile.email': newEmail
+                    'profile.email': newEmail,
                 },
                 user: {
-                    'profile.email': oldEmail
-                }
+                    'profile.email': oldEmail,
+                },
             },
         });
     }
@@ -128,7 +127,7 @@ export default class Authorization {
         return authManagement.create({
             action: 'checkUnique',
             value: {
-                'profile.email': email
+                'profile.email': email,
             },
             ownId,
         });
@@ -154,7 +153,10 @@ export default class Authorization {
             return null;
         }
 
-        return this.getNetwork().passport.verifyJWT(token, this.getVerificationOptions());
+        return this.getNetwork().passport.verifyJWT(
+            token,
+            this.getVerificationOptions(),
+        );
     }
 
     /**

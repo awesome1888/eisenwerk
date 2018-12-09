@@ -1,8 +1,7 @@
-import BaseService from '../../lib/service/index.js';
+import BaseService from '../../lib/vendor/feathersjs/service/index.js';
 import Entity from './entity/server.js';
 
 export default class FileService extends BaseService {
-
     /**
      * Returns an entity this service provides an access to
      * @returns {Entity}

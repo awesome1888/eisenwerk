@@ -1,4 +1,4 @@
-import Context from '../context';
+import Context from '../../../context';
 
 export default class Method {
     static getDeclaration() {
@@ -22,6 +22,9 @@ export default class Method {
     }
 
     async getUser() {
-        return Context.extractUser(this.getContext(), this.getApplication().getAuthorization());
+        return Context.extractUser(
+            this.getContext(),
+            this.getApplication().getAuthorization(),
+        );
     }
 }
