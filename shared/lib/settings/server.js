@@ -121,6 +121,8 @@ class Settings {
             URL__ROOT: this.getRootURL(),
             URL__API: this.getAPIURL(),
             PRODUCTION: this.isProduction(),
+            SSR: this.isSSR(),
+            AUTH__ENABLED: this.useAuth(),
         });
     }
 }

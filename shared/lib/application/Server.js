@@ -1,6 +1,6 @@
 import settings from '../../lib/settings/server';
 
-export default class Application {
+export default class ServerApplication {
     constructor(params) {
         this._params = params;
     }

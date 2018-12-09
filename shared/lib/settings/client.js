@@ -20,7 +20,14 @@ class Settings {
         return (this.env.URL__API || '').replace(/\/+$/, '');
     }
 
-    // todo: remove this
+    useAuth() {
+        return !!this.env.AUTH__ENABLED;
+    }
+
+    isSSR() {
+        return !!this.env.SSR;
+    }
+
     isProduction() {
         return !!this.env.PRODUCTION;
     }

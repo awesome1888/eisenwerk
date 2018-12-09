@@ -9,12 +9,12 @@ import handler from '../error-handler';
 import MethodFabric from '../method/fabric';
 import EntityServiceFabric from '../service/fabric';
 
-import Application from './base';
+import ServerApplication from './Server';
 import Express from '../express';
 import LordVader from '../ascii/vader';
 import Yoda from '../ascii/yoda';
 
-export default class APIApplication extends Application {
+export default class FeathersAPIServerApplication extends ServerApplication {
     async launch() {
         process.on('unhandledRejection', (reason, p) => {
             console.log('Unhandled Rejection at: ', p, ' reason: ', reason);

@@ -1,13 +1,13 @@
 import spiderDetector from 'spider-detector';
 
-import Application from './base';
+import ServerApplication from './Server';
 import Express from '../express';
 import Template from '../template';
 import SSRRouter from '../ssr-router';
 import { makeStatus } from '../util';
 import Cache from '../cache';
 
-export default class FrontApplication extends Application {
+export default class WebServerApplication extends ServerApplication {
     async launch() {
         process.on('unhandledRejection', (reason, p) => {
             console.log('Unhandled Rejection at: ', p, ' reason: ', reason);

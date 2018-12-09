@@ -1,125 +1,111 @@
-import BaseApplication from './shared/lib/application/client/feathers.js';
+import BaseApplication from './shared/lib/application/Web';
 
 import React from 'react';
 import { Provider } from 'react-redux';
-import Store from './shared/lib/store';
 
-import ApplicationUI from './components/Application';
+import feathers from '@feathersjs/client';
+import rest from '@feathersjs/rest-client';
+import axios from 'axios';
+import { ConnectedRouter } from 'connected-react-router';
+
+import ReactApplication from './components/Application';
 import * as applicationReducer from './components/Application/reducer';
 import applicationSaga from './components/Application/saga';
-import { createBrowserHistory, createMemoryHistory } from 'history';
-import { ConnectedRouter } from 'connected-react-router';
-import { Switch } from 'react-router';
-import Route from './shared/components/Route';
 
-import LayoutOuter from './components/LayoutOuter';
-import PageLoader from './shared/components/PageLoader';
 import SorryScreen from './components/SorryScreen';
-
-import routeMap from './routes';
+import routeMap from './routes/withUI';
+import routeRender from './routes/render';
+import Authorization from './shared/lib/authorization/client';
+import Entity from '../../shared/lib/entity/client';
+import Method from '../../shared/lib/method/client';
 
 /**
  * todo: move this to lib
  */
 export default class Application extends BaseApplication {
+    getMainStoreElement() {
+        return {
+            reducer: applicationReducer,
+            saga: applicationSaga,
+        };
+    }
+
     getRoutes() {
         return routeMap;
     }
 
-    getStore() {
-        if (!this._store) {
-            const redux = this._props.redux || {};
-            this._store = new Store({
-                ...redux,
-                application: {
-                    reducer: applicationReducer,
-                    saga: applicationSaga,
-                },
-                routes: this.getRoutes(),
-                history: this.getHistory(),
-            });
-            this._store.init();
-        }
+    /**
+     * Returns an instance of a "network" application, which manages REST, WebSocket
+     * and other stuff that provides the client-server communications
+     * @returns {*}
+     */
+    getNetwork() {
+        if (!this._feathers) {
+            const application = feathers();
 
-        return this._store;
-    }
+            // https://docs.feathersjs.com/api/client/rest.html
+            const restClient = rest(this.getSettings().getAPIURL());
 
-    getHistory() {
-        if (!this._history) {
-            let history = null;
-            if (__SSR__) {
-                history = createMemoryHistory({
-                    initialEntries: [this.getCurrentURL()],
-                });
-            } else {
-                history = createBrowserHistory();
+            // see other options in
+            // https://docs.feathersjs.com/api/client/rest.html
+            application.configure(restClient.axios(axios));
+
+            if (this.useAuth()) {
+                Authorization.prepare({ application, storage: this._storage });
+
+                // todo: connect it to the store
+                application.on('authenticated', this.onLogin.bind(this));
+                application.on('logout', this.onLogout.bind(this));
+                application.on(
+                    'reauthentication-error',
+                    this.onReLoginError.bind(this),
+                );
             }
 
-            this._history = history;
+            this._feathers = application;
         }
 
-        return this._history;
+        return this._feathers;
     }
 
-    getCurrentURL() {
-        return this._props.currentURL || '/';
+    getAuthorization() {
+        if (!this.useAuth()) {
+            return null;
+        }
+
+        if (!this._authorization) {
+            this._authorization = new Authorization(
+                this.getNetwork(),
+                this.getSettings(),
+            );
+        }
+
+        return this._authorization;
+    }
+
+    async launch() {
+        await super.launch();
+
+        // tell all entities to use this network as default when making REST calls (this is important)
+        Entity.setNetwork(this.getNetwork());
+        Method.setNetwork(this.getNetwork());
+    }
+
+    async onLogin() {
+        // todo: dispatch an action
+    }
+
+    onLogout() {
+        // todo: dispatch an action
+    }
+
+    onReLoginError() {
+        // todo: dispatch an action
     }
 
     renderRoutes(appProps) {
         const routes = this.getRoutes();
-        return (
-            <Switch>
-                <Route
-                    {..._.mergeShallow(routes.home, appProps)}
-                    render={route => (
-                        <LayoutOuter>
-                            <PageLoader page={routes.home.page} route={route} />
-                        </LayoutOuter>
-                    )}
-                />
-                <Route
-                    {..._.mergeShallow(routes.list, appProps)}
-                    render={route => (
-                        <LayoutOuter>
-                            <PageLoader page={routes.list.page} route={route} />
-                        </LayoutOuter>
-                    )}
-                />
-                <Route
-                    {..._.mergeShallow(routes.restricted, appProps)}
-                    render={route => (
-                        <LayoutOuter>
-                            <PageLoader
-                                page={routes.restricted.page}
-                                route={route}
-                            />
-                        </LayoutOuter>
-                    )}
-                />
-                <Route
-                    {..._.mergeShallow(routes.forbidden, appProps)}
-                    render={route => (
-                        <LayoutOuter>
-                            <PageLoader
-                                page={routes.forbidden.page}
-                                route={route}
-                            />
-                        </LayoutOuter>
-                    )}
-                />
-                <Route
-                    {..._.mergeShallow(routes.notFound, appProps)}
-                    render={route => (
-                        <LayoutOuter>
-                            <PageLoader
-                                page={routes.notFound.page}
-                                route={route}
-                            />
-                        </LayoutOuter>
-                    )}
-                />
-            </Switch>
-        );
+        return routeRender({ routes, appProps });
     }
 
     /**
@@ -129,7 +115,7 @@ export default class Application extends BaseApplication {
     render() {
         return (
             <Provider store={this.getStore().getReduxStore()}>
-                <ApplicationUI
+                <ReactApplication
                     application={this}
                     useAuth={this.useAuth()}
                     routes={appProps => {
@@ -158,11 +144,5 @@ export default class Application extends BaseApplication {
      */
     renderError(error) {
         return <SorryScreen error={error} />;
-    }
-
-    async teardown() {
-        if (this._store) {
-            this._store.shutdown();
-        }
     }
 }

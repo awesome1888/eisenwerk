@@ -60,6 +60,7 @@ export default class Renderer {
             application = new Application({
                 settings: this._settings.prepareForClient(),
                 currentURL: req.originalUrl,
+                ssr: true,
             });
             await application.launch();
 
