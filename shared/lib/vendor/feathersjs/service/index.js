@@ -39,7 +39,7 @@ export default class Service {
      */
     static make(application) {
         return new this({
-            Model: this.getEntity().getModel(),
+            Model: this.getAdapter().makeModel(this.getEntity()),
             paginate: {
                 default: 5,
                 max: 50,
@@ -296,7 +296,6 @@ export default class Service {
 
     // also known as "update"
     async patch(id, data, params) {
-        console.dir(this.getAdapterInstance());
         return this.getAdapterInstance().patchMerge(id, data, params);
     }
 

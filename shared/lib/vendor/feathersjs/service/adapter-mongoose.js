@@ -1,11 +1,32 @@
-import Service from '../../../../vendor/feathersjs/mongoose/service';
+import mongoose from 'mongoose';
 import flatten from 'obj-flatten';
 import traverse from 'traverse';
+
+import Service from '../../../../vendor/feathersjs/mongoose/service';
+
+const models = {};
 
 /**
  * https://docs.feathersjs.com/api/databases/common.html#extending-adapters
  */
 export default class AdapterMongoose extends Service {
+    static makeModel(entity) {
+        const id = entity.getUId();
+
+        if (!models[id]) {
+            let schema = entity.getSchema();
+
+            // todo: currently, just this, but in future entity.getSchema() could turn into a very different format, in order to be able to integrate with things like GraphQL
+            if (!(schema instanceof mongoose.Schema)) {
+                schema = new mongoose.Schema(schema);
+            }
+
+            models[id] = mongoose.model(entity.getUId(), schema);
+        }
+
+        return models[id];
+    }
+
     async find(params) {
         // mongoose only supports flat $select, so have to make it so
         this.flattenSelect(params);

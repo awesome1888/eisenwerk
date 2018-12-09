@@ -5,7 +5,6 @@ import set from 'set-value';
 let networkRef = null;
 
 export default class Entity {
-
     static getUId() {
         throw new Error(`Not implemented .getUId() for ${this.name}`);
     }
@@ -102,7 +101,9 @@ export default class Entity {
         try {
             await this.getService().remove(id);
         } catch (e) {
-            result.setErrors(_.isArrayNotEmpty(e.errors) ? e.errors : {message: e.message});
+            result.setErrors(
+                _.isArrayNotEmpty(e.errors) ? e.errors : { message: e.message },
+            );
         }
 
         return result;
@@ -140,7 +141,10 @@ export default class Entity {
         if (this.getId()) {
             // update
             try {
-                const data = await this.getService().patch(this.getId(), this.getData());
+                const data = await this.getService().patch(
+                    this.getId(),
+                    this.getData(),
+                );
                 this.setData(data);
             } catch (e) {
                 this.setErrorsToResult(result, e);
@@ -165,7 +169,9 @@ export default class Entity {
         try {
             await this.getService().remove(this.getId());
         } catch (e) {
-            result.setErrors(_.isArrayNotEmpty(e.errors) ? e.errors : {message: e.message});
+            result.setErrors(
+                _.isArrayNotEmpty(e.errors) ? e.errors : { message: e.message },
+            );
         }
 
         delete this._data._id;
@@ -358,5 +364,9 @@ export default class Entity {
 
     setErrorsToResult(result, e) {
         return this.constructor.setErrorsToResult(result, e);
+    }
+
+    getUId() {
+        return this.constructor.getUId();
     }
 }
