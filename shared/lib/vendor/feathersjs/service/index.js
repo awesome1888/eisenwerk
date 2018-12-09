@@ -1,6 +1,6 @@
 import Access from '../../../access/server.js';
 import Hooks from '../hooks.js';
-import AdapterMongoose from './adapter-mongoose';
+import AdapterMongo from './adapter-mongo';
 import Error from '../error';
 import Context from '../../../context';
 
@@ -28,8 +28,12 @@ export default class Service {
         return '';
     }
 
+    /**
+     * Returns a database adapter for the entity. Here could be also something like AdapterMySQL with knex on-board, but currently by-default it is AdapterMongo with mongoose there
+     * @returns {AdapterMongo}
+     */
     static getAdapter() {
-        return AdapterMongoose;
+        return AdapterMongo;
     }
 
     /**

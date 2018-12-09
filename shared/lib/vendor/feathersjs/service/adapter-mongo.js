@@ -9,7 +9,7 @@ const models = {};
 /**
  * https://docs.feathersjs.com/api/databases/common.html#extending-adapters
  */
-export default class AdapterMongoose extends Service {
+export default class AdapterMongo extends Service {
     static makeModel(entity) {
         const id = entity.getUId();
 

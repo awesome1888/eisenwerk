@@ -1,3 +1,5 @@
+// todo: need to generalize this, in order to make it work with things like GraphQL
+
 const schema = new Schema({
     createdAt: {
         type: Date,

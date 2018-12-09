@@ -26,7 +26,7 @@ const template = `
             <h3>Authentication enabled:</h3>
             <ul>
                 <% if (settings.useAuthLocal()) { %>
-                    <li><a href="/authentication">local<a/></li>
+                    <li><a href="/authentication">local<a/> (<a href="https://docs.feathersjs.com/api/authentication/local.html" target="_blank" rel="noopener noreferrer">doc</a>)</li>
                 <% } %>
                  <% if (settings.useOAuthGoogle()) { %>
                     OAuth2 Google
