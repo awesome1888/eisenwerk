@@ -32,8 +32,8 @@ const getParameters = () => {
                 path.resolve(to, 'public'),
             );
             await Util.copyDir(
-                path.resolve(taskFolder, 'template'),
-                path.resolve(to, 'template'),
+                path.resolve(taskFolder, 'html'),
+                path.resolve(to, 'html'),
             );
         },
         rebuildImage: false,

@@ -28,6 +28,7 @@ export default class WebServerApplication extends ServerApplication {
                 port: sett.getPort(),
                 hostname: sett.getRootURLParsed().hostname,
                 cors: sett.getAllowedOrigins(),
+                publicFolder: sett.getPublicFolder(),
                 registerMiddleware: eApp => {
                     eApp.use(spiderDetector.middleware());
                     eApp.get('*', async (req, res, next) => {

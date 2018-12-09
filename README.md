@@ -97,7 +97,7 @@ To connect to a running container:
     [DONE] https://support.google.com/webmasters/answer/1061943?hl=en
 13) [CANCEL] in outer layout replace OOP with HOC
 
-1.9) simplify that oop multi-level crap with Apps, use composition for sake
+1.9) [DONE] simplify that oop multi-level crap with Apps, use composition for sake
 ==== NPM!!!!! ====
 1.95) move styles to styled-components
 1.955) new overlay and progressbar mechanic based on watching the store and\or EventEmitter on componentDidUpdate of page when switching from ready false -> true
@@ -107,10 +107,10 @@ To connect to a running container:
         3) between-layouts fade-in-out overlay, just to make transitions more smooth
         4) skeleton components
 2.  auth in a modern way
-    2.1) for entities remove server and client, make it isomorphic working through services
-        3.  re-think oauth2
-        4. graphql for entities instead of REST and feathersjs?
-            1. what about caching?
+3.  re-think oauth2
+    2.1) [CANCEL] for entities remove server and client, make it isomorphic working through services
+        4. [CANCEL] graphql for entities instead of REST and feathersjs?
+            1. [CANCEL] what about caching?
 4.  migrations
 5.  manifest
     6.1) web worker

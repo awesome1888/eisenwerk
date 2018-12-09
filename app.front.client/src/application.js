@@ -15,7 +15,7 @@ import applicationSaga from './components/Application/saga';
 import SorryScreen from './components/SorryScreen';
 import routeMap from './routes/withUI';
 import routeRender from './routes/render';
-import Authorization from './shared/lib/authorization/client';
+import Authorization from '../../shared/lib/vendor/feathersjs/authorization/client';
 import Entity from '../../shared/lib/entity/client';
 import Method from '../../shared/lib/vendor/feathersjs/method/client';
 

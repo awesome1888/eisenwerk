@@ -24,10 +24,6 @@ class Settings {
         return !!this.env.AUTH__ENABLED;
     }
 
-    isSSR() {
-        return !!this.env.SSR;
-    }
-
     isProduction() {
         return !!this.env.PRODUCTION;
     }
