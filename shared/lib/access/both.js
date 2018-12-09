@@ -1,3 +1,6 @@
+import intersection from 'lodash.intersection';
+import difference from 'lodash.difference';
+
 export default class BothAccess {
     static testRoute(user, rule) {
         if (rule.deny === true) {
@@ -22,14 +25,14 @@ export default class BothAccess {
 
         if (_.isArray(rule.roleAny)) {
             // at least one role should match
-            if (!_.isArrayNotEmpty(_.intersection(rule.roleAny, userRole))) {
+            if (!_.isArrayNotEmpty(intersection(rule.roleAny, userRole))) {
                 return false;
             }
         }
 
         if (_.isArray(rule.roleAll)) {
             // all roles should match
-            if (_.isArrayNotEmpty(_.difference(rule.roleAll, userRole))) {
+            if (_.isArrayNotEmpty(difference(rule.roleAll, userRole))) {
                 return false;
             }
         }

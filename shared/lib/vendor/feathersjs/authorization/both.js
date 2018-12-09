@@ -51,11 +51,13 @@ export default class Authorization {
      * @returns {Promise<*>}
      */
     async signInLocal(login, password) {
-        const response = await this.getNetwork().authenticate({
-            strategy: 'local',
-            [this.getUserNameField()]: login,
-            [this.getPasswordField()]: password,
-        });
+        const response = await this.getNetwork()
+            .getApp()
+            .authenticate({
+                strategy: 'local',
+                [this.getUserNameField()]: login,
+                [this.getPasswordField()]: password,
+            });
 
         return this.getUserId(response.accessToken);
     }
@@ -153,10 +155,9 @@ export default class Authorization {
             return null;
         }
 
-        return this.getNetwork().passport.verifyJWT(
-            token,
-            this.getVerificationOptions(),
-        );
+        return this.getNetwork()
+            .getApp()
+            .passport.verifyJWT(token, this.getVerificationOptions());
     }
 
     /**

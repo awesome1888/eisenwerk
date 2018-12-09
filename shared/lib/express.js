@@ -144,16 +144,20 @@ export default class ExpressApplication {
         });
     }
 
+    // todo: this is actually shitty
     configure(how) {
         if (_.isFunction(this.getApp().configure)) {
             this.getApp().configure(how);
         }
     }
 
+    // todo: this is actually shitty
     service(which) {
         if (_.isFunction(this.getApp().service)) {
-            this.getApp().service(which);
+            return this.getApp().service(which);
         }
+
+        return null;
     }
 
     use(...args) {

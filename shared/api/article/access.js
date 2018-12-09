@@ -9,7 +9,10 @@ const allow = {
 };
 
 export default {
-    get: allow,
+    get: {
+        deny: false,
+        authorized: true,
+    },
     find: allow,
     create: allow,
     update: allow,

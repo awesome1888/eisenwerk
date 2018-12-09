@@ -57,6 +57,10 @@ export default class Service {
         const Adapter = this.getAdapter();
         this._adapterInstance = new Adapter(options);
         this._application = options.application;
+
+        // in order to make FeathersJS happy
+        this.Model = this._adapterInstance.Model;
+        this.id = this._adapterInstance.id;
     }
 
     /**

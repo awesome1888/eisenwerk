@@ -72,8 +72,7 @@ export default class AuthorizationHook {
                     ),
                     context => {
                         if (
-                            !_.isUndefined(context.data.password) &&
-                            _.isStringNotEmpty(context.data.password)
+                            _.isStringNotEmpty(_.get(context, 'data.password'))
                         ) {
                             context.data['profile.password'] =
                                 context.data.password;
@@ -101,16 +100,13 @@ export default class AuthorizationHook {
                 ],
                 find: [
                     context => {
-                        if (
-                            !_.isUndefined(context.result) &&
-                            !_.isUndefined(context.result.data) &&
-                            _.isArrayNotEmpty(context.result.data)
-                        ) {
+                        if (_.isArrayNotEmpty(_.get(context, 'result.data'))) {
                             const data = context.result.data;
                             for (let i = 0; i < data.length; i++) {
                                 if (
-                                    !_.isUndefined(data[i].profile) &&
-                                    _.isStringNotEmpty(data[i].profile.password)
+                                    _.isStringNotEmpty(
+                                        _.get(data[i], 'profile.password'),
+                                    )
                                 ) {
                                     data[i].password = data[i].profile.password;
                                 }
