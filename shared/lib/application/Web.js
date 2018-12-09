@@ -84,11 +84,11 @@ export default class WebApplication {
         return null;
     }
 
-    renderRoutes(appProps) {
+    renderRoutes() {
         return null;
     }
 
-    renderError(error) {
+    renderError() {
         return null;
     }
 
