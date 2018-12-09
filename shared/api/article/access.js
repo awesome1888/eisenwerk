@@ -11,7 +11,7 @@ const allow = {
 export default {
     get: allow,
     find: allow,
-    create: allow, // todo: also alias as post
-    patch: allow, // todo: also alias as update
-    update: allow, // todo: also alias as put and replace
+    create: allow,
+    update: allow,
+    replace: allow,
 };

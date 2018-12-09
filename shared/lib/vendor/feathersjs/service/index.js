@@ -196,10 +196,8 @@ export default class Service {
                         const method = context.method;
                         const rules = this.getCRUDAccessRules();
 
-                        let rule = null;
-                        if (_.isObjectNotEmpty(rules[method])) {
-                            rule = rules[method];
-                        } else if (_.isObjectNotEmpty(rules.default)) {
+                        let rule = this.mapMethodToRule(method, rules);
+                        if (!rule && _.isObjectNotEmpty(rules.default)) {
                             rule = rules.default;
                         }
 
@@ -285,7 +283,6 @@ export default class Service {
     }
 
     async find(params) {
-        console.dir('FIND!!!!!');
         return this.getAdapterInstance().find(params);
     }
 
@@ -323,5 +320,16 @@ export default class Service {
             context,
             this.getApplication().getAuthorization(),
         );
+    }
+
+    mapMethodToRule(method, rules) {
+        if (method === 'update') {
+            return rules.replace || rules.put || null;
+        }
+        if (method === 'patch') {
+            return rules.update || rules.patch;
+        }
+
+        return rules[method];
     }
 }

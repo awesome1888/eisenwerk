@@ -73,7 +73,6 @@ const getRuleUpdate = () => {
 export default {
     get: getRuleRead(),
     find: getRuleRead(),
-    patch: getRuleUpdate(),
 
     // everybody can create a new user, but see the limitations in .checkIntegrityOnCreate()
     create: {
@@ -81,12 +80,14 @@ export default {
         authorized: false,
     },
 
+    update: getRuleUpdate(),
+
     // we forbid PUT for this entity, it is inappropriate.
-    update: {
+    replace: {
         deny: true,
     },
 
-    // only admins can do other operations
+    // only admins can do other operations (like delete)
     default: {
         deny: false,
         authorized: true,
