@@ -18,17 +18,22 @@ export default class Authorization extends AuthorizationBoth {
                 secret: settings.getSecret(),
             }),
         );
+
+        const entity = {
+            entity: 'user',
+            service: 'user',
+        };
+
         if (settings.useAuthLocal()) {
             app.configure(
                 local({
                     usernameField: this.getUserNameField(),
                     passwordField: this.getPasswordField(),
-                    // entity: 'user',
-                    // service: 'user',
+                    ...entity,
                 }),
             );
         }
-        app.configure(jwt());
+        app.configure(jwt(entity));
         if (settings.useOAuthGoogle()) {
             app.configure(
                 oauth2({
@@ -42,8 +47,7 @@ export default class Authorization extends AuthorizationBoth {
                     // successRedirect: '/auth/success?token=___TOKEN___',
                     successRedirect: `${settings.getClientURL()}/auth/success?token=___TOKEN___`,
                     scope: ['profile openid email'],
-                    // entity: 'user',
-                    // service: 'user',
+                    ...entity,
                 }),
             );
         }
