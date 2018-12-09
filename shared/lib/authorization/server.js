@@ -12,49 +12,53 @@ import User from '../../entity/user/entity/server.js';
 import errors from '@feathersjs/errors';
 
 export default class Authorization extends AuthorizationBoth {
-
     static prepare(app, settings) {
-        app.configure(auth({
-            secret: settings.getSecret(),
-        }));
-        app.configure(local({
-            usernameField: this.getUserNameField(),
-            passwordField: this.getPasswordField(),
-            // entity: 'user',
-            // service: 'user',
-        }));
+        console.dir('!!!');
+        console.dir(app);
+
+        app.configure(
+            auth({
+                secret: settings.getSecret(),
+            }),
+        );
+        app.configure(
+            local({
+                usernameField: this.getUserNameField(),
+                passwordField: this.getPasswordField(),
+                // entity: 'user',
+                // service: 'user',
+            }),
+        );
         app.configure(jwt());
-        app.configure(oauth2({
-            idField: 'service.google.id',
-            name: 'google',
-            Strategy: GoogleStrategy,
-            clientID: settings.getOAuthGoogleClientId() || 'no-id',
-            clientSecret: settings.getOAuthGoogleSecret() || 'no-secret',
-            attachTokenToSuccessURL: true,
-            // successRedirect: '/auth/success?token=___TOKEN___',
-            successRedirect: `${settings.getClientURL()}/auth/success?token=___TOKEN___`,
-            scope: [
-                'profile openid email',
-            ],
-            // entity: 'user',
-            // service: 'user',
-        }));
-        app.configure(authManagement({
-            identifyUserProps: ['profile.email'],
-        }));
+        app.configure(
+            oauth2({
+                idField: 'service.google.id',
+                name: 'google',
+                Strategy: GoogleStrategy,
+                clientID: settings.getOAuthGoogleClientId() || 'no-id',
+                clientSecret: settings.getOAuthGoogleSecret() || 'no-secret',
+                attachTokenToSuccessURL: true,
+                // successRedirect: '/auth/success?token=___TOKEN___',
+                successRedirect: `${settings.getClientURL()}/auth/success?token=___TOKEN___`,
+                scope: ['profile openid email'],
+                // entity: 'user',
+                // service: 'user',
+            }),
+        );
+        app.configure(
+            authManagement({
+                identifyUserProps: ['profile.email'],
+            }),
+        );
 
         // apply some security measures
         const authService = app.service('authentication');
         if (authService) {
             authService.hooks({
                 before: {
-                    create: [
-                        auth.hooks.authenticate(['local', 'jwt']),
-                    ],
-                    remove: [
-                        auth.hooks.authenticate('jwt')
-                    ]
-                }
+                    create: [auth.hooks.authenticate(['local', 'jwt'])],
+                    remove: [auth.hooks.authenticate('jwt')],
+                },
             });
         }
 
@@ -64,16 +68,13 @@ export default class Authorization extends AuthorizationBoth {
                 after: {
                     all: [
                         // when called over the wire, we prevent some fields from exposing to the client
-                        commonHooks.iff(
-                            commonHooks.isProvider('external'),
-                            [
-                                local.hooks.protect('profile.password'),
-                                local.hooks.protect('password'),
-                                local.hooks.protect('service'),
-                            ]
-                        ),
+                        commonHooks.iff(commonHooks.isProvider('external'), [
+                            local.hooks.protect('profile.password'),
+                            local.hooks.protect('password'),
+                            local.hooks.protect('service'),
+                        ]),
                     ],
-                }
+                },
             });
         }
 

@@ -6,16 +6,16 @@ import cors from 'cors';
 
 import { makeStatus } from './util';
 
+/**
+ * This is an express-proxy, which does all internal setup. I have decided to
+ * proceed with this instead of simple fabric.
+ */
 export default class ExpressApplication {
     constructor(params = {}) {
         this._params = params;
     }
 
     async launch() {
-        this.attachMiddleware();
-        this.attachErrorTrigger();
-        this.attachErrorHandler();
-
         this.createServer();
     }
 
@@ -70,9 +70,9 @@ export default class ExpressApplication {
                 return qs.parse(query, { allowPrototypes: false, depth: 10 });
             });
 
-            if (_.isFunction(this.getParams().registerMiddleware)) {
-                this.getParams().registerMiddleware(app);
-            }
+            this.attachMiddleware(app);
+            this.attachErrorTrigger(app);
+            this.attachErrorHandler(app);
 
             this._express = app;
         }
@@ -80,9 +80,13 @@ export default class ExpressApplication {
         return this._express;
     }
 
-    attachErrorHandler() {
-        const app = this.getApp();
+    attachMiddleware(app) {
+        if (_.isFunction(this.getParams().registerMiddleware)) {
+            this.getParams().registerMiddleware(app);
+        }
+    }
 
+    attachErrorHandler(app) {
         if (_.isFunction(this.getParams().attachErrorHandler)) {
             this.getParams().attachErrorHandler(app);
         } else {
@@ -103,11 +107,11 @@ export default class ExpressApplication {
         }
     }
 
-    attachErrorTrigger() {
+    attachErrorTrigger(app) {
         const mkErr = this.getParams().makeError;
 
         // if nothing were served above with GET, then we should obviously send 404
-        this.getApp().get(() => {
+        app.get(() => {
             let error = null;
             if (_.isFunction(mkErr)) {
                 error = mkErr(404);
@@ -120,7 +124,7 @@ export default class ExpressApplication {
         });
 
         // all the rest - not implemented
-        this.getApp().use(() => {
+        app.use(() => {
             let error = null;
             if (_.isFunction(mkErr)) {
                 error = mkErr(501);
@@ -155,6 +159,26 @@ export default class ExpressApplication {
 
     use(...args) {
         this.getApp().use(...args);
+    }
+
+    get(...args) {
+        this.getApp().get(...args);
+    }
+
+    post(...args) {
+        this.getApp().post(...args);
+    }
+
+    put(...args) {
+        this.getApp().put(...args);
+    }
+
+    patch(...args) {
+        this.getApp().patch(...args);
+    }
+
+    delete(...args) {
+        this.getApp().delete(...args);
     }
 
     getParams() {

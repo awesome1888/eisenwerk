@@ -39,13 +39,15 @@ export default class FeathersAPIServerApplication extends ServerApplication {
                 hostname: sett.getRootURLParsed().hostname,
                 cors: sett.getAllowedOrigins(),
                 registerMiddleware: eApp => {
-                    // do not relocate this line elsewhere!
-                    Authorization.prepare(eApp, this.getSettings());
+                    if (sett.useAuth()) {
+                        // do not relocate this line elsewhere!
+                        Authorization.prepare(eApp, this.getSettings());
+                    }
 
                     this.createEntityServices(eApp);
                     this.createMethods(eApp);
 
-                    app.get('/', (req, res) => {
+                    eApp.get('/', (req, res) => {
                         res.status(200);
                         if (this.getSettings().isProduction()) {
                             res.send(`<pre>${LordVader}</pre>`);
@@ -101,6 +103,10 @@ export default class FeathersAPIServerApplication extends ServerApplication {
     }
 
     getAuthorization() {
+        if (!this.getSettings().useAuth()) {
+            return null;
+        }
+
         if (!this._authorization) {
             this._authorization = new Authorization(
                 this.getNetwork(),
@@ -142,6 +148,7 @@ export default class FeathersAPIServerApplication extends ServerApplication {
         if (this.hasNetwork()) {
             this.getNetwork().tearDown();
         }
+        // todo: disconnect from the db here
         super.tearDown();
     }
 }

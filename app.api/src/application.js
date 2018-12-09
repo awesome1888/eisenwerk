@@ -1,4 +1,4 @@
-import APIApplication from './shared/lib/application/api';
+import APIApplication from './shared/lib/application/FeathersAPIServer';
 import services from './shared/entity/services.js';
 import methods from './shared/entity/methods.js';
 import Entity from './shared/lib/entity/server.js';

@@ -1,31 +1,31 @@
 version: '3'
 
 services:
-    front:
-        build:
-            context: ../build/app.front/
-            dockerfile: docker/development.dockerfile
-        expose:
-            - 3001
-        ports:
-            - 3001:3001
-        depends_on:
-            - db
-            - ssr.cache
-        restart: on-failure
-        volumes:
-            - ../build/app.front/build/app.front.client/:/usr/src/app/client/
-            - ../build/app.front/build/app.front.server/:/usr/src/app/server/
-        environment:
-            - PORT=3001
-            - URL__ROOT=http://localhost:3001/
-            - URL__API=http://localhost:3100
-            - FOLDER__ROOT=/usr/src/app/
-            - FOLDER__PUBLIC=/usr/src/app/client/public/
-            - FOLDER__TEMPLATE=/usr/src/app/client/template/
-            - FILE__TEMPLATE__ASSETS=/usr/src/app/client/assets.html
-            - PROJECT__NAME=Eisenwerk
-            - SSR__CACHE__URL=redis://ssr.cache:6379
+    #    front:
+    #        build:
+    #            context: ../build/app.front/
+    #            dockerfile: docker/development.dockerfile
+    #        expose:
+    #            - 3001
+    #        ports:
+    #            - 3001:3001
+    #        depends_on:
+    #            - db
+    #            - ssr.cache
+    #        restart: on-failure
+    #        volumes:
+    #            - ../build/app.front/build/app.front.client/:/usr/src/app/client/
+    #            - ../build/app.front/build/app.front.server/:/usr/src/app/server/
+    #        environment:
+    #            - PORT=3001
+    #            - URL__ROOT=http://localhost:3001/
+    #            - URL__API=http://localhost:3100
+    #            - FOLDER__ROOT=/usr/src/app/
+    #            - FOLDER__PUBLIC=/usr/src/app/client/public/
+    #            - FOLDER__TEMPLATE=/usr/src/app/client/template/
+    #            - FILE__TEMPLATE__ASSETS=/usr/src/app/client/assets.html
+    #            - PROJECT__NAME=Eisenwerk
+    #            - SSR__CACHE__URL=redis://ssr.cache:6379
 
     api:
         build:
@@ -44,31 +44,31 @@ services:
             - URL__DB=mongodb://db:27017/ew
             - URL__CLIENT_ORIGIN=http://localhost:3010
             - CORS__ORIGIN=http://localhost:3000,http://localhost:3010,http://localhost:3001
+            - AUTH__ENABLED=1
             - AUTH__SECRET=P4cRdF5mzSMPvy4hCdpKCjHMp3vZ4UvynaxhEAJK
             - AUTH__GOOGLE__CLIENT_ID=
             - AUTH__GOOGLE__SECRET=
 
-    ssr.cache:
-        build:
-            context: ../app.ssr.cache/
-            dockerfile: development.dockerfile
-        expose:
-            - 6379
-        ports:
-            - 6379:6379
+    #    ssr.cache:
+    #        build:
+    #            context: ../app.ssr.cache/
+    #            dockerfile: development.dockerfile
+    #        expose:
+    #            - 6379
+    #        ports:
+    #            - 6379:6379
 
     db:
         image: 'mongo:latest'
         restart: always
         ports:
             - 3900:27017
-
-    front.browser-sync:
-        image: ustwo/browser-sync
-        command: start --proxy "front:3001" --port 3000 --files "/source" --no-notify
-        volumes:
-            - ../build/app.front/build/app.front.client/public/:/source
-        expose:
-            - 3000
-        ports:
-            - '3000:3000'
+#    front.browser-sync:
+#        image: ustwo/browser-sync
+#        command: start --proxy "front:3001" --port 3000 --files "/source" --no-notify
+#        volumes:
+#            - ../build/app.front/build/app.front.client/public/:/source
+#        expose:
+#            - 3000
+#        ports:
+#            - '3000:3000'

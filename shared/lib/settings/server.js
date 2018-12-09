@@ -92,6 +92,10 @@ class Settings {
         return null;
     }
 
+    useAuth() {
+        return !!this.env.AUTH__ENABLED;
+    }
+
     getSecret() {
         return this.env.AUTH__SECRET || '';
     }
