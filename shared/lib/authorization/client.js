@@ -4,16 +4,17 @@ import AuthorizationBoth from './both.js';
 import User from '../../entity/user/entity/client.js';
 
 export default class Authorization extends AuthorizationBoth {
-
     /**
      * Tune feathersjs client app with appropriate configuration.
      * @param param
      */
-    static prepare({application, storage}) {
-        application.configure(auth({
-            // todo: use custom storage in order to obtain the token either from localStorage or the URL
-            storage,
-        }));
+    static prepare({ application, storage }) {
+        application.configure(
+            auth({
+                // todo: use custom storage in order to obtain the token either from localStorage or the URL
+                storage,
+            }),
+        );
     }
 
     /**
@@ -21,14 +22,15 @@ export default class Authorization extends AuthorizationBoth {
      * @returns {Promise<*>}
      */
     async signInThroughGoogle() {
-        if (__SSR__ || !window) {
+        if (!window) {
             return null;
         }
 
         const ctx = this.getSettings();
 
         // we don't want this when doing ssr
-        const openLoginPopup = (await import('feathers-authentication-popups')).default;
+        const openLoginPopup = (await import('feathers-authentication-popups'))
+            .default;
         openLoginPopup(`${ctx.getAPIURL()}/auth/google`, {
             width: 600,
             height: 600,
@@ -41,7 +43,7 @@ export default class Authorization extends AuthorizationBoth {
 
         const token = await new Promise((resolve, reject) => {
             window.__authAgentPrevReject = reject;
-            window.authAgent.once('login', (resToken) => {
+            window.authAgent.once('login', resToken => {
                 resolve(resToken);
             });
         });
@@ -77,7 +79,6 @@ export default class Authorization extends AuthorizationBoth {
 
         token = await this.getNetwork().passport.getJWT();
         if (_.isStringNotEmpty(token)) {
-
             if (validityCheck !== false) {
                 if (this.getNetwork().passport.payloadIsValid(token)) {
                     return token;

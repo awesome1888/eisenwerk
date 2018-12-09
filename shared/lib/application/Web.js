@@ -45,6 +45,8 @@ export default class WebApplication {
                 application: this.getMainStoreElement(),
                 routes: this.getRoutes(),
                 history: this.getHistory(),
+                ssr: this.isSSR(),
+                dev: !this.getSettings().isProduction(),
             });
             this._store.init();
         }

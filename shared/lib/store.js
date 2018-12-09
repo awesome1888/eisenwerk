@@ -44,7 +44,7 @@ export default class Store {
         }
         middlewares.push(routerMiddleware(history));
         middlewares.push(sagaMiddleware);
-        if (__DEV__ && !__SSR__) {
+        if (this._params.dev && !this._params.ssr) {
             middlewares.push(logger);
         }
 
