@@ -8,7 +8,7 @@ import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 
 import AuthorizationBoth from './both.js';
 import Oauth2Failure from './oauth2-failure.js';
-import User from '../../../../entity/user/entity/server.js';
+import User from '../../../../api/user/entity/server.js';
 import errors from '@feathersjs/errors';
 
 export default class Authorization extends AuthorizationBoth {

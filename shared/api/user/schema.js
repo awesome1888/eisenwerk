@@ -6,22 +6,25 @@ const schema = new Schema({
         type: Date,
     },
     profile: {
-        type: new Schema({
-            firstName: {
-                type: String,
+        type: new Schema(
+            {
+                firstName: {
+                    type: String,
+                },
+                lastName: {
+                    type: String,
+                },
+                email: {
+                    type: String,
+                    unique: true,
+                    required: true,
+                },
+                password: {
+                    type: String,
+                },
             },
-            lastName: {
-                type: String,
-            },
-            email: {
-                type: String,
-                unique: true,
-                required: true,
-            },
-            password: {
-                type: String,
-            },
-        }, { _id: false }),
+            { _id: false },
+        ),
         required: true,
     },
     service: {

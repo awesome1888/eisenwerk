@@ -6,9 +6,9 @@ import Context from '../../../lib/context';
 
 export default class AuthorizationHook {
     static async isAdmin(auth) {
-        return async (context) => {
+        return async context => {
             await Context.extractUser(context, auth)
-                .then((user) => {
+                .then(user => {
                     return user.hasRole(roleEnum.ADMINISTRATOR);
                 })
                 .catch(() => {});
@@ -27,8 +27,8 @@ export default class AuthorizationHook {
                         local.hooks.hashPassword({
                             passwordField: auth.getPasswordField(),
                             hash,
-                        })
-                    )
+                        }),
+                    ),
                 ],
                 update: [
                     // on update we also hash the given password
@@ -37,8 +37,8 @@ export default class AuthorizationHook {
                         local.hooks.hashPassword({
                             passwordField: auth.getPasswordField(),
                             hash,
-                        })
-                    )
+                        }),
+                    ),
                 ],
                 patch: [
                     commonHooks.iff(
@@ -53,7 +53,7 @@ export default class AuthorizationHook {
                                 'verifyChanges',
                                 'resetToken',
                                 'resetShortToken',
-                                'resetExpires'
+                                'resetExpires',
                             ),
                             commonHooks.preventChanges(
                                 'password',
@@ -66,13 +66,17 @@ export default class AuthorizationHook {
                                 'verifyChanges',
                                 'resetToken',
                                 'resetShortToken',
-                                'resetExpires'
-                            )
-                        )
+                                'resetExpires',
+                            ),
+                        ),
                     ),
-                    (context) => {
-                        if (!_.isUndefined(context.data.password) && _.isStringNotEmpty(context.data.password)) {
-                            context.data['profile.password'] = context.data.password;
+                    context => {
+                        if (
+                            !_.isUndefined(context.data.password) &&
+                            _.isStringNotEmpty(context.data.password)
+                        ) {
+                            context.data['profile.password'] =
+                                context.data.password;
                             delete context.data.password;
                         }
                     },
@@ -82,24 +86,21 @@ export default class AuthorizationHook {
                         local.hooks.hashPassword({
                             passwordField: auth.getPasswordField(),
                             hash,
-                        })
+                        }),
                     ),
-                ]
+                ],
             },
             after: {
                 all: [
                     // when called over the wire, we prevent some fields from exposing to the client
-                    commonHooks.iff(
-                        commonHooks.isProvider('external'),
-                        [
-                            local.hooks.protect('profile.password'),
-                            local.hooks.protect('password'),
-                            local.hooks.protect('service'),
-                        ]
-                    ),
+                    commonHooks.iff(commonHooks.isProvider('external'), [
+                        local.hooks.protect('profile.password'),
+                        local.hooks.protect('password'),
+                        local.hooks.protect('service'),
+                    ]),
                 ],
                 find: [
-                    (context) => {
+                    context => {
                         if (
                             !_.isUndefined(context.result) &&
                             !_.isUndefined(context.result.data) &&
@@ -107,12 +108,15 @@ export default class AuthorizationHook {
                         ) {
                             const data = context.result.data;
                             for (let i = 0; i < data.length; i++) {
-                                if (!_.isUndefined(data[i].profile) && _.isStringNotEmpty(data[i].profile.password)) {
+                                if (
+                                    !_.isUndefined(data[i].profile) &&
+                                    _.isStringNotEmpty(data[i].profile.password)
+                                ) {
                                     data[i].password = data[i].profile.password;
                                 }
                             }
                         }
-                    }
+                    },
                 ],
             },
         });
@@ -122,7 +126,7 @@ export default class AuthorizationHook {
         hooks.declare({
             before: {
                 all: [
-                    (ctx) => {
+                    ctx => {
                         if (ctx.method !== 'create') {
                             return ctx;
                         }
@@ -134,7 +138,9 @@ export default class AuthorizationHook {
                             let userEmail = null;
                             const emails = _.getValue(google, 'profile.emails');
                             if (_.isArrayNotEmpty(emails)) {
-                                userEmail = emails.find(email => email.type === 'account').value;
+                                userEmail = emails.find(
+                                    email => email.type === 'account',
+                                ).value;
                             }
 
                             delete ctx.data.google;
@@ -164,8 +170,10 @@ export default class AuthorizationHook {
                             // set names
                             const names = _.getValue(google, 'profile.name');
                             if (_.isObjectNotEmpty(names)) {
-                                ctx.data.profile.firstName = names.givenName || '';
-                                ctx.data.profile.lastName = names.familyName || '';
+                                ctx.data.profile.firstName =
+                                    names.givenName || '';
+                                ctx.data.profile.lastName =
+                                    names.familyName || '';
                             }
 
                             // set role
@@ -177,11 +185,14 @@ export default class AuthorizationHook {
                         return ctx;
                     },
                 ],
-            }
+            },
         });
     }
 
     static isLegalGoogleEmail(email) {
+        if (!_.isStringNotEmpty(email)) {
+            return false;
+        }
         return email.slice(email.lastIndexOf('@') + 1) === 'some-domain.com';
     }
 }

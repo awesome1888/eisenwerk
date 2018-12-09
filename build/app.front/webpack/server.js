@@ -48,6 +48,10 @@ const getWebpackConfiguration = async context => {
 
         // inform webpack we are building for nodejs, not browsers
         target: 'node',
+        node: {
+            __filename: true,
+            __dirname: true,
+        },
 
         // we specify the root file to allow webpack to
         // calculate the dependency tree and strip away unused stuff

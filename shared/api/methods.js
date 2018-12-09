@@ -1,5 +1,3 @@
 import FileMethod from './file/method.js';
 
-export default [
-    FileMethod,
-];
+export default [FileMethod];

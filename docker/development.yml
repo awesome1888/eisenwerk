@@ -22,7 +22,7 @@ services:
     #            - URL__API=http://localhost:3100
     #            - FOLDER__ROOT=/usr/src/app/
     #            - FOLDER__PUBLIC=/usr/src/app/client/public/
-    #            - FOLDER__TEMPLATE=/usr/src/app/client/template/
+    #            - FOLDER__TEMPLATE=/usr/src/app/client/html/
     #            - FILE__TEMPLATE__ASSETS=/usr/src/app/client/assets.html
     #            - PROJECT__NAME=Eisenwerk
     #            - SSR__CACHE__URL=redis://ssr.cache:6379
