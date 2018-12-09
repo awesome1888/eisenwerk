@@ -1,7 +1,7 @@
-import BaseService from '../../lib/vendor/feathersjs/service/index.js';
+import BaseService from '../../lib/vendor/feathersjs/service';
 import Entity from './entity/server.js';
 
-export default class FileService extends BaseService {
+export default class ArticleService extends BaseService {
     /**
      * Returns an entity this service provides an access to
      * @returns {Entity}
@@ -11,7 +11,7 @@ export default class FileService extends BaseService {
     }
 
     static getDescription() {
-        return 'uploaded files';
+        return 'articles (just for <script>alert("test")</script>)';
     }
 
     isTimeStampEnabled() {
@@ -23,18 +23,17 @@ export default class FileService extends BaseService {
      * @returns {{}}
      */
     getCRUDAccessRules() {
-        const access = {
+        const allow = {
             deny: false,
-            authorized: true,
+            authorized: false,
         };
 
         return {
-            get: access,
-            find: access,
-            create: access,
-            default: {
-                deny: true,
-            },
+            get: allow,
+            find: allow,
+            create: allow, // todo: also alias as post
+            patch: allow, // todo: also alias as update
+            update: allow, // todo: also alias as put and replace
         };
     }
 }

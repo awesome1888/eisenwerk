@@ -21,9 +21,6 @@ export default class ExpressApplication {
 
     getApp() {
         if (!this._express) {
-            console.dir('APP:');
-            console.dir(this.getParams().app);
-
             const app = this.getParams().app ? this.getParams().app : express();
 
             // the following settings are sometimes used inside different plugins

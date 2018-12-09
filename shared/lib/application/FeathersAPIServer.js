@@ -67,7 +67,7 @@ export default class FeathersAPIServerApplication extends ServerApplication {
                                             )}">${escape(
                                                 service.getPath(),
                                             )}</a> &mdash; ${escape(
-                                                service.getDesciption(),
+                                                service.getDescription(),
                                             )}</li>`;
                                         })
                                         .join('')}

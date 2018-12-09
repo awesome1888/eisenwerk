@@ -14,7 +14,7 @@ export default class UserService extends BaseService {
         return Entity;
     }
 
-    static getDesciption() {
+    static getDescription() {
         return 'users persisted in the system';
     }
 

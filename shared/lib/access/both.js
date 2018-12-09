@@ -1,4 +1,4 @@
-export default class Access {
+export default class BothAccess {
     static testRoute(user, rule) {
         if (rule.deny === true) {
             return false;

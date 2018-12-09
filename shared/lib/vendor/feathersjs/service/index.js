@@ -7,7 +7,7 @@ import Context from '../../../context';
 /**
  * https://docs.feathersjs.com/api/databases/common.html#extending-adapters
  */
-export default class ProxyService {
+export default class Service {
     /**
      * Returns an entity this service provides an access to
      * @returns {Entity}
@@ -24,7 +24,7 @@ export default class ProxyService {
         return `/${this.getName()}`;
     }
 
-    static getDesciption() {
+    static getDescription() {
         return '';
     }
 
@@ -35,7 +35,7 @@ export default class ProxyService {
     /**
      * A fabric method which creates an instance of this with the default parameters
      * @param application
-     * @returns {ProxyService}
+     * @returns {Service}
      */
     static make(application) {
         return new this({
@@ -148,7 +148,7 @@ export default class ProxyService {
                     // on create we define createdAt
                     create: [
                         context => {
-                            if (!_.isExist(context.data.createdAt)) {
+                            if (!context.data.createdAt) {
                                 context.data.createdAt = new Date();
                             }
                         },
@@ -156,7 +156,7 @@ export default class ProxyService {
                     update: [
                         // on update we define updatedAt
                         context => {
-                            if (!_.isExist(context.data.updatedAt)) {
+                            if (!context.data.updatedAt) {
                                 context.data.updatedAt = new Date();
                             }
                         },
@@ -164,7 +164,7 @@ export default class ProxyService {
                     patch: [
                         // on update we define updatedAt
                         context => {
-                            if (!_.isExist(context.data.updatedAt)) {
+                            if (!context.data.updatedAt) {
                                 context.data.updatedAt = new Date();
                             }
                         },
@@ -285,6 +285,7 @@ export default class ProxyService {
     }
 
     async find(params) {
+        console.dir('FIND!!!!!');
         return this.getAdapterInstance().find(params);
     }
 
@@ -292,19 +293,22 @@ export default class ProxyService {
         return this.getAdapterInstance().get(id, params);
     }
 
-    create(data, params) {
+    async create(data, params) {
         return this.getAdapterInstance().create(data, params);
     }
 
-    patch(id, data, params) {
+    // also known as "update"
+    async patch(id, data, params) {
+        console.dir(this.getAdapterInstance());
         return this.getAdapterInstance().patchMerge(id, data, params);
     }
 
-    update(id, data, params) {
+    // also known as "put" and "replace"
+    async update(id, data, params) {
         return this.getAdapterInstance().update(id, data, params);
     }
 
-    remove(id, params) {
+    async remove(id, params) {
         return this.getAdapterInstance().remove(id, params);
     }
 

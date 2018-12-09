@@ -10,8 +10,8 @@ export default class Database {
 
         mongoose.Promise = global.Promise;
 
-        const retries = options.DB_CONNECTION_RETRIES || 3;
-        const tmout = options.DB_CONNECTION_TIMEOUT || 1000;
+        const retries = options.DB__CONNECTION_RETRIES || 3;
+        const tmout = options.DB__CONNECTION_TIMEOUT || 1000;
 
         let connection = null;
         for (let t = 0; t < retries - 1; t++) {
@@ -21,7 +21,7 @@ export default class Database {
 
                 console.log('DB connection established');
             } catch (e) {
-                await new Promise((resolve) => {
+                await new Promise(resolve => {
                     setTimeout(resolve, tmout);
                 });
             }
