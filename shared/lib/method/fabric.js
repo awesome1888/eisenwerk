@@ -3,7 +3,7 @@ import Error from '../error';
 import Context from '../context';
 
 export default class Fabric {
-    static register(network, declarations = []) {
+    static register(app, network, declarations = []) {
         const allMethods = this.flattenMethods(declarations);
         network.use('/method', {
             create: async (data, context) => {

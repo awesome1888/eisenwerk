@@ -126,11 +126,11 @@ export default class FeathersAPIServerApplication extends ServerApplication {
     }
 
     createEntityServices(network) {
-        EntityServiceFabric.register(network, this.getServices());
+        EntityServiceFabric.register(this, network, this.getServices());
     }
 
     createMethods(network) {
-        MethodFabric.register(network, this.getMethods());
+        MethodFabric.register(this, network, this.getMethods());
     }
 
     async connectDatabase() {
