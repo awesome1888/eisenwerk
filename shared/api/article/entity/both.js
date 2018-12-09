@@ -1,5 +1,5 @@
 const M = superclass =>
-    class File extends superclass {
+    class ArticleEntity extends superclass {
         static getUId() {
             return 'article';
         }
