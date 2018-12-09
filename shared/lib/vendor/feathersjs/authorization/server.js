@@ -18,30 +18,35 @@ export default class Authorization extends AuthorizationBoth {
                 secret: settings.getSecret(),
             }),
         );
-        app.configure(
-            local({
-                usernameField: this.getUserNameField(),
-                passwordField: this.getPasswordField(),
-                // entity: 'user',
-                // service: 'user',
-            }),
-        );
+        if (settings.useAuthLocal()) {
+            app.configure(
+                local({
+                    usernameField: this.getUserNameField(),
+                    passwordField: this.getPasswordField(),
+                    // entity: 'user',
+                    // service: 'user',
+                }),
+            );
+        }
         app.configure(jwt());
-        app.configure(
-            oauth2({
-                idField: 'service.google.id',
-                name: 'google',
-                Strategy: GoogleStrategy,
-                clientID: settings.getOAuthGoogleClientId() || 'no-id',
-                clientSecret: settings.getOAuthGoogleSecret() || 'no-secret',
-                attachTokenToSuccessURL: true,
-                // successRedirect: '/auth/success?token=___TOKEN___',
-                successRedirect: `${settings.getClientURL()}/auth/success?token=___TOKEN___`,
-                scope: ['profile openid email'],
-                // entity: 'user',
-                // service: 'user',
-            }),
-        );
+        if (settings.useOAuthGoogle()) {
+            app.configure(
+                oauth2({
+                    idField: 'service.google.id',
+                    name: 'google',
+                    Strategy: GoogleStrategy,
+                    clientID: settings.getOAuthGoogleClientId() || 'no-id',
+                    clientSecret:
+                        settings.getOAuthGoogleSecret() || 'no-secret',
+                    attachTokenToSuccessURL: true,
+                    // successRedirect: '/auth/success?token=___TOKEN___',
+                    successRedirect: `${settings.getClientURL()}/auth/success?token=___TOKEN___`,
+                    scope: ['profile openid email'],
+                    // entity: 'user',
+                    // service: 'user',
+                }),
+            );
+        }
         app.configure(
             authManagement({
                 identifyUserProps: ['profile.email'],

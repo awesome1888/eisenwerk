@@ -71,7 +71,11 @@ export default class FeathersAPIServerApplication extends ServerApplication {
                                             )}</li>`;
                                         })
                                         .join('')}
-                            </ul>
+                                </ul>
+                                <h3>Authentications available:</h3>
+                                <ul>
+                                    
+                                </ul>
                         `);
                         }
                     });

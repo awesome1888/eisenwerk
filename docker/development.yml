@@ -45,6 +45,7 @@ services:
             - URL__CLIENT_ORIGIN=http://localhost:3010
             - CORS__ORIGIN=http://localhost:3000,http://localhost:3010,http://localhost:3001
             - AUTH__ENABLED=1
+            - AUTH__LOCAL__ENABLED=1
             - AUTH__SECRET=P4cRdF5mzSMPvy4hCdpKCjHMp3vZ4UvynaxhEAJK
             - AUTH__GOOGLE__CLIENT_ID=
             - AUTH__GOOGLE__SECRET=

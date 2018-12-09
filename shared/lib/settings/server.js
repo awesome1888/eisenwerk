@@ -96,8 +96,19 @@ class Settings {
         return !!this.env.AUTH__ENABLED;
     }
 
+    useAuthLocal() {
+        return !!this.env.AUTH__LOCAL__ENABLED;
+    }
+
     getSecret() {
         return this.env.AUTH__SECRET || '';
+    }
+
+    useOAuthGoogle() {
+        return (
+            _.isStringNotEmpty(this.getOAuthGoogleClientId()) &&
+            _.isStringNotEmpty(this.getOAuthGoogleSecret())
+        );
     }
 
     getOAuthGoogleClientId() {
