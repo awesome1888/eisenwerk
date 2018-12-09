@@ -21,21 +21,21 @@ export default class ExpressApplication {
 
     getApp() {
         if (!this._express) {
+            console.dir('APP:');
+            console.dir(this.getParams().app);
+
             const app = this.getParams().app ? this.getParams().app : express();
 
-            app.use(helmet());
-            // turn on JSON parser for REST services
-            app.use(express.json());
-            // turn on URL-encoded parser for REST services
-            app.use(
-                express.urlencoded({
-                    extended: true,
-                }),
-            );
-            app.use(responseTime());
-
-            // app.use(ConditionalGet());
-            // app.use(ETag());
+            // the following settings are sometimes used inside different plugins
+            const hostname = this.getParams().hostname;
+            if (_.isStringNotEmpty(hostname)) {
+                app.set('host', hostname);
+            }
+            app.set('port', this.getParams().port);
+            // increase the default parse depth of a query string and disable allowPrototypes
+            app.set('query parser', query => {
+                return qs.parse(query, { allowPrototypes: false, depth: 10 });
+            });
 
             const origins = this.getParams().cors;
             if (_.isArrayNotEmpty(origins)) {
@@ -53,22 +53,24 @@ export default class ExpressApplication {
                 );
             }
 
+            app.use(helmet());
+            // turn on JSON parser for REST services
+            app.use(express.json());
+            // turn on URL-encoded parser for REST services
+            app.use(
+                express.urlencoded({
+                    extended: true,
+                }),
+            );
+            app.use(responseTime());
+
+            // app.use(ConditionalGet());
+            // app.use(ETag());
+
             const pFolder = this.getParams().publicFolder;
             if (_.isStringNotEmpty(pFolder)) {
                 app.use('/', express.static(pFolder));
             }
-
-            // the following settings are sometimes used inside different plugins
-            const hostname = this.getParams().hostname;
-            if (_.isStringNotEmpty(hostname)) {
-                app.set('host', hostname);
-            }
-            app.set('port', this.getParams().port);
-
-            // increase the default parse depth of a query string and disable allowPrototypes
-            app.set('query parser', query => {
-                return qs.parse(query, { allowPrototypes: false, depth: 10 });
-            });
 
             this.attachMiddleware(app);
             this.attachErrorTrigger(app);

@@ -39,6 +39,9 @@ export default class FeathersAPIServerApplication extends ServerApplication {
                 hostname: sett.getRootURLParsed().hostname,
                 cors: sett.getAllowedOrigins(),
                 registerMiddleware: eApp => {
+                    // set up REST transport
+                    eApp.configure(express.rest());
+
                     if (sett.useAuth()) {
                         // do not relocate this line elsewhere!
                         Authorization.prepare(eApp, this.getSettings());
@@ -88,9 +91,6 @@ export default class FeathersAPIServerApplication extends ServerApplication {
                     return null;
                 },
             });
-
-            // set up REST transport
-            app.configure(express.rest());
 
             this._network = app;
         }

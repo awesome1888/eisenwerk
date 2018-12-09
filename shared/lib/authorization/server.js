@@ -13,9 +13,6 @@ import errors from '@feathersjs/errors';
 
 export default class Authorization extends AuthorizationBoth {
     static prepare(app, settings) {
-        console.dir('!!!');
-        console.dir(app);
-
         app.configure(
             auth({
                 secret: settings.getSecret(),
