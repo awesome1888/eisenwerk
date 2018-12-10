@@ -1,14 +1,12 @@
 import { takeLatest, call, put, fork, all } from 'redux-saga/effects';
 import * as reducer from './reducer.js';
 import * as applicationReducer from '../../components/Application/reducer';
-import axios from 'axios';
 import { makeStatus } from '../../shared/lib/util';
+import Article from '../../shared/api/article/entity/client';
 
 function* loadData() {
     try {
-        const response = yield call(() =>
-            axios.get('https://swapi.co/api/people/'),
-        );
+        const response = yield call(() => Article.find());
         yield put({
             type: reducer.META_SET,
             payload: {
@@ -19,7 +17,7 @@ function* loadData() {
         });
         yield put({
             type: reducer.SUCCESS,
-            payload: response.data.results,
+            payload: response.data,
         });
     } catch (error) {
         if (__DEV__) {

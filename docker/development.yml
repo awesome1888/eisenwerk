@@ -20,6 +20,7 @@ services:
             - PORT=3001
             - URL__ROOT=http://localhost:3001/
             - URL__API=http://localhost:3100
+            - URL__API_SSR=http://api:3100
             - FOLDER__ROOT=/usr/src/app/
             - FOLDER__PUBLIC=/usr/src/app/client/public/
             - FOLDER__TEMPLATE=/usr/src/app/client/html/

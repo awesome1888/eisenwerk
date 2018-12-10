@@ -10,8 +10,8 @@ const ListPage = ({ data }) => (
         {_.isArrayNotEmpty(data) && (
             <div className="">
                 {data.map(item => (
-                    <div className="" key={item.name}>
-                        {item.name}
+                    <div className="" key={item.getId()}>
+                        {item.getData().title}
                     </div>
                 ))}
             </div>

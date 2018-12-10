@@ -58,7 +58,10 @@ export default class Renderer {
         try {
             const Application = (await this._frontend()).default;
             application = new Application({
-                settings: this._settings.prepareForClient(),
+                settings: this._settings.prepareForClient({
+                    serialize: false,
+                    ssr: true,
+                }),
                 currentURL: req.originalUrl,
                 ssr: true,
             });

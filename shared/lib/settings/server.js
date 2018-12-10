@@ -2,8 +2,9 @@ import process from 'process';
 import parse from 'url-parse';
 
 class Settings {
-    constructor() {
+    constructor(params = {}) {
         this.env = process.env;
+        this._params = params || {};
     }
 
     checkMandatory() {
@@ -71,6 +72,10 @@ class Settings {
         return this.env.URL__API || '';
     }
 
+    getAPIURLSSR() {
+        return this.env.URL__API_SSR || '';
+    }
+
     isProduction() {
         return (
             !__DEV__ &&
@@ -131,13 +136,22 @@ class Settings {
         return this.env.PROJECT__NAME || '';
     }
 
-    prepareForClient() {
-        return JSON.stringify({
+    prepareForClient(params = {}) {
+        const data = {
             URL__ROOT: this.getRootURL(),
-            URL__API: this.getAPIURL(),
+            URL__API: params.ssr ? this.getAPIURLSSR() : this.getAPIURL(),
             PRODUCTION: this.isProduction(),
             AUTH__ENABLED: this.useAuth(),
-        });
+        };
+
+        if (params.serialize === false) {
+            return data;
+        }
+        return JSON.stringify(data);
+    }
+
+    getParams() {
+        return this._params;
     }
 }
 
