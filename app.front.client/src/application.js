@@ -15,9 +15,9 @@ import applicationSaga from './components/Application/saga';
 import SorryScreen from './components/SorryScreen';
 import routeMap from './routes/withUI';
 import routeRender from './routes/render';
-import Authorization from '../../shared/lib/vendor/feathersjs/authorization/client';
-import Entity from '../../shared/lib/entity/client';
-import Method from '../../shared/lib/vendor/feathersjs/method/client';
+import Authorization from './shared/lib/vendor/feathersjs/authorization/client';
+import Entity from './shared/lib/entity/client.js';
+import Method from './shared/lib/vendor/feathersjs/method/client.js';
 
 /**
  * todo: move this to lib
@@ -86,7 +86,7 @@ export default class Application extends BaseApplication {
     async launch() {
         await super.launch();
 
-        // tell all entities to use this network as default when making REST calls (this is important)
+        // // tell all entities to use this network as default when making REST calls (this is important)
         Entity.setNetwork(this.getNetwork());
         Method.setNetwork(this.getNetwork());
     }
