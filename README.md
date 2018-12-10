@@ -98,10 +98,10 @@ To connect to a running container:
 13) [CANCEL] in outer layout replace OOP with HOC
 
 1.9) [DONE] simplify that oop multi-level crap with Apps, use composition for sake
-    * Fix what is broken
+    * [DONE] Fix what is broken
     * User entity should come to the Auth as a parameter, not hard-included
     * getUserNameField() and getPasswordFiled() all over the code
-2.  auth in a modern way
+2.  connect auth with redux
 3.  re-think oauth2
 ==== NPM!!!!! ====
 1.95) move styles to styled-components
@@ -134,6 +134,11 @@ To connect to a running container:
 Re-think the whole idea about how we dockerize: there is a simpler way to do that with no docker-build-tool involved
 Run as dockerized or not: should not be important
 https://www.npmjs.com/package/nodemon-webpack-plugin
+
+* Optional stuff
+    * Redis as a bus
+    * Tagged cache
+    * CI
 
 ### Random
 
@@ -183,16 +188,6 @@ Put everything to @eisenwerk/\*, like @eisenwerk/ui.page-scroll
 -   migrations
     f_migration
 -   decouple and port global event manager (without jquery)
-
-Create "rem-bem-scss" package, port all really useful things from rem-bem, and besides:
-
--   make useful rb-content-\*\* alignment classes
--   [DONE] make useful rb-icon-label already!
--   [CANCEL] generate all mixins over all google icons, for sake
--   [DONE] \_rb-bg-cover(): allow to pass an image as an argument
--   [CANCEL] generate all mixins and classes for margins and paddings
--   put the MIT license inside the file with color codes:
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ## Effects
 

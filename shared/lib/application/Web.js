@@ -6,13 +6,7 @@ import Settings from '../settings/client.js';
 export default class WebApplication {
     constructor(params = {}) {
         this._params = params || {};
-
-        console.dir('settings');
-        console.dir(this._params.settings);
-
         this._settings = new Settings(this._params.settings);
-
-        console.dir(`API url: ${this.getSettings().getAPIURL()}`);
     }
 
     useAuth() {
