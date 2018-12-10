@@ -6,9 +6,9 @@ import commonHooks from 'feathers-hooks-common';
 import oauth2 from '../../../../vendor/feathersjs/authentication-oauth2/lib/index';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 
-import AuthorizationBoth from './both.js';
-import Oauth2Failure from './oauth2-failure.js';
-import User from '../../../../api/user/entity/server.js';
+import AuthorizationBoth from './both';
+import Oauth2Failure from './oauth2-failure';
+import User from '../../../../api/user/entity/server';
 import errors from '@feathersjs/errors';
 
 export default class Authorization extends AuthorizationBoth {

@@ -1,5 +1,5 @@
 import auth from '@feathersjs/authentication-client';
-import AuthorizationBoth from './both.js';
+import AuthorizationBoth from './both';
 
 import User from '../../../../api/user/entity/client.js';
 

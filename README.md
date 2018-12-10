@@ -98,6 +98,11 @@ To connect to a running container:
 13) [CANCEL] in outer layout replace OOP with HOC
 
 1.9) [DONE] simplify that oop multi-level crap with Apps, use composition for sake
+    * Fix what is broken
+    * User entity should come to the Auth as a parameter, not hard-included
+    * getUserNameField() and getPasswordFiled() all over the code
+2.  auth in a modern way
+3.  re-think oauth2
 ==== NPM!!!!! ====
 1.95) move styles to styled-components
 1.955) new overlay and progressbar mechanic based on watching the store and\or EventEmitter on componentDidUpdate of page when switching from ready false -> true
@@ -106,8 +111,6 @@ To connect to a running container:
         2) on-first-load overlay, it is shown when the website loads for the first time
         3) between-layouts fade-in-out overlay, just to make transitions more smooth
         4) skeleton components
-2.  auth in a modern way
-3.  re-think oauth2
     2.1) [CANCEL] for entities remove server and client, make it isomorphic working through services
         4. [CANCEL] graphql for entities instead of REST and feathersjs?
             1. [CANCEL] what about caching?
