@@ -124,6 +124,10 @@ class Settings {
         return this.env.AUTH__GOOGLE__SECRET || '';
     }
 
+    getOAuthGoogleDomain() {
+        return this.env.AUTH__GOOGLE__DOMAIN || '';
+    }
+
     useSSR() {
         return this.env.SSR__ENABLED !== '0';
     }

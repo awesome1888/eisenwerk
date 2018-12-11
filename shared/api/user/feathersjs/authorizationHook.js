@@ -24,6 +24,7 @@ export default class AuthorizationHook {
                     // on create we hash the given password
                     commonHooks.iff(
                         commonHooks.isProvider('external'),
+                        // todo: in order to be able to detect weak passwords, move hashing somewhere else
                         local.hooks.hashPassword({
                             passwordField: auth.getPasswordField(),
                             hash,
@@ -34,6 +35,7 @@ export default class AuthorizationHook {
                     // on update we also hash the given password
                     commonHooks.iff(
                         commonHooks.isProvider('external'),
+                        // todo: in order to be able to detect weak passwords, move hashing somewhere else
                         local.hooks.hashPassword({
                             passwordField: auth.getPasswordField(),
                             hash,
@@ -74,7 +76,8 @@ export default class AuthorizationHook {
                         if (
                             _.isStringNotEmpty(_.get(context, 'data.password'))
                         ) {
-                            context.data['profile.password'] =
+                            // move password to the right place
+                            context.data[auth.getPasswordField()] =
                                 context.data.password;
                             delete context.data.password;
                         }
@@ -93,7 +96,7 @@ export default class AuthorizationHook {
                 all: [
                     // when called over the wire, we prevent some fields from exposing to the client
                     commonHooks.iff(commonHooks.isProvider('external'), [
-                        local.hooks.protect('profile.password'),
+                        local.hooks.protect(auth.getPasswordField()),
                         local.hooks.protect('password'),
                         local.hooks.protect('service'),
                     ]),
@@ -105,10 +108,13 @@ export default class AuthorizationHook {
                             for (let i = 0; i < data.length; i++) {
                                 if (
                                     _.isStringNotEmpty(
-                                        _.get(data[i], 'profile.password'),
+                                        _.get(data[i], auth.getPasswordField()),
                                     )
                                 ) {
-                                    data[i].password = data[i].profile.password;
+                                    data[i].password = _.get(
+                                        data[i],
+                                        auth.getPasswordField(),
+                                    );
                                 }
                             }
                         }
@@ -118,7 +124,7 @@ export default class AuthorizationHook {
         });
     }
 
-    static declarePreProcess(hooks) {
+    static declarePreProcess(hooks, application) {
         hooks.declare({
             before: {
                 all: [
@@ -147,7 +153,7 @@ export default class AuthorizationHook {
                             delete gProfile._json;
 
                             // set google service
-                            const sProfile = _.deepClone(gProfile);
+                            const sProfile = _.cloneDeep(gProfile);
                             delete sProfile.id;
                             delete sProfile.name;
                             delete sProfile.displayName;
@@ -164,17 +170,12 @@ export default class AuthorizationHook {
                             ctx.data.profile.email = userEmail;
 
                             // set names
-                            const names = _.getValue(google, 'profile.name');
+                            const names = _.get(google, 'profile.name');
                             if (_.isObjectNotEmpty(names)) {
                                 ctx.data.profile.firstName =
                                     names.givenName || '';
                                 ctx.data.profile.lastName =
                                     names.familyName || '';
-                            }
-
-                            // set role
-                            if (this.isLegalGoogleEmail(userEmail)) {
-                                ctx.data.role = [roleEnum.ADMINISTRATOR];
                             }
                         }
 
@@ -185,9 +186,12 @@ export default class AuthorizationHook {
         });
     }
 
-    static isLegalGoogleEmail(email) {
+    static isLegalEmail(email, domain) {
         if (!_.isStringNotEmpty(email)) {
             return false;
+        }
+        if (!_.isStringNotEmpty(domain)) {
+            return true;
         }
         return email.slice(email.lastIndexOf('@') + 1) === 'some-domain.com';
     }

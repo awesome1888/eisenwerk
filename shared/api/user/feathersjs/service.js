@@ -1,6 +1,5 @@
 import BaseService from '../../../lib/vendor/feathersjs/service/index';
 import Entity from '../entity/server';
-import roleEnum from '../enum/role';
 import AuthorizationHook from './authorizationHook';
 import Error from '../../../lib/vendor/feathersjs/error';
 import access from '../access';
@@ -27,7 +26,7 @@ export default class UserService extends BaseService {
     }
 
     attachPrecedingHooks(hooks) {
-        AuthorizationHook.declarePreProcess(hooks);
+        AuthorizationHook.declarePreProcess(hooks, this.getApplication());
         super.attachPrecedingHooks(hooks);
     }
 
@@ -51,23 +50,15 @@ export default class UserService extends BaseService {
                 const isGoogle =
                     _.isObjectNotEmpty(params.oauth) &&
                     params.oauth.provider === 'google';
-                const legalGoogleEmail = AuthorizationHook.isLegalGoogleEmail(
+                const legalGoogleEmail = AuthorizationHook.isLegalEmail(
                     email,
+                    this.getApplication().getOAuthGoogleDomain(),
                 );
 
                 // you are not allowed to create administrators, unless you came from google
-                if (_.contains(data.role, roleEnum.ADMINISTRATOR)) {
-                    if (!isGoogle || !legalGoogleEmail) {
-                        Error.throw403(
-                            'You are not allowed to create administrators',
-                        );
-                    }
+                if (isGoogle && !legalGoogleEmail) {
+                    Error.throw403('You are not allowed join with this domain');
                 }
-
-                // you are not allowed to register with random emails through google
-                // if (isGoogle && !legalGoogleEmail) {
-                //     this.throw403('You are not allowed to register with that kind of email');
-                // }
 
                 return context;
             },
