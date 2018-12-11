@@ -4,7 +4,7 @@ export default class Authorization {
      * @returns {string}
      */
     // todo: rename to getUserLoginField
-    static getUserNameField() {
+    static getLoginField() {
         return 'profile.email';
     }
 
@@ -27,8 +27,8 @@ export default class Authorization {
         this._userEntity = userEntity || null;
     }
 
-    getUserNameField() {
-        return this.constructor.getUserNameField();
+    getLoginField() {
+        return this.constructor.getLoginField();
     }
 
     getPasswordField() {
@@ -58,7 +58,7 @@ export default class Authorization {
             .getApp()
             .authenticate({
                 strategy: 'local',
-                [this.getUserNameField()]: login,
+                [this.getLoginField()]: login,
                 [this.getPasswordField()]: password,
             });
 

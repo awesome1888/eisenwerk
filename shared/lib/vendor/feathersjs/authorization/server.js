@@ -27,7 +27,7 @@ export default class Authorization extends AuthorizationBoth {
         if (settings.useAuthLocal()) {
             app.configure(
                 local({
-                    usernameField: this.getUserNameField(),
+                    usernameField: this.getLoginField(),
                     passwordField: this.getPasswordField(),
                     ...entity,
                 }),
@@ -58,7 +58,7 @@ export default class Authorization extends AuthorizationBoth {
 
         app.configure(
             authManagement({
-                identifyUserProps: [this.getUserNameField()],
+                identifyUserProps: [this.getLoginField()],
             }),
         );
 

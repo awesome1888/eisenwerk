@@ -59,7 +59,7 @@ export default class AuthorizationHook {
                             ),
                             commonHooks.preventChanges(
                                 'password',
-                                auth.getUserNameField(),
+                                auth.getLoginField(),
                                 auth.getPasswordField(),
                                 'isVerified',
                                 'verifyToken',

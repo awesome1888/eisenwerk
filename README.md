@@ -99,8 +99,8 @@ To connect to a running container:
 
 1.9) [DONE] simplify that oop multi-level crap with Apps, use composition for sake
     * [DONE] Fix what is broken
-    * User entity should come to the Auth as a parameter, not hard-included
-    * getUserNameField() and getPasswordFiled() all over the code
+    * [DONE] User entity should come to the Auth as a parameter, not hard-included
+    * [DONE] getLoginField() and getPasswordFiled() all over the code
 2.  connect auth with redux
 3.  re-think oauth2
 ==== NPM!!!!! ====
