@@ -17,6 +17,14 @@ const renderRoutes = ({ routes, appProps }) => {
                 )}
             />
             <Route
+                {..._.mergeShallow(routes.login, appProps)}
+                render={route => (
+                    <LayoutOuter>
+                        <PageLoader page={routes.login.page} route={route} />
+                    </LayoutOuter>
+                )}
+            />
+            <Route
                 {..._.mergeShallow(routes.list, appProps)}
                 render={route => (
                     <LayoutOuter>

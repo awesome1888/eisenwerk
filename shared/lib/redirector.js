@@ -56,6 +56,10 @@ const redirector = (params = {}) => {
         }
     }
 
+    if (whereTo) {
+        console.dir(`Going to ${whereTo}`);
+    }
+
     return whereTo;
 };
 

@@ -18,6 +18,7 @@ services:
             - ../build/app.front/build/app.front.server/:/usr/src/app/server/
         environment:
             - PORT=3001
+            - AUTH__ENABLED=1
             - URL__ROOT=http://localhost:3001/
             - URL__API=http://localhost:3100
             - URL__API_SSR=http://api:3100
