@@ -19,9 +19,8 @@ import Authorization from './shared/lib/vendor/feathersjs/authorization/client';
 import Entity from './shared/lib/entity/client.js';
 import Method from './shared/lib/vendor/feathersjs/method/client.js';
 
-/**
- * todo: move this to lib
- */
+import User from './shared/api/user/entity/client';
+
 export default class Application extends BaseApplication {
     getMainStoreElement() {
         return {
@@ -51,7 +50,7 @@ export default class Application extends BaseApplication {
             application.configure(restClient.axios(axios));
 
             if (this.useAuth()) {
-                Authorization.prepare({ application, storage: this._storage });
+                Authorization.prepare(application, this._storage, User);
 
                 // todo: connect it to the store
                 application.on('authenticated', this.onLogin.bind(this));
@@ -77,6 +76,7 @@ export default class Application extends BaseApplication {
             this._authorization = new Authorization(
                 this.getNetwork(),
                 this.getSettings(),
+                User,
             );
         }
 

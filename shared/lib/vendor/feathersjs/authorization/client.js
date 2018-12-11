@@ -1,14 +1,14 @@
 import auth from '@feathersjs/authentication-client';
 import AuthorizationBoth from './both';
 
-import User from '../../../../api/user/entity/client.js';
-
 export default class Authorization extends AuthorizationBoth {
     /**
      * Tune feathersjs client app with appropriate configuration.
-     * @param param
+     * @param application
+     * @param storage
+     * @param userEntity
      */
-    static prepare({ application, storage }) {
+    static prepare(application, storage, userEntity) {
         application.configure(
             auth({
                 // todo: use custom storage in order to obtain the token either from localStorage or the URL
@@ -101,11 +101,15 @@ export default class Authorization extends AuthorizationBoth {
      * @returns {Promise<*>}
      */
     async getUser(token = null) {
+        if (!this._userEntity) {
+            return null;
+        }
+
         const id = await this.getUserId(token);
         if (!id) {
             return null;
         }
 
-        return User.get(id);
+        return this._userEntity.get(id);
     }
 }
