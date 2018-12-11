@@ -42,7 +42,11 @@ export default class FeathersAPIServerApplication extends ServerApplication {
 
                     if (sett.useAuth()) {
                         // do not relocate this line elsewhere!
-                        Authorization.prepare(eApp, this.getSettings());
+                        Authorization.prepare(
+                            eApp,
+                            this.getSettings(),
+                            this.getUserEntity(),
+                        );
                     }
 
                     this.createEntityServices(eApp);
@@ -92,6 +96,7 @@ export default class FeathersAPIServerApplication extends ServerApplication {
             this._authorization = new Authorization(
                 this.getNetwork(),
                 this.getSettings(),
+                this.getUserEntity(),
             );
         }
 
@@ -104,6 +109,10 @@ export default class FeathersAPIServerApplication extends ServerApplication {
 
     getMethods() {
         return [];
+    }
+
+    getUserEntity() {
+        return null;
     }
 
     createEntityServices(network) {

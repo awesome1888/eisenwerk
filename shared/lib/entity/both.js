@@ -33,10 +33,10 @@ export default class Entity {
         const lean = parameters.lean === true;
         const params = {};
         if (_.isObjectNotEmpty(parameters.select)) {
-            params.$select = _.deepClone(parameters.select);
+            params.$select = _.cloneDeep(parameters.select);
         }
         if (_.isArrayNotEmpty(parameters.populate)) {
-            params.$populate = _.deepClone(parameters.populate);
+            params.$populate = _.cloneDeep(parameters.populate);
         }
 
         try {

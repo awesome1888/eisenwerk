@@ -3,6 +3,7 @@ export default class Authorization {
      * Specifies what field is used to store user login
      * @returns {string}
      */
+    // todo: rename to getUserLoginField
     static getUserNameField() {
         return 'profile.email';
     }
@@ -18,10 +19,12 @@ export default class Authorization {
     /**
      * @param network A reference to featherjs client instance
      * @param settings A reference to the settings (provides .isProduction() and .getRootURL() methods)
+     * @param userEntity
      */
-    constructor(network, settings = null) {
+    constructor(network, settings = null, userEntity = null) {
         this._network = network;
         this._settings = settings || null;
+        this._userEntity = userEntity || null;
     }
 
     getUserNameField() {

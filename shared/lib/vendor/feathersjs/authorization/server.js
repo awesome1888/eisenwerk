@@ -1,4 +1,5 @@
 import auth from '@feathersjs/authentication';
+import errors from '@feathersjs/errors';
 import authManagement from '../../../../vendor/feathersjs/authentication-management/lib/index';
 import local from '@feathersjs/authentication-local';
 import jwt from '@feathersjs/authentication-jwt';
@@ -8,11 +9,9 @@ import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 
 import AuthorizationBoth from './both';
 import Oauth2Failure from './oauth2-failure';
-import User from '../../../../api/user/entity/server';
-import errors from '@feathersjs/errors';
 
 export default class Authorization extends AuthorizationBoth {
-    static prepare(app, settings) {
+    static prepare(app, settings, userEntity) {
         app.configure(
             auth({
                 secret: settings.getSecret(),
@@ -20,10 +19,11 @@ export default class Authorization extends AuthorizationBoth {
         );
 
         const entity = {
-            entity: 'user',
-            service: 'user',
+            entity: userEntity.getUId(),
+            service: userEntity.getUId(),
         };
 
+        // support of local
         if (settings.useAuthLocal()) {
             app.configure(
                 local({
@@ -33,7 +33,10 @@ export default class Authorization extends AuthorizationBoth {
                 }),
             );
         }
+
         app.configure(jwt(entity));
+
+        // support of google
         if (settings.useOAuthGoogle()) {
             app.configure(
                 oauth2({
@@ -45,15 +48,17 @@ export default class Authorization extends AuthorizationBoth {
                         settings.getOAuthGoogleSecret() || 'no-secret',
                     attachTokenToSuccessURL: true,
                     // successRedirect: '/auth/success?token=___TOKEN___',
+                    // todo: this is terrible
                     successRedirect: `${settings.getClientURL()}/auth/success?token=___TOKEN___`,
                     scope: ['profile openid email'],
                     ...entity,
                 }),
             );
         }
+
         app.configure(
             authManagement({
-                identifyUserProps: ['profile.email'],
+                identifyUserProps: [this.getUserNameField()],
             }),
         );
 
@@ -75,7 +80,7 @@ export default class Authorization extends AuthorizationBoth {
                     all: [
                         // when called over the wire, we prevent some fields from exposing to the client
                         commonHooks.iff(commonHooks.isProvider('external'), [
-                            local.hooks.protect('profile.password'),
+                            local.hooks.protect(this.getPasswordField()),
                             local.hooks.protect('password'),
                             local.hooks.protect('service'),
                         ]),
@@ -100,6 +105,10 @@ export default class Authorization extends AuthorizationBoth {
      * @returns {Promise<*>}
      */
     async getUser(token = null) {
+        if (!this._userEntity) {
+            return null;
+        }
+
         const id = await this.getUserId(token);
         if (!id) {
             return null;
@@ -107,7 +116,7 @@ export default class Authorization extends AuthorizationBoth {
 
         let u = null;
         try {
-            u = await User.get(id);
+            u = await this._userEntity.get(id);
         } catch (e) {
             if (e instanceof errors.NotFound) {
                 u = null;
