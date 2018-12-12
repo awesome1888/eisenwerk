@@ -92,11 +92,24 @@ export default class Authorization extends AuthorizationBoth {
         Oauth2Failure.attach(app);
     }
 
-    getVerificationOptions() {
-        // we have to provide the secret manually on the server side
-        return {
-            secret: this.getSettings().getSecret(),
-        };
+    /**
+     * Get token payload, if it is valid.
+     * todo: on server side we can simplify this with redis cache
+     * The function makes the remote call.
+     * @param token
+     * @returns {Promise<*>}
+     */
+    async extractPayload(token) {
+        token = await this.getToken(token);
+        if (!token) {
+            return null;
+        }
+
+        return this.getNetwork()
+            .getApp()
+            .passport.verifyJWT(token, {
+                secret: this.getSettings().getSecret(),
+            });
     }
 
     /**

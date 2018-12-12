@@ -35,10 +35,6 @@ export default class Authorization {
         return this.constructor.getPasswordField();
     }
 
-    getVerificationOptions() {
-        return undefined;
-    }
-
     getSettings() {
         return this._settings;
     }
@@ -147,7 +143,7 @@ export default class Authorization {
     }
 
     /**
-     * Extract and verify the payload (the data encrypted in the token).
+     * Get token payload, if it is valid.
      * The function makes the remote call.
      * @param token
      * @returns {Promise<*>}
@@ -160,7 +156,7 @@ export default class Authorization {
 
         return this.getNetwork()
             .getApp()
-            .passport.verifyJWT(token, this.getVerificationOptions());
+            .passport.verifyJWT(token);
     }
 
     /**

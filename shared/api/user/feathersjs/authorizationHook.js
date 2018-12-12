@@ -133,6 +133,7 @@ export default class AuthorizationHook {
                             return ctx;
                         }
 
+                        // GOOGLE support
                         // when the user gets created through google oauth2, we need to extract
                         // their data and put on the right place
                         const google = _.getValue(ctx, 'data.google');

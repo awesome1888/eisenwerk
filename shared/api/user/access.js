@@ -16,19 +16,16 @@ const getRuleRead = () => {
     return {
         deny: false,
         authorized: true,
-        roleAny: [roleEnum.ADMINISTRATOR],
-        // custom: (user, context) => {
-        //     if (user.hasRole(roleEnum.SOME_ROLE)) {
-        //         Context.putUnavoidableCondition(context, {
-        //             $or: [
-        //                 {_id: user.getId()},
-        //                 {role: roleEnum.SOME_ROLE},
-        //             ],
-        //         });
-        //     }
-        //
-        //     return true;
-        // },
+        custom: (user, context) => {
+            // you can get only yourself if you are not an admin
+            if (!user.hasRole(roleEnum.ADMINISTRATOR)) {
+                Context.putUnavoidableCondition(context, {
+                    _id: user.getId(),
+                });
+            }
+
+            return true;
+        },
     };
 };
 
@@ -36,34 +33,34 @@ const getRuleUpdate = () => {
     return {
         deny: false,
         authorized: true,
-        roleAny: [roleEnum.ADMINISTRATOR],
         custom: async (user, context) => {
             const id = context.id;
             const data = context.data;
 
-            if (id) {
-                // for patching an existing entity: nobody except an administrator can change other
-                // user accounts but their own
-                if (!user.hasRole(roleEnum.ADMINISTRATOR)) {
-                    if (id.toString() !== user.getId().toString()) {
-                        Error.throw403(
-                            'You are not allowed to update other users',
-                        );
-                    }
-                }
+            if (!id) {
+                // whom to update?
+                Error.throw400();
             }
 
-            if (_.isArrayNotEmpty(data.role)) {
-                const previous = await Context.extractPrevious(
-                    context,
-                    this.getEntity(),
-                );
+            // you can update only yourself if you are not an admin
+            if (!user.hasRole(roleEnum.ADMINISTRATOR)) {
+                if (id.toString() !== user.getId().toString()) {
+                    Error.throw403('You are not allowed to update other users');
+                }
 
-                const oRole = previous.getRole();
-                const nRole = data.role;
-                if (!_.isEqual(nRole, oRole)) {
-                    // you are not allowed to change roles in general,
-                    Error.throw403('You are not allowed to change roles');
+                if ('role' in data) {
+                    // in case there is a "role: key there
+                    const previous = await Context.extractPrevious(
+                        context,
+                        this.getEntity(),
+                    );
+
+                    const oRole = previous.getRole();
+                    const nRole = data.role;
+                    if (!_.isEqual(nRole, oRole)) {
+                        // you are not allowed to change roles of yourself, if you are not an admin
+                        Error.throw403('You are not allowed to update roles');
+                    }
                 }
             }
         },
