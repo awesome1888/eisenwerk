@@ -20,6 +20,7 @@ import Entity from './shared/lib/entity/client.js';
 import Method from './shared/lib/vendor/feathersjs/method/client.js';
 
 import User from './shared/api/user/entity/client';
+import { context as applicationContext } from './context/application';
 
 export default class Application extends BaseApplication {
     getMainStoreElement() {
@@ -53,7 +54,7 @@ export default class Application extends BaseApplication {
                 Authorization.prepare(application, this._storage, User);
 
                 // todo: connect it to the store
-                application.on('authenticated', this.onLogin.bind(this));
+                // application.on('authenticated', this.onLogin.bind(this));
                 application.on('logout', this.onLogout.bind(this));
                 application.on(
                     'reauthentication-error',
@@ -91,10 +92,6 @@ export default class Application extends BaseApplication {
         Method.setNetwork(this.getNetwork());
     }
 
-    async onLogin() {
-        // todo: dispatch an action
-    }
-
     onLogout() {
         // todo: dispatch an action
     }
@@ -115,26 +112,28 @@ export default class Application extends BaseApplication {
     render() {
         return (
             <Provider store={this.getStore().getReduxStore()}>
-                <ReactApplication
-                    application={this}
-                    useAuth={this.useAuth()}
-                    routes={appProps => {
-                        const applicationProps = {
-                            useAuth: this.useAuth(),
-                        };
-                        if (this.useAuth()) {
-                            Object.assign(applicationProps, {
-                                user: appProps.user,
-                            });
-                        }
+                <applicationContext.Provider value={this}>
+                    <ReactApplication
+                        application={this}
+                        useAuth={this.useAuth()}
+                        routes={appProps => {
+                            const applicationProps = {
+                                useAuth: this.useAuth(),
+                            };
+                            if (this.useAuth()) {
+                                Object.assign(applicationProps, {
+                                    user: appProps.user,
+                                });
+                            }
 
-                        return (
-                            <ConnectedRouter history={this.getHistory()}>
-                                {this.renderRoutes(applicationProps)}
-                            </ConnectedRouter>
-                        );
-                    }}
-                />
+                            return (
+                                <ConnectedRouter history={this.getHistory()}>
+                                    {this.renderRoutes(applicationProps)}
+                                </ConnectedRouter>
+                            );
+                        }}
+                    />
+                </applicationContext.Provider>
             </Provider>
         );
     }

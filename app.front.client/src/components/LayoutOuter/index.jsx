@@ -1,9 +1,9 @@
 import React from 'react';
 import LayoutBase from '../LayoutBase';
+import { Link } from 'react-router-dom';
 import './style.scss';
 
 export default class LayoutOuter extends LayoutBase {
-
     componentDidMount() {
         console.dir('outer mounted!');
     }
@@ -17,8 +17,8 @@ export default class LayoutOuter extends LayoutBase {
             <div className="layout-inner">
                 <div className="layout-inner__top">
                     <div className="layout-inner__top-container">
-                        {/*<Menu {...props} />*/}
                         MENU
+                        <Link to="/logout">Logout</Link>
                     </div>
                 </div>
                 <div className="layout-inner__container">
@@ -27,4 +27,4 @@ export default class LayoutOuter extends LayoutBase {
             </div>
         );
     }
-};
+}

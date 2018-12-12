@@ -64,6 +64,7 @@ export default class Context {
      * @param condition
      */
     static putUnavoidableCondition(context, condition) {
+        // context.params = context.params || {};
         const query = _.cloneDeep(context.params.query) || {};
 
         query.$and = query.$and || [];

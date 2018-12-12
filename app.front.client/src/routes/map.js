@@ -8,6 +8,10 @@ export default {
         path: '/login',
         redirectAuthorized: '/',
     },
+    logout: {
+        path: '/logout',
+        redirectNotAuthorized: '/login',
+    },
     list: {
         path: '/list/:category/:topic/:way',
         redirectNotAuthorized: '/login',

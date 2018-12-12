@@ -6,6 +6,7 @@ export const ENTER = `${mountPoint}.enter`;
 export const READY = `${mountPoint}.ready`;
 export const FAILURE = `${mountPoint}.failure`;
 
+export const AUTHORIZED = `${mountPoint}.authorized`;
 export const AUTHORIZED_SET = `${mountPoint}.authorized.set`;
 export const AUTHORIZED_UNSET = `${mountPoint}.authorized.unset`;
 

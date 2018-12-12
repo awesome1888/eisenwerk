@@ -14,9 +14,10 @@ export default class BothAccess {
      * Test the given rule against the given user
      * @param user
      * @param rule
+     * @param context
      * @returns boolean True if the access can be granted
      */
-    static testUser(user, rule) {
+    static testUser(user, rule, context = null) {
         if (rule.authorized === true && !_.isObjectNotEmpty(user)) {
             return false;
         }
@@ -38,7 +39,7 @@ export default class BothAccess {
         }
 
         if (_.isFunction(rule.custom)) {
-            return rule.custom(user, rule);
+            return rule.custom(user, context);
         }
 
         return true;

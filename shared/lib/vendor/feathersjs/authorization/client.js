@@ -13,6 +13,7 @@ export default class Authorization extends AuthorizationBoth {
             auth({
                 // todo: use custom storage in order to obtain the token either from localStorage or the URL
                 storage,
+                storageKey: 'jwt',
             }),
         );
     }

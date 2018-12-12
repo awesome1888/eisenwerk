@@ -55,7 +55,6 @@ export default class UserService extends BaseService {
                     this.getApplication().getOAuthGoogleDomain(),
                 );
 
-                // you are not allowed to create administrators, unless you came from google
                 if (isGoogle && !legalGoogleEmail) {
                     Error.throw403('You are not allowed join with this domain');
                 }
