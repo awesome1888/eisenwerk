@@ -58,59 +58,23 @@ export default class Authorization extends AuthorizationBoth {
         return userId;
     }
 
-    /**
-     * Checks if the current user is authorized and the token is valid.
-     * This function does the remote call.
-     * @returns {Promise<*>}
-     */
-    async isAuthorized() {
-        return this.getToken();
-    }
-
-    /**
-     * Returns the token stored in the storage (see .prepare() to change the type of the storage),
-     * or takes the provided one and checks if the token is valid.
-     * This function does the remote call.
-     * @returns {Promise<*>}
-     */
-    async getToken(token, validityCheck = true) {
-        if (_.isStringNotEmpty(token)) {
-            return token;
+    async extractPayload(token) {
+        if (!_.isStringNotEmpty(token)) {
+            token = await this.getToken(false);
         }
 
-        token = await this.getNetwork().passport.getJWT();
-        if (_.isStringNotEmpty(token)) {
-            if (validityCheck !== false) {
-                if (this.getNetwork().passport.payloadIsValid(token)) {
-                    return token;
-                }
-            } else {
-                return token;
-            }
-        }
-
-        return null;
-    }
-
-    /**
-     * Retrives user structure for the specified or stored token.
-     * This function does the remote call.
-     * Dont use the function in rendering the UI or stuff like that.
-     * The right choice would be to use the cached user inside the component by making a HOC connected
-     * to the redux store via Component.connectStore() method. See examples in the code.
-     * @param token
-     * @returns {Promise<*>}
-     */
-    async getUser(token = null) {
-        if (!this._userEntity) {
+        if (!_.isStringNotEmpty(token)) {
             return null;
         }
 
-        const id = await this.getUserId(token);
-        if (!id) {
-            return null;
+        return this.getNetwork().passport.verifyJWT(token);
+    }
+
+    async isTokenValid(token) {
+        if (!_.isStringNotEmpty(token)) {
+            return false;
         }
 
-        return this._userEntity.get(id);
+        return this.getNetwork().passport.payloadIsValid(token);
     }
 }

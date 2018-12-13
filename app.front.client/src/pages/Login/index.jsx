@@ -18,8 +18,11 @@ const LoginPage = ({ application, dispatch }) => {
                         .signInLocal(values.login, values.password)
                         .then(userId => {
                             dispatch({
-                                type: applicationReducer.AUTHORIZED,
-                                payload: userId,
+                                type: applicationReducer.USER_LOAD,
+                                payload: {
+                                    userId,
+                                    application,
+                                },
                             });
                             setSubmitting(false);
                         })

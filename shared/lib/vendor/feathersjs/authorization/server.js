@@ -1,5 +1,4 @@
 import auth from '@feathersjs/authentication';
-import errors from '@feathersjs/errors';
 import authManagement from '../../../../vendor/feathersjs/authentication-management/lib/index';
 import local from '@feathersjs/authentication-local';
 import jwt from '@feathersjs/authentication-jwt';
@@ -92,6 +91,10 @@ export default class Authorization extends AuthorizationBoth {
         Oauth2Failure.attach(app);
     }
 
+    getNetwork() {
+        return this._network.getApp();
+    }
+
     /**
      * Get token payload, if it is valid.
      * todo: on server side we can simplify this with redis cache
@@ -100,44 +103,26 @@ export default class Authorization extends AuthorizationBoth {
      * @returns {Promise<*>}
      */
     async extractPayload(token) {
-        token = await this.getToken(token);
-        if (!token) {
+        if (!_.isStringNotEmpty(token)) {
+            token = await this.getToken(false);
+        }
+
+        if (!_.isStringNotEmpty(token)) {
             return null;
         }
 
-        return this.getNetwork()
-            .getApp()
-            .passport.verifyJWT(token, {
-                secret: this.getSettings().getSecret(),
-            });
+        return this.getNetwork().passport.verifyJWT(token, {
+            secret: this.getSettings().getSecret(),
+        });
     }
 
-    /**
-     * Get user by their token
-     * @param token
-     * @returns {Promise<*>}
-     */
-    async getUser(token = null) {
-        if (!this._userEntity) {
-            return null;
+    async isTokenValid(token) {
+        if (!_.isStringNotEmpty(token)) {
+            return false;
         }
 
-        const id = await this.getUserId(token);
-        if (!id) {
-            return null;
-        }
-
-        let u = null;
-        try {
-            u = await this._userEntity.get(id);
-        } catch (e) {
-            if (e instanceof errors.NotFound) {
-                u = null;
-            } else {
-                throw e;
-            }
-        }
-
-        return u;
+        return this.getNetwork().passport.payloadIsValid(token, {
+            secret: this.getSettings().getSecret(),
+        });
     }
 }

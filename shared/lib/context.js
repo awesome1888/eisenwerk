@@ -49,7 +49,7 @@ export default class Context {
 
         const token = this.extractToken(context);
         if (_.isStringNotEmpty(token)) {
-            context.__user = await authorization.getUser(token);
+            context.__user = await authorization.getUserByToken(token);
             return context.__user;
         }
 

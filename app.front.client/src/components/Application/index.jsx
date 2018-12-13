@@ -2,20 +2,19 @@ import '../../style/index.scss'; // main style goes before any other
 
 import React from 'react';
 import { connect } from 'react-redux';
+import connectApplication from '../../context/application';
 
 import * as reducer from './reducer';
 import SorryScreen from '../SorryScreen';
-// // import Auth from '../../api/auth';
 
 import './style.scss';
 
 class Application extends React.Component {
     componentDidMount() {
-        this.props.dispatch({ type: reducer.ENTER });
-        // if (this.props.useAuth) {
-        //  const isFresh = Auth.isTokenFresh();
-        //  this.props.dispatch({type: isFresh ? reducer.APPLICATION_AUTHORIZED_SET : reducer.APPLICATION_AUTHORIZED_UNSET});
-        // }
+        this.props.dispatch({
+            type: reducer.ENTER,
+            payload: this.props.application,
+        });
     }
 
     componentDidCatch(e) {
@@ -23,14 +22,19 @@ class Application extends React.Component {
     }
 
     render() {
-        if (this.props.ready && this.props.error && SorryScreen) {
-            return <SorryScreen error={this.props.error} />;
+        const { ready, error, routes } = this.props;
+
+        if (!ready) {
+            return null;
+        }
+        if (ready && error && SorryScreen) {
+            return <SorryScreen error={error} />;
         }
 
-        return (
-            <div className="application">{this.props.routes(this.props)}</div>
-        );
+        return <div className="application">{routes(this.props)}</div>;
     }
 }
 
-export default connect(state => state.application)(Application);
+export default connect(state => state.application)(
+    connectApplication(Application),
+);

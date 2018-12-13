@@ -1,3 +1,5 @@
+import errors from '@feathersjs/errors';
+
 export default class Authorization {
     /**
      * Specifies what field is used to store user login
@@ -133,11 +135,24 @@ export default class Authorization {
     }
 
     /**
-     * Returns token. This function is more complex in the client-side implementation.
+     * Returns the token stored in the storage (see .prepare() to change the type of the storage),
+     * or takes the provided one and checks if the token is valid.
+     * This function does the remote call.
      * @returns {Promise<*>}
      */
-    async getToken(token) {
-        return _.isStringNotEmpty(token) ? token : null;
+    async getToken(validityCheck = true) {
+        const token = await this.getNetwork().passport.getJWT();
+        if (_.isStringNotEmpty(token)) {
+            if (validityCheck !== false) {
+                if (await this.isTokenValid(token)) {
+                    return token;
+                }
+            } else {
+                return token;
+            }
+        }
+
+        return null;
     }
 
     /**
@@ -147,12 +162,19 @@ export default class Authorization {
      * @returns {Promise<*>}
      */
     async extractPayload(token) {
-        token = await this.getToken(token);
-        if (!token) {
+        if (!_.isStringNotEmpty(token)) {
+            token = await this.getToken(false);
+        }
+
+        if (!_.isStringNotEmpty(token)) {
             return null;
         }
 
         return this.getNetwork().passport.verifyJWT(token);
+    }
+
+    async isTokenValid(token) {
+        throw new Error('Not implemented');
     }
 
     /**
@@ -167,5 +189,47 @@ export default class Authorization {
         }
 
         return payload.userId;
+    }
+
+    /**
+     * Get user by their token
+     * @param token
+     * @returns {Promise<*>}
+     */
+    async getUserByToken(token = null) {
+        if (!this._userEntity) {
+            return null;
+        }
+
+        const id = await this.getUserId(token);
+        if (!id) {
+            return null;
+        }
+
+        return this.getUser(id);
+    }
+
+    /**
+     * Get user by their id
+     * @param id
+     * @returns {Promise<*>}
+     */
+    async getUser(id = null) {
+        if (!this._userEntity) {
+            return null;
+        }
+
+        let u = null;
+        try {
+            u = await this._userEntity.get(id);
+        } catch (e) {
+            if (e instanceof errors.NotFound) {
+                u = null;
+            } else {
+                throw e;
+            }
+        }
+
+        return u;
     }
 }
