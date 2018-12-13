@@ -102,7 +102,12 @@ To connect to a running container:
     * [DONE] User entity should come to the Auth as a parameter, not hard-included
     * [DONE] getLoginField() and getPasswordFiled() all over the code
 2.  connect auth with redux
+    1. do something with onlogout and onreautherror events
+    2. check ssr again
+    3. redis cache for ssr will fail when there is an authorization (but should we fix this now? google will not be able to authorize anyway)
+    4. check how google oauth works
 3.  re-think oauth2
+4. refactor getSettings() to .get('some.variable', 'default-value');
 ==== NPM!!!!! ====
 1.95) move styles to styled-components
 1.955) new overlay and progressbar mechanic based on watching the store and\or EventEmitter on componentDidUpdate of page when switching from ready false -> true

@@ -14,10 +14,10 @@ export default parameters => {
             class extends React.Component {
                 componentDidMount() {
                     if (reducer.ENTER) {
-                        this.props.dispatch(
-                            { type: reducer.ENTER },
-                            { route: this.props.route },
-                        );
+                        this.props.dispatch({
+                            type: reducer.ENTER,
+                            payload: this.props,
+                        });
                     }
                     this.setMeta(this.props.meta);
                 }

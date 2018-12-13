@@ -74,7 +74,7 @@ export default class Authorization {
         return authManagement.create({
             action: 'sendResetPwd',
             value: {
-                'profile.email': email,
+                [this.constructor.getLoginField()]: email,
             },
             // notifierOptions: {
             //     preferredComm: 'email'
@@ -99,7 +99,7 @@ export default class Authorization {
             action: 'passwordChange',
             value: {
                 user: {
-                    'profile.email': email,
+                    [this.constructor.getLoginField()]: email,
                 },
                 oldPassword,
                 password, // new password
@@ -114,10 +114,10 @@ export default class Authorization {
             value: {
                 password,
                 changes: {
-                    'profile.email': newEmail,
+                    [this.constructor.getLoginField()]: newEmail,
                 },
                 user: {
-                    'profile.email': oldEmail,
+                    [this.constructor.getLoginField()]: oldEmail,
                 },
             },
         });
@@ -128,7 +128,7 @@ export default class Authorization {
         return authManagement.create({
             action: 'checkUnique',
             value: {
-                'profile.email': email,
+                [this.constructor.getLoginField()]: email,
             },
             ownId,
         });
@@ -162,19 +162,11 @@ export default class Authorization {
      * @returns {Promise<*>}
      */
     async extractPayload(token) {
-        if (!_.isStringNotEmpty(token)) {
-            token = await this.getToken(false);
-        }
-
-        if (!_.isStringNotEmpty(token)) {
-            return null;
-        }
-
-        return this.getNetwork().passport.verifyJWT(token);
+        throw new Error('Not implemented: .extractPayload()');
     }
 
     async isTokenValid(token) {
-        throw new Error('Not implemented');
+        throw new Error('Not implemented: .isTokenValid()');
     }
 
     /**

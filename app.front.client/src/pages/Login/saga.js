@@ -1,11 +1,10 @@
-import { takeLatest, call, put, fork, all } from 'redux-saga/effects';
+import { takeLatest, put, fork, all } from 'redux-saga/effects';
 import * as reducer from './reducer';
 import * as applicationReducer from '../../components/Application/reducer';
 import { makeStatus } from '../../shared/lib/util';
 
 function* loadData() {
     try {
-        // const response = yield call(() => Offer.find({token: Auth.getToken()}));
         const response = {};
         yield put({
             type: reducer.META_SET,
