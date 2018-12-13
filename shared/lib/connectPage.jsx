@@ -19,6 +19,7 @@ export default parameters => {
                             { route: this.props.route },
                         );
                     }
+                    this.setMeta(this.props.meta);
                 }
 
                 componentDidUpdate() {
@@ -29,6 +30,7 @@ export default parameters => {
                     if (reducer.LEAVE) {
                         this.props.dispatch({ type: reducer.LEAVE });
                     }
+                    this.setMeta();
                 }
 
                 setMeta(meta = {}) {
