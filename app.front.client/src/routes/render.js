@@ -5,68 +5,97 @@ import Route from '../shared/components/Route';
 import LayoutOuter from '../components/LayoutOuter';
 import PageLoader from '../shared/components/PageLoader';
 
-const renderRoutes = ({ routes, appProps }) => {
+const renderRoutes = ({ routes, routeProperties }) => {
     return (
         <Switch>
             <Route
-                {..._.mergeShallow(routes.home, appProps)}
-                render={route => (
-                    <LayoutOuter>
-                        <PageLoader page={routes.home.page} route={route} />
-                    </LayoutOuter>
-                )}
-            />
-            <Route
-                {..._.mergeShallow(routes.login, appProps)}
-                render={route => (
-                    <LayoutOuter>
-                        <PageLoader page={routes.login.page} route={route} />
-                    </LayoutOuter>
-                )}
-            />
-            <Route
-                {..._.mergeShallow(routes.list, appProps)}
-                render={route => (
-                    <LayoutOuter>
-                        <PageLoader page={routes.list.page} route={route} />
-                    </LayoutOuter>
-                )}
-            />
-            <Route
-                {..._.mergeShallow(routes.restricted, appProps)}
+                {...routes.home}
+                {...routeProperties}
                 render={route => (
                     <LayoutOuter>
                         <PageLoader
+                            route={route}
+                            page={routes.home.page}
+                            routeProperties={routeProperties}
+                        />
+                    </LayoutOuter>
+                )}
+            />
+            <Route
+                {...routes.login}
+                {...routeProperties}
+                render={route => (
+                    <LayoutOuter>
+                        <PageLoader
+                            route={route}
+                            page={routes.login.page}
+                            routeProperties={routeProperties}
+                        />
+                    </LayoutOuter>
+                )}
+            />
+            <Route
+                {...routes.list}
+                {...routeProperties}
+                render={route => (
+                    <LayoutOuter>
+                        <PageLoader
+                            route={route}
+                            page={routes.list.page}
+                            routeProperties={routeProperties}
+                        />
+                    </LayoutOuter>
+                )}
+            />
+            <Route
+                {...routes.restricted}
+                {...routeProperties}
+                render={route => (
+                    <LayoutOuter>
+                        <PageLoader
+                            route={route}
                             page={routes.restricted.page}
-                            route={route}
+                            routeProperties={routeProperties}
                         />
                     </LayoutOuter>
                 )}
             />
             <Route
-                {..._.mergeShallow(routes.forbidden, appProps)}
+                {...routes.forbidden}
+                {...routeProperties}
                 render={route => (
                     <LayoutOuter>
                         <PageLoader
-                            page={routes.forbidden.page}
                             route={route}
+                            page={routes.forbidden.page}
+                            routeProperties={routeProperties}
                         />
                     </LayoutOuter>
                 )}
             />
             <Route
-                {..._.mergeShallow(routes.logout, appProps)}
+                {...routes.logout}
+                {...routeProperties}
                 render={route => (
                     <LayoutOuter>
-                        <PageLoader page={routes.logout.page} route={route} />
+                        <PageLoader
+                            route={route}
+                            page={routes.logout.page}
+                            routeProperties={routeProperties}
+                        />
                     </LayoutOuter>
                 )}
             />
             <Route
-                {..._.mergeShallow(routes.notFound, appProps)}
+                {...routes.notFound}
+                {...routeProperties}
                 render={route => (
                     <LayoutOuter>
-                        <PageLoader page={routes.notFound.page} route={route} />
+                        <PageLoader
+                            route={route}
+                            page={routes.notFound.page}
+                            routeProperties={routeProperties}
+                        />
                     </LayoutOuter>
                 )}
             />

@@ -100,9 +100,21 @@ export default class Application extends BaseApplication {
         // todo: dispatch an action
     }
 
-    renderRoutes(appProps) {
+    makeRouteProperties(appProps) {
+        const routeProps = {
+            useAuth: this.useAuth(),
+            application: this,
+        };
+        if (this.useAuth()) {
+            routeProps.user = appProps.user;
+        }
+
+        return routeProps;
+    }
+
+    renderRoutes(routeProperties) {
         const routes = this.getRoutes();
-        return routeRender({ routes, appProps });
+        return routeRender({ routes, routeProperties });
     }
 
     /**
@@ -117,18 +129,11 @@ export default class Application extends BaseApplication {
                         application={this}
                         useAuth={this.useAuth()}
                         routes={appProps => {
-                            const applicationProps = {
-                                useAuth: this.useAuth(),
-                            };
-                            if (this.useAuth()) {
-                                Object.assign(applicationProps, {
-                                    user: appProps.user,
-                                });
-                            }
-
                             return (
                                 <ConnectedRouter history={this.getHistory()}>
-                                    {this.renderRoutes(applicationProps)}
+                                    {this.renderRoutes(
+                                        this.makeRouteProperties(appProps),
+                                    )}
                                 </ConnectedRouter>
                             );
                         }}

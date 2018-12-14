@@ -2,7 +2,6 @@ import '../../style/index.scss'; // main style goes before any other
 
 import React from 'react';
 import { connect } from 'react-redux';
-import connectApplication from '../../context/application';
 
 import * as reducer from './reducer';
 import SorryScreen from '../SorryScreen';
@@ -35,6 +34,4 @@ class Application extends React.Component {
     }
 }
 
-export default connectApplication(
-    connect(state => state.application)(Application),
-);
+export default connect(state => state.application)(Application);

@@ -6,7 +6,6 @@ import Database from '../../database';
 import Authorization from '../../vendor/feathersjs/authorization/server';
 import handler from '../../vendor/feathersjs/error-handler';
 import MethodFabric from '../../vendor/feathersjs/method/fabric';
-import EntityServiceFabric from '../../vendor/feathersjs/service/fabric';
 import render from './render';
 
 import ServerApplication from '../Server';
@@ -116,7 +115,17 @@ export default class FeathersAPIServerApplication extends ServerApplication {
     }
 
     createEntityServices(network) {
-        EntityServiceFabric.register(this, network, this.getServices());
+        this.getServices().forEach(service => {
+            // make instance
+            const serviceInstance = service.make(this);
+            // register middleware
+            network.use(serviceInstance.getPath(), serviceInstance);
+            // apply hooks
+            const hooks = serviceInstance.getHooks();
+            if (_.isObjectNotEmpty(hooks)) {
+                network.service(serviceInstance.getName()).hooks(hooks.get());
+            }
+        });
     }
 
     createMethods(network) {

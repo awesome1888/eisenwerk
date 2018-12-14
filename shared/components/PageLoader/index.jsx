@@ -1,21 +1,22 @@
 import React from 'react';
 import DynamicImport from '../DynamicImport';
 
-const PageLoader = ({page, route}) => {
+const PageLoader = ({ page, route, routeProperties }) => {
+    const pageProperties = {
+        route,
+        application: routeProperties.application,
+    };
+
     return (
         <React.Fragment>
-            {
-                page.lazy
-                &&
+            {page.lazy && (
                 <DynamicImport load={page.ui}>
-                    {Component => Component && <Component route={route} />}
+                    {Component =>
+                        Component && <Component {...pageProperties} />
+                    }
                 </DynamicImport>
-            }
-            {
-                !page.lazy
-                &&
-                <page.ui route={route} />
-            }
+            )}
+            {!page.lazy && <page.ui {...pageProperties} />}
         </React.Fragment>
     );
 };

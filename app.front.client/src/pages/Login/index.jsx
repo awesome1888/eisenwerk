@@ -2,12 +2,15 @@ import React from 'react';
 import Layout from '../../components/LayoutInner';
 import * as reducer from './reducer';
 import connectPage from '../../shared/lib/connectPage';
-import connectApplication from '../../context/application';
+// import connectApplication from '../../context/application';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import * as applicationReducer from '../../components/Application/reducer';
 
-const LoginPage = ({ application, dispatch }) => {
+const LoginPage = props => {
+    const { application, dispatch } = props;
+    console.dir('login props');
+    console.dir(props);
     return (
         <Layout>
             <Formik
@@ -124,4 +127,5 @@ const LoginPage = ({ application, dispatch }) => {
     );
 };
 
-export default connectPage({ reducer })(connectApplication(LoginPage));
+// export default connectPage({ reducer })(connectApplication(LoginPage));
+export default connectPage({ reducer })(LoginPage);
