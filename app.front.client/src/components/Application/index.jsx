@@ -35,6 +35,6 @@ class Application extends React.Component {
     }
 }
 
-export default connect(state => state.application)(
-    connectApplication(Application),
+export default connectApplication(
+    connect(state => state.application)(Application),
 );

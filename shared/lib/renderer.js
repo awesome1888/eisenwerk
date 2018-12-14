@@ -26,10 +26,10 @@ export default class Renderer {
         this._hooks[where] = this._hooks[where].filter(x => x !== what);
     }
 
-    async processBefore(req, res) {
+    async processBefore(...args) {
         if (_.isArrayNotEmpty(this._hooks.before)) {
             for (let i = 0; i < this._hooks.before.length; i++) {
-                const result = await this._hooks.before[i](req);
+                const result = await this._hooks.before[i](...args);
                 if (_.isStringNotEmpty(result)) {
                     this.send(res, result, 200);
                     return false;
@@ -40,10 +40,10 @@ export default class Renderer {
         return true;
     }
 
-    async processAfter(result, req, res) {
+    async processAfter(...args) {
         if (_.isArrayNotEmpty(this._hooks.after)) {
             for (let i = 0; i < this._hooks.after.length; i++) {
-                await this._hooks.after[i](result, req, res);
+                await this._hooks.after[i](...args);
             }
         }
     }
@@ -76,6 +76,7 @@ export default class Renderer {
                     req.path,
                     application.getRoutes(),
                 );
+
                 if (route && match) {
                     if (
                         this.makeRedirect(store, application, res, match, route)
@@ -123,7 +124,11 @@ export default class Renderer {
                 );
 
                 if (status === 200) {
-                    await this.processAfter(result, req, res);
+                    await this.processAfter(result, req, res, {
+                        route,
+                        match,
+                        page,
+                    });
                 }
 
                 this.send(res, result, status);

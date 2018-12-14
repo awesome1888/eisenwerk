@@ -96,7 +96,6 @@ To connect to a running container:
     [DONE] https://support.google.com/webmasters/answer/80553
     [DONE] https://support.google.com/webmasters/answer/1061943?hl=en
 13) [CANCEL] in outer layout replace OOP with HOC
-
 1.9) [DONE] simplify that oop multi-level crap with Apps, use composition for sake
     * [DONE] Fix what is broken
     * [DONE] User entity should come to the Auth as a parameter, not hard-included
@@ -135,6 +134,7 @@ To connect to a running container:
 16. [CANCEL] Couldn't open browser (if you are using BrowserSync in a headless environment, you might want to set the open option to false)]
 17. pack everything that is possible to npm
         lerna
+18) jasonette ? :)
 1.8) EHHH Shitty decisions made...
 Re-think the whole idea about how we dockerize: there is a simpler way to do that with no docker-build-tool involved
 Run as dockerized or not: should not be important

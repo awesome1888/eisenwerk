@@ -96,7 +96,11 @@ export default class WebServerApplication extends ServerApplication {
         return this.getCache().get(req.originalUrl);
     };
 
-    storeSSRCache = async (data, req) => {
+    storeSSRCache = async (data, req, res, extra) => {
+        const page = _.get(extra, 'route.page');
+        if (page && page.cacheable === false) {
+            return;
+        }
         await this.getCache().set(req.originalUrl, data.toString(), 60 * 5);
     };
 

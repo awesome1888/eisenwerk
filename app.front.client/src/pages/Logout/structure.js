@@ -7,4 +7,5 @@ export default {
     lazy: false,
     reducer,
     saga,
+    cacheable: false,
 };

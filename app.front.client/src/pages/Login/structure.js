@@ -6,4 +6,5 @@ export default {
     lazy: true,
     reducer,
     saga,
+    cacheable: false,
 };
