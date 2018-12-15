@@ -14,7 +14,6 @@ export default {
     },
     list: {
         path: '/list/:category/:topic/:way',
-        redirectNotAuthorized: '/login',
     },
     restricted: {
         path: '/restricted/:category/:topic/:way',

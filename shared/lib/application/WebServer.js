@@ -101,6 +101,7 @@ export default class WebServerApplication extends ServerApplication {
         if (page && page.cacheable === false) {
             return;
         }
+
         await this.getCache().set(req.originalUrl, data.toString(), 60 * 5);
     };
 

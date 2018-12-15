@@ -26,17 +26,21 @@ export default parameters => {
                 };
 
                 componentDidMount() {
+                    const { route, application, dispatch, meta } = this.props;
+
                     if (reducer.ENTER) {
-                        this.props.dispatch({
+                        dispatch({
                             type: reducer.ENTER,
-                            payload: this.props,
+                            payload: {
+                                application,
+                                route,
+                            },
                         });
                     }
-                    this.setMeta(this.props.meta);
+                    this.setMeta(meta);
 
-                    const app = this.props.application;
-                    if (app) {
-                        app.getEmitter().on('logout', this.onLogOut);
+                    if (application) {
+                        application.getEmitter().on('logout', this.onLogOut);
                     }
                 }
 

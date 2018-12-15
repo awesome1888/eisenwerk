@@ -102,7 +102,7 @@ To connect to a running container:
     * [DONE] getLoginField() and getPasswordFiled() all over the code
 2.  connect auth with redux
     1. [DONE] do something with onlogout and onreautherror events
-    2. check ssr again
+    2. [DONE] check ssr once again
     3. [POSTPONE] redis cache for ssr will fail when there is an authorization (but should we fix this now? google will not be able to authorize anyway)
     4. check how google oauth works
     12. redis 4 sessions

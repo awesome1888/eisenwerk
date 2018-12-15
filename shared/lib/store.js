@@ -121,8 +121,8 @@ export default class Store {
 
     // application
 
-    loadApplicationData() {
-        return this.loadData(this._application.reducer);
+    loadApplicationData(payload) {
+        return this.loadData(this._application.reducer, payload);
     }
 
     getApplicationData() {

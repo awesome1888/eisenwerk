@@ -9,8 +9,7 @@ import * as applicationReducer from '../../components/Application/reducer';
 
 const LoginPage = props => {
     const { application, dispatch } = props;
-    console.dir('login props');
-    console.dir(props);
+
     return (
         <Layout>
             <Formik

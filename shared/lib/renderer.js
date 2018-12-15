@@ -26,10 +26,10 @@ export default class Renderer {
         this._hooks[where] = this._hooks[where].filter(x => x !== what);
     }
 
-    async processBefore(...args) {
+    async processBefore(req, res) {
         if (_.isArrayNotEmpty(this._hooks.before)) {
             for (let i = 0; i < this._hooks.before.length; i++) {
-                const result = await this._hooks.before[i](...args);
+                const result = await this._hooks.before[i](req, res);
                 if (_.isStringNotEmpty(result)) {
                     this.send(res, result, 200);
                     return false;
@@ -69,7 +69,8 @@ export default class Renderer {
 
             const store = application.getStore();
             // load main reducer data
-            await store.loadApplicationData();
+            // keep this synced with Application componentDidMount()
+            await store.loadApplicationData(application);
             if (store.getApplicationData().ready) {
                 // load page data
                 const { route, match } = SSRRouter.match(
@@ -87,7 +88,11 @@ export default class Renderer {
                     const routeState = store.getReduxStore().getState().router;
                     routeState.match = match;
 
-                    await store.loadPageData(route.page, { route: routeState });
+                    // keep this synced with ConnectedPage componentDidMount()
+                    await store.loadPageData(route.page, {
+                        route: routeState,
+                        application: this,
+                    });
 
                     // pre-load ui
                     if (route.page.lazy) {
