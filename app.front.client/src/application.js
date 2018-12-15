@@ -7,6 +7,7 @@ import feathers from '@feathersjs/client';
 import rest from '@feathersjs/rest-client';
 import axios from 'axios';
 import { ConnectedRouter } from 'connected-react-router';
+import Emitter from 'tiny-emitter';
 
 import ReactApplication from './components/Application';
 import * as applicationReducer from './components/Application/reducer';
@@ -23,9 +24,13 @@ import User from './shared/api/user/entity/client';
 import { context as applicationContext } from './context/application';
 
 export default class Application extends BaseApplication {
+    getReducer() {
+        return applicationReducer;
+    }
+
     getMainStoreElement() {
         return {
-            reducer: applicationReducer,
+            reducer: this.getReducer(),
             saga: applicationSaga,
         };
     }
@@ -55,11 +60,13 @@ export default class Application extends BaseApplication {
 
                 // todo: connect it to the store
                 // application.on('authenticated', this.onLogin.bind(this));
-                application.on('logout', this.onLogout.bind(this));
-                application.on(
-                    'reauthentication-error',
-                    this.onReLoginError.bind(this),
-                );
+                application.on('logout', () => {
+                    this.getEmitter().emit('logout');
+                });
+                // application.on(
+                //     'reauthentication-error',
+                //     this.onReLoginError.bind(this),
+                // );
             }
 
             this._feathers = application;
@@ -84,20 +91,20 @@ export default class Application extends BaseApplication {
         return this._authorization;
     }
 
+    getEmitter() {
+        if (!this._emitter) {
+            this._emitter = new Emitter();
+        }
+
+        return this._emitter;
+    }
+
     async launch() {
         await super.launch();
 
         // // tell all entities to use this network as default when making REST calls (this is important)
         Entity.setNetwork(this.getNetwork());
         Method.setNetwork(this.getNetwork());
-    }
-
-    onLogout() {
-        // todo: dispatch an action
-    }
-
-    onReLoginError() {
-        // todo: dispatch an action
     }
 
     makeRouteProperties(appProps) {

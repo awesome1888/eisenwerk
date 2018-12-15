@@ -12,6 +12,19 @@ export default parameters => {
     return (Component, ErrorScreen = null) =>
         connect(mapStateToProps)(
             class extends React.Component {
+                onLogOut = () => {
+                    let type = this.props.application.getReducer()
+                        .AUTHORIZED_UNSET;
+                    if (reducer.AUTHORIZED_UNSET) {
+                        // the page can override the default AUTHORIZED_UNSET in order to do something, like i.e. save form data
+                        type = reducer.AUTHORIZED_UNSET;
+                    }
+
+                    this.props.dispatch({
+                        type,
+                    });
+                };
+
                 componentDidMount() {
                     if (reducer.ENTER) {
                         this.props.dispatch({
@@ -20,6 +33,11 @@ export default parameters => {
                         });
                     }
                     this.setMeta(this.props.meta);
+
+                    const app = this.props.application;
+                    if (app) {
+                        app.getEmitter().on('logout', this.onLogOut);
+                    }
                 }
 
                 componentDidUpdate() {
@@ -31,6 +49,11 @@ export default parameters => {
                         this.props.dispatch({ type: reducer.LEAVE });
                     }
                     this.setMeta();
+
+                    const app = this.props.application;
+                    if (app) {
+                        app.getEmitter().off('logout', this.onLogOut);
+                    }
                 }
 
                 setMeta(meta = {}) {

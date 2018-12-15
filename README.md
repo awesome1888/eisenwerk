@@ -101,13 +101,15 @@ To connect to a running container:
     * [DONE] User entity should come to the Auth as a parameter, not hard-included
     * [DONE] getLoginField() and getPasswordFiled() all over the code
 2.  connect auth with redux
-    1. do something with onlogout and onreautherror events
+    1. [DONE] do something with onlogout and onreautherror events
     2. check ssr again
-    3. redis cache for ssr will fail when there is an authorization (but should we fix this now? google will not be able to authorize anyway)
+    3. [POSTPONE] redis cache for ssr will fail when there is an authorization (but should we fix this now? google will not be able to authorize anyway)
     4. check how google oauth works
+    12. redis 4 sessions
 3.  re-think oauth2
 4. refactor getSettings() to .get('some.variable', 'default-value');
 ==== NPM!!!!! ====
+    lerna?
 1.95) move styles to styled-components
 1.955) new overlay and progressbar mechanic based on watching the store and\or EventEmitter on componentDidUpdate of page when switching from ready false -> true
     Item types:
@@ -118,22 +120,20 @@ To connect to a running container:
     2.1) [CANCEL] for entities remove server and client, make it isomorphic working through services
         4. [CANCEL] graphql for entities instead of REST and feathersjs?
             1. [CANCEL] what about caching?
-4.  migrations
-5.  manifest
-    6.1) web worker
+4.  migrations (as a separate app please)
+5. progressive web app:
+    5.  manifest
+        6.1) web worker
 6.  favicon
 7.  webicon
 8.  sitemap
 9.  [CANCEL] react strict mode
 10. [DONE] react error boundary
 11. jest (see article about lerna)
-12. redis 4 sessions
 13. [CANCEL] redis 4 intercomm
 14. npm WARN deprecated feathers-errors@2.9.2: Feathers v3 is out and has moved to @feathersjs/errors. See https://docs.feathersjs.com/migrating.html for more information.
 15. [DONE] separate class for templating
 16. [CANCEL] Couldn't open browser (if you are using BrowserSync in a headless environment, you might want to set the open option to false)]
-17. pack everything that is possible to npm
-        lerna
 18) jasonette ? :)
 1.8) EHHH Shitty decisions made...
 Re-think the whole idea about how we dockerize: there is a simpler way to do that with no docker-build-tool involved
