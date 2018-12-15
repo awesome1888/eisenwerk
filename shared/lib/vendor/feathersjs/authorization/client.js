@@ -19,20 +19,28 @@ export default class Authorization extends AuthorizationBoth {
     }
 
     /**
-     * Authenticate a user through oauth2 Google.
+     * Authenticate a user with a given strategy
+     * @param how
+     * @param data
      * @returns {Promise<*>}
      */
-    async signInThroughGoogle() {
+    async signIn(how = 'local', data = {}) {
         if (!window) {
             return null;
         }
 
+        if (how === 'local') {
+            return super.signIn(how, data);
+        }
+
         const ctx = this.getSettings();
+
+        // todo: check for legal "how"
 
         // we don't want this when doing ssr
         const openLoginPopup = (await import('feathers-authentication-popups'))
             .default;
-        openLoginPopup(`${ctx.getAPIURL()}/auth/google`, {
+        openLoginPopup(`${ctx.getAPIURL()}/auth/${how}`, {
             width: 600,
             height: 600,
         });

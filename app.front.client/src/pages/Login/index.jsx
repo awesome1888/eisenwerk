@@ -17,7 +17,7 @@ const LoginPage = props => {
                 onSubmit={(values, { setSubmitting }) => {
                     application
                         .getAuthorization()
-                        .signInLocal(values.login, values.password)
+                        .signIn('local', values)
                         .then(userId => {
                             dispatch({
                                 type: applicationReducer.USER_LOAD,
@@ -122,6 +122,13 @@ const LoginPage = props => {
                     );
                 }}
             </Formik>
+            <button
+                onClick={() => {
+                    props.application.getAuthorization().signIn('google');
+                }}
+            >
+                Login with google
+            </button>
         </Layout>
     );
 };

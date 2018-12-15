@@ -49,8 +49,8 @@ services:
             - AUTH__ENABLED=1
             - AUTH__SECRET=P4cRdF5mzSMPvy4hCdpKCjHMp3vZ4UvynaxhEAJK
             - AUTH__LOCAL__ENABLED=1
-            - AUTH__GOOGLE__CLIENT_ID=
-            - AUTH__GOOGLE__SECRET=
+            - AUTH__GOOGLE__CLIENT_ID=745832723828-5o4p8djtufdg3dbt7vq49jicgtf576nv.apps.googleusercontent.com
+            - AUTH__GOOGLE__SECRET=DC_XrNDl5SkVgDQOOq-0L6Zg
             - AUTH__GOOGLE__DOMAIN=
 
     ssr.cache:

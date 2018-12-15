@@ -46,12 +46,15 @@ export default class Authorization {
     }
 
     /**
-     * Authenticate a user with login and password, returns user id
-     * @param login
-     * @param password
+     * Authenticate a user with a given strategy
+     * @param how
+     * @param data
      * @returns {Promise<*>}
      */
-    async signInLocal(login, password) {
+    async signIn(how = 'local', data = {}) {
+        data = data || {};
+        const { login, password } = data;
+
         const response = await this.getNetwork().authenticate({
             strategy: 'local',
             [this.getLoginField()]: login,
