@@ -21,17 +21,18 @@ services:
             - AUTH__ENABLED=1
             - URL__ROOT=http://localhost:3001/
             - url.root=http://localhost:3001/
+            - url.auth.outer=http://localhost:3200/
+            - url.auth.inner=http://auth:3200/
             - URL__API=http://localhost:3100
             - URL__API_SSR=http://api:3100
-            - URL__AUTH=http://localhost:3200
             - FOLDER__ROOT=/usr/src/app/
             - FOLDER__PUBLIC=/usr/src/app/client/public/
             - FOLDER__TEMPLATE=/usr/src/app/client/html/
             - FILE__TEMPLATE__ASSETS=/usr/src/app/client/assets.html
             - PROJECT__NAME=Eisenwerk
             - SSR__CACHE__URL=redis://ssr.cache:6379
-            - auth.oauth2.google.client-id=745832723828-5o4p8djtufdg3dbt7vq49jicgtf576nv.apps.googleusercontent.com
-            - auth.oauth2.google.secret=DC_XrNDl5SkVgDQOOq-0L6Zg
+            - auth.oauth2.google.client-id=1075582803417-vnra2i2mg3g1j6na4h2il2h219qoh4ah.apps.googleusercontent.com
+            - auth.oauth2.google.secret=uAiRXseKeV_kGyqeUsIAHeu8
 
     api:
         build:
@@ -62,7 +63,7 @@ services:
             - db
         restart: on-failure
         environment:
-            - PORT=3100
+            - PORT=3200
             - URL__ROOT=http://localhost:3100/
             - URL__DB=mongodb://db:27017/ew
             - CORS__ORIGIN=http://localhost:3000,http://localhost:3001

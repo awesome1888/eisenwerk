@@ -70,15 +70,16 @@ export default class Application extends BaseApplication {
     }
 
     getAuthentication(network = null) {
-        if (!this._authorization) {
-            this._authorization = new Authentication({
+        if (!this._auth) {
+            this._auth = new Authentication({
                 network: network || this.getNetwork(),
                 settings: this.getSettings(),
                 userEntity: User,
             });
+            this._auth.attach();
         }
 
-        return this._authorization;
+        return this._auth;
     }
 
     getEmitter() {

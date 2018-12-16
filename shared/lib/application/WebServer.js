@@ -82,7 +82,7 @@ export default class WebServerApplication extends ServerApplication {
             return false;
         }
 
-        if (!_.isFunction(this.getParams().clientApplication)) {
+        if (!_.isFunction(this.getClientApplicationConstructor())) {
             return false;
         }
 

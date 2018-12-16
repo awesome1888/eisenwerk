@@ -16,7 +16,7 @@ export default class Application extends WebServer {
                 network: network || this.getNetwork(),
                 settings: this.getSettings(),
             });
-            this._auth.prepare();
+            this._auth.attach();
         }
 
         return this._auth;

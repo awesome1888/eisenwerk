@@ -107,6 +107,7 @@ To connect to a running container:
     4. check how google oauth works
     12. redis 4 sessions
 3.  re-think oauth2
+    1. entity ACL should be application-specific!
 4. refactor getSettings() to .get('some.variable', 'default-value');
 ==== NPM!!!!! ====
     lerna?

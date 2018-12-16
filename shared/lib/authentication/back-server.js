@@ -3,9 +3,17 @@ export default class BackServer {
         this._params = params;
     }
 
-    prepare() {}
+    attach() {}
 
     getParams() {
         return this._params || {};
+    }
+
+    getPasswordField() {
+        return 'profile.password';
+    }
+
+    getLoginField() {
+        return 'profile.email';
     }
 }

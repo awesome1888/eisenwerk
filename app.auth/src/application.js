@@ -24,7 +24,7 @@ export default class Application extends FeathersAPIServer {
                 settings: this.getSettings(),
                 userEntity: User,
             });
-            this._auth.prepare();
+            this._auth.attach();
         }
 
         return this._auth;

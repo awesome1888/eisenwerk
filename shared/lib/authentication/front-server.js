@@ -1,12 +1,16 @@
 import passport from 'passport';
 import { OAuth2Strategy } from 'passport-google-oauth';
+import axios from 'axios';
 
+/**
+ * The only purpose of this class in to work with OAuth2 on the same host where we serve our frontend
+ */
 export default class FrontServer {
     constructor(params = {}) {
         this._params = params;
     }
 
-    prepare() {
+    attach() {
         const { settings, network } = this.getParams();
         passport.use(
             new OAuth2Strategy(
@@ -15,41 +19,64 @@ export default class FrontServer {
                     clientSecret: settings.get('auth.oauth2.google.secret'),
                     callbackURL: `${settings.get(
                         'url.root',
-                        '',
-                    )}/auth/google/callback`,
+                        '/',
+                    )}auth/google/callback`,
                 },
                 (accessToken, refreshToken, profile, done) => {
                     console.dir('resolving user');
                     console.dir(accessToken);
-                    console.dir(refreshToken);
                     console.dir(profile);
-                    done(new Error('shit'), null);
 
-                    // User.findOrCreate({ googleId: profile.id }, function (err, user) {
-                    //     return done(err, user);
-                    // });
+                    const authURL = settings.get('url.auth.inner');
+                    if (!_.isStringNotEmpty(authURL)) {
+                        throw new Error('No url.auth parameter specified');
+                    }
+
+                    axios
+                        .post(`${authURL}oauth2`, {
+                            provider: 'google',
+                            token: accessToken,
+                        })
+                        .then(res => {
+                            console.dir(res);
+                            done(null, res);
+                        })
+                        .catch(err => {
+                            console.dir(err);
+                            done(err);
+                        });
                 },
             ),
         );
 
-        network.all('/success', (req, res) => {
-            res.send('SUCCESS!');
+        network.all('/auth/result', (req, res) => {
+            if (req.query.failure) {
+                res.send('FUCK!');
+            } else {
+                res.send('SUCCESS!');
+            }
         });
 
-        network.all('/failure', (req, res) => {
+        network.get('/failure', (req, res) => {
             res.send('FAILURE!');
         });
 
         network.get(
             '/auth/google',
             passport.authenticate('google', {
-                scope: ['https://www.googleapis.com/auth/plus.login'],
+                scope: [
+                    // 'https://www.googleapis.com/auth/plus.login',
+                    'email',
+                    'profile',
+                ],
             }),
         );
 
         network.get(
             '/auth/google/callback',
-            passport.authenticate('google', { failureRedirect: '/failure' }),
+            passport.authenticate('google', {
+                failureRedirect: '/auth/result?failure',
+            }),
             (req, res) => {
                 res.redirect('/success');
             },

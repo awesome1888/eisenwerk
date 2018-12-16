@@ -3,7 +3,7 @@ export default class FrontClientWeb {
         this._params = params;
     }
 
-    prepare() {}
+    attach() {}
 
     getParams() {
         return this._params || {};
@@ -21,7 +21,9 @@ export default class FrontClientWeb {
         return this.signInOAuth2(how, params);
     }
 
-    async signOut() {}
+    async signOut() {
+        this.storeToken();
+    }
 
     async signInLocal() {}
 
@@ -51,5 +53,13 @@ export default class FrontClientWeb {
         // // const userId = await this.getUserId(token);
         //
         // return userId;
+    }
+
+    async decodeToken(token, validate = true) {}
+
+    storeToken(token = null) {}
+
+    getStorage() {
+        return null;
     }
 }

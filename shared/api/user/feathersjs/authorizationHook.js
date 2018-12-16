@@ -124,69 +124,6 @@ export default class AuthorizationHook {
         });
     }
 
-    static declarePreProcess(hooks, application) {
-        hooks.declare({
-            before: {
-                all: [
-                    ctx => {
-                        if (ctx.method !== 'create') {
-                            return ctx;
-                        }
-
-                        // GOOGLE support
-                        // when the user gets created through google oauth2, we need to extract
-                        // their data and put on the right place
-                        const google = _.getValue(ctx, 'data.google');
-                        if (_.isObjectNotEmpty(google)) {
-                            let userEmail = null;
-                            const emails = _.getValue(google, 'profile.emails');
-                            if (_.isArrayNotEmpty(emails)) {
-                                userEmail = emails.find(
-                                    email => email.type === 'account',
-                                ).value;
-                            }
-
-                            delete ctx.data.google;
-
-                            const gProfile = google.profile;
-
-                            delete gProfile._raw;
-                            delete gProfile._json;
-
-                            // set google service
-                            const sProfile = _.cloneDeep(gProfile);
-                            delete sProfile.id;
-                            delete sProfile.name;
-                            delete sProfile.displayName;
-
-                            ctx.data.service = ctx.data.service || {};
-                            ctx.data.service.google = {
-                                id: gProfile.id,
-                                profile: sProfile,
-                            };
-
-                            ctx.data.profile = ctx.data.profile || {};
-
-                            // set email
-                            ctx.data.profile.email = userEmail;
-
-                            // set names
-                            const names = _.get(google, 'profile.name');
-                            if (_.isObjectNotEmpty(names)) {
-                                ctx.data.profile.firstName =
-                                    names.givenName || '';
-                                ctx.data.profile.lastName =
-                                    names.familyName || '';
-                            }
-                        }
-
-                        return ctx;
-                    },
-                ],
-            },
-        });
-    }
-
     static isLegalEmail(email, domain) {
         if (!_.isStringNotEmpty(email)) {
             return false;
