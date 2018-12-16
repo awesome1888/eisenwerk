@@ -3,7 +3,6 @@ import express from '@feathersjs/express';
 import errors from '@feathersjs/errors';
 
 import Database from '../../database';
-import Authorization from '../../vendor/feathersjs/authorization/server';
 import handler from '../../vendor/feathersjs/error-handler';
 import MethodFabric from '../../vendor/feathersjs/method/fabric';
 import render from './render';
@@ -29,28 +28,18 @@ export default class FeathersAPIServerApplication extends ServerApplication {
 
     getNetwork() {
         if (!this._network) {
-            const sett = this.getSettings();
-            const app = new Express({
+            const settings = this.getSettings();
+            this._network = new Express({
                 app: express(feathers()),
-                port: sett.getPort(),
-                hostname: sett.getRootURLParsed().hostname,
-                cors: sett.getAllowedOrigins(),
+                port: settings.getPort(),
+                hostname: settings.getRootURLParsed().hostname,
+                cors: settings.getAllowedOrigins(),
                 registerMiddleware: eApp => {
                     // set up REST transport
                     eApp.configure(express.rest());
 
-                    if (sett.useAuth()) {
-                        // do not relocate this line elsewhere!
-                        Authorization.prepare(
-                            eApp,
-                            this.getSettings(),
-                            this.getUserEntity(),
-                        );
-                    }
-
-                    this.createEntityServices(eApp);
-                    this.createMethods(eApp);
-
+                    this.getAuthentication(eApp);
+                    this.attachMiddleware(eApp);
                     eApp.get('/', (req, res) => {
                         res.status(200);
                         res.send(
@@ -75,8 +64,6 @@ export default class FeathersAPIServerApplication extends ServerApplication {
                     return null;
                 },
             });
-
-            this._network = app;
         }
 
         return this._network;
@@ -86,20 +73,13 @@ export default class FeathersAPIServerApplication extends ServerApplication {
         return !!this._network;
     }
 
+    getAuthentication() {
+        return null;
+    }
+
+    // todo: tmp
     getAuthorization() {
-        if (!this.getSettings().useAuth()) {
-            return null;
-        }
-
-        if (!this._authorization) {
-            this._authorization = new Authorization(
-                this.getNetwork(),
-                this.getSettings(),
-                this.getUserEntity(),
-            );
-        }
-
-        return this._authorization;
+        return this.getAuthentication();
     }
 
     getServices() {
@@ -110,11 +90,12 @@ export default class FeathersAPIServerApplication extends ServerApplication {
         return [];
     }
 
-    getUserEntity() {
-        return null;
+    attachMiddleware(eApp) {
+        this.attachEntityServices(eApp);
+        this.attachMethods(eApp);
     }
 
-    createEntityServices(network) {
+    attachEntityServices(network) {
         this.getServices().forEach(service => {
             // make instance
             const serviceInstance = service.make(this);
@@ -128,7 +109,7 @@ export default class FeathersAPIServerApplication extends ServerApplication {
         });
     }
 
-    createMethods(network) {
+    attachMethods(network) {
         MethodFabric.register(this, network, this.getMethods());
     }
 

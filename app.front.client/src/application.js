@@ -16,7 +16,8 @@ import applicationSaga from './components/Application/saga';
 import SorryScreen from './components/SorryScreen';
 import routeMap from './routes/withUI';
 import routeRender from './routes/render';
-import Authorization from './shared/lib/vendor/feathersjs/authorization/client';
+// import Authorization from './shared/lib/vendor/feathersjs/authorization/client';
+import Authentication from './shared/lib/authentication/front-client-web';
 import Entity from './shared/lib/entity/client.js';
 import Method from './shared/lib/vendor/feathersjs/method/client.js';
 
@@ -55,19 +56,7 @@ export default class Application extends BaseApplication {
             // https://docs.feathersjs.com/api/client/rest.html
             application.configure(restClient.axios(axios));
 
-            if (this.useAuth()) {
-                Authorization.prepare(application, this._storage, User);
-
-                // todo: connect it to the store
-                // application.on('authenticated', this.onLogin.bind(this));
-                application.on('logout', () => {
-                    this.getEmitter().emit('logout');
-                });
-                // application.on(
-                //     'reauthentication-error',
-                //     this.onReLoginError.bind(this),
-                // );
-            }
+            this.getAuthentication(application);
 
             this._feathers = application;
         }
@@ -75,17 +64,18 @@ export default class Application extends BaseApplication {
         return this._feathers;
     }
 
+    // todo: tmp
     getAuthorization() {
-        if (!this.useAuth()) {
-            return null;
-        }
+        return this.getAuthentication();
+    }
 
+    getAuthentication(network = null) {
         if (!this._authorization) {
-            this._authorization = new Authorization(
-                this.getNetwork(),
-                this.getSettings(),
-                User,
-            );
+            this._authorization = new Authentication({
+                network: network || this.getNetwork(),
+                settings: this.getSettings(),
+                userEntity: User,
+            });
         }
 
         return this._authorization;

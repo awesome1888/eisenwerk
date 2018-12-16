@@ -7,6 +7,14 @@ class Settings {
         this._params = params || {};
     }
 
+    get(name, def = undefined) {
+        if (name in this.env) {
+            return this.env[name];
+        }
+
+        return def;
+    }
+
     checkMandatory() {
         const missing = [];
         if (!_.isStringNotEmpty(this.getRootURL())) {

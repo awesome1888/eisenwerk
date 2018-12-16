@@ -1,9 +1,8 @@
 import FeathersAPIServer from './shared/lib/application/FeathersAPIServer';
-import services from './shared/api/services';
-import methods from './shared/api/methods';
 import Entity from './shared/lib/entity/server';
 import User from './shared/api/user/entity/server';
-import Authentication from './shared/lib/authentication/back-server';
+import UserService from './shared/api/user/feathersjs/service';
+import Authentication from './shared/lib/authentication/auth-server';
 
 export default class Application extends FeathersAPIServer {
     /**
@@ -11,11 +10,11 @@ export default class Application extends FeathersAPIServer {
      * @returns {*[]}
      */
     getServices() {
-        return services;
+        return [UserService];
     }
 
-    getMethods() {
-        return methods;
+    getUserEntity() {
+        return User;
     }
 
     getAuthentication(network = null) {

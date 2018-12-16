@@ -12,6 +12,14 @@ class Settings {
         }
     }
 
+    get(name, def = undefined) {
+        if (name in this.env) {
+            return this.env[name];
+        }
+
+        return def;
+    }
+
     getRootURL() {
         return this.env.URL__ROOT || '';
     }

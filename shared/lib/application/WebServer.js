@@ -31,6 +31,7 @@ export default class WebServerApplication extends ServerApplication {
                 publicFolder: sett.getPublicFolder(),
                 registerMiddleware: eApp => {
                     eApp.use(spiderDetector.middleware());
+                    this.getAuthentication(eApp);
                     eApp.get('*', async (req, res, next) => {
                         if (this.useSSR(req)) {
                             try {
@@ -127,7 +128,7 @@ export default class WebServerApplication extends ServerApplication {
             const Renderer = (await import('../renderer')).default;
             this._renderer = new Renderer({
                 template: this.getTemplate(),
-                clientApplication: this.getParams().clientApplication,
+                clientApplication: this.getClientApplicationConstructor(),
                 settings: this.getSettings(),
             });
 
@@ -138,6 +139,14 @@ export default class WebServerApplication extends ServerApplication {
         }
 
         return this._renderer;
+    }
+
+    getClientApplicationConstructor() {
+        return null;
+    }
+
+    getRoutes() {
+        return null;
     }
 
     getTemplate() {
@@ -151,9 +160,9 @@ export default class WebServerApplication extends ServerApplication {
     }
 
     async getStatusCode(req) {
-        let routes = null;
-        if (_.isFunction(this.getParams().routes)) {
-            routes = (await this.getParams().routes()).default;
+        let routes = this.getRoutes();
+        if (_.isFunction(routes)) {
+            routes = (await routes()).default;
 
             if (_.isObjectNotEmpty(routes)) {
                 const { route } = SSRRouter.match(req.path, routes);

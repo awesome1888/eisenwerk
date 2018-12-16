@@ -33,14 +33,12 @@ export default class Authorization extends AuthorizationBoth {
             return super.signIn(how, data);
         }
 
-        const ctx = this.getSettings();
-
         // todo: check for legal "how"
 
         // we don't want this when doing ssr
         const openLoginPopup = (await import('feathers-authentication-popups'))
             .default;
-        openLoginPopup(`${ctx.getAPIURL()}/auth/${how}`, {
+        openLoginPopup(`/auth/${how}`, {
             width: 600,
             height: 600,
         });
