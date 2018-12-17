@@ -1,8 +1,11 @@
 const omit = require('lodash.omit');
 const cloneDeep = require('lodash.clonedeep');
 
-const { select, filterQuery } = require('@feathersjs/commons');
+const { select, filterQuery } = require('./commons-old');
 const errors = require('@feathersjs/errors');
+
+console.dir('filterQuery');
+console.dir(filterQuery);
 
 const errorHandler = require('./error-handler');
 
