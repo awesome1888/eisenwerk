@@ -29,6 +29,7 @@
         "lodash.isnumber": "^3.0.3",
         "lodash.isobject": "^3.0.2",
         "lodash.isstring": "^4.0.1",
+        "lodash.set": "^4.3.2",
         "lodash.union": "^4.6.0",
         "object.intersect": "0.0.3",
         "passport": "^0.4.0",
