@@ -26,10 +26,7 @@ export default class AuthServer {
                     throw new Error(400);
                 }
 
-                console.dir('token');
-                console.dir(token);
-
-                // verify our token
+                // verify this short-living oauth2 token
                 const strategy = new OAuth2Strategy(
                     {
                         authorizationURL: 'mock',
@@ -58,6 +55,7 @@ export default class AuthServer {
 
                 // find or create user, get their id
                 const userId = await this.findOrCreateUser(provider, user);
+                console.dir(`user id = ${userId}`);
 
                 // create jwt
 
@@ -73,32 +71,37 @@ export default class AuthServer {
     async findOrCreateUser(provider, data) {
         const { userEntity } = this.getParams();
 
-        const user = await userEntity.find({
+        const result = await userEntity.find({
             filter: {
                 [`service.${provider}.id`]: data.id,
             },
             select: ['_id'],
         });
-        if (!user) {
-            const uData = this.adaptData(data);
-            console.dir('udata:');
-            console.dir(uData);
-            // userEntity.save();
+
+        let id = null;
+        const user = _.get(result, 'data.0');
+        if (user) {
+            id = user.getId();
         }
 
-        return '1';
+        // add or update
+        const sResult = await userEntity.save(id, this.adaptData(data));
+        if (sResult.isOk()) {
+            id = sResult.getData()._id;
+        }
+
+        return id;
     }
 
     adaptData(data) {
         const uData = {};
 
-        let userEmail = null;
         const emails = data.emails;
         if (_.isArrayNotEmpty(emails)) {
-            userEmail = emails.find(email => email.type === 'account').value;
-        }
-        if (userEmail) {
-            _.set(uData, this.getLoginField(), userEmail);
+            const userEmail = emails.find(email => email.type === 'account');
+            if (userEmail && userEmail.value) {
+                _.set(uData, this.getLoginField(), userEmail.value);
+            }
         }
 
         uData.service = {};
@@ -108,8 +111,8 @@ export default class AuthServer {
 
         if (data.name) {
             uData.profile = uData.profile || {};
-            uData.profile.firstName = data.profile.givenName || '';
-            uData.profile.lastName = data.profile.familyName || '';
+            uData.profile.firstName = data.name.givenName || '';
+            uData.profile.lastName = data.name.familyName || '';
         }
 
         return uData;
