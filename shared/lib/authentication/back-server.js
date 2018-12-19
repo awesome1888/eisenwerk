@@ -1,3 +1,7 @@
+/**
+ * This class is used on the side of API server
+ */
+
 export default class BackServer {
     constructor(params = {}) {
         this._params = params;

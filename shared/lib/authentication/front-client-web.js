@@ -1,3 +1,7 @@
+/**
+ * This class is used client-side to enable integration with OAuth2
+ */
+
 export default class FrontClientWeb {
     constructor(params = {}) {
         this._params = params;

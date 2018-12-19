@@ -1,10 +1,12 @@
+/**
+ * This class is used on the client serving server to enable integration with OAuth2.
+ *
+ */
+
 import passport from 'passport';
 import { OAuth2Strategy } from 'passport-google-oauth';
 import axios from 'axios';
 
-/**
- * The only purpose of this class in to work with OAuth2 on the same host where we serve our frontend
- */
 export default class FrontServer {
     constructor(params = {}) {
         this._params = params;
@@ -23,9 +25,9 @@ export default class FrontServer {
                     )}auth/google/callback`,
                 },
                 (accessToken, refreshToken, profile, done) => {
-                    console.dir('resolving user');
-                    console.dir(accessToken);
-                    console.dir(profile);
+                    // console.dir('resolving user');
+                    // console.dir(accessToken);
+                    // console.dir(profile);
 
                     const authURL = settings.get('url.auth.inner');
                     if (!_.isStringNotEmpty(authURL)) {
@@ -38,16 +40,30 @@ export default class FrontServer {
                             token: accessToken,
                         })
                         .then(res => {
-                            console.dir(res);
+                            // console.dir('res::::');
+                            // console.dir(res);
                             done(null, res);
                         })
                         .catch(err => {
-                            console.dir(err);
+                            // console.dir(err);
                             done(err);
                         });
                 },
             ),
         );
+
+        // use also local strategy here
+
+        passport.serializeUser((user, cb) => {
+            cb(null, user);
+        });
+
+        passport.deserializeUser((obj, cb) => {
+            cb(null, obj);
+        });
+
+        network.use(passport.initialize());
+        network.use(passport.session());
 
         network.all('/auth/result', (req, res) => {
             if (req.query.failure) {
@@ -64,11 +80,7 @@ export default class FrontServer {
         network.get(
             '/auth/google',
             passport.authenticate('google', {
-                scope: [
-                    // 'https://www.googleapis.com/auth/plus.login',
-                    'email',
-                    'profile',
-                ],
+                scope: ['email', 'profile'],
             }),
         );
 
@@ -78,6 +90,12 @@ export default class FrontServer {
                 failureRedirect: '/auth/result?failure',
             }),
             (req, res) => {
+                const token = _.get(req, 'session.passport.user.data.token');
+                if (!_.isStringNotEmpty(token)) {
+                    return res.redirect('/auth/result?failure');
+                }
+
+                // set header
                 res.redirect('/success');
             },
         );

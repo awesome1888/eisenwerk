@@ -140,6 +140,7 @@ To connect to a running container:
 Re-think the whole idea about how we dockerize: there is a simpler way to do that with no docker-build-tool involved
 Run as dockerized or not: should not be important
 https://www.npmjs.com/package/nodemon-webpack-plugin
+1.81) hasher should accept ranks
 
 * Optional stuff
     * Redis as a bus

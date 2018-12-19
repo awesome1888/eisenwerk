@@ -72,6 +72,8 @@ services:
             - AUTH__GOOGLE__CLIENT_ID=745832723828-5o4p8djtufdg3dbt7vq49jicgtf576nv.apps.googleusercontent.com
             - AUTH__GOOGLE__SECRET=DC_XrNDl5SkVgDQOOq-0L6Zg
             - AUTH__GOOGLE__DOMAIN=
+            - auth.jwt.ttl=3600
+            - auth.secret=P4cRdF5mzSMPvy4hCdpKCjHMp3vZ4UvynaxhEAJK
 
     ssr.cache:
         build:

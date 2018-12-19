@@ -1,4 +1,9 @@
+/**
+ * This class is used on the side of AUTH server
+ */
+
 import passport from 'passport';
+import jwt from 'jsonwebtoken';
 import OAuth2Strategy from 'passport-google-oauth20';
 import { wrapError } from '../util';
 
@@ -9,6 +14,8 @@ export default class AuthServer {
 
     attach() {
         const { settings, network, userEntity } = this.getParams();
+
+        this.checkSettings(settings);
 
         network.post(
             '/oauth2',
@@ -55,13 +62,13 @@ export default class AuthServer {
 
                 // find or create user, get their id
                 const userId = await this.findOrCreateUser(provider, user);
-                console.dir(`user id = ${userId}`);
 
                 // create jwt
-
-                // send jwt
-
-                res.send('qqq');
+                res.header('Content-Type', 'application/json').send(
+                    JSON.stringify({
+                        token: await this.makeToken(userId),
+                    }),
+                );
             }),
         );
 
@@ -116,6 +123,37 @@ export default class AuthServer {
         }
 
         return uData;
+    }
+
+    async makeToken(userId) {
+        const { settings } = this.getParams();
+        const tokenTTL = settings.get('auth.jwt.ttl', 3600);
+        const secret = settings.get('auth.secret');
+
+        return new Promise((resolve, reject) => {
+            jwt.sign(
+                {
+                    id: userId,
+                    expires: tokenTTL,
+                },
+                secret,
+                { expiresIn: tokenTTL },
+                (err, token) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(token);
+                    }
+                },
+            );
+        });
+    }
+
+    checkSettings(settings) {
+        const secret = settings.get('auth.secret');
+        if (!_.isStringNotEmpty(secret)) {
+            throw new Error('auth.secret not defined, unable to issue tokens');
+        }
     }
 
     getParams() {
