@@ -32,7 +32,7 @@ export default class FrontClientWeb {
         this.storeToken();
     }
 
-    async signInLocal() {}
+    async signInLocal(params) {}
 
     async signInOAuth2(how) {
         const openLoginPopup = (await import('feathers-authentication-popups'))
@@ -49,17 +49,13 @@ export default class FrontClientWeb {
 
         const token = await new Promise((resolve, reject) => {
             window.__authAgentPrevReject = reject;
-            window.authAgent.once('login', resToken => {
-                resolve(resToken);
-            });
+            window.authAgent.once('login', resolve);
         });
 
         await this.storeToken(token);
         window.__authAgentPrevReject = null;
 
-        const userId = await this.getUserId(token, false);
-        console.dir('User id: ' + userId);
-        return userId;
+        return this.getUserId(token, false);
     }
 
     async decodeToken(token, verify = true) {
@@ -122,7 +118,6 @@ export default class FrontClientWeb {
         const userId = await this.getUserId(token, validate);
         const { userEntity } = this.getParams();
         if (userId) {
-            console.dir('uid ' + userId);
             return userEntity.get(userId);
         }
 
