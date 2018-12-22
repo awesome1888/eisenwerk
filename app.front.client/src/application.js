@@ -75,6 +75,7 @@ export default class Application extends BaseApplication {
                 network: network || this.getNetwork(),
                 settings: this.getSettings(),
                 userEntity: User,
+                isSSR: this.isSSR(),
             });
             this._auth.attach();
         }

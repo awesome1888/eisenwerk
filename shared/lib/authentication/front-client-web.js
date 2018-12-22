@@ -31,7 +31,7 @@ export default class FrontClientWeb {
 
     async signInLocal() {}
 
-    async signInOAuth2(how, params = {}) {
+    async signInOAuth2(how) {
         const openLoginPopup = (await import('feathers-authentication-popups'))
             .default;
         openLoginPopup(`/auth/${how}`, {
@@ -51,21 +51,34 @@ export default class FrontClientWeb {
             });
         });
 
-        console.dir('TOKEN: ' + token);
+        await this.storeToken(token);
+        window.__authAgentPrevReject = null;
 
-        // //this.getNetwork().passport.setJWT(token);
-        // window.__authAgentPrevReject = null;
-        //
-        // // const userId = await this.getUserId(token);
-        //
+        // const userId = await this.getUserId(token);
         // return userId;
     }
 
     async decodeToken(token, validate = true) {}
 
-    storeToken(token = null) {}
+    async storeToken(token = null) {
+        const storage = await this.getStorage();
+        storage.setItem('auth', token);
+    }
 
-    getStorage() {
-        return null;
+    async cleanUpToken() {
+        return this.storeToken(undefined);
+    }
+
+    async getStorage() {
+        if (!this._storage) {
+            if (!window) {
+                const Storage = (await import('node-storage-shim')).default;
+                this._storage = new Storage();
+            } else {
+                this._storage = window.localStorage;
+            }
+        }
+
+        return this._storage;
     }
 }
