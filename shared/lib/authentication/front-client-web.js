@@ -51,6 +51,8 @@ export default class FrontClientWeb {
             });
         });
 
+        console.dir('TOKEN: ' + token);
+
         // //this.getNetwork().passport.setJWT(token);
         // window.__authAgentPrevReject = null;
         //

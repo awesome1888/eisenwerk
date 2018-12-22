@@ -133,7 +133,7 @@ export default class AuthServer {
         return new Promise((resolve, reject) => {
             jwt.sign(
                 {
-                    id: userId,
+                    userId,
                     expires: tokenTTL,
                 },
                 secret,

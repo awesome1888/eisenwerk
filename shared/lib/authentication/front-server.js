@@ -6,6 +6,7 @@
 import passport from 'passport';
 import { OAuth2Strategy } from 'passport-google-oauth';
 import axios from 'axios';
+import makeTokenScript from './util/make-token-script';
 
 export default class FrontServer {
     constructor(params = {}) {
@@ -34,6 +35,7 @@ export default class FrontServer {
                         throw new Error('No url.auth parameter specified');
                     }
 
+                    // ask our auth service to create/update a user and issue a token
                     axios
                         .post(`${authURL}oauth2`, {
                             provider: 'google',
@@ -87,16 +89,15 @@ export default class FrontServer {
         network.get(
             '/auth/google/callback',
             passport.authenticate('google', {
-                failureRedirect: '/auth/result?failure',
+                failureRedirect: '/failure',
             }),
             (req, res) => {
                 const token = _.get(req, 'session.passport.user.data.token');
                 if (!_.isStringNotEmpty(token)) {
-                    return res.redirect('/auth/result?failure');
+                    return res.redirect('/failure');
                 }
 
-                // set header
-                res.redirect('/success');
+                return makeTokenScript(res, token);
             },
         );
     }
