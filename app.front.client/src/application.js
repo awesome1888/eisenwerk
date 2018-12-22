@@ -95,6 +95,7 @@ export default class Application extends BaseApplication {
         await super.launch();
 
         // // tell all entities to use this network as default when making REST calls (this is important)
+        // todo: this is terrible
         Entity.setNetwork(this.getNetwork());
         Method.setNetwork(this.getNetwork());
     }

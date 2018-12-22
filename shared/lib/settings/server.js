@@ -154,6 +154,8 @@ class Settings {
             URL__API: params.ssr ? this.getAPIURLSSR() : this.getAPIURL(),
             PRODUCTION: this.isProduction(),
             AUTH__ENABLED: this.useAuth(),
+
+            'url.auth.outer': this.get('url.auth.outer'),
         };
 
         if (params.serialize === false) {

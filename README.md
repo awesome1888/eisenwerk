@@ -141,6 +141,9 @@ Re-think the whole idea about how we dockerize: there is a simpler way to do tha
 Run as dockerized or not: should not be important
 https://www.npmjs.com/package/nodemon-webpack-plugin
 1.81) hasher should accept ranks
+1.9) get rid of
+        Entity.setNetwork(this.getNetwork());
+        Method.setNetwork(this.getNetwork());
 
 * Optional stuff
     * Redis as a bus

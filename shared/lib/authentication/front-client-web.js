@@ -2,6 +2,9 @@
  * This class is used client-side to enable integration with OAuth2
  */
 
+import jwt from 'jsonwebtoken';
+import axios from 'axios';
+
 export default class FrontClientWeb {
     constructor(params = {}) {
         this._params = params;
@@ -54,11 +57,35 @@ export default class FrontClientWeb {
         await this.storeToken(token);
         window.__authAgentPrevReject = null;
 
-        // const userId = await this.getUserId(token);
-        // return userId;
+        const userId = await this.getUserId(token, false);
+        console.dir('User id: ' + userId);
+        return userId;
     }
 
-    async decodeToken(token, validate = true) {}
+    async decodeToken(token, verify = true) {
+        if (!_.isStringNotEmpty(token)) {
+            return null;
+        }
+
+        const { settings } = this.getParams();
+
+        if (verify) {
+            return axios.post(`${settings.get('url.auth.outer')}verify`, {
+                token,
+            });
+        } else {
+            return jwt.decode(token);
+        }
+    }
+
+    async isTokenValid(token) {
+        return _.isObjectNotEmpty(await this.decodeToken(token, true));
+    }
+
+    async getToken() {
+        const storage = await this.getStorage();
+        return storage.getItem('auth');
+    }
 
     async storeToken(token = null) {
         const storage = await this.getStorage();
@@ -80,5 +107,25 @@ export default class FrontClientWeb {
         }
 
         return this._storage;
+    }
+
+    async getUserId(token, verify = true) {
+        const payload = await this.decodeToken(token, verify);
+        if (_.isObjectNotEmpty(payload)) {
+            return payload.userId || null;
+        }
+
+        return null;
+    }
+
+    async getUser(token, validate = true) {
+        const userId = await this.getUserId(token, validate);
+        const { userEntity } = this.getParams();
+        if (userId) {
+            console.dir('uid ' + userId);
+            return userEntity.get(userId);
+        }
+
+        return null;
     }
 }

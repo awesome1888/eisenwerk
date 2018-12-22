@@ -20,6 +20,7 @@ export default class AuthServer {
         network.post(
             '/oauth2',
             wrapError(async (req, res) => {
+                // token here is an oauth2 token, not jwt
                 const { token, provider } = req.body;
 
                 if (
@@ -73,6 +74,24 @@ export default class AuthServer {
         );
 
         network.post('/local', (req, res) => {});
+
+        network.post('/verify', async (req, res) => {
+            const { token } = req.body;
+
+            const payload = await new Promise(resolve => {
+                jwt.verify(
+                    token,
+                    settings.get('auth.secret'),
+                    (err, decoded) => {
+                        resolve(err ? null : decoded);
+                    },
+                );
+            });
+
+            res.set('Content-Type', 'application/json').send(
+                JSON.stringify(payload || {}),
+            );
+        });
     }
 
     async findOrCreateUser(provider, data) {
@@ -134,7 +153,6 @@ export default class AuthServer {
             jwt.sign(
                 {
                     userId,
-                    expires: tokenTTL,
                 },
                 secret,
                 { expiresIn: tokenTTL },
@@ -168,16 +186,3 @@ export default class AuthServer {
         return 'profile.email';
     }
 }
-
-// const googleRes = await axios.get('https://www.googleapis.com/oauth2/v1/tokeninfo', {
-//     params: {
-//         access_token: token,
-//     },
-// });
-
-// const googleRes = await axios.get('https://www.googleapis.com/plus/v1/people/me', {
-//     params: {
-//         access_token: token,
-//     },
-// });
-// user = googleRes.data;
