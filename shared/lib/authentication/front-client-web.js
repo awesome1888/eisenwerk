@@ -10,7 +10,35 @@ export default class FrontClientWeb {
         this._params = params;
     }
 
-    attach() {}
+    attach() {
+        const { network } = this.getParams();
+
+        network.mixins.push(service => {
+            service.hooks({
+                before: hook => {
+                    Object.assign(hook.params, {
+                        accessToken: app.get('accessToken'),
+                    });
+                },
+            });
+        });
+
+        if (network.rest) {
+            network.mixins.push(service => {
+                service.hooks({
+                    before: hook => {
+                        hook.params.headers = Object.assign(
+                            {},
+                            {
+                                authentication: hook.params.accessToken,
+                            },
+                            hook.params.headers,
+                        );
+                    },
+                });
+            });
+        }
+    }
 
     getParams() {
         return this._params || {};

@@ -18,12 +18,12 @@ export default class WebApplication {
     }
 
     async launch() {
-        if (this.isSSR()) {
-            const Storage = (await import('node-storage-shim')).default;
-            this._storage = new Storage();
-        } else {
-            this._storage = window.localStorage;
-        }
+        // if (this.isSSR()) {
+        //     const Storage = (await import('node-storage-shim')).default;
+        //     this._storage = new Storage();
+        // } else {
+        //     this._storage = window.localStorage;
+        // }
     }
 
     getMainStoreElement() {
