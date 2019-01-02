@@ -124,7 +124,23 @@ const LoginPage = props => {
             </Formik>
             <button
                 onClick={() => {
-                    props.application.getAuthorization().signIn('google');
+                    props.application
+                        .getAuthorization()
+                        .signIn('google')
+                        .then(userId => {
+                            console.dir(`user id = ${userId}`);
+                            dispatch({
+                                type: applicationReducer.USER_LOAD,
+                                payload: {
+                                    userId,
+                                    application,
+                                },
+                            });
+                        })
+                        .catch(e => {
+                            console.dir('ERROR!');
+                            console.dir(e);
+                        });
                 }}
             >
                 Login with google

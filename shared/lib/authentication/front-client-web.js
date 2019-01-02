@@ -15,9 +15,9 @@ export default class FrontClientWeb {
 
         network.mixins.push(service => {
             service.hooks({
-                before: hook => {
+                before: async hook => {
                     Object.assign(hook.params, {
-                        accessToken: app.get('accessToken'),
+                        accessToken: await this.getToken(),
                     });
                 },
             });
@@ -30,7 +30,9 @@ export default class FrontClientWeb {
                         hook.params.headers = Object.assign(
                             {},
                             {
-                                authentication: hook.params.accessToken,
+                                Authentication: `Bearer ${
+                                    hook.params.accessToken
+                                }`,
                             },
                             hook.params.headers,
                         );
@@ -82,6 +84,8 @@ export default class FrontClientWeb {
 
         await this.storeToken(token);
         window.__authAgentPrevReject = null;
+
+        console.dir(token);
 
         return this.getUserId(token, false);
     }
@@ -142,7 +146,7 @@ export default class FrontClientWeb {
         return null;
     }
 
-    async getUser(token, validate = true) {
+    async getUserByToken(token, validate = true) {
         const userId = await this.getUserId(token, validate);
         const { userEntity } = this.getParams();
         if (userId) {
@@ -150,5 +154,10 @@ export default class FrontClientWeb {
         }
 
         return null;
+    }
+
+    async getUser(id) {
+        const { userEntity } = this.getParams();
+        return userEntity.get(id);
     }
 }
