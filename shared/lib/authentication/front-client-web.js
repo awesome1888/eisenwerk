@@ -85,8 +85,6 @@ export default class FrontClientWeb {
         await this.storeToken(token);
         window.__authAgentPrevReject = null;
 
-        console.dir(token);
-
         return this.getUserId(token, false);
     }
 
@@ -146,7 +144,11 @@ export default class FrontClientWeb {
         return null;
     }
 
-    async getUserByToken(token, validate = true) {
+    async getUser(token, validate = true) {
+        if (!token) {
+            token = await this.getToken();
+        }
+
         const userId = await this.getUserId(token, validate);
         const { userEntity } = this.getParams();
         if (userId) {
@@ -156,7 +158,7 @@ export default class FrontClientWeb {
         return null;
     }
 
-    async getUser(id) {
+    async getUserById(id) {
         const { userEntity } = this.getParams();
         return userEntity.get(id);
     }

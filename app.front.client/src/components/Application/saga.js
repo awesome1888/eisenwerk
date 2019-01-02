@@ -3,10 +3,8 @@ import * as reducer from './reducer';
 
 function* loadUser({ payload }) {
     try {
-        console.dir('Loading user');
-        console.dir(payload);
         const user = yield call(() =>
-            payload.application.getAuthorization().getUser(payload.userId),
+            payload.application.getAuthorization().getUserById(payload.userId),
         );
         if (user) {
             yield put({
