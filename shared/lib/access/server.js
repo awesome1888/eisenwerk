@@ -3,7 +3,7 @@ import Context from '../context';
 import Error from '../vendor/feathersjs/error';
 
 export default class ServerAccess extends BothAccess {
-    static async testToken(token, rule, auth, ctx) {
+    static async test(ctx, rule, auth) {
         const result = {};
 
         if (rule.deny !== false) {

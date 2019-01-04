@@ -39,6 +39,17 @@ export default class FeathersAPIServerApplication extends ServerApplication {
                     eApp.configure(express.rest());
 
                     this.getAuthentication(eApp);
+
+                    // expose headers due to
+                    // https://github.com/feathers-plus/feathers-hooks-common/issues/306
+                    eApp.use((req, res, next) => {
+                        req.feathers = {
+                            ...req.feathers,
+                            headers: req.headers,
+                        };
+                        next();
+                    });
+
                     this.attachMiddleware(eApp);
                     eApp.get('/', (req, res) => {
                         res.status(200);

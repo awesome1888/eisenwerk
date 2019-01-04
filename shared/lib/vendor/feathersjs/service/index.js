@@ -214,12 +214,10 @@ export default class Service {
                             Error.throw403();
                         }
 
-                        const auth = this.getAuthorization();
-                        const result = await Access.testToken(
-                            Context.extractToken(context),
-                            rule,
-                            auth,
+                        const result = await Access.test(
                             context,
+                            rule,
+                            this.getAuthorization(),
                         );
 
                         if (result === false) {

@@ -50,6 +50,7 @@ services:
             - URL__ROOT=http://localhost:3100/
             - URL__DB=mongodb://db:27017/ew
             - CORS__ORIGIN=http://localhost:3000,http://localhost:3010,http://localhost:3001
+            - auth.secret=P4cRdF5mzSMPvy4hCdpKCjHMp3vZ4UvynaxhEAJK
 
     auth:
         build:
@@ -72,7 +73,7 @@ services:
             - AUTH__GOOGLE__CLIENT_ID=745832723828-5o4p8djtufdg3dbt7vq49jicgtf576nv.apps.googleusercontent.com
             - AUTH__GOOGLE__SECRET=DC_XrNDl5SkVgDQOOq-0L6Zg
             - AUTH__GOOGLE__DOMAIN=
-            - auth.jwt.ttl=3600
+            - auth.jwt.ttl=7d
             - auth.secret=P4cRdF5mzSMPvy4hCdpKCjHMp3vZ4UvynaxhEAJK
 
     ssr.cache:

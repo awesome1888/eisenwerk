@@ -2,7 +2,7 @@
  * This class is used on the side of AUTH server
  */
 
-import passport from 'passport';
+// import passport from 'passport';
 import jwt from 'jsonwebtoken';
 import OAuth2Strategy from 'passport-google-oauth20';
 import { wrapError } from '../util';
@@ -13,7 +13,7 @@ export default class AuthServer {
     }
 
     attach() {
-        const { settings, network, userEntity } = this.getParams();
+        const { settings, network } = this.getParams();
 
         this.checkSettings(settings);
 
@@ -65,7 +65,7 @@ export default class AuthServer {
                 const userId = await this.findOrCreateUser(provider, user);
 
                 // create jwt
-                res.header('Content-Type', 'application/json').send(
+                return res.header('Content-Type', 'application/json').send(
                     JSON.stringify({
                         token: await this.makeToken(userId),
                     }),
@@ -73,25 +73,20 @@ export default class AuthServer {
             }),
         );
 
-        network.post('/local', (req, res) => {});
+        network.post('/local', wrapError(async (req, res) => {}));
 
-        network.post('/verify', async (req, res) => {
-            const { token } = req.body;
+        network.post(
+            '/verify',
+            wrapError(async (req, res) => {
+                const { token } = req.body;
 
-            const payload = await new Promise(resolve => {
-                jwt.verify(
-                    token,
-                    settings.get('auth.secret'),
-                    (err, decoded) => {
-                        resolve(err ? null : decoded);
-                    },
-                );
-            });
+                const payload = await this.decodeToken(token);
 
-            res.set('Content-Type', 'application/json').send(
-                JSON.stringify(payload || {}),
-            );
-        });
+                return res
+                    .set('Content-Type', 'application/json')
+                    .send(JSON.stringify(payload || {}));
+            }),
+        );
     }
 
     async findOrCreateUser(provider, data) {
@@ -146,15 +141,14 @@ export default class AuthServer {
 
     async makeToken(userId) {
         const { settings } = this.getParams();
-        const tokenTTL = settings.get('auth.jwt.ttl', 3600);
-        const secret = settings.get('auth.secret');
+        const tokenTTL = settings.get('auth.jwt.ttl', '7d');
 
         return new Promise((resolve, reject) => {
             jwt.sign(
                 {
                     userId,
                 },
-                secret,
+                'ssh', //settings.get('auth.secret'),
                 { expiresIn: tokenTTL },
                 (err, token) => {
                     if (err) {
@@ -164,6 +158,20 @@ export default class AuthServer {
                     }
                 },
             );
+        });
+    }
+
+    async decodeToken(token) {
+        if (!_.isStringNotEmpty(token)) {
+            return null;
+        }
+
+        const { settings } = this.getParams();
+
+        return new Promise(resolve => {
+            jwt.verify(token, settings.get('auth.secret'), (err, decoded) => {
+                resolve(err ? null : decoded);
+            });
         });
     }
 

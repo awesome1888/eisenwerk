@@ -33,7 +33,12 @@ export default class Context {
      * @returns {*|string}
      */
     static extractToken(context) {
-        return _.get(context, 'params.headers.authorization');
+        const token = _.get(context, 'params.headers.authorization');
+        if (_.isne(token)) {
+            return token.replace(/^Bearer /, '').trim();
+        }
+
+        return null;
     }
 
     /**
@@ -49,7 +54,7 @@ export default class Context {
 
         const token = this.extractToken(context);
         if (_.isStringNotEmpty(token)) {
-            context.__user = await authorization.getUserByToken(token);
+            context.__user = await authorization.getUser(token, true);
             return context.__user;
         }
 

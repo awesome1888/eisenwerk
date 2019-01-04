@@ -11,18 +11,27 @@ const deepFreeze = require('deep-freeze-node');
 const isEqual = require('lodash.isequal');
 const intersectKeys = require('object.intersect');
 
+const isne = arg => {
+    return isString(arg) && arg.length > 0;
+};
+
+const iane = arg => {
+    return isArrayLike(arg) && arg.length > 0;
+};
+
+const ione = arg => {
+    return isObject(arg) && Object.keys(arg).length > 0;
+};
+
 module.exports = {
     isArray: isArrayLike,
     isObject,
-    isArrayNotEmpty: arg => {
-        return isArrayLike(arg) && arg.length > 0;
-    },
-    isStringNotEmpty: arg => {
-        return isString(arg) && arg.length > 0;
-    },
-    isObjectNotEmpty: arg => {
-        return isObject(arg) && Object.keys(arg).length > 0;
-    },
+    isArrayNotEmpty: iane,
+    iane,
+    isStringNotEmpty: isne,
+    isne,
+    isObjectNotEmpty: ione,
+    ione,
     contains: (where, what) => {
         if (!isArrayLike(where)) {
             return false;

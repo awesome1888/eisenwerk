@@ -30,7 +30,7 @@ export default class FrontClientWeb {
                         hook.params.headers = Object.assign(
                             {},
                             {
-                                Authentication: `Bearer ${
+                                Authorization: `Bearer ${
                                     hook.params.accessToken
                                 }`,
                             },
