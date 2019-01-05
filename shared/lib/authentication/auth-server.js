@@ -64,10 +64,21 @@ export default class AuthServer {
                 // find or create user, get their id
                 const userId = await this.findOrCreateUser(provider, user);
 
+                const ttoken = await this.makeToken(userId);
+                console.dir(ttoken);
+
+                // await new Promise((resolve) => {
+                //     setTimeout(resolve, 3000);
+                // });
+
+                const ok = await this.decodeToken(ttoken);
+                console.dir('is ok? ');
+                console.dir(ok);
+
                 // create jwt
                 return res.header('Content-Type', 'application/json').send(
                     JSON.stringify({
-                        token: await this.makeToken(userId),
+                        token: ttoken,
                     }),
                 );
             }),
@@ -148,8 +159,11 @@ export default class AuthServer {
                 {
                     userId,
                 },
-                'ssh', //settings.get('auth.secret'),
-                { expiresIn: tokenTTL },
+                new Buffer('ssh', 'utf8'), //settings.get('auth.secret'),
+                {
+                    expiresIn: tokenTTL,
+                    algorithm: 'HS512',
+                },
                 (err, token) => {
                     if (err) {
                         reject(err);
@@ -169,9 +183,16 @@ export default class AuthServer {
         const { settings } = this.getParams();
 
         return new Promise(resolve => {
-            jwt.verify(token, settings.get('auth.secret'), (err, decoded) => {
-                resolve(err ? null : decoded);
-            });
+            jwt.verify(
+                token,
+                new Buffer('ssh', 'utf8'), //settings.get('auth.secret'),
+                (err, decoded) => {
+                    if (err) {
+                        console.dir(err);
+                    }
+                    resolve(err ? null : decoded);
+                },
+            );
         });
     }
 

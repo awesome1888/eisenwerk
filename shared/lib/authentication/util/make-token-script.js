@@ -1,6 +1,6 @@
 export default (res, token) => {
     const sanitize = str => {
-        return str.replace(/[^a-zA-Z0-9\.]/gi, '');
+        return str.replace(/[^_-a-zA-Z0-9\.]/gi, '');
     };
 
     const template = `

@@ -34,7 +34,7 @@ export default class BackServer {
             return new Promise(resolve => {
                 jwt.verify(
                     token,
-                    'ssh', //settings.get('auth.secret'),
+                    new Buffer('ssh', 'utf8'), //settings.get('auth.secret'),
                     (err, decoded) => {
                         console.dir(err);
                         resolve(err ? null : decoded);
