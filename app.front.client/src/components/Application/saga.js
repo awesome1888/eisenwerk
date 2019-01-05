@@ -26,9 +26,11 @@ function* loadUser({ payload }) {
 function* loadData({ payload }) {
     try {
         const auth = payload.getAuthorization();
-        const token = auth.getToken();
+        const token = yield call(() => auth.getToken());
         if (token) {
-            const user = yield call(() => auth.getUser(token));
+            console.dir(token);
+            const user = yield call(() => auth.getUser(token, true));
+            console.dir(user);
             if (user) {
                 yield put({
                     type: reducer.AUTHORIZED_SET,

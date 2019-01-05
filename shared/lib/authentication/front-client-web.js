@@ -96,9 +96,12 @@ export default class FrontClientWeb {
         const { settings } = this.getParams();
 
         if (verify) {
-            return axios.post(`${settings.get('url.auth.outer')}verify`, {
-                token,
-            });
+            return axios
+                .post(`${settings.get('url.auth.outer')}verify`, {
+                    token,
+                })
+                .then(response => response.data)
+                .catch(() => null);
         } else {
             return jwt.decode(token);
         }

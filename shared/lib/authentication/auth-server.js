@@ -64,21 +64,10 @@ export default class AuthServer {
                 // find or create user, get their id
                 const userId = await this.findOrCreateUser(provider, user);
 
-                const ttoken = await this.makeToken(userId);
-                console.dir(ttoken);
-
-                // await new Promise((resolve) => {
-                //     setTimeout(resolve, 3000);
-                // });
-
-                const ok = await this.decodeToken(ttoken);
-                console.dir('is ok? ');
-                console.dir(ok);
-
                 // create jwt
                 return res.header('Content-Type', 'application/json').send(
                     JSON.stringify({
-                        token: ttoken,
+                        token: await this.makeToken(userId),
                     }),
                 );
             }),
@@ -159,7 +148,7 @@ export default class AuthServer {
                 {
                     userId,
                 },
-                new Buffer('ssh', 'utf8'), //settings.get('auth.secret'),
+                new Buffer(settings.get('auth.secret'), 'utf8'),
                 {
                     expiresIn: tokenTTL,
                     algorithm: 'HS512',
@@ -185,7 +174,7 @@ export default class AuthServer {
         return new Promise(resolve => {
             jwt.verify(
                 token,
-                new Buffer('ssh', 'utf8'), //settings.get('auth.secret'),
+                new Buffer(settings.get('auth.secret'), 'utf8'),
                 (err, decoded) => {
                     if (err) {
                         console.dir(err);

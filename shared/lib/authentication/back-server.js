@@ -34,7 +34,7 @@ export default class BackServer {
             return new Promise(resolve => {
                 jwt.verify(
                     token,
-                    new Buffer('ssh', 'utf8'), //settings.get('auth.secret'),
+                    new Buffer(settings.get('auth.secret'), 'utf8'),
                     (err, decoded) => {
                         console.dir(err);
                         resolve(err ? null : decoded);
@@ -60,7 +60,6 @@ export default class BackServer {
     }
 
     async getUser(token, validate = true) {
-        console.dir('token ' + token);
         const userId = await this.getUserId(token, validate);
         const { userEntity } = this.getParams();
         if (userId) {
