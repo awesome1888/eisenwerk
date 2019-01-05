@@ -36,7 +36,6 @@ export default class BackServer {
                     token,
                     new Buffer(settings.get('auth.secret'), 'utf8'),
                     (err, decoded) => {
-                        console.dir(err);
                         resolve(err ? null : decoded);
                     },
                 );

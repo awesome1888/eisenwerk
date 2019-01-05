@@ -28,9 +28,7 @@ function* loadData({ payload }) {
         const auth = payload.getAuthorization();
         const token = yield call(() => auth.getToken());
         if (token) {
-            console.dir(token);
             const user = yield call(() => auth.getUser(token, true));
-            console.dir(user);
             if (user) {
                 yield put({
                     type: reducer.AUTHORIZED_SET,
