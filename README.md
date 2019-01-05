@@ -104,16 +104,19 @@ To connect to a running container:
     1. [DONE] do something with onlogout and onreautherror events
     2. [DONE] check ssr once again
     3. [POSTPONE] redis cache for ssr will fail when there is an authorization (but should we fix this now? google will not be able to authorize anyway)
-    4. check how google oauth works
-    12. redis 4 sessions
+    4. [DONE] check how google oauth works
 3.  re-think oauth2
     1. entity ACL should be application-specific!
+    2. redis 4 sessions
+    3. no more Assign Network
+    4. make other oauth2 providers possible
+    5. make password auth working again
 4. refactor getSettings() to .get('some.variable', 'default-value');
 ==== NPM!!!!! ====
     lerna?
 1.95) move styles to styled-components
 1.955) new overlay and progressbar mechanic based on watching the store and\or EventEmitter on componentDidUpdate of page when switching from ready false -> true
-    Item types:
+    Overlay types:
         1) progressbar to show every time something loads
         2) on-first-load overlay, it is shown when the website loads for the first time
         3) between-layouts fade-in-out overlay, just to make transitions more smooth
@@ -140,7 +143,7 @@ To connect to a running container:
 Re-think the whole idea about how we dockerize: there is a simpler way to do that with no docker-build-tool involved
 Run as dockerized or not: should not be important
 https://www.npmjs.com/package/nodemon-webpack-plugin
-1.81) hasher should accept ranks
+1.81) [DONE] hasher should accept ranks
 1.9) get rid of
         Entity.setNetwork(this.getNetwork());
         Method.setNetwork(this.getNetwork());

@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import flatten from 'obj-flatten';
 import traverse from 'traverse';
 
-import Service from '../../../../vendor/feathersjs/mongoose/service';
+import Service from '../mongoose/service';
 
 const models = {};
 

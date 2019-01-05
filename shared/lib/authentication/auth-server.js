@@ -203,4 +203,69 @@ export default class AuthServer {
     getLoginField() {
         return 'profile.email';
     }
+
+    async sendResetPassword(email) {
+        const authManagement = this.getNetwork().service('authManagement');
+        return authManagement.create({
+            action: 'sendResetPwd',
+            value: {
+                [this.constructor.getLoginField()]: email,
+            },
+            // notifierOptions: {
+            //     preferredComm: 'email'
+            // },
+        });
+    }
+
+    async resetPassword(token, password) {
+        const authManagement = this.getNetwork().service('authManagement');
+        return authManagement.create({
+            action: 'resetPwdLong',
+            value: {
+                token, // compares to .resetToken
+                password, // new password
+            },
+        });
+    }
+
+    // async changePassword(email, oldPassword, password) {
+    //     const authManagement = this.getNetwork().service('authManagement');
+    //     return authManagement.create({
+    //         action: 'passwordChange',
+    //         value: {
+    //             user: {
+    //                 [this.constructor.getLoginField()]: email,
+    //             },
+    //             oldPassword,
+    //             password, // new password
+    //         },
+    //     });
+    // }
+    //
+    // async changeEmail(password, oldEmail, newEmail) {
+    //     const authManagement = this.getNetwork().service('authManagement');
+    //     return authManagement.create({
+    //         action: 'identityChange',
+    //         value: {
+    //             password,
+    //             changes: {
+    //                 [this.constructor.getLoginField()]: newEmail,
+    //             },
+    //             user: {
+    //                 [this.constructor.getLoginField()]: oldEmail,
+    //             },
+    //         },
+    //     });
+    // }
+    //
+    // async checkEmail(email, ownId) {
+    //     const authManagement = this.getNetwork().service('authManagement');
+    //     return authManagement.create({
+    //         action: 'checkUnique',
+    //         value: {
+    //             [this.constructor.getLoginField()]: email,
+    //         },
+    //         ownId,
+    //     });
+    // }
 }

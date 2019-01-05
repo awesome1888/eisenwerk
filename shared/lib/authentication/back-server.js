@@ -9,7 +9,9 @@ export default class BackServer {
         this._params = params;
     }
 
-    attach() {}
+    attach() {
+        // tune user entity
+    }
 
     getParams() {
         return this._params || {};

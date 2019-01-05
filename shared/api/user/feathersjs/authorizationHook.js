@@ -1,7 +1,8 @@
-import local from '@feathersjs/authentication-local';
+import hashPassword from '../../../lib/vendor/feathersjs/hooks/hash-password';
+import protect from '../../../lib/vendor/feathersjs/hooks/protect';
 import commonHooks from 'feathers-hooks-common';
 import roleEnum from '../enum/role.js';
-import hash from '../../../vendor/feathersjs/hasher.js';
+import hash from '../../../lib/vendor/feathersjs/hasher';
 import Context from '../../../lib/context';
 
 export default class AuthorizationHook {
@@ -25,7 +26,7 @@ export default class AuthorizationHook {
                     commonHooks.iff(
                         commonHooks.isProvider('external'),
                         // todo: in order to be able to detect weak passwords, move hashing somewhere else
-                        local.hooks.hashPassword({
+                        hashPassword({
                             passwordField: auth.getPasswordField(),
                             hash,
                         }),
@@ -36,7 +37,7 @@ export default class AuthorizationHook {
                     commonHooks.iff(
                         commonHooks.isProvider('external'),
                         // todo: in order to be able to detect weak passwords, move hashing somewhere else
-                        local.hooks.hashPassword({
+                        hashPassword({
                             passwordField: auth.getPasswordField(),
                             hash,
                         }),
@@ -85,7 +86,7 @@ export default class AuthorizationHook {
                     // on patch we also hash the given password
                     commonHooks.iff(
                         commonHooks.isProvider('external'),
-                        local.hooks.hashPassword({
+                        hashPassword({
                             passwordField: auth.getPasswordField(),
                             hash,
                         }),
@@ -96,9 +97,9 @@ export default class AuthorizationHook {
                 all: [
                     // when called over the wire, we prevent some fields from exposing to the client
                     commonHooks.iff(commonHooks.isProvider('external'), [
-                        local.hooks.protect(auth.getPasswordField()),
-                        local.hooks.protect('password'),
-                        local.hooks.protect('service'),
+                        protect(auth.getPasswordField()),
+                        protect('password'),
+                        protect('service'),
                     ]),
                 ],
                 find: [
@@ -124,13 +125,13 @@ export default class AuthorizationHook {
         });
     }
 
-    static isLegalEmail(email, domain) {
-        if (!_.isStringNotEmpty(email)) {
-            return false;
-        }
-        if (!_.isStringNotEmpty(domain)) {
-            return true;
-        }
-        return email.slice(email.lastIndexOf('@') + 1) === 'some-domain.com';
-    }
+    // static isLegalEmail(email, domain) {
+    //     if (!_.isStringNotEmpty(email)) {
+    //         return false;
+    //     }
+    //     if (!_.isStringNotEmpty(domain)) {
+    //         return true;
+    //     }
+    //     return email.slice(email.lastIndexOf('@') + 1) === 'some-domain.com';
+    // }
 }
