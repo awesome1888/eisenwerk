@@ -1,3 +1,7 @@
+/**
+ * This server serves browser assets
+ */
+
 import spiderDetector from 'spider-detector';
 
 import Server from './server';

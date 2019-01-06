@@ -1,9 +1,9 @@
-import hashPassword from '../../../lib/vendor/feathersjs/hooks/hash-password';
-import protect from '../../../lib/vendor/feathersjs/hooks/protect';
+import hashPassword from '../hooks/hash-password';
+import protect from '../hooks/protect';
 import commonHooks from 'feathers-hooks-common';
-import roleEnum from '../enum/role.js';
-import hash from '../../../lib/vendor/feathersjs/hasher';
-import Context from '../../../lib/context';
+import roleEnum from '../../../../api/user/enum/role.js';
+import hash from '../hasher';
+import Context from '../../../context';
 
 export default class AuthorizationHook {
     static async isAdmin(auth) {

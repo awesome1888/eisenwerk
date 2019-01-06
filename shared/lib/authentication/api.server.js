@@ -4,7 +4,7 @@
 
 import jwt from 'jsonwebtoken';
 
-export default class BackServer {
+export default class APIServerAuthentication {
     constructor(params = {}) {
         this._params = params;
     }

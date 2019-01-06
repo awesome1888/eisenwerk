@@ -1,6 +1,6 @@
 import BaseService from '../../../lib/vendor/feathersjs/service/index';
 import Entity from '../entity/server';
-import AuthorizationHook from './authorizationHook';
+import AuthorizationHook from '../../../lib/vendor/feathersjs/user/authorizationHook';
 import Error from '../../../lib/vendor/feathersjs/error';
 import access from '../access';
 

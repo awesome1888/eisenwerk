@@ -1,4 +1,5 @@
-import BaseApplication from './shared/lib/application/Web';
+import Client from './shared/lib/application/web.client';
+import Authentication from './shared/lib/authentication/web.client';
 
 import React from 'react';
 import { Provider } from 'react-redux';
@@ -16,15 +17,13 @@ import applicationSaga from './components/Application/saga';
 import SorryScreen from './components/SorryScreen';
 import routeMap from './routes/withUI';
 import routeRender from './routes/render';
-// import Authorization from './shared/lib/vendor/feathersjs/authorization/client';
-import Authentication from './shared/lib/authentication/front-client-web';
 import Entity from './shared/lib/entity/client.js';
 import Method from './shared/lib/vendor/feathersjs/method/client.js';
 
 import User from './shared/api/user/entity/client';
 import { context as applicationContext } from './context/application';
 
-export default class Application extends BaseApplication {
+export default class Application extends Client {
     getReducer() {
         return applicationReducer;
     }

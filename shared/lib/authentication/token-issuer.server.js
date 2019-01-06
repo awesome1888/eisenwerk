@@ -7,7 +7,7 @@ import jwt from 'jsonwebtoken';
 import OAuth2Strategy from 'passport-google-oauth20';
 import { wrapError } from '../util';
 
-export default class AuthServer {
+export default class TokenIssuerServerAuthentication {
     constructor(params = {}) {
         this._params = params;
     }

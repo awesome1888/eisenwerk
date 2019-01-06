@@ -8,7 +8,7 @@ import { OAuth2Strategy } from 'passport-google-oauth';
 import axios from 'axios';
 import makeTokenScript from './util/make-token-script';
 
-export default class FrontServer {
+export default class WebServerAuthentication {
     constructor(params = {}) {
         this._params = params;
     }

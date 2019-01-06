@@ -1,9 +1,13 @@
+/**
+ * This is a browser client
+ */
+
 import { createBrowserHistory, createMemoryHistory } from 'history';
 
 import Store from '../store';
 import Settings from '../settings/client.js';
 
-export default class Web {
+export default class WebClient {
     constructor(params = {}) {
         this._params = params || {};
         this._settings = new Settings(this._params.settings);

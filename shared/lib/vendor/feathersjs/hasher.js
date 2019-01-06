@@ -1,9 +1,9 @@
-const bcrypt = require('bcrypt');
+import bcrypt from 'bcrypt';
 
 const BCRYPT_DATE_BASE = 1483228800000;
 const BCRYPT_WORK_INCREASE_INTERVAL = 47300000000;
 
-module.exports = (password, baseFactor = 10) => {
+export default (password, baseFactor = 10) => {
     return new Promise((resolve, reject) => {
         const BCRYPT_CURRENT_DATE = new Date().getTime();
         const BCRYPT_WORK_INCREASE = Math.max(

@@ -1,3 +1,7 @@
+/**
+ * This server serves API functionality
+ */
+
 import feathers from '@feathersjs/feathers';
 import express from '@feathersjs/express';
 import errors from '@feathersjs/errors';
@@ -102,8 +106,13 @@ export default class APIServer extends Server {
     }
 
     attachMiddleware(eApp) {
+        // expose REST endpoints
         this.attachEntityServices(eApp);
         this.attachMethods(eApp);
+
+        // expose WebSockets?
+
+        // expose GraphQL endpoints?
     }
 
     attachEntityServices(network) {

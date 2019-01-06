@@ -1,3 +1,7 @@
+/**
+ * This is a typical interface for a web server
+ */
+
 import settings from '../../lib/settings/server';
 
 export default class Server {

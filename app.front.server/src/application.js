@@ -1,7 +1,11 @@
-import WebServer from './shared/lib/application/WebServer';
-import Authentication from './shared/lib/authentication/front-server';
+import Server from './shared/lib/application/web.server';
+import Authentication from './shared/lib/authentication/web.server';
 
-export default class Application extends WebServer {
+export default class Application extends Server {
+    /**
+     * this is for SSR
+     * @returns {function(): (Promise<*>|*)}
+     */
     getClientApplicationConstructor() {
         return () => import('../../app.front.client/src/application.js');
     }

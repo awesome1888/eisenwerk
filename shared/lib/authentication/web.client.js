@@ -5,7 +5,7 @@
 import jwt from 'jsonwebtoken';
 import axios from 'axios';
 
-export default class FrontClientWeb {
+export default class WebClientAuthentication {
     constructor(params = {}) {
         this._params = params;
     }
