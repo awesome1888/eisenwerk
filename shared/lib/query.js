@@ -1,5 +1,4 @@
 export default class Query {
-
     constructor(entity, parameters = {}) {
         this._entity = entity;
         this._fabric = null;
@@ -18,11 +17,13 @@ export default class Query {
     }
 
     async exec() {
-        const result = await this._entity.getService().find({query: this.makeQuery()});
+        const result = await this._entity
+            .getService()
+            .find({ query: this.makeQuery() });
 
         if (!this._parameters.lean) {
             const Entity = this._entity;
-            result.data = result.data.map((item) => {
+            result.data = result.data.map(item => {
                 return new Entity(item);
             });
         }
@@ -42,17 +43,23 @@ export default class Query {
     }
 
     select(select) {
-        this._parameters.select = _.isObjectNotEmpty(select) ? _.cloneDeep(select) : {};
+        this._parameters.select = _.isObjectNotEmpty(select)
+            ? _.cloneDeep(select)
+            : {};
         return this;
     }
 
     filter(filter) {
-        this._parameters.filter = _.isObjectNotEmpty(filter) ? _.cloneDeep(filter) : {};
+        this._parameters.filter = _.isObjectNotEmpty(filter)
+            ? _.cloneDeep(filter)
+            : {};
         return this;
     }
 
     sort(sort) {
-        this._parameters.sort = _.isObjectNotEmpty(sort) ? _.cloneDeep(sort) : {};
+        this._parameters.sort = _.isObjectNotEmpty(sort)
+            ? _.cloneDeep(sort)
+            : {};
         return this;
     }
 
@@ -67,7 +74,9 @@ export default class Query {
     }
 
     populate(populate) {
-        this._parameters.populate = _.isObjectNotEmpty(populate) ? _.cloneDeep(populate) : {};
+        this._parameters.populate = _.isObjectNotEmpty(populate)
+            ? _.cloneDeep(populate)
+            : {};
         return this;
     }
 
@@ -104,8 +113,18 @@ export default class Query {
 
     makeQuery() {
         const q = _.cloneDeep(this._parameters.filter) || {};
-        if (_.isObjectNotEmpty(this._parameters.select)) {
+        if (_.isArray(this._parameters.select)) {
+            q.$select = _.cloneDeep(this._parameters.select).reduce(
+                (result, item) => {
+                    result[item] = 1;
+                    return result;
+                },
+                {},
+            );
+        } else if (_.isObjectNotEmpty(this._parameters.select)) {
             q.$select = _.cloneDeep(this._parameters.select);
+        } else {
+            q.$select = { _id: 1 };
         }
         if (_.isObjectNotEmpty(this._parameters.sort)) {
             q.$sort = _.cloneDeep(this._parameters.sort);
@@ -119,6 +138,9 @@ export default class Query {
         if (_.isArrayNotEmpty(this._parameters.populate)) {
             q.$populate = _.cloneDeep(this._parameters.populate);
         }
+
+        // console.dir('q');
+        // console.dir(q);
 
         return q;
     }

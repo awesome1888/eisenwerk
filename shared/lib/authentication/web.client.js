@@ -13,6 +13,7 @@ export default class WebClientAuthentication {
     attach() {
         const { network } = this.getParams();
 
+        // enable sending Auth header in each request to the entity
         network.mixins.push(service => {
             service.hooks({
                 before: async hook => {
@@ -22,7 +23,6 @@ export default class WebClientAuthentication {
                 },
             });
         });
-
         if (network.rest) {
             network.mixins.push(service => {
                 service.hooks({
@@ -126,10 +126,6 @@ export default class WebClientAuthentication {
         }
     }
 
-    async isTokenValid(token) {
-        return _.isObjectNotEmpty(await this.decodeToken(token, true));
-    }
-
     async getToken() {
         const storage = await this.getStorage();
         return storage.getItem('auth');
@@ -137,7 +133,12 @@ export default class WebClientAuthentication {
 
     async storeToken(token = null) {
         const storage = await this.getStorage();
-        storage.setItem('auth', token);
+
+        if (token === null) {
+            storage.removeItem('auth');
+        } else {
+            storage.setItem('auth', token);
+        }
     }
 
     async cleanUpToken() {

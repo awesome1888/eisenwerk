@@ -4,6 +4,7 @@
 
 // import passport from 'passport';
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
 import OAuth2Strategy from 'passport-google-oauth20';
 import { wrapError } from '../util';
 
@@ -58,22 +59,45 @@ export default class TokenIssuerServerAuthentication {
                 } catch (e) {}
 
                 if (!user) {
-                    return res.status(400).send('woops');
+                    throw new Error(400);
                 }
 
                 // find or create user, get their id
                 const userId = await this.findOrCreateUser(provider, user);
 
                 // create jwt
-                return res.header('Content-Type', 'application/json').send(
-                    JSON.stringify({
-                        token: await this.makeToken(userId),
-                    }),
-                );
+                return this.sendToken(res, userId);
             }),
         );
 
-        network.post('/local', wrapError(async (req, res) => {}));
+        network.post(
+            '/local',
+            wrapError(async (req, res) => {
+                const { userEntity } = this.getParams();
+                const { login, password } = req.body;
+
+                const user = await userEntity.findOne({
+                    filter: {
+                        'profile.email': login,
+                    },
+                    select: ['profile.password'],
+                });
+
+                if (!user) {
+                    throw new Error(400);
+                }
+
+                const match = await bcrypt.compare(
+                    password,
+                    user.getProfile().password,
+                );
+                if (!match) {
+                    throw new Error(400);
+                }
+
+                return this.sendToken(res, user.getId());
+            }),
+        );
 
         network.post(
             '/verify',
@@ -137,6 +161,14 @@ export default class TokenIssuerServerAuthentication {
         }
 
         return uData;
+    }
+
+    async sendToken(res, userId) {
+        return res.header('Content-Type', 'application/json').send(
+            JSON.stringify({
+                token: await this.makeToken(userId),
+            }),
+        );
     }
 
     async makeToken(userId) {
@@ -204,29 +236,29 @@ export default class TokenIssuerServerAuthentication {
         return 'profile.email';
     }
 
-    async sendResetPassword(email) {
-        const authManagement = this.getNetwork().service('authManagement');
-        return authManagement.create({
-            action: 'sendResetPwd',
-            value: {
-                [this.constructor.getLoginField()]: email,
-            },
-            // notifierOptions: {
-            //     preferredComm: 'email'
-            // },
-        });
-    }
-
-    async resetPassword(token, password) {
-        const authManagement = this.getNetwork().service('authManagement');
-        return authManagement.create({
-            action: 'resetPwdLong',
-            value: {
-                token, // compares to .resetToken
-                password, // new password
-            },
-        });
-    }
+    // async sendResetPassword(email) {
+    //     const authManagement = this.getNetwork().service('authManagement');
+    //     return authManagement.create({
+    //         action: 'sendResetPwd',
+    //         value: {
+    //             [this.constructor.getLoginField()]: email,
+    //         },
+    //         // notifierOptions: {
+    //         //     preferredComm: 'email'
+    //         // },
+    //     });
+    // }
+    //
+    // async resetPassword(token, password) {
+    //     const authManagement = this.getNetwork().service('authManagement');
+    //     return authManagement.create({
+    //         action: 'resetPwdLong',
+    //         value: {
+    //             token, // compares to .resetToken
+    //             password, // new password
+    //         },
+    //     });
+    // }
 
     // async changePassword(email, oldPassword, password) {
     //     const authManagement = this.getNetwork().service('authManagement');
