@@ -67,14 +67,6 @@ export default class WebServerAuthentication {
         network.use(passport.initialize());
         network.use(passport.session());
 
-        network.all('/auth/result', (req, res) => {
-            if (req.query.failure) {
-                res.send('FUCK!');
-            } else {
-                res.send('SUCCESS!');
-            }
-        });
-
         network.get('/failure', (req, res) => {
             res.send('FAILURE!');
         });

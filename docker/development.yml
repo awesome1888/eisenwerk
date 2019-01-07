@@ -88,15 +88,16 @@ services:
     db:
         image: 'mongo:latest'
         restart: always
-        ports:
-            - 3900:27017
-
-    front.browser-sync:
-        image: ustwo/browser-sync
-        command: start --proxy "front:3001" --port 3000 --files "/source" --no-notify
-        volumes:
-            - ../build/app.front/build/app.front.client/public/:/source
         expose:
-            - 3000
+            - 27017
         ports:
-            - '3000:3000'
+            - 27017:27017
+#    front.browser-sync:
+#        image: ustwo/browser-sync
+#        command: start --proxy "front:3001" --port 3000 --files "/source" --no-notify
+#        volumes:
+#            - ../build/app.front/build/app.front.client/public/:/source
+#        expose:
+#            - 3000
+#        ports:
+#            - 3000:3000
