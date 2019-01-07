@@ -2,7 +2,7 @@ import hasher from '../hasher';
 import merge from 'lodash.merge';
 import get from 'lodash.get';
 import set from 'lodash.set';
-import cloneDeep from 'lodash.cloneDeep';
+import cloneDeep from 'lodash.clonedeep';
 
 export default (options = {}) => {
     return context => {
