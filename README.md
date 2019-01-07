@@ -100,18 +100,29 @@ To connect to a running container:
     * [DONE] Fix what is broken
     * [DONE] User entity should come to the Auth as a parameter, not hard-included
     * [DONE] getLoginField() and getPasswordFiled() all over the code
-2.  connect auth with redux
+2.  [DONE] connect auth with redux
     1. [DONE] do something with onlogout and onreautherror events
     2. [DONE] check ssr once again
     3. [POSTPONE] redis cache for ssr will fail when there is an authorization (but should we fix this now? google will not be able to authorize anyway)
     4. [DONE] check how google oauth works
-3.  re-think oauth2
-    1. entity ACL should be application-specific!
+3.  re-think auth
     2. redis 4 sessions
-    3. no more Assign Network
     4. make other oauth2 providers possible
-    5. make password auth working again
+    5. [DONE] make password auth working again
 4. refactor getSettings() to .get('some.variable', 'default-value');
+5. re-think network :)))
+    3. no more Assign Network
+    4. different transports?
+        1. REST
+        2. WS
+            https://github.com/heineiuo/isomorphic-ws
+        3. GraphQL?
+    1. entity ACL should be application-specific!
+    2. cache database requests in redis?
+    3. different db adapters
+        1. mongoose?
+        2. knex?
+    4. different db connections?
 ==== NPM!!!!! ====
     lerna?
 1.95) move styles to styled-components
