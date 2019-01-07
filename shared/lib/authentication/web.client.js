@@ -62,7 +62,26 @@ export default class WebClientAuthentication {
         this.storeToken();
     }
 
-    async signInLocal(params) {}
+    async signInLocal(params) {
+        const { settings } = this.getParams();
+        const { login, password } = params;
+
+        const data = await axios
+            .post(`${settings.get('url.auth.outer')}local`, {
+                login,
+                password,
+            })
+            .then(response => response.data)
+            .catch(() => null);
+
+        if (_.ione(data) && _.isne(data.token)) {
+            const token = data.token;
+            await this.storeToken(token);
+            return this.getUserId(token, false);
+        }
+
+        return null;
+    }
 
     async signInOAuth2(how) {
         const openLoginPopup = (await import('feathers-authentication-popups'))
