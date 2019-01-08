@@ -8,6 +8,14 @@ import bcrypt from 'bcrypt';
 import OAuth2Strategy from 'passport-google-oauth20';
 import { wrapError } from '../util';
 
+const providerMap = {
+    google: 'passport-google-oauth20',
+    vk: 'passport-vkontakte',
+    facebook: 'passport-facebook',
+    twitter: 'passport-twitter',
+    github: 'passport-github',
+};
+
 export default class TokenIssuerServerAuthentication {
     constructor(params = {}) {
         this._params = params;
@@ -17,6 +25,15 @@ export default class TokenIssuerServerAuthentication {
         const { settings, network } = this.getParams();
 
         this.checkSettings(settings);
+
+        let ways = settings.get('auth.ways');
+        if (_.isne(ways)) {
+            ways = ways.split(',');
+        }
+
+        if (!_.iane(ways)) {
+            return;
+        }
 
         network.post(
             '/oauth2',
@@ -31,12 +48,28 @@ export default class TokenIssuerServerAuthentication {
                     throw new Error(400);
                 }
 
-                if (provider !== 'google') {
+                if (!providerMap[provider]) {
+                    // unsupported provider
                     throw new Error(400);
                 }
 
+                let module = null;
+                try {
+                    module = await import(providerMap[provider]);
+                } catch (e) {
+                    // unsupported provider
+                    throw new Error(400);
+                }
+
+                if (!module || !module.default) {
+                    // unsupported provider
+                    throw new Error(400);
+                }
+
+                const Strategy = module.default;
+
                 // verify this short-living oauth2 token
-                const strategy = new OAuth2Strategy(
+                const strategy = new Strategy(
                     {
                         authorizationURL: 'mock',
                         clientID: 'mock',
@@ -70,34 +103,36 @@ export default class TokenIssuerServerAuthentication {
             }),
         );
 
-        network.post(
-            '/local',
-            wrapError(async (req, res) => {
-                const { userEntity } = this.getParams();
-                const { login, password } = req.body;
+        if (ways.indexOf('local') >= 0) {
+            network.post(
+                '/local',
+                wrapError(async (req, res) => {
+                    const { userEntity } = this.getParams();
+                    const { login, password } = req.body;
 
-                const user = await userEntity.findOne({
-                    filter: {
-                        'profile.email': login,
-                    },
-                    select: ['profile.password'],
-                });
+                    const user = await userEntity.findOne({
+                        filter: {
+                            'profile.email': login,
+                        },
+                        select: ['profile.password'],
+                    });
 
-                if (!user) {
-                    throw new Error(400);
-                }
+                    if (!user) {
+                        throw new Error(400);
+                    }
 
-                const match = await bcrypt.compare(
-                    password,
-                    user.getProfile().password,
-                );
-                if (!match) {
-                    throw new Error(400);
-                }
+                    const match = await bcrypt.compare(
+                        password,
+                        user.getProfile().password,
+                    );
+                    if (!match) {
+                        throw new Error(400);
+                    }
 
-                return this.sendToken(res, user.getId());
-            }),
-        );
+                    return this.sendToken(res, user.getId());
+                }),
+            );
+        }
 
         network.post(
             '/verify',

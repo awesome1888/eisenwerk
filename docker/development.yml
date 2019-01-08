@@ -31,8 +31,10 @@ services:
             - FILE__TEMPLATE__ASSETS=/usr/src/app/client/assets.html
             - PROJECT__NAME=Eisenwerk
             - SSR__CACHE__URL=redis://ssr.cache:6379
-            - auth.oauth2.google.client-id=1075582803417-vnra2i2mg3g1j6na4h2il2h219qoh4ah.apps.googleusercontent.com
-            - auth.oauth2.google.secret=uAiRXseKeV_kGyqeUsIAHeu8
+            - auth.enabled=1
+            - auth.ways=local,google,vkontakte
+            - auth.google.client-id=1075582803417-vnra2i2mg3g1j6na4h2il2h219qoh4ah.apps.googleusercontent.com
+            - auth.google.secret=uAiRXseKeV_kGyqeUsIAHeu8
 
     api:
         build:
@@ -50,6 +52,7 @@ services:
             - URL__ROOT=http://localhost:3100/
             - URL__DB=mongodb://db:27017/ew
             - CORS__ORIGIN=http://localhost:3000,http://localhost:3010,http://localhost:3001
+            - auth.enabled=1
             - auth.secret=P4cRdF5mzSMPvy4hCdpKCjHMp3vZ4UvynaxhEAJK
 
     auth:
@@ -72,7 +75,7 @@ services:
             - AUTH__LOCAL__ENABLED=1
             - AUTH__GOOGLE__CLIENT_ID=745832723828-5o4p8djtufdg3dbt7vq49jicgtf576nv.apps.googleusercontent.com
             - AUTH__GOOGLE__SECRET=DC_XrNDl5SkVgDQOOq-0L6Zg
-            - auth.ways=
+            - auth.ways=local,google,vkontakte
             - auth.jwt.ttl=7d
             - auth.secret=P4cRdF5mzSMPvy4hCdpKCjHMp3vZ4UvynaxhEAJK
 

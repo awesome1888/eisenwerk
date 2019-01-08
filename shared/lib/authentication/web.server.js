@@ -18,8 +18,8 @@ export default class WebServerAuthentication {
         passport.use(
             new OAuth2Strategy(
                 {
-                    clientID: settings.get('auth.oauth2.google.client-id'),
-                    clientSecret: settings.get('auth.oauth2.google.secret'),
+                    clientID: settings.get('auth.google.client-id'),
+                    clientSecret: settings.get('auth.google.secret'),
                     callbackURL: `${settings.get(
                         'url.root',
                         '/',

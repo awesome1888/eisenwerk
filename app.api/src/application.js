@@ -19,6 +19,10 @@ export default class Application extends Server {
     }
 
     getAuthentication(network = null) {
+        if (!this.getSettings().get('auth.enabled')) {
+            return null;
+        }
+
         if (!this._auth) {
             this._auth = new Authentication({
                 network: network || this.getNetwork(),

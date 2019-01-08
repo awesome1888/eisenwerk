@@ -110,7 +110,8 @@ To connect to a running container:
     4. make other oauth2 providers possible
     5. [DONE] make password auth working again
 4. refactor getSettings() to .get('some.variable', 'default-value');
-5. re-think network :)))
+3. no more Assign Network
+5. re-think network :))) [POSTPONE] 
     3. no more Assign Network
     4. different transports?
         1. REST

@@ -152,6 +152,7 @@ class Settings {
             AUTH__ENABLED: this.useAuth(),
 
             'url.auth.outer': this.get('url.auth.outer'),
+            'auth.enabled': this.get('auth.enabled'),
         };
 
         if (params.serialize === false) {
