@@ -13,10 +13,6 @@ export default class Application extends Server {
         return [UserService];
     }
 
-    getUserEntity() {
-        return User;
-    }
-
     getAuthentication(network = null) {
         if (!this._auth) {
             this._auth = new Authentication({

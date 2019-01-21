@@ -109,6 +109,7 @@ To connect to a running container:
     2. redis 4 sessions
     4. make other oauth2 providers possible
     5. [DONE] make password auth working again
+    6. in makeToken() rename 'token' to 'accessToken', because there could also be 'refreshToken' alongside
 4. refactor getSettings() to .get('some.variable', 'default-value');
 3. no more Assign Network
 5. re-think network :))) [POSTPONE] 
@@ -159,6 +160,8 @@ https://www.npmjs.com/package/nodemon-webpack-plugin
 1.9) get rid of
         Entity.setNetwork(this.getNetwork());
         Method.setNetwork(this.getNetwork());
+2) disable pre-flights
+    * https://medium.com/@praveen.beatle/avoiding-pre-flight-options-calls-on-cors-requests-baba9692c21a
 
 * Optional stuff
     * Redis as a bus
