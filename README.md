@@ -110,6 +110,8 @@ To connect to a running container:
     4. make other oauth2 providers possible
     5. [DONE] make password auth working again
     6. in makeToken() rename 'token' to 'accessToken', because there could also be 'refreshToken' alongside
+    7. сохранять редирект с формы авторизации на предыдущую страницу
+3.5 https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/config/webpack.config.js
 4. refactor getSettings() to .get('some.variable', 'default-value');
 3. no more Assign Network
 5. re-think network :))) [POSTPONE] 
@@ -125,6 +127,7 @@ To connect to a running container:
         1. mongoose?
         2. knex?
     4. different db connections?
+6. React hot code reload
 ==== NPM!!!!! ====
     lerna?
 1.95) move styles to styled-components
